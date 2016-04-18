@@ -1,0 +1,379 @@
+<?xml version="1.0" ?>
+<!--@POSTPROC: ./postproc.sh-->
+<module>
+
+<User f="nodata">
+  <User f="noscroll">
+    <Users t="list" f="user nocertainty noannotation"/>
+    <Login t="button" l="Control"/>
+    <Guide t="button" l="User/Help"/>
+  </User>
+  <Help>
+    <Guide t="webview"/>
+  </Help>
+</User>
+
+<Control f="nodata">
+  <Control>
+    <New_Context       t="button" l="Context"/>
+    <New_Context_Group t="button" l="Context_Group"/>
+    <autonum/>
+  </Control>
+  <search/>
+</Control>
+
+<!--ArchEnt / Record Type: CONTEXT-->
+<Context>
+  <Context_General_Information>
+    <cols>
+      <Site_Code f="id autonum"/>
+      <Area_Code f="id autonum"/>
+    </cols>
+    <cols>
+      <Grid_Location_Reference/>
+      <Context_ID f="id"/>
+      <Lot_ID/>
+    </cols>
+    <cols>
+      <timestamp>Date Opened</timestamp>
+      <Wet_Sieved t="radio">
+        <opts>
+          <opt>Yes</opt>
+          <opt>No</opt>
+          <opt>N/A</opt>
+        </opts>
+      </Wet_Sieved>
+    </cols>
+    <cols>
+      <Excavation_Method t="checkbox">
+        <opts>
+          <opt>Hand-Pick</opt>
+          <opt>Trowel</opt>
+          <opt>Pick</opt>
+          <opt>Other</opt>
+        </opts>
+      </Excavation_Method>
+      <Excavators/>
+    </cols>
+    <Your_Interpretation>
+      <opts>
+        <opt>{0_No_Observation}
+          <desc>Data not collected</desc>
+        </opt>
+        <opt>{Natural_Layer}
+          <opt>{Alluvial}</opt>
+          <opt>{Fluvial}</opt>
+          <opt>{Aeolian}</opt>
+          <opt>{Lacustrine}</opt>
+        </opt>
+        <opt>{Feature_Disturbance}
+          <opt>{Hearth}</opt>
+          <opt>{Post_Hole}</opt>
+          <opt>{Pit}</opt>
+          <opt>{Burrow}</opt>
+        </opt>
+        <opt>{Anthropogenic_Layer}
+          <opt>{Dense_cultural_material}</opt>
+          <opt>{Moderate_cultural_material}</opt>
+          <opt>{Occasional_cultural_material}</opt>
+        </opt>
+      </opts>
+    </Your_Interpretation>
+    <Context_Comments/>
+    <Artefacts_Present/>
+    <!--TODO: All this-->
+    <!--<container4_1>-->
+      <!--<child1>-->
+        <!--<guide/>-->
+      <!--</child1>-->
+      <!--<child2>-->
+        <!--<guide/>-->
+      <!--</child2>-->
+    <!--</container4_1>-->
+    <Elevation_Datum_Type>
+    </Elevation_Datum_Type>
+    <cols>
+      <col>
+        <Context_Highest_Level_NW  b="decimal"/>
+        <Context_Highest_Level_NE  b="decimal"/>
+        <Context_Highest_Level_SE  b="decimal"/>
+        <Context_Highest_Level_SW  b="decimal"/>
+        <Context_Highest_Level_Ctr b="decimal"/>
+      </col>
+      <col>
+        <Context_Lowest_Level_NW  b="decimal"/>
+        <Context_Lowest_Level_NE  b="decimal"/>
+        <Context_Lowest_Level_SE  b="decimal"/>
+        <Context_Lowest_Level_SW  b="decimal"/>
+        <Context_Lowest_Level_Ctr b="decimal"/>
+      </col>
+    </cols>
+    <Target_Spit_Thickness/>
+    <cols>
+      <Min_Context_Thickness b="decimal"/>
+      <Calculate_Min t="button"/>
+    </cols>
+    <cols>
+      <Max_Context_Thickness b="decimal"/>
+      <Calculate_Max t="button"/>
+    </cols>
+    <cols>
+      <Final_Bucket_Count b="decimal"/>
+      <Deposit_Volume b="decimal"/>
+    </cols>
+    <Calculate_Vol/>
+    <cols>
+      <author/>
+      <timestamp/>
+    </cols>
+    <Update t="button"/>
+    <Add_Geological_Characteristics t="button"/>
+  </Context_General_Information>
+  <Context_Deposits>
+    <cols>
+      <Soil_Munsell_Colour/>
+      <Soil_Moisture/>
+    </cols>
+    <cols>
+      <Soil_Texture_Actual/>
+      <Texture_Helper/>
+    </cols>
+    <Soil_Compaction_Type/>
+    <cols>
+      <Deposit_Inclusions/>
+      <Natural_Formations/>
+        <Disturbances/>
+    </cols>
+    <Update t="button"/>
+    <Add_Relationships t="button"/>
+  </Context_Deposits>
+  <Context_Relationships_to_Other_Contexts>
+    <Spacer t="webview"/>
+    <cols>
+      <This_Context/>
+      <Relationship t="dropdown"/>
+      <To_Context/>
+    </cols>
+    <Relate_Contexts t="button"/>
+    <Associated_Entites t="dropdown"/>
+    <Remove_Relationship t="button"/>
+    <Show_Relationship t="button"/>
+    <Guide_1 t="webview">
+      Here you can group contexts into a single Context Group.
+    </Guide_1>
+    <Add_Context_Group t="button"/>
+    <Guide_2 t="webview">
+      You can add this Context to already existing Context Group.
+    </Guide_2>
+    <Existing_And_Unrelated_Context_Groups t="dropdown"/>
+    <Add_To_Context_Group t="button"/>
+    <Guide_3 t="webview">
+      Here are the Context Groups that this Context belongs to.
+    </Guide_3>
+    <Context_Group_List t="list"/>
+    <Show_Context_Group t="button"/>
+    <Remove_From_Context_Group t="button"/>
+    <Add_Sample t="button" lc="Sample"/>
+  </Context_Relationships_to_Other_Contexts>
+  <Context_Samples>
+    <New_Sample t="button"/>
+    <Sample_List t="list"/>
+    <Load_Sample t="button"/>
+    <Delete_Sample t="button"/>
+    <Update t="button"/>
+  </Context_Samples>
+  <Context_Artefacts>
+    <New_Artefact_Group/>
+    <Artefact_Group_List/>
+    <Load_Artefact_Group/>
+    <Delete_Artefact_Group/>
+    <New_Special_Find/>
+    <Special_Find_List/>
+    <Load_Special_Find/>
+    <Delete_Special_Find/>
+    <Update t="button"/>
+  </Context_Artefacts>
+  <Context_Attachments>
+    <Recorded_By/>
+    <Context_Sketch t="file"/>
+    <Context_Photo  t="camera"/>
+    <View_Attached_Files t="viewfiles"/>
+    <Guide/>
+    <New_Photo_Log  lc="Photograph_Log"/>
+    <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
+    <next/>
+  </Context_Attachments>
+  <Texture_Helper>
+    <Soil_Texture/>
+    <Update_Texture t="button"/>
+  </Texture_Helper>
+  <Map>
+    <Map t="map"/>
+  </Map>
+  <Review>
+    <Bulk_Sample_Mapped/>
+    <Trench_Supervisor_Review/>
+    <Site_Director_Review/>
+    <cols>
+      <Date_Closed/>
+      <Close t="button"/>
+    </cols>
+    <Update t="button"/>
+    <Delete/>
+  </Review>
+</Context>
+
+<!--Arch_Ent / Record Type: CONTEXT_GROUP-->
+<Context_Group>
+  <Context_Group_Details>
+    <cols>
+      <Site_Code/>
+      <Area_Code/>
+      <Context_Group_ID/>
+    </cols>
+    <Title/>
+    <Description/>
+    <Depth b="decimal"/>
+    <Your_Discussion/>
+    <Profile_Aspect/>
+    <cols>
+      <UTM_Easting  b="decimal"/>
+      <UTM_Northing b="decimal"/>
+    </cols>
+    <Datum/>
+    <Elevation b="decimal"/>
+    <Elevation_Determination/>
+    <Geological_Unit_Number/>
+    <cols>
+      <Start_Depth b="decimal"/>
+      <Start_Depth_Location/>
+    </cols>
+    <cols>
+      <Soil_Munsell_Colour/>
+      <Soil_Colour/>
+    </cols>
+    <Compaction/>
+    <Soil_Texture_Actual/>
+    <Rounding/>
+    <Structure/>
+    <Structure_Modifiers/>
+    <Sorting/>
+    <Inclusions_Gravel_Fraction/>
+    <Disturbances/>
+    <Upper_Boundary/>
+    <Lower_Boundary/>
+    <cols>
+      <Created_By/>
+      <Creation_Date/>
+    </cols>
+    <Update t="button"/>
+    <Delete t="button"/>
+  </Context_Group_Details>
+  <Context_Group_Contexts>
+    <Update t="button"/>
+    <Add_Context_List t="button"/>
+    <Add_Context t="button"/>
+    <Context_List/>
+    <Show_Context/>
+    <Remove_Context/>
+  </Context_Group_Contexts>
+  <Context_Group_Samples>
+    <New_Sample/>
+    <Sample_List/>
+    <Load_Sample/>
+    <Delete_Sample/>
+    <Update t="button"/>
+  </Context_Group_Samples>
+  <Context_Group_Attachments>
+    <Recorded_By/>
+    <Context_Group_Sketch t="file"/>
+    <Context_Group_Photo  t="camera"/>
+    <View_Attached_Files t="viewfiles"/>
+    <Guide/>
+    <New_Photo_Log  lc="Photograph_Log"/>
+    <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
+  </Context_Group_Attachments>
+</Context_Group>
+
+<!--Arch_Ent / Record Type: ARTEFACT_GROUP-->
+<Artefact_Group>
+  <Artefact_Group_General_Information>
+    <cols>
+      <Context_ID f="id"/>
+      <Artefact_Group_ID/>
+    </cols>
+    <Artefact_Class/>
+    <Artefact_Quantity b="decimal"/>
+    <Artefact_Weight b="decimal"/>
+    <Artefact_Group_Comment/>
+    <Artefact_Group_Sketch t="file"/>
+    <Artefact_Group_Photo  t="camera"/>
+    <View_Attached_Files t="viewfiles"/>
+  </Artefact_Group_General_Information>
+</Artefact_Group>
+
+<!--Arch_Ent / Record Type: SAMPLE-->
+<Sample>
+  <Sample_General_Information>
+    <cols>
+      <Sample_ID f="id"/>
+      <Context_ID/>
+    </cols>
+    <Sample_Type/>
+    <Collection_Method/>
+    <Sample_Weight b="decimal"/>
+    <Sample_Volume b="decimal"/>
+    <Sample_Comments/>
+    <Sample_Sketch t="file"/>
+    <Sample_Photo  t="camera"/>
+    <View_Attached_Files t="viewfiles"/>
+  </Sample_General_Information>
+</Sample>
+
+<!--Arch_Ent / Record Type: SPECIAL_FIND-->
+<Special_Find>
+  <Special_Find_General_Information>
+    <cols>
+      <Context_ID/>
+      <Special_Find_ID/>
+    </cols>
+    <Special_Find_Class/>
+    <Special_Find_Name/>
+    <Special_Find_Description/>
+    <Special_Find_Comment/>
+    <Special_Find_Sketch t="file"/>
+    <Special_Find_Photo  t="camera"/>
+    <View_Attached_Files t="viewfiles"/>
+  </Special_Find_General_Information>
+  <Special_Find_Location>
+    <New_Special_Find_Location/>
+    <List_Special_Find_Location/>
+  </Special_Find_Location>
+</Special_Find>
+
+<!-- Arch_Ent: Special Find Locations -->
+<Special_Find_Location>
+  <Special_Find_Location>
+    <cols>
+      <X b="decimal" f="id"/>
+      <Y b="decimal" f="id"/>
+      <Z b="decimal" f="id"/>
+    </cols>
+    <Notes f="id"/>
+  </Special_Find_Location>
+</Special_Find_Location>
+
+<!-- Arch_Ent: Photograph Log -->
+<Photograph_Log>
+  <Photograph_Log>
+    <Context_ID/>
+    <Photograph_Reference_ID/>
+    <Looking_Toward/>
+    <Scene_Type/>
+    <Return_To_Context/>
+  </Photograph_Log>
+</Photograph_Log>
+
+<logic><![CDATA[
+]]></logic>
+</module>

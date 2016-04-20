@@ -6,7 +6,7 @@
 
 <!--@POSTPROC: echo "" || ./postproc.sh-->
 <module>
-	
+  
 <rels>
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implehbments a above below for contexts.</description>
@@ -48,34 +48,34 @@
 
 <!--ArchEnt / Record Type: CONTEXT-->
 <Context>
-  <description>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</description>
+  <desc>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</desc>
   <Context_General_Information>
     <cols>
       <Site_Code f="id autonum">
-        <description>Short code to signify the excavation site and often the year of excavation.</description>
+        <desc>Short code to signify the excavation site and often the year of excavation.</desc>
       </Site_Code>
       <Area_Code f="id autonum">
-        <description>Area or Trench: the working subdivision of an archaeological site.</description>
+        <desc>Area or Trench: the working subdivision of an archaeological site.</desc>
       </Area_Code>
     </cols>
     <cols>
       <Grid_Location_Reference f="id">
-        <description>Reference number for the grid square(s) within which this Context falls.</description>
+        <desc>Reference number for the grid square(s) within which this Context falls.</desc>
       </Grid_Location_Reference>
       <Context_ID f="id">
-        <description>Unique number or code for each Context.</description>
+        <desc>Unique number or code for each Context.</desc>
       </Context_ID>
       <Lot_ID>
-        <description>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</description>
+        <desc>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</desc>
       </Lot_ID>
     </cols>
     <cols>
       <timestamp>
         Date Opened
-        <description>Date (YYYY-MM-DD) on which the Context was first excavated.</description>
+        <desc>Date (YYYY-MM-DD) on which the Context was first excavated.</desc>
       </timestamp>
       <Wet_Sieved t="radio">
-        <description>Was the deposit wet sieved?</description>
+        <desc>Was the deposit wet sieved?</desc>
         <opts>
           <opt>Yes</opt>
           <opt>No</opt>
@@ -85,7 +85,7 @@
     </cols>
     <cols>
       <Excavation_Method t="checkbox">
-        <description>Method and conditions of archaeological excavation.</description>
+        <desc>Method and conditions of archaeological excavation.</desc>
         <opts>
           <opt>Hand-Pick</opt>
           <opt>Trowel</opt>
@@ -94,11 +94,11 @@
         </opts>
       </Excavation_Method>
       <Excavators>
-        <description>The individual(s) involved in the excavation of the Context.</description>
+        <desc>The individual(s) involved in the excavation of the Context.</desc>
       </Excavators>
     </cols>
     <Your_Interpretation>
-      <description>Your interpretation of the likely depositional processes at work in forming the Context.</description>
+      <desc>Your interpretation of the likely depositional processes at work in forming the Context.</desc>
       <opts>
         <opt>No Observation
           <desc>Data not collected</desc>
@@ -123,11 +123,11 @@
       </opts>
     </Your_Interpretation>
     <Context_Comments>
-      <description>Additional comments on the description of the Context.</description>
+      <desc>Additional comments on the description of the Context.</desc>
     </Context_Comments>
     <Artefacts_Present>
-      <description>Whether or not artefacts were present in the Context.</description>
-	  <opts>
+      <desc>Whether or not artefacts were present in the Context.</desc>
+      <opts>
         <opt>None</opt>
         <opt>Flakes</opt>
         <opt>Cores</opt>
@@ -151,7 +151,7 @@
       <!--</child2>-->
     <!--</container4_1>-->
     <Elevation_Datum_Type>
-      <description>The type of elevation.</description>
+      <desc>The type of elevation.</desc>
       <opts>
         <opt>True</opt>
         <opt>Local Datum (Describe)</opt>
@@ -159,24 +159,44 @@
     </Elevation_Datum_Type>
     <cols>
       <col>
-        <Context_Highest_Level_NW  b="decimal"><description>The highest elevation, or 'opening level', recorded for the NW extent within the square of the Context.</description></Context_Highest_Level_NW>
-        <Context_Highest_Level_NE  b="decimal"><description>The highest elevation, or 'opening level', recorded for the NE extent within the square of the Context.</description></Context_Highest_Level_NE>
-        <Context_Highest_Level_SE  b="decimal"><description>The highest elevation, or 'opening level', recorded for the SE extent within the square of the Context.</description></Context_Highest_Level_SE>
-        <Context_Highest_Level_SW  b="decimal"><description>The highest elevation, or 'opening level', recorded for the SW extent within the square of the Context.</description></Context_Highest_Level_SW>
-        <Context_Highest_Level_Ctr b="decimal"><description>The highest elevation, or 'opening level', recorded for the centre of the Context.</description></Context_Highest_Level_Ctr>
+        <Context_Highest_Level_NW  b="decimal">
+          <desc>The highest elevation, or 'opening level', recorded for the NW extent within the square of the Context.</desc>
+        </Context_Highest_Level_NW>
+        <Context_Highest_Level_NE  b="decimal">
+          <desc>The highest elevation, or 'opening level', recorded for the NE extent within the square of the Context.</desc>
+        </Context_Highest_Level_NE>
+        <Context_Highest_Level_SE  b="decimal">
+          <desc>The highest elevation, or 'opening level', recorded for the SE extent within the square of the Context.</desc>
+        </Context_Highest_Level_SE>
+        <Context_Highest_Level_SW  b="decimal">
+          <desc>The highest elevation, or 'opening level', recorded for the SW extent within the square of the Context.</desc>
+        </Context_Highest_Level_SW>
+        <Context_Highest_Level_Ctr b="decimal">
+          <desc>The highest elevation, or 'opening level', recorded for the centre of the Context.</desc>
+        </Context_Highest_Level_Ctr>
       </col>
       <col>
-        <Context_Lowest_Level_NW  b="decimal"><description>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</description></Context_Lowest_Level_NW>
-        <Context_Lowest_Level_NE  b="decimal"><description>The lowest elevation, or 'closing level', recorded for the NE extent within the square of the Context.</description></Context_Lowest_Level_NE>
-        <Context_Lowest_Level_SE  b="decimal"><description>The lowest elevation, or 'closing level', recorded for the SE extent within the square of the Context.</description></Context_Lowest_Level_SE>
-        <Context_Lowest_Level_SW  b="decimal"><description>The lowest elevation, or 'closing level', recorded for the SW extent within the square of the Context.</description></Context_Lowest_Level_SW>
-        <Context_Lowest_Level_Ctr b="decimal"><description>The lowest elevation, or 'closing level', recorded for the centre of the Context.</description></Context_Lowest_Level_Ctr>
+        <Context_Lowest_Level_NW  b="decimal">
+          <desc>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</desc>
+        </Context_Lowest_Level_NW>
+        <Context_Lowest_Level_NE  b="decimal">
+          <desc>The lowest elevation, or 'closing level', recorded for the NE extent within the square of the Context.</desc>
+        </Context_Lowest_Level_NE>
+        <Context_Lowest_Level_SE  b="decimal">
+          <desc>The lowest elevation, or 'closing level', recorded for the SE extent within the square of the Context.</desc>
+        </Context_Lowest_Level_SE>
+        <Context_Lowest_Level_SW  b="decimal">
+          <desc>The lowest elevation, or 'closing level', recorded for the SW extent within the square of the Context.</desc>
+        </Context_Lowest_Level_SW>
+        <Context_Lowest_Level_Ctr b="decimal">
+          <desc>The lowest elevation, or 'closing level', recorded for the centre of the Context.</desc>
+        </Context_Lowest_Level_Ctr>
       </col>
     </cols>
     <Target_Spit_Thickness>
-      <description>The minimum thickness of deposit</description>
+      <desc>The minimum thickness of deposit</desc>
       <opts>
-        <opt>No Observation<description>Data not collected</description></opt>
+        <opt>No Observation<desc>Data not collected</desc></opt>
         <opt>2cm</opt>
         <opt>5cm</opt>
         <opt>10cm</opt>
@@ -187,22 +207,22 @@
     </Target_Spit_Thickness>
     <cols>
       <Min_Context_Thickness b="decimal">
-        <description>The minimum thickness of the deposit based on the highest and lowest in each extent within the square.</description>
+        <desc>The minimum thickness of the deposit based on the highest and lowest in each extent within the square.</desc>
       </Min_Context_Thickness>
       <Calculate_Min t="button"/>
     </cols>
     <cols>
       <Max_Context_Thickness b="decimal">
-        <description>The maximum thickness of the deposit based on the highest and lowest in each extent within the square.</description>
+        <desc>The maximum thickness of the deposit based on the highest and lowest in each extent within the square.</desc>
       </Max_Context_Thickness>
       <Calculate_Max t="button"/>
     </cols>
     <cols>
       <Final_Bucket_Count b="decimal">
-        <description>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</description>
+        <desc>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</desc>
       </Final_Bucket_Count>
       <Deposit_Volume b="decimal">
-        <description>The total volume of sediment (in L) removed as part of the Context.</description>
+        <desc>The total volume of sediment (in L) removed as part of the Context.</desc>
       </Deposit_Volume>
     </cols>
     <Calculate_Vol t="button"/>
@@ -216,17 +236,17 @@
   <Context_Deposits>
     <cols>
       <Soil_Munsell_Colour>
-        <description>The Munsell Code for the soil colour. </description>
+        <desc>The Munsell Code for the soil colour. </desc>
       </Soil_Munsell_Colour>
       <Soil_Moisture>
-        <description>The overall moisture content of the soil.</description>
+        <desc>The overall moisture content of the soil.</desc>
         <opts>
           <opt>No Observation
-            <description>Data not collected</description>
+            <desc>Data not collected</desc>
           </opt>
           <opt>Very Dry</opt>
           <opt>Dry
-            <description>Really quite dry</description>
+            <desc>Really quite dry</desc>
           </opt>
           <opt>Moist</opt>
           <opt>Saturated</opt>
@@ -236,75 +256,63 @@
     </cols>
     <cols>
       <Soil_Texture_Actual>
-      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</description>
-      <opts>
-        <opt>No Observation 
-          <description>No Observation. Use the Texture helper to prefil this.
-          </description>
-        </opt>
-        <opt>Sand
-          <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Loamy Sand
-          <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Silty Clay Loam
-          <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Clay Loam
-          <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Sandy Clay Loam
-          <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        
-        <opt>Silty Clay
-          <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Clay
-          <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Sandy Clay 
-          <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        
-        <opt>Silt Loam
-          <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Loam
-          <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-        <opt>Sandy Loam
-          <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
-          </description>
-        </opt>
-      </opts>
+        <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
+        <opts>
+          <opt>No Observation 
+            <desc>No Observation. Use the Texture helper to prefil this.</desc>
+          </opt>
+          <opt>Sand
+            <desc>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)</desc>
+          </opt>
+          <opt>Loamy Sand
+            <desc>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)</desc>
+          </opt>
+          <opt>Silty Clay Loam
+            <desc>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)</desc>
+          </opt>
+          <opt>Clay Loam
+            <desc>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)</desc>
+          </opt>
+          <opt>Sandy Clay Loam
+            <desc>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058) </desc>
+          </opt>
+          
+          <opt>Silty Clay
+            <desc>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058) </desc>
+          </opt>
+          <opt>Clay
+            <desc>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058) </desc>
+          </opt>
+          <opt>Sandy Clay 
+            <desc>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058) </desc>
+          </opt>
+          
+          <opt>Silt Loam
+            <desc>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058) </desc>
+          </opt>
+          <opt>Loam
+            <desc>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058) </desc>
+          </opt>
+          <opt>Sandy Loam
+            <desc>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058) </desc>
+          </opt>
+        </opts>
       </Soil_Texture_Actual>
       <Texture_Helper/>
     </cols>
     <Soil_Compaction_Type>
-      <description>The type of compaction of sediments in the deposit, eg 'Compact', 'Cemented' or 'Loose'.</description>
+      <desc>The type of compaction of sediments in the deposit, eg 'Compact', 'Cemented' or 'Loose'.</desc>
       <opts>
-        <opt>No Observation <description>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</description></opt>
-        <opt>Loose <description>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</description></opt>
-        <opt>Compact <description>Requires mattock for excavation.(MoLAS 2004: 30)</description></opt>
+        <opt>No Observation <desc>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</desc></opt>
+        <opt>Loose <desc>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</desc></opt>
+        <opt>Compact <desc>Requires mattock for excavation.(MoLAS 2004: 30)</desc></opt>
         <opt>Very Compact </opt>
       </opts>
     </Soil_Compaction_Type>
     <cols>
       <Deposit_Inclusions>
-        <description>Brief description of inclusions.</description>
-		<opts>
+        <desc>Brief description of inclusions.</desc>
+        <opts>
           <opt>None</opt>
           <opt>Cobbles</opt>
           <opt>Organic Material</opt>
@@ -313,28 +321,28 @@
         </opts>
       </Deposit_Inclusions>
       <Natural_Formations>
-        <description>Geological formations evident in the deposit</description>
+        <desc>Geological formations evident in the deposit</desc>
         <opts>
-        <opt>None</opt>
-        <opt>Carbonates</opt>
-        <opt>Iron Concretions</opt>
-        <opt>Calcretions</opt>
-        <opt>Other</opt>
-      </opts>
+          <opt>None</opt>
+          <opt>Carbonates</opt>
+          <opt>Iron Concretions</opt>
+          <opt>Calcretions</opt>
+          <opt>Other</opt>
+        </opts>
       </Natural_Formations>
       <Disturbances>
-        <description>Disturbances evident in the deposit</description>
+        <desc>Disturbances evident in the deposit</desc>
         <opts>
-        <opt>None</opt>
-        <opt>Recent human activity</opt>
-        <opt>Sediment subsidence</opt>
-        <opt>Insects</opt>
-        <opt>Large burrows</opt>
-        <opt>Faults</opt>
-        <opt>Erosion gullies</opt>
-        <opt>Large roots</opt>
-        <opt>Rootlets</opt>
-        <opt>Other</opt>
+          <opt>None</opt>
+          <opt>Recent human activity</opt>
+          <opt>Sediment subsidence</opt>
+          <opt>Insects</opt>
+          <opt>Large burrows</opt>
+          <opt>Faults</opt>
+          <opt>Erosion gullies</opt>
+          <opt>Large roots</opt>
+          <opt>Rootlets</opt>
+          <opt>Other</opt>
         </opts>
       </Disturbances>
     </cols>
@@ -399,182 +407,143 @@
   </Context_Attachments>
   <Texture_Helper>
     <Soil_Texture>
-      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</description>
+      <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
       <opts>
         <opt>Soil does NOT remain in ball when squeezed       
-          <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
-          </description>
+          <desc>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.  </desc>
           <opt>
             Is too dry
-            <description>The soil sample is too dry.
-            </description>
+            <desc>The soil sample is too dry.  </desc>
             <opt>
               NO RESULT: Add more water and start again
-              <description> </description>
             </opt>
           </opt>
           <opt>Is too wet
-            <description>The soil sample is too wet.
-            </description>
+            <desc>The soil sample is too wet.  </desc>
             <opt>
               NO RESULT: Add dry soil and start again
-              <description>NO RESULT: add dry soil to soak up water
-              </description>
+              <desc>NO RESULT: add dry soil to soak up water </desc>
             </opt>
           </opt>
           <opt>NOT too wet nor too dry
-            <description>The soil is NOT too wet nor too dry.
-            </description>
+            <desc>The soil is NOT too wet nor too dry.  </desc>
             <opt>
               Sand
-              <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
-              </description>
+              <desc>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058) </desc>
             </opt>
           </opt>
         </opt>
         <opt>Soil remains in ball when squeezed
-          <description>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.
-          </description>
+          <desc>Place approximately 25 g soil in palm. Add water dropwise and knead the soil to break down all aggregates. Soil is at the proper consistency when plastic and moldable, like moist putty.  </desc>
           <opt>
             TASK: Roll ribbon
-            <description>Rub a ball of soil between thumb and forefinger to make a 'ribbon'
-            </description>
+            <desc>Rub a ball of soil between thumb and forefinger to make a 'ribbon' </desc>
             <opt>
               Does NOT form a ribbom
-              <description>A 'ribbon' is NOT formed when a ball of soil is rubbed between thumb and forefinger.
-              </description>
+              <desc>A 'ribbon' is NOT formed when a ball of soil is rubbed between thumb and forefinger.  </desc>
               <opt>
                 Loamy Sand
-                <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
-                </description>
+                <desc>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058) </desc>
               </opt>
             </opt>
             <opt>Forms ribbon
-              <description>A 'ribbon' is formed when a ball of soil is rubbed between thumb and forefinger.
-              </description>
+              <desc>A 'ribbon' is formed when a ball of soil is rubbed between thumb and forefinger.  </desc>
               <opt>
                 Medium ribbon (2.5-5cm long)
-                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.
-                </description>
+                <desc>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is between 2.5 and 5cm long.  </desc>
                 <opt>
                   TASK: Wet soil and rub with forefinger
-                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
-                  </description>
+                  <desc>Excessively wet a small pinch of soil in palm and rub with forefinger.  </desc>
                   <opt>
                     Does NOT feel very gritty
-                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
-                    </description>
+                    <desc>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.  </desc>
                     <opt>
                       Feels very smooth
-                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
-                      </description>
+                      <desc>The wetted soil feels very smooth when rubbed on the palm and with forefinger.  </desc>
                       <opt>
                         Silty Clay Loam
-                        <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
-                        </description>
+                        <desc>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058) </desc>
                       </opt>
                     </opt>
                     <opt>Neither very gritty nor very smooth
-                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
-                      </description>
+                      <desc>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.  </desc>
                       <opt>
                         Clay Loam
-                        <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
-                        </description>
+                        <desc>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058) </desc>
                       </opt>
                     </opt>
                   </opt>
                   <opt>Feels very gritty
-                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
-                    </description>
+                    <desc>The wetted soil feels very gritty when rubbed on the palm and with forefinger.  </desc>
                     <opt>
                       Sandy Clay Loam
-                      <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
-                      </description>
+                      <desc>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058) </desc>
                     </opt>
                   </opt>
                 </opt>
               </opt>
               <opt>Strong ribbon
-                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.
-                </description>
+                <desc>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is strong and over 5cm long.  </desc>
                 <opt>
                   TASK: Wet soil and rub with forefinger
-                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
-                  </description>
+                  <desc>Excessively wet a small pinch of soil in palm and rub with forefinger.  </desc>
                   <opt>
                     Does NOT feel very gritty
-                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
-                    </description>
+                    <desc>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.  </desc>
                     <opt>
                       Feels very smooth
-                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
-                      </description>
+                      <desc>The wetted soil feels very smooth when rubbed on the palm and with forefinger.  </desc>
                       <opt>
                         Silty Clay
-                        <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
-                        </description>
+                        <desc>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058) </desc>
                       </opt>
                     </opt>
                     <opt>Neither very gritty nor very smooth
-                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
-                      </description>
+                      <desc>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.  </desc>
                       <opt>
                         Clay
-                        <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
-                        </description>
+                        <desc>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058) </desc>
                       </opt>
                     </opt>
                   </opt>
                   <opt>Feels very gritty
-                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
-                    </description>
+                    <desc>The wetted soil feels very gritty when rubbed on the palm and with forefinger.  </desc>
                     <opt>
                       Sandy Clay
-                      <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
-                      </description>
+                      <desc>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058) </desc>
                     </opt>
                   </opt>
                 </opt>
               </opt>
-              <opt>Weak ribbon (<2.5cm long)
-                <description>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.
-                </description>
+              <opt>Weak ribbon (&lt;2.5cm long)
+                <desc>The ribbon formed when a ball of soil is rubbed between thumb and forefinger is less than 2.5cm long.  </desc>
                 <opt>
                   TASK: Wet soil and rub with forefinger
-                  <description>Excessively wet a small pinch of soil in palm and rub with forefinger.
-                  </description>
+                  <desc>Excessively wet a small pinch of soil in palm and rub with forefinger.  </desc>
                   <opt>
                     Does NOT feel very gritty
-                    <description>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.
-                    </description>
+                    <desc>The wetted soil does NOT feel very gritty when rubbed on the palm and with forefinger.  </desc>
                     <opt>
                       Feels very smooth
-                      <description>The wetted soil feels very smooth when rubbed on the palm and with forefinger.
-                      </description>
+                      <desc>The wetted soil feels very smooth when rubbed on the palm and with forefinger.  </desc>
                       <opt>
                         Silt Loam
-                        <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
-                        </description>
+                        <desc>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058) </desc>
                       </opt>
                     </opt>
                     <opt>Neither very gritty nor very smooth
-                      <description>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.
-                      </description>
+                      <desc>The wetted soil does NOT feel very smooth nor very gritty when rubbed on the palm and with forefinger.  </desc>
                       <opt>
                         Loam
-                        <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
-                        </description>
+                        <desc>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058) </desc>
                       </opt>
                     </opt>
                   </opt>
                   <opt>Feels very gritty
-                    <description>The wetted soil feels very gritty when rubbed on the palm and with forefinger.
-                    </description>
+                    <desc>The wetted soil feels very gritty when rubbed on the palm and with forefinger.  </desc>
                     <opt>
                       Sandy Loam
-                      <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
-                      </description>
+                      <desc>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058) </desc>
                     </opt>
                   </opt>
                 </opt>
@@ -591,21 +560,21 @@
   </Map>
   <Review>
     <Bulk_Sample_Mapped>
-      <description>Has the bulk sample been mapped?</description>
+      <desc>Has the bulk sample been mapped?</desc>
       <opts>
         <opt>Yes</opt>
         <opt>No</opt>
       </opts>
     </Bulk_Sample_Mapped>
     <Trench_Supervisor_Review>
-      <description>Has the Trench Supervisor reviewed this Context record and confirmed data are complete and accurate?</description>
+      <desc>Has the Trench Supervisor reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
         <opt>Yes</opt>
         <opt>No</opt>
       </opts>
     </Trench_Supervisor_Review>
     <Site_Director_Review>
-      <description>Has the Site Director reviewed this Context record and confirmed data are complete and accurate?</description>
+      <desc>Has the Site Director reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
         <opt>Yes</opt>
         <opt>No</opt>
@@ -613,7 +582,7 @@
     </Site_Director_Review>
     <cols>
       <Date_Closed>
-        <description>The date (YYYY-MM-DD) on which the Context was closed.</description>
+        <desc>The date (YYYY-MM-DD) on which the Context was closed.</desc>
       </Date_Closed>
       <Close t="button"/>
     </cols>
@@ -624,84 +593,84 @@
 
 <!--Arch_Ent / Record Type: CONTEXT_GROUP-->
 <Context_Group>
-  <description>A group of contexts.</description>
+  <desc>A group of contexts.</desc>
   <Context_Group_Details>
     <cols>
       <Site_Code>
-        <description>Short code to signify the excavation site and often the year of excavation.</description>
+        <desc>Short code to signify the excavation site and often the year of excavation.</desc>
       </Site_Code>
       <Area_Code>
-        <description>Area or Trench: the working subdivision of an archaeological site.</description>
+        <desc>Area or Trench: the working subdivision of an archaeological site.</desc>
       </Area_Code>
       <Context_Group_ID>
-        <description>ID of the Context Group/Geological Unit</description>
+        <desc>ID of the Context Group/Geological Unit</desc>
       </Context_Group_ID>
     </cols>
     <Title f="id">
-      <description>Name of the context group</description>
+      <desc>Name of the context group</desc>
     </Title>
     <Description/>
     <Depth b="decimal">
-      <description>Depth or Height, in mm.</description>
+      <desc>Depth or Height, in mm.</desc>
     </Depth>
     <Your_Discussion/>
     <Profile_Aspect>
-      <description>The direction you are facing when you are facing the profile.</description>
+      <desc>The direction you are facing when you are facing the profile.</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected</description>
+          <desc>Data not collected</desc>
         </opt>
         <opt>North</opt>
         <opt>South</opt>
         <opt>East</opt>
         <opt>West</opt>
         <opt>Other
-          <description>Other. Please specify.</description>
+          <desc>Other. Please specify.</desc>
         </opt>
       </opts>
     </Profile_Aspect>
     <cols>
       <UTM_Easting  b="decimal">
-        <description>Your longitudinal location, in UTM metres (specify zone in comments).</description>
+        <desc>Your longitudinal location, in UTM metres (specify zone in comments).</desc>
       </UTM_Easting>
       <UTM_Northing b="decimal">
-        <description>Your latitudinal location, in UTM metres (specify zone in comments).</description>
+        <desc>Your latitudinal location, in UTM metres (specify zone in comments).</desc>
       </UTM_Northing>
     </cols>
     <Datum>
-      <description>The datum used for establishing your global position. Comment: default to WGS84, otherwise type manually. Enter Zone in Annotation Field.</description>
+      <desc>The datum used for establishing your global position. Comment: default to WGS84, otherwise type manually. Enter Zone in Annotation Field.</desc>
     </Datum>
     <Elevation b="decimal">
-      <description>Elevation of the top of the profile, in m.</description>
+      <desc>Elevation of the top of the profile, in m.</desc>
     </Elevation>
     <Elevation_Determination>
-      <description>The means by which you established the elevation of the top of the profile.</description>
+      <desc>The means by which you established the elevation of the top of the profile.</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected.</description>
+          <desc>Data not collected.</desc>
         </opt>
         <opt>Paper Map
-          <description>Elevation read from topography of a printed map.</description>
+          <desc>Elevation read from topography of a printed map.</desc>
         </opt>
         <opt>Hand-Held GPS
-          <description>Commercial-grade GPS without calibration.</description>
+          <desc>Commercial-grade GPS without calibration.</desc>
         </opt>
         <opt>Differential GPS
-          <description>Differential GPS read with a ‘fixed’ location.</description>
+          <desc>Differential GPS read with a ‘fixed’ location.</desc>
         </opt>
         <opt>Calibrated GPS
-          <description>Hand-held GPS calibrated to a local elevation datum.</description>
+          <desc>Hand-held GPS calibrated to a local elevation datum.</desc>
         </opt>
         <opt>Survey Beacon (Indicate number in comments)
-          <description>Elevation based on a local survey beacon.</description>
+          <desc>Elevation based on a local survey beacon.</desc>
         </opt>
         <opt>Other
-          <description>Describe other means of establishing elevation.</description>
+          <desc>Describe other means of establishing elevation.</desc>
         </opt>
       </opts>
     </Elevation_Determination>
     <Geological_Unit_Number>
-      <description>The geological unit of the layer assigned by the geologist (typically decreasing numbers with depth).</description>
+      <desc>The geological unit of the layer assigned by the geologist (typically decreasing numbers with depth).</desc>
     </Geological_Unit_Number>
     <cols>
       <Start_Depth b="decimal"/>
@@ -709,19 +678,19 @@
     </cols>
     <cols>
       <Soil_Munsell_Colour>
-        <description>The Munsell Code for the soil colour. </description>
+        <desc>The Munsell Code for the soil colour. </desc>
         <opts>
-		  <!--TODO: Add vocab-->
+      <!--TODO: Add vocab-->
         </opts>
       </Soil_Munsell_Colour>
       <Soil_Colour>
-        <description>Simple description of the colour of the soil. This field is interpreted from the Soil Munsell Colour</description>
+        <desc>Simple description of the colour of the soil. This field is interpreted from the Soil Munsell Colour</desc>
       </Soil_Colour>
     </cols>
     <Compaction>
-      <description>The degree to which the sediment particles adhere to one another and require force to be separated. Follow this procedure to determine soil compaction/consistence. Take a ped (an aggregate of soil) from the soil horizon. If the soil is very dry, moisten the face of the profile with a water bottle first. Holding the ped between your thumb and forefinger, gently squeeze it until it “pops” or falls apart. Loose soil will not need to be squeezed, while soft soil will fall apart immediately. Slightly hard soil takes some pressure, while hard soil takes a lot of pressure. Very hard soil can only be broken apart along its structure using a digging tool, and cemented soil cannot be broken apart along its structure at all.</description>
+      <desc>The degree to which the sediment particles adhere to one another and require force to be separated. Follow this procedure to determine soil compaction/consistence. Take a ped (an aggregate of soil) from the soil horizon. If the soil is very dry, moisten the face of the profile with a water bottle first. Holding the ped between your thumb and forefinger, gently squeeze it until it “pops” or falls apart. Loose soil will not need to be squeezed, while soft soil will fall apart immediately. Slightly hard soil takes some pressure, while hard soil takes a lot of pressure. Very hard soil can only be broken apart along its structure using a digging tool, and cemented soil cannot be broken apart along its structure at all.</desc>
       <opts>
-        <opt>No Observation<description>Data not collected</description></opt>
+        <opt>No Observation<desc>Data not collected</desc></opt>
         <opt>Loose </opt>
         <opt>Soft </opt>
         <opt>Slightly Hard </opt>
@@ -731,55 +700,43 @@
       </opts>
     </Compaction>
     <Soil_Texture_Actual>
-      <description>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</description>
+      <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
       <opts>
         <opt>No Observation 
-          <description>No Observation. Use the Texture helper to prefil this.
-          </description>
+          <desc>No Observation. Use the Texture helper to prefil this.  </desc>
         </opt>
         <opt>Sand
-          <description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)
-          </description>
+          <desc>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Loamy Sand
-          <description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)
-          </description>
+          <desc>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Silty Clay Loam
-          <description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)
-          </description>
+          <desc>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Clay Loam
-          <description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)
-          </description>
+          <desc>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Sandy Clay Loam
-          <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058)
-          </description>
+          <desc>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Silty Clay
-          <description>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058)
-          </description>
+          <desc>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Clay
-          <description>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058)
-          </description>
+          <desc>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Sandy Clay 
-          <description>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058)
-          </description>
+          <desc>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Silt Loam
-          <description>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058)
-          </description>
+          <desc>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Loam
-          <description>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058)
-          </description>
+          <desc>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058) </desc>
         </opt>
         <opt>Sandy Loam
-          <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058)
-          </description>
+          <desc>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058) </desc>
         </opt>
       </opts>
     </Soil_Texture_Actual>
@@ -793,89 +750,89 @@
       </opts>
     </Rounding>
     <Structure>
-      <description>“The arrangement of primary soil particles into compound particles or aggregates.</description>
+      <desc>“The arrangement of primary soil particles into compound particles or aggregates.</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected</description>
+          <desc>Data not collected</desc>
         </opt>
         <opt>Single Grain
-          <description>Sediment that is broken into individual particles that do not stick together. Typically accompanies loose consistence in sandy sediments.</description>
+          <desc>Sediment that is broken into individual particles that do not stick together. Typically accompanies loose consistence in sandy sediments.</desc>
         </opt>
         <opt>Massive
-          <description>Sediments that have no visible structure, are hard to break apart, and appear in very large clods.</description>
+          <desc>Sediments that have no visible structure, are hard to break apart, and appear in very large clods.</desc>
         </opt>
         <opt>Laminated
-          <description>Distinct bands of varying sediment texture (e.g. silts, medium sands, clays) that usually deposit at non-horizontal angles. Common in canals, reservoirs, and wells.</description>
+          <desc>Distinct bands of varying sediment texture (e.g. silts, medium sands, clays) that usually deposit at non-horizontal angles. Common in canals, reservoirs, and wells.</desc>
         </opt>
         <opt>Platy
-          <description>Thin, flat plates of soil that lie horizontally. Usually found in compacted soil.</description>
+          <desc>Thin, flat plates of soil that lie horizontally. Usually found in compacted soil.</desc>
         </opt>
         <opt>Granular
-          <description>Resembles cookie crumbs and is usually less than 0.5 cm in diameter. Commonly found in surface horizons where roots have been growing.</description>
+          <desc>Resembles cookie crumbs and is usually less than 0.5 cm in diameter. Commonly found in surface horizons where roots have been growing.</desc>
         </opt>
         <opt>Blocky
-          <description>Irregular blocks that are usually 1.5 to 5.0 cm in diameter.</description>
+          <desc>Irregular blocks that are usually 1.5 to 5.0 cm in diameter.</desc>
         </opt>
         <opt>Prismatic
-          <description>Vertical columns of soil typically more than 5 cm long. Usually found in lower soil horizons.</description>
+          <desc>Vertical columns of soil typically more than 5 cm long. Usually found in lower soil horizons.</desc>
         </opt>
         <opt>Columnar
-          <description>Vertical columns of soil that have a white rounded salt 'cap' at the top. They occur very commonly in arid climates.</description>
+          <desc>Vertical columns of soil that have a white rounded salt 'cap' at the top. They occur very commonly in arid climates.</desc>
         </opt>
       </opts>
     </Structure>
     <Structure_Modifiers>
-      <description>Describe the degree to which the structure is developed. Also describe in the notes if the ped size is large, medium, or fine.</description>
+      <desc>Describe the degree to which the structure is developed. Also describe in the notes if the ped size is large, medium, or fine.</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected</description>
+          <desc>Data not collected</desc>
         </opt>
         <opt>None
-          <description>There is no apparent structure.</description>
+          <desc>There is no apparent structure.</desc>
         </opt>
         <opt>Weak
-          <description>Some structure is apparent, but it is inconsistent within the horizon.</description>
+          <desc>Some structure is apparent, but it is inconsistent within the horizon.</desc>
         </opt>
         <opt>Moderate
-          <description>Structure is moderately developed throughout the horizon.</description>
+          <desc>Structure is moderately developed throughout the horizon.</desc>
         </opt>
         <opt>Strong
-          <description>Structure is well-developed throughout the horizon.</description>
+          <desc>Structure is well-developed throughout the horizon.</desc>
         </opt>
       </opts>
     </Structure_Modifiers>
     <Sorting>
-      <description>Assessment of the frequency with which particles of the same size occur.</description>
+      <desc>Assessment of the frequency with which particles of the same size occur.</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected</description>
+          <desc>Data not collected</desc>
         </opt>
         <opt>Very poorly sorted
-          <description>Particles are very different sizes and very unevenly distributed.
-          </description>
+          <desc>Particles are very different sizes and very unevenly distributed.
+          </desc>
         </opt>
         <opt>Poorly sorted
-          <description>Particles are different sizes and unevenly distributed.
-          </description>
+          <desc>Particles are different sizes and unevenly distributed.
+          </desc>
         </opt>
         <opt>Moderately sorted
-          <description>Particles are mostly the same size and evenly distributed, but there are some larger particles.
-          </description>
+          <desc>Particles are mostly the same size and evenly distributed, but there are some larger particles.
+          </desc>
         </opt>
         <opt>Well sorted
-          <description>Particles are roughly the same size and evenly distributed.
-          </description>
+          <desc>Particles are roughly the same size and evenly distributed.
+          </desc>
         </opt>
       </opts>
     </Sorting>
     <Inclusions_Gravel_Fraction>
-      <description>Include amounts and qualities; i.e. 'Minor CaCO3 filaments' or 'Minor cultural material present'.</description>
+      <desc>Include amounts and qualities; i.e. 'Minor CaCO3 filaments' or 'Minor cultural material present'.</desc>
     </Inclusions_Gravel_Fraction>
     <Disturbances>
-      <description>Disturbances evident in the deposit</description>
+      <desc>Disturbances evident in the deposit</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected</description>
+          <desc>Data not collected</desc>
         </opt>
         <opt>Recent human activity</opt>
         <opt>Sediment subsidence</opt>
@@ -889,54 +846,54 @@
       </opts>
     </Disturbances>
     <Upper_Boundary>
-      <description>Describe the overall way in which the upper boundary of the horizon contacts the one above it. If a secondary boundary type applies, describe it in the comments.</description>
+      <desc>Describe the overall way in which the upper boundary of the horizon contacts the one above it. If a secondary boundary type applies, describe it in the comments.</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected</description>
+          <desc>Data not collected</desc>
         </opt>
         <opt>Merging
-          <description>Horizon merges gradually with the one above it.</description>
+          <desc>Horizon merges gradually with the one above it.</desc>
         </opt>
         <opt>Clear
-          <description>Boundary is clearly defined but not sharp.</description>
+          <desc>Boundary is clearly defined but not sharp.</desc>
         </opt>
         <opt>Sharp/Straight
-          <description>Boundary is clearly defined and sharp.</description>
+          <desc>Boundary is clearly defined and sharp.</desc>
         </opt>
         <opt>Smooth
-          <description>Boundary is apparent but not clearly defined.</description>
+          <desc>Boundary is apparent but not clearly defined.</desc>
         </opt>
         <opt>Continuous
-          <description>Boundary is continuous across the exposed profile, but takes more than one form.</description>
+          <desc>Boundary is continuous across the exposed profile, but takes more than one form.</desc>
         </opt>
         <opt>Discontinuous
-          <description>Boundary is discontinuous across the exposed profile, and takes more than one form.</description>
+          <desc>Boundary is discontinuous across the exposed profile, and takes more than one form.</desc>
         </opt>
       </opts>
     </Upper_Boundary>
     <Lower_Boundary>
-      <description>Describe the overall way in which the lower boundary of the horizon contacts the one above it. If a secondary boundary type applies, describe it in the comments.</description>
+      <desc>Describe the overall way in which the lower boundary of the horizon contacts the one above it. If a secondary boundary type applies, describe it in the comments.</desc>
       <opts>
         <opt>No Observation
-          <description>Data not collected</description>
+          <desc>Data not collected</desc>
         </opt>
         <opt>Merging
-          <description>Horizon merges gradually with the one above it.</description>
+          <desc>Horizon merges gradually with the one above it.</desc>
         </opt>
         <opt>Clear
-          <description>Boundary is clearly defined but not sharp.</description>
+          <desc>Boundary is clearly defined but not sharp.</desc>
         </opt>
         <opt>Sharp/Straight
-          <description>Boundary is clearly defined and sharp.</description>
+          <desc>Boundary is clearly defined and sharp.</desc>
         </opt>
         <opt>Smooth
-          <description>Boundary is apparent but not clearly defined.</description>
+          <desc>Boundary is apparent but not clearly defined.</desc>
         </opt>
         <opt>Continuous
-          <description>Boundary is continuous across the exposed profile, but takes more than one form.</description>
+          <desc>Boundary is continuous across the exposed profile, but takes more than one form.</desc>
         </opt>
         <opt>Discontinuous
-          <description>Boundary is discontinuous across the exposed profile, and takes more than one form.</description>
+          <desc>Boundary is discontinuous across the exposed profile, and takes more than one form.</desc>
         </opt>
       </opts>
     </Lower_Boundary>
@@ -975,20 +932,20 @@
 
 <!--Arch_Ent / Record Type: ARTEFACT_GROUP-->
 <Artefact_Group>
-  <description>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</description>
+  <desc>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</desc>
   <Artefact_Group_General_Information>
     <cols>
       <Context_ID>
-        <description>Unique number or code for each Context.</description>
+        <desc>Unique number or code for each Context.</desc>
       </Context_ID>
       <Artefact_Group_ID f="id">
-        <description>Unique number or code for the artefact group.</description>
+        <desc>Unique number or code for the artefact group.</desc>
       </Artefact_Group_ID>
     </cols>
     <Artefact_Class f="id">
-      <description>Broad Artefact Class for each Artefact.</description>
+      <desc>Broad Artefact Class for each Artefact.</desc>
       <opts>
-        <opt>No Observation<description>Data not collected</description></opt>
+        <opt>No Observation<desc>Data not collected</desc></opt>
         <opt>Flakes</opt>
         <opt>Cores</opt>
         <opt>Fire Cracked Rock</opt>
@@ -1002,13 +959,13 @@
       </opts>
     </Artefact_Class>
     <Artefact_Quantity b="decimal">
-      <description>The number of Artefacts in this group.</description>
+      <desc>The number of Artefacts in this group.</desc>
     </Artefact_Quantity>
     <Artefact_Weight b="decimal">
-      <description>The total weight (in grams) of all Artefacts in this Group.</description>
+      <desc>The total weight (in grams) of all Artefacts in this Group.</desc>
     </Artefact_Weight>
     <Artefact_Group_Comment b="string">
-      <description>General comment about this group of Artefacts from this Context, eg 'Lots of early porcelain. Few marks.'</description>
+      <desc>General comment about this group of Artefacts from this Context, eg 'Lots of early porcelain. Few marks.'</desc>
     </Artefact_Group_Comment>
     <Artefact_Group_Sketch t="file"/>
     <Artefact_Group_Photo  t="camera"/>
@@ -1018,20 +975,20 @@
 
 <!--Arch_Ent / Record Type: SAMPLE-->
 <Sample>
-  <description>Deposit samples, or samples of building elements, recovered from this Context for the purpose of further analysis, or ongoing reference. </description>
+  <desc>Deposit samples, or samples of building elements, recovered from this Context for the purpose of further analysis, or ongoing reference. </desc>
   <Sample_General_Information>
     <cols>
       <Sample_ID f="id">
-        <description>The unique code or reference for the Sample.</description>
+        <desc>The unique code or reference for the Sample.</desc>
       </Sample_ID>
       <Context_ID>
-        <description>Unique number or code for each Context.</description>
+        <desc>Unique number or code for each Context.</desc>
       </Context_ID>
     </cols>
     <Sample_Type f="id">
-	  <description>The type of Sample collected, eg Soil, Wood, Pollen.</description>
+      <desc>The type of Sample collected, eg Soil, Wood, Pollen.</desc>
       <opts>
-        <opt>No Observation<description>Data not collected</description></opt>
+        <opt>No Observation<desc>Data not collected</desc></opt>
         <opt>Bulk</opt>
         <opt>OSL</opt>
         <opt>Micromorphology</opt>
@@ -1044,28 +1001,28 @@
       </opts>
     </Sample_Type>
     <Collection_Method>
-	  <description>Method of collecting the sample.</description>
+      <desc>Method of collecting the sample.</desc>
       <opts>
-	    <opt>No Observation
-          <description>data not collected</description>
+      <opt>No Observation
+          <desc>data not collected</desc>
         </opt>
         <opt>Dirty Trowel</opt>
         <opt>Other (Specify)
-          <description>Other collection method.</description>
+          <desc>Other collection method.</desc>
         </opt>
         <opt>Clean Trowel
-          <description>A collection using standard excavation tools into a sterilised container.</description>
+          <desc>A collection using standard excavation tools into a sterilised container.</desc>
         </opt>
       </opts>
     </Collection_Method>
     <Sample_Weight b="decimal" f="id">
-	  <description>Weight (in grams) of the sample collected.</description>
+    <desc>Weight (in grams) of the sample collected.</desc>
     </Sample_Weight>
     <Sample_Volume b="decimal">
-      <description>Volume (in litres) of the sample collected.</description>
+      <desc>Volume (in litres) of the sample collected.</desc>
     </Sample_Volume>
     <Sample_Comments>
-      <description>Additional comments about this sample, or its collection.</description>
+      <desc>Additional comments about this sample, or its collection.</desc>
     </Sample_Comments>
     <Sample_Sketch t="file"/>
     <Sample_Photo  t="camera"/>
@@ -1078,16 +1035,16 @@
   <Special_Find_General_Information>
     <cols>
       <Context_ID>
-        <description>Unique number or code for each Context.</description>
+        <desc>Unique number or code for each Context.</desc>
       </Context_ID>
       <Special_Find_ID f="id">
-         <description>Unique number or code for the special find.</description>
+         <desc>Unique number or code for the special find.</desc>
       </Special_Find_ID>
     </cols>
     <Special_Find_Class f="id">
-      <description>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).</description>
+      <desc>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).</desc>
       <opts>
-        <opt>No Observation<description>Data not collected</description></opt>
+        <opt>No Observation<desc>Data not collected</desc></opt>
         <opt>Flakes</opt>
         <opt>Cores</opt>
         <opt>Fire Cracked Rock</opt>
@@ -1118,33 +1075,33 @@
   <Special_Find_Location>
     <cols>
       <X b="decimal" f="id">
-        <description>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</description>
+        <desc>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </X>
       <Y b="decimal" f="id">
-		<description>The reading from the y-axis (vertical) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</description>
+        <desc>The reading from the y-axis (vertical) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </Y>
       <Z b="decimal" f="id">
-		<description>The elevation or depth of the Special Find at the time of excavation.</description>
+        <desc>The elevation or depth of the Special Find at the time of excavation.</desc>
       </Z>
     </cols>
     <Notes f="id">
-      <description>Note about the part of the Plotted Find from which the Location measurement was taken</description>
+      <desc>Note about the part of the Plotted Find from which the Location measurement was taken</desc>
     </Notes>
   </Special_Find_Location>
 </Special_Find_Location>
 
 <!-- Arch_Ent: Photograph Log -->
 <Photograph_Log>
-  <description>A record of images created and stored on another device, eg by a professional site photographer.</description>
+  <desc>A record of images created and stored on another device, eg by a professional site photographer.</desc>
   <Photograph_Log>
     <Context_ID>
-      <description>Unique number or code for each Context</description>
+      <desc>Unique number or code for each Context</desc>
     </Context_ID>
     <Photograph_Reference_ID>
-	  <description>Unique number or code allocated by creator of the image. It could be a filename or a reference number</description>
+      <desc>Unique number or code allocated by creator of the image. It could be a filename or a reference number</desc>
     </Photograph_Reference_ID>
     <Looking_Toward>
-	  <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <desc>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</desc>
       <opts>
         <opt>North</opt>
         <opt>South</opt>
@@ -1155,9 +1112,9 @@
       </opts>
     </Looking_Toward>
     <Scene_Type>
-      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <desc>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</desc>
       <opts>
-        <opt>No Observation<description>Data not collected</description></opt>
+        <opt>No Observation<desc>Data not collected</desc></opt>
         <opt>Open</opt>
         <opt>Close</opt>
         <opt>Feature</opt>

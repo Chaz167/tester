@@ -375,10 +375,10 @@
     <Sample_List ec="Sample" t="dropdown"/>
   </Context_Samples>
   <Context_Artefacts>
-    <New_Artefact_Group  ec="Artefact_Group"/>
-    <Artefact_Group_List lc="Artefact_Group" t="dropdown"/>
-    <New_Special_Find  ec="Special_Find"/>
-    <Special_Find_List lc="Special_Find" t="dropdown"/>
+    <New_Artefact_Group  lc="Artefact_Group"/>
+    <Artefact_Group_List ec="Artefact_Group" t="dropdown"/>
+    <New_Special_Find  lc="Special_Find"/>
+    <Special_Find_List ec="Special_Find" t="dropdown"/>
   </Context_Artefacts>
   <Context_Attachments>
     <Context_Sketch t="file"/>

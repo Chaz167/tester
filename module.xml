@@ -371,13 +371,13 @@
     <Remove_From_Context_Group t="button"/>
   </Context_Relationships_to_Other_Contexts>
   <Context_Samples>
-    <New_Sample  lc="Sample"/>
+    <New_Sample  lc="Sample" t="button"/>
     <Sample_List ec="Sample" t="dropdown"/>
   </Context_Samples>
   <Context_Artefacts>
-    <New_Artefact_Group  lc="Artefact_Group"/>
+    <New_Artefact_Group  lc="Artefact_Group" t="button"/>
     <Artefact_Group_List ec="Artefact_Group" t="dropdown"/>
-    <New_Special_Find  lc="Special_Find"/>
+    <New_Special_Find  lc="Special_Find" t="button"/>
     <Special_Find_List ec="Special_Find" t="dropdown"/>
   </Context_Artefacts>
   <Context_Attachments>
@@ -385,7 +385,7 @@
     <Context_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
     <Guide t="webview"/>
-    <New_Photo_Log  lc="Photograph_Log"/>
+    <New_Photo_Log  lc="Photograph_Log" t="button"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
     <Next t="button"/>
   </Context_Attachments>
@@ -764,7 +764,7 @@
     <Guide t="webview">
       <!--TODO: populate me?-->
     </Guide>
-    <New_Photo_Log  lc="Photograph_Log"/>
+    <New_Photo_Log  lc="Photograph_Log" t="button"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
   </Context_Group_Attachments>
 </Context_Group>
@@ -901,8 +901,8 @@
     <View_Attached_Files t="viewfiles"/>
   </Special_Find_General_Information>
   <Special_Find_Location f="noscroll">
-    <New_Special_Find_Location  lc="Special_Find_Location"/>
-    <List_Special_Find_Location ec="Special_Find_Location"/>
+    <New_Special_Find_Location  lc="Special_Find_Location" t="button"/>
+    <List_Special_Find_Location ec="Special_Find_Location" t="dropdown"/>
   </Special_Find_Location>
 </Special_Find>
 

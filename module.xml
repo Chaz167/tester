@@ -400,10 +400,10 @@
     <Context_Sketch t="file"/>
     <Context_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
-    <Guide/>
+    <Guide_1/>
     <New_Photo_Log  lc="Photograph_Log"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
-    <next/>
+    <Next t="button"/>
   </Context_Attachments>
   <Texture_Helper>
     <Soil_Texture>
@@ -780,7 +780,7 @@
     <Context_Group_Sketch t="file"/>
     <Context_Group_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
-    <Guide/>
+    <Guide_2/>
     <New_Photo_Log  lc="Photograph_Log"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
   </Context_Group_Attachments>

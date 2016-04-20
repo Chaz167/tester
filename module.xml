@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <!--TODO: Gotta implement that stupid relationship thing-->
-<!--TODO: Write in the right lc and ec tags-->
 <!--TODO: Make sure I've preserved the user flow-->
 
 <!--@PREPROC:  ./preproc.sh-->
@@ -8,7 +7,7 @@
 <module>
 <rels>
   <RelationshipElement name="AboveBelow" type="hierarchical">
-    <description>Implehbments a above below for contexts.</description>
+    <description>Implements a above below for contexts.</description>
     <parent>Above</parent>
     <child>Below</child>
   </RelationshipElement>
@@ -27,7 +26,7 @@
 
 <User f="nodata">
   <User f="noscroll">
-    <Users t="list" f="user nocertainty noannotation"/>
+    <Users t="dropdown" f="user nocertainty noannotation"/>
     <Login t="button" l="Control"/>
     <Guide t="button" l="User/Help"/>
   </User>
@@ -45,7 +44,6 @@
   <search/>
 </Control>
 
-<!--ArchEnt / Record Type: CONTEXT-->
 <Context>
   <desc>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</desc>
   <Context_General_Information>
@@ -227,8 +225,6 @@
       <author/>
       <timestamp/>
     </cols>
-    <Update t="button"/>
-    <Add_Geological_Characteristics t="button"/>
   </Context_General_Information>
   <Context_Deposits>
     <cols>
@@ -346,8 +342,6 @@
         </opts>
       </Disturbances>
     </cols>
-    <Update t="button"/>
-    <Add_Relationships t="button"/>
   </Context_Deposits>
   <Context_Relationships_to_Other_Contexts>
     <Spacer t="webview"/>
@@ -375,32 +369,22 @@
     <Context_Group_List t="list"/>
     <Show_Context_Group t="button"/>
     <Remove_From_Context_Group t="button"/>
-    <Add_Sample t="button" lc="Sample"/>
   </Context_Relationships_to_Other_Contexts>
   <Context_Samples>
     <New_Sample t="button"/>
-    <Sample_List t="list"/>
-    <Load_Sample t="button"/>
-    <Delete_Sample t="button"/>
-    <Update t="button"/>
+    <Sample_List t="dropdown"/>
   </Context_Samples>
   <Context_Artefacts>
-    <New_Artefact_Group/>
-    <Artefact_Group_List/>
-    <Load_Artefact_Group/>
-    <Delete_Artefact_Group/>
-    <New_Special_Find/>
-    <Special_Find_List/>
-    <Load_Special_Find/>
-    <Delete_Special_Find/>
-    <Update t="button"/>
+    <New_Artefact_Group  ec="Artefact_Group"/>
+    <Artefact_Group_List lc="Artefact_Group" t="dropdown"/>
+    <New_Special_Find  ec="Special_Find"/>
+    <Special_Find_List lc="Special_Find" t="dropdown"/>
   </Context_Artefacts>
   <Context_Attachments>
-    <Recorded_By/>
     <Context_Sketch t="file"/>
     <Context_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
-    <Guide_1/>
+    <Guide t="viewfiles"/>
     <New_Photo_Log  lc="Photograph_Log"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
     <Next t="button"/>
@@ -442,12 +426,9 @@
       </Date_Closed>
       <Close t="button"/>
     </cols>
-    <Update t="button"/>
-    <Delete/>
   </Review>
 </Context>
 
-<!--Arch_Ent / Record Type: CONTEXT_GROUP-->
 <Context_Group>
   <desc>A group of contexts.</desc>
   <Context_Group_Details>
@@ -757,36 +738,37 @@
       <Created_By/>
       <Creation_Date/>
     </cols>
-    <Update t="button"/>
-    <Delete t="button"/>
   </Context_Group_Details>
   <Context_Group_Contexts>
-    <Update t="button"/>
-    <Add_Context_List t="button"/>
-    <Add_Context t="button"/>
-    <Context_List/>
-    <Show_Context/>
-    <Remove_Context/>
+    <Guide t="viewfiles">
+      <!--TODO: "Click to select a {Context} to add to the {Context_Group}"-->
+    </Guide>
+    <Context e="Context" t="dropdown"/>
+    <Add_Context_to_Context_Group t="button"/>
+    <Contexts_In_Group ec="Context" t="dropdown"/>
+    <Load_Context_and_Exit_Context_Group t="button">
+      <!--TODO: link me-->
+    </Load_Context_and_Exit_Context_Group>
+    <Remove_Context_From_Context_Group t="button">
+      <!--TODO: link me-->
+    </Remove_Context_From_Context_Group>
   </Context_Group_Contexts>
   <Context_Group_Samples>
-    <New_Sample/>
-    <Sample_List/>
-    <Load_Sample/>
-    <Delete_Sample/>
-    <Update t="button"/>
+    <New_Sample t="button"/>
+    <Sample_List t="dropdown"/>
   </Context_Group_Samples>
   <Context_Group_Attachments>
-    <Recorded_By/>
     <Context_Group_Sketch t="file"/>
     <Context_Group_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
-    <Guide_2/>
+    <Guide t="webview">
+      <!--TODO: populate me?-->
+    </Guide>
     <New_Photo_Log  lc="Photograph_Log"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
   </Context_Group_Attachments>
 </Context_Group>
 
-<!--Arch_Ent / Record Type: ARTEFACT_GROUP-->
 <Artefact_Group>
   <desc>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</desc>
   <Artefact_Group_General_Information>
@@ -829,7 +811,6 @@
   </Artefact_Group_General_Information>
 </Artefact_Group>
 
-<!--Arch_Ent / Record Type: SAMPLE-->
 <Sample>
   <desc>Deposit samples, or samples of building elements, recovered from this Context for the purpose of further analysis, or ongoing reference. </desc>
   <Sample_General_Information>
@@ -886,7 +867,6 @@
   </Sample_General_Information>
 </Sample>
 
-<!--Arch_Ent / Record Type: SPECIAL_FIND-->
 <Special_Find>
   <Special_Find_General_Information>
     <cols>
@@ -926,7 +906,6 @@
   </Special_Find_Location>
 </Special_Find>
 
-<!-- Arch_Ent: Special Find Locations -->
 <Special_Find_Location>
   <Special_Find_Location>
     <cols>
@@ -946,7 +925,6 @@
   </Special_Find_Location>
 </Special_Find_Location>
 
-<!-- Arch_Ent: Photograph Log -->
 <Photograph_Log>
   <desc>A record of images created and stored on another device, eg by a professional site photographer.</desc>
   <Photograph_Log>

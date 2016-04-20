@@ -2792,12 +2792,8 @@
 <arch16n k="{8_}"><![CDATA[8/]]></arch16n>
 <arch16n k="{9_}"><![CDATA[9/]]></arch16n>
 <arch16n k="{Accuracy}"><![CDATA[Accuracy]]></arch16n>
-<arch16n k="{Add_Context}"><![CDATA[Add Context]]></arch16n>
 <arch16n k="{Add_Context_Group}"><![CDATA[Add Context Group]]></arch16n>
-<arch16n k="{Add_Context_List}"><![CDATA[Add Context List]]></arch16n>
-<arch16n k="{Add_Geological_Characteristics}"><![CDATA[Add Geological Characteristics]]></arch16n>
-<arch16n k="{Add_Relationships}"><![CDATA[Add Relationships]]></arch16n>
-<arch16n k="{Add_Sample}"><![CDATA[Add Sample]]></arch16n>
+<arch16n k="{Add_Context_to_Context_Group}"><![CDATA[Add Context to Context Group]]></arch16n>
 <arch16n k="{Add_To_Context_Group}"><![CDATA[Add To Context Group]]></arch16n>
 <arch16n k="{Aeolian}"><![CDATA[Aeolian]]></arch16n>
 <arch16n k="{Alert}"><![CDATA[Alert]]></arch16n>
@@ -2881,7 +2877,6 @@
 <arch16n k="{Context_Highest_Level_SE}"><![CDATA[Context Highest Level SE]]></arch16n>
 <arch16n k="{Context_Highest_Level_SW}"><![CDATA[Context Highest Level SW]]></arch16n>
 <arch16n k="{Context_ID}"><![CDATA[Context ID]]></arch16n>
-<arch16n k="{Context_List}"><![CDATA[Context List]]></arch16n>
 <arch16n k="{Context_Lowest_Level_Ctr}"><![CDATA[Context Lowest Level Ctr]]></arch16n>
 <arch16n k="{Context_Lowest_Level_NE}"><![CDATA[Context Lowest Level NE]]></arch16n>
 <arch16n k="{Context_Lowest_Level_NW}"><![CDATA[Context Lowest Level NW]]></arch16n>
@@ -2890,6 +2885,7 @@
 <arch16n k="{Context_Photo}"><![CDATA[Context Photo]]></arch16n>
 <arch16n k="{Context_Relationships_to_Other_Contexts}"><![CDATA[Context Relationships to Other Contexts]]></arch16n>
 <arch16n k="{Context_Samples}"><![CDATA[Context Samples]]></arch16n>
+<arch16n k="{Contexts_In_Group}"><![CDATA[Contexts In Group]]></arch16n>
 <arch16n k="{Context_Sketch}"><![CDATA[Context Sketch]]></arch16n>
 <arch16n k="{Continuous}"><![CDATA[Continuous]]></arch16n>
 <arch16n k="{Control}"><![CDATA[Control]]></arch16n>
@@ -2898,11 +2894,8 @@
 <arch16n k="{Creation_Date}"><![CDATA[Creation Date]]></arch16n>
 <arch16n k="{Date_Closed}"><![CDATA[Date Closed]]></arch16n>
 <arch16n k="{Datum}"><![CDATA[Datum]]></arch16n>
-<arch16n k="{Delete_Artefact_Group}"><![CDATA[Delete Artefact Group]]></arch16n>
 <arch16n k="{Delete_Cancelled}"><![CDATA[Delete cancelled]]></arch16n>
 <arch16n k="{Delete}"><![CDATA[Delete]]></arch16n>
-<arch16n k="{Delete_Sample}"><![CDATA[Delete Sample]]></arch16n>
-<arch16n k="{Delete_Special_Find}"><![CDATA[Delete Special Find]]></arch16n>
 <arch16n k="{Dense_cultural_material}"><![CDATA[Dense cultural material]]></arch16n>
 <arch16n k="{Deposit_Inclusions}"><![CDATA[Deposit Inclusions]]></arch16n>
 <arch16n k="{Deposit_Volume}"><![CDATA[Deposit Volume]]></arch16n>
@@ -2978,10 +2971,8 @@
 <arch16n k="{Large_roots}"><![CDATA[Large roots]]></arch16n>
 <arch16n k="{Latitude}"><![CDATA[Latitude]]></arch16n>
 <arch16n k="{List_Special_Find_Location}"><![CDATA[List Special Find Location]]></arch16n>
-<arch16n k="{Load_Artefact_Group}"><![CDATA[Load Artefact Group]]></arch16n>
+<arch16n k="{Load_Context_and_Exit_Context_Group}"><![CDATA[Load Context and Exit Context Group]]></arch16n>
 <arch16n k="{Load_Photo_Log}"><![CDATA[Load Photo Log]]></arch16n>
-<arch16n k="{Load_Sample}"><![CDATA[Load Sample]]></arch16n>
-<arch16n k="{Load_Special_Find}"><![CDATA[Load Special Find]]></arch16n>
 <arch16n k="{Loam}"><![CDATA[Loam]]></arch16n>
 <arch16n k="{Loamy_Sand}"><![CDATA[Loamy Sand]]></arch16n>
 <arch16n k="{Local_Datum__Describe_}"><![CDATA[Local Datum (Describe)]]></arch16n>
@@ -3017,7 +3008,7 @@
 <arch16n k="{New_Special_Find_Location}"><![CDATA[New Special Find Location]]></arch16n>
 <arch16n k="{New_Special_Find}"><![CDATA[New Special Find]]></arch16n>
 <arch16n k="{Next_Area_Code}"><![CDATA[Next Area Code]]></arch16n>
-<arch16n k="{next}"><![CDATA[next]]></arch16n>
+<arch16n k="{Next}"><![CDATA[Next]]></arch16n>
 <arch16n k="{Next_Site_Code}"><![CDATA[Next Site Code]]></arch16n>
 <arch16n k="{no_GPS_position_could_be_found}"><![CDATA[no GPS position could be found]]></arch16n>
 <arch16n k="{None}"><![CDATA[None]]></arch16n>
@@ -3061,10 +3052,9 @@
 <arch16n k="{Profile_Aspect}"><![CDATA[Profile Aspect]]></arch16n>
 <arch16n k="{Recent_human_activity}"><![CDATA[Recent human activity]]></arch16n>
 <arch16n k="{Recent_material}"><![CDATA[Recent material]]></arch16n>
-<arch16n k="{Recorded_By}"><![CDATA[Recorded By]]></arch16n>
 <arch16n k="{Relate_Contexts}"><![CDATA[Relate Contexts]]></arch16n>
 <arch16n k="{Relationship}"><![CDATA[Relationship]]></arch16n>
-<arch16n k="{Remove_Context}"><![CDATA[Remove Context]]></arch16n>
+<arch16n k="{Remove_Context_From_Context_Group}"><![CDATA[Remove Context From Context Group]]></arch16n>
 <arch16n k="{Remove_From_Context_Group}"><![CDATA[Remove From Context Group]]></arch16n>
 <arch16n k="{Remove_Relationship}"><![CDATA[Remove Relationship]]></arch16n>
 <arch16n k="{Return_To_Context}"><![CDATA[Return To Context]]></arch16n>
@@ -3096,7 +3086,6 @@
 <arch16n k="{Sediment_subsidence}"><![CDATA[Sediment subsidence]]></arch16n>
 <arch16n k="{Sharp_Straight}"><![CDATA[Sharp/Straight]]></arch16n>
 <arch16n k="{Show_Context_Group}"><![CDATA[Show Context Group]]></arch16n>
-<arch16n k="{Show_Context}"><![CDATA[Show Context]]></arch16n>
 <arch16n k="{Show_Relationship}"><![CDATA[Show Relationship]]></arch16n>
 <arch16n k="{Silt_Loam}"><![CDATA[Silt Loam]]></arch16n>
 <arch16n k="{Silty_Clay_Loam}"><![CDATA[Silty Clay Loam]]></arch16n>
@@ -3153,7 +3142,6 @@
 <arch16n k="{Trowel}"><![CDATA[Trowel]]></arch16n>
 <arch16n k="{True}"><![CDATA[True]]></arch16n>
 <arch16n k="{Update_Texture}"><![CDATA[Update Texture]]></arch16n>
-<arch16n k="{Update}"><![CDATA[Update]]></arch16n>
 <arch16n k="{Upper_Boundary}"><![CDATA[Upper Boundary]]></arch16n>
 <arch16n k="{Users}"><![CDATA[Users]]></arch16n>
 <arch16n k="{User}"><![CDATA[User]]></arch16n>

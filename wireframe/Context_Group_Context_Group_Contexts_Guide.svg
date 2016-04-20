@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="200" height="40" 
+<svg width="200" height="80" 
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
      <style>
 @font-face {
@@ -12,30 +12,24 @@
 }
 
 </style> 
-<rect x="0" y="0" width="200" height="40" 
+<rect x="0" y="0" width="200" height="80" 
         fill="white" stroke-width="0"/>
+<path d="M 5 5 L 195 5 L 195 75 L 5 75 Z" fill="#f0f0f0" stroke="black"/>
+<text x="100" y="46" font-family="Roboto" font-size="14" fill="black" text-anchor="middle"> Guide </text>
 
-<path d="M 5 5 L 195 5 L 195 35 L 5 35 Z" fill="lightgray"/>
-<text x="100" y="24" font-family="Roboto" font-size="9" fill="black" text-anchor="middle"> Delete </text>
-
-fill lightgray
-stroke lightgray
-
-polyline 5,5 195,5 195,75 5,75
-
-
-stroke-width 0
-stroke-opacity 0
-
-
-fill black
+fill lightblue
 stroke black
 stroke-width 0
 stroke-opacity 0
 
 
-font-size 20
+polyline 5,5 5,155 195,155 195,5
+
+fill black
+
 gravity center
-text 0,0 "Delete"
+
+font-size 24
+text 0,0 "Guide"
 
 </svg>

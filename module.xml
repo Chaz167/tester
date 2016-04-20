@@ -64,7 +64,7 @@
       <Context_ID f="id">
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
-      <Lot_ID>
+      <Lot_ID f="id">
         <desc>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</desc>
       </Lot_ID>
     </cols>
@@ -953,7 +953,7 @@
     <Context_ID>
       <desc>Unique number or code for each Context</desc>
     </Context_ID>
-    <Photograph_Reference_ID>
+    <Photograph_Reference_ID f="id">
       <desc>Unique number or code allocated by creator of the image. It could be a filename or a reference number</desc>
     </Photograph_Reference_ID>
     <Looking_Toward>

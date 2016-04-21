@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
-<!--TODO: Gotta implement that stupid relationship thing-->
 <!--TODO: Make sure I've preserved the user flow-->
+<!--TODO: Gotta implement that stupid relationship thing-->
 
 <!--@PREPROC:  ./preproc.sh-->
 <!--@POSTPROC: echo "" || ./postproc.sh-->
@@ -251,7 +251,7 @@
       </Soil_Moisture>
     </cols>
     <cols>
-      <Soil_Texture_Actual>
+      <Soil_Texture><!--Previously "Soil_Texture_Actual"-->
         <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
         <opts>
           <opt>No Observation 
@@ -293,8 +293,8 @@
             <desc>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058) </desc>
           </opt>
         </opts>
-      </Soil_Texture_Actual>
-      <Texture_Helper/>
+      </Soil_Texture>
+      <Texture_Helper l="Context/Texture_Helper"/>
     </cols>
     <Soil_Compaction_Type>
       <desc>The type of compaction of sediments in the deposit, eg 'Compact', 'Cemented' or 'Loose'.</desc>
@@ -389,12 +389,12 @@
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
   </Context_Attachments>
   <Texture_Helper>
-    <Soil_Texture>
+    <Soil_Texture_Helper>
       <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
       <opts>
         <!--@SOURCE: vocabs/soil-texture.xml-->
       </opts>
-    </Soil_Texture>
+    </Soil_Texture_Helper>
     <Update_Texture t="button"/>
   </Texture_Helper>
   <Map>
@@ -955,7 +955,6 @@
         <opt>Other (specify)</opt>
       </opts>
     </Scene_Type>
-    <Return_To_Context t="button"/>
   </Photograph_Log>
 </Photograph_Log>
 

@@ -387,7 +387,6 @@
     <Guide t="webview"/>
     <New_Photo_Log  lc="Photograph_Log" t="button"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
-    <Next t="button"/>
   </Context_Attachments>
   <Texture_Helper>
     <Soil_Texture>

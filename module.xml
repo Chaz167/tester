@@ -754,8 +754,8 @@
     </Remove_Context_From_Context_Group>
   </Context_Group_Contexts>
   <Context_Group_Samples>
-    <New_Sample t="button"/>
-    <Sample_List t="dropdown"/>
+    <New_Sample  lc="Sample" t="button"/>
+    <Sample_List ec="Sample" t="dropdown"/>
   </Context_Group_Samples>
   <Context_Group_Attachments>
     <Context_Group_Sketch t="file"/>

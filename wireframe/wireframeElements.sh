@@ -3,7 +3,7 @@
 ./makeElement.sh style_orientation_orientation "horizontal" input 1 false false false false false .
 ./makeElement.sh style_even_layout_weight "1" input 1 false false false false false .
 ./makeElement.sh style_large_layout_weight "3" input 1 false false false false false .
-./makeElement.sh User_User_Users "Users" list 1 false false false false false .
+./makeElement.sh User_User_Users "Users" dropdown 1 false false false false false .
 ./makeElement.sh User_User_Login "Login" button 1 false false false false false .
 ./makeElement.sh User_User_Guide "Guide" button 1 false false false false false .
 ./makeElement.sh User_Help_Guide "Guide" webview 1 false false false false false .
@@ -45,8 +45,6 @@
 ./makeElement.sh Context_Context_General_Information_Final_Bucket_Count "Final Bucket Count" input 2 false false true false false .
 ./makeElement.sh Context_Context_General_Information_Deposit_Volume "Deposit Volume" input 2 false false true false false .
 ./makeElement.sh Context_Context_General_Information_Calculate_Vol "Calculate Vol" button 1 false false false false false .
-./makeElement.sh Context_Context_General_Information_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Context_General_Information_Add_Geological_Characteristics "Add Geological Characteristics" button 1 false false false false false .
 ./makeElement.sh Context_Context_Deposits_Soil_Munsell_Colour "Soil Munsell Colour" dropdown 2 false false true false false .
 ./makeElement.sh Context_Context_Deposits_Soil_Moisture "Soil Moisture" dropdown 2 false false true false false .
 ./makeElement.sh Context_Context_Deposits_Soil_Texture_Actual "Soil Texture Actual" dropdown 2 false false true false false .
@@ -55,8 +53,6 @@
 ./makeElement.sh Context_Context_Deposits_Deposit_Inclusions "Deposit Inclusions" dropdown 3 false false true false false .
 ./makeElement.sh Context_Context_Deposits_Natural_Formations "Natural Formations" dropdown 3 false false true false false .
 ./makeElement.sh Context_Context_Deposits_Disturbances "Disturbances" dropdown 3 false false true false false .
-./makeElement.sh Context_Context_Deposits_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Context_Deposits_Add_Relationships "Add Relationships" button 1 false false false false false .
 ./makeElement.sh Context_Context_Relationships_to_Other_Contexts_Spacer "Spacer" webview 1 false false false false false .
 ./makeElement.sh Context_Context_Relationships_to_Other_Contexts_This_Context "This Context" input 3 false false true false false .
 ./makeElement.sh Context_Context_Relationships_to_Other_Contexts_Relationship "Relationship" dropdown 3 false false true false false .
@@ -74,31 +70,21 @@
 ./makeElement.sh Context_Context_Relationships_to_Other_Contexts_Context_Group_List "Context Group List" list 1 false false true false false .
 ./makeElement.sh Context_Context_Relationships_to_Other_Contexts_Show_Context_Group "Show Context Group" button 1 false false false false false .
 ./makeElement.sh Context_Context_Relationships_to_Other_Contexts_Remove_From_Context_Group "Remove From Context Group" button 1 false false false false false .
-./makeElement.sh Context_Context_Relationships_to_Other_Contexts_Add_Sample "Add Sample" button 1 false false false false false .
 ./makeElement.sh Context_Context_Samples_New_Sample "New Sample" button 1 false false false false false .
-./makeElement.sh Context_Context_Samples_Sample_List "Sample List" list 1 false false true false false .
-./makeElement.sh Context_Context_Samples_Load_Sample "Load Sample" button 1 false false false false false .
-./makeElement.sh Context_Context_Samples_Delete_Sample "Delete Sample" button 1 false false false false false .
-./makeElement.sh Context_Context_Samples_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Context_Artefacts_New_Artefact_Group "New Artefact Group" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_Artefact_Group_List "Artefact Group List" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_Load_Artefact_Group "Load Artefact Group" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_Delete_Artefact_Group "Delete Artefact Group" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_New_Special_Find "New Special Find" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_Special_Find_List "Special Find List" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_Load_Special_Find "Load Special Find" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_Delete_Special_Find "Delete Special Find" input 1 false false true false false .
-./makeElement.sh Context_Context_Artefacts_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Context_Attachments_Recorded_By "Recorded By" input 1 false false true false false .
+./makeElement.sh Context_Context_Samples_Sample_List "Sample List" dropdown 1 false false false false false .
+./makeElement.sh Context_Context_Artefacts_New_Artefact_Group "New Artefact Group" button 1 false false false false false .
+./makeElement.sh Context_Context_Artefacts_Artefact_Group_List "Artefact Group List" dropdown 1 false false false false false .
+./makeElement.sh Context_Context_Artefacts_New_Special_Find "New Special Find" button 1 false false false false false .
+./makeElement.sh Context_Context_Artefacts_Special_Find_List "Special Find List" dropdown 1 false false false false false .
 ./makeElement.sh Context_Context_Attachments_Context_Sketch "Context Sketch" file 1 false false true false false .
 ./makeElement.sh Context_Context_Attachments_Button_Context_Sketch "Attach File" button 1 false false false false false .
 ./makeElement.sh Context_Context_Attachments_Context_Photo "Context Photo" file 1 false false true false false .
 ./makeElement.sh Context_Context_Attachments_Button_Context_Photo "Attach Photograph" button 1 false false false false false .
 ./makeElement.sh Context_Context_Attachments_View_Attached_Files "View Attached Files" button 1 false false false false false .
-./makeElement.sh Context_Context_Attachments_Guide "Guide" input 1 false false true false false .
-./makeElement.sh Context_Context_Attachments_New_Photo_Log "New Photo Log" input 1 false false true false false .
+./makeElement.sh Context_Context_Attachments_Guide "Guide" webview 1 false false false false false .
+./makeElement.sh Context_Context_Attachments_New_Photo_Log "New Photo Log" button 1 false false false false false .
 ./makeElement.sh Context_Context_Attachments_Load_Photo_Log "Load Photo Log" dropdown 1 false false false false false .
-./makeElement.sh Context_Context_Attachments_next "next" input 1 false false true false false .
+./makeElement.sh Context_Context_Attachments_Next "Next" button 1 false false false false false .
 ./makeElement.sh Context_Texture_Helper_Soil_Texture "Soil Texture" dropdown 1 false false true false false .
 ./makeElement.sh Context_Texture_Helper_Update_Texture "Update Texture" button 1 false false false false false .
 ./makeElement.sh Context_Map_Map "" map 1 false false false false false .
@@ -107,8 +93,6 @@
 ./makeElement.sh Context_Review_Site_Director_Review "Site Director Review" dropdown 1 false false true false false .
 ./makeElement.sh Context_Review_Date_Closed "Date Closed" input 2 false false true false false .
 ./makeElement.sh Context_Review_Close "Close" button 2 false false false false false .
-./makeElement.sh Context_Review_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Review_Delete "Delete" input 1 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Details_Site_Code "Site Code" input 3 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Details_Area_Code "Area Code" input 3 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Details_Context_Group_ID "Context Group ID" input 3 false false true false false .
@@ -139,27 +123,21 @@
 ./makeElement.sh Context_Group_Context_Group_Details_Lower_Boundary "Lower Boundary" dropdown 1 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Details_Created_By "Created By" input 2 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Details_Creation_Date "Creation Date" input 2 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Details_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Group_Context_Group_Details_Delete "Delete" button 1 false false false false false .
-./makeElement.sh Context_Group_Context_Group_Contexts_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Group_Context_Group_Contexts_Add_Context_List "Add Context List" button 1 false false false false false .
-./makeElement.sh Context_Group_Context_Group_Contexts_Add_Context "Add Context" button 1 false false false false false .
-./makeElement.sh Context_Group_Context_Group_Contexts_Context_List "Context List" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Contexts_Show_Context "Show Context" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Contexts_Remove_Context "Remove Context" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Samples_New_Sample "New Sample" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Samples_Sample_List "Sample List" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Samples_Load_Sample "Load Sample" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Samples_Delete_Sample "Delete Sample" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Samples_Update "Update" button 1 false false false false false .
-./makeElement.sh Context_Group_Context_Group_Attachments_Recorded_By "Recorded By" input 1 false false true false false .
+./makeElement.sh Context_Group_Context_Group_Contexts_Guide "Guide" webview 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Contexts_Context "Context" dropdown 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Contexts_Add_Context_to_Context_Group "Add Context to Context Group" button 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Contexts_Contexts_In_Group "Contexts In Group" dropdown 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Contexts_Load_Context_and_Exit_Context_Group "Load Context and Exit Context Group" button 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Contexts_Remove_Context_From_Context_Group "Remove Context From Context Group" button 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Samples_New_Sample "New Sample" button 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Samples_Sample_List "Sample List" dropdown 1 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Attachments_Context_Group_Sketch "Context Group Sketch" file 1 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Attachments_Button_Context_Group_Sketch "Attach File" button 1 false false false false false .
 ./makeElement.sh Context_Group_Context_Group_Attachments_Context_Group_Photo "Context Group Photo" file 1 false false true false false .
 ./makeElement.sh Context_Group_Context_Group_Attachments_Button_Context_Group_Photo "Attach Photograph" button 1 false false false false false .
 ./makeElement.sh Context_Group_Context_Group_Attachments_View_Attached_Files "View Attached Files" button 1 false false false false false .
-./makeElement.sh Context_Group_Context_Group_Attachments_Guide "Guide" input 1 false false true false false .
-./makeElement.sh Context_Group_Context_Group_Attachments_New_Photo_Log "New Photo Log" input 1 false false true false false .
+./makeElement.sh Context_Group_Context_Group_Attachments_Guide "Guide" webview 1 false false false false false .
+./makeElement.sh Context_Group_Context_Group_Attachments_New_Photo_Log "New Photo Log" button 1 false false false false false .
 ./makeElement.sh Context_Group_Context_Group_Attachments_Load_Photo_Log "Load Photo Log" dropdown 1 false false false false false .
 ./makeElement.sh Artefact_Group_Artefact_Group_General_Information_Context_ID "Context ID" input 2 false false true false false .
 ./makeElement.sh Artefact_Group_Artefact_Group_General_Information_Artefact_Group_ID "Artefact Group ID" input 2 false false true false false .
@@ -195,8 +173,8 @@
 ./makeElement.sh Special_Find_Special_Find_General_Information_Special_Find_Photo "Special Find Photo" file 1 false false true false false .
 ./makeElement.sh Special_Find_Special_Find_General_Information_Button_Special_Find_Photo "Attach Photograph" button 1 false false false false false .
 ./makeElement.sh Special_Find_Special_Find_General_Information_View_Attached_Files "View Attached Files" button 1 false false false false false .
-./makeElement.sh Special_Find_Special_Find_Location_New_Special_Find_Location "New Special Find Location" input 1 false false true false false .
-./makeElement.sh Special_Find_Special_Find_Location_List_Special_Find_Location "List Special Find Location" list 1 false false false false false .
+./makeElement.sh Special_Find_Special_Find_Location_New_Special_Find_Location "New Special Find Location" button 1 false false false false false .
+./makeElement.sh Special_Find_Special_Find_Location_List_Special_Find_Location "List Special Find Location" dropdown 1 false false false false false .
 ./makeElement.sh Special_Find_Location_Special_Find_Location_X "X" input 3 false false true false false .
 ./makeElement.sh Special_Find_Location_Special_Find_Location_Y "Y" input 3 false false true false false .
 ./makeElement.sh Special_Find_Location_Special_Find_Location_Z "Z" input 3 false false true false false .

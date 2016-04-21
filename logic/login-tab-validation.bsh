@@ -1,0 +1,18 @@
+/**************************** LOGIN TAB VALIDATION ****************************/
+/* The autogen defines its own `onClickUserLogin` function. This is overriden */
+/* using @POSTPROC.                                                           */
+/******************************************************************************/
+
+onClickUserLogin () {
+  isSelectedUser = !isNull(username); // `username` is defined by autogen
+
+  if (!isSelectedUser) { noUserSelected(); return; }
+
+  newTab("Control", true);
+}
+
+noUserSelected() {
+  msgHead = "No User Selected";
+  msgBody = "A user must be selected in order to log in.";
+  showWarning(msgHead, msgBody);
+}

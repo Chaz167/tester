@@ -1,9 +1,11 @@
 <?xml version="1.0" ?>
 <!--TODO: Make sure I've preserved the user flow-->
 <!--TODO: Gotta implement that stupid relationship thing-->
+<!--TODO: Populate guides-->
+<!--TODO: Double check that data schema properties have been preserved-->
 
 <!--@PREPROC:  ./preproc.sh-->
-<!--@POSTPROC: echo "" || ./postproc.sh-->
+<!--@POSTPROC: ./postproc.sh-->
 <module>
 <rels>
   <RelationshipElement name="AboveBelow" type="hierarchical">
@@ -26,7 +28,9 @@
 
 <User f="nodata">
   <User f="noscroll">
-    <Users t="dropdown" f="user nocertainty noannotation"/>
+    <Users t="dropdown" f="user nocertainty noannotation">
+      <!--TODO: Validate me-->
+    </Users>
     <Login t="button" l="Control"/>
     <Guide t="button" l="User/Help"/>
   </User>
@@ -56,13 +60,13 @@
       </Area_Code>
     </cols>
     <cols>
-      <Grid_Location_Reference f="id">
+      <Grid_Location_Reference f="id notnull">
         <desc>Reference number for the grid square(s) within which this Context falls.</desc>
       </Grid_Location_Reference>
-      <Context_ID f="id">
+      <Context_ID f="id notnull">
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
-      <Lot_ID f="id">
+      <Lot_ID f="id notnull">
         <desc>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</desc>
       </Lot_ID>
     </cols>
@@ -71,7 +75,7 @@
         Date Opened
         <desc>Date (YYYY-MM-DD) on which the Context was first excavated.</desc>
       </timestamp>
-      <Wet_Sieved t="radio">
+      <Wet_Sieved f="notnull" t="radio">
         <desc>Was the deposit wet sieved?</desc>
         <opts>
           <!--@SOURCE: vocabs/boolean-modal.xml-->
@@ -79,7 +83,7 @@
       </Wet_Sieved>
     </cols>
     <cols>
-      <Excavation_Method t="checkbox">
+      <Excavation_Method f="notnull" t="checkbox">
         <desc>Method and conditions of archaeological excavation.</desc>
         <opts>
           <opt>Hand-Pick</opt>
@@ -88,11 +92,11 @@
           <opt>Other</opt>
         </opts>
       </Excavation_Method>
-      <Excavators>
+      <Excavators f="notnull">
         <desc>The individual(s) involved in the excavation of the Context.</desc>
       </Excavators>
     </cols>
-    <Your_Interpretation>
+    <Your_Interpretation f="notnull">
       <desc>Your interpretation of the likely depositional processes at work in forming the Context.</desc>
       <opts>
         <opt>No Observation
@@ -120,7 +124,7 @@
     <Context_Comments>
       <desc>Additional comments on the description of the Context.</desc>
     </Context_Comments>
-    <Artefacts_Present>
+    <Artefacts_Present f="notnull" t="checkbox">
       <desc>Whether or not artefacts were present in the Context.</desc>
       <opts>
         <opt>None</opt>
@@ -145,7 +149,7 @@
         <!--<guide/>-->
       <!--</child2>-->
     <!--</container4_1>-->
-    <Elevation_Datum_Type>
+    <Elevation_Datum_Type f="notnull">
       <desc>The type of elevation.</desc>
       <opts>
         <opt>True</opt>
@@ -154,36 +158,36 @@
     </Elevation_Datum_Type>
     <cols>
       <col>
-        <Context_Highest_Level_NW  b="decimal">
+        <Context_Highest_Level_NW  b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the NW extent within the square of the Context.</desc>
         </Context_Highest_Level_NW>
-        <Context_Highest_Level_NE  b="decimal">
+        <Context_Highest_Level_NE  b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the NE extent within the square of the Context.</desc>
         </Context_Highest_Level_NE>
-        <Context_Highest_Level_SE  b="decimal">
+        <Context_Highest_Level_SE  b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the SE extent within the square of the Context.</desc>
         </Context_Highest_Level_SE>
-        <Context_Highest_Level_SW  b="decimal">
+        <Context_Highest_Level_SW  b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the SW extent within the square of the Context.</desc>
         </Context_Highest_Level_SW>
-        <Context_Highest_Level_Ctr b="decimal">
+        <Context_Highest_Level_Ctr b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the centre of the Context.</desc>
         </Context_Highest_Level_Ctr>
       </col>
       <col>
-        <Context_Lowest_Level_NW  b="decimal">
+        <Context_Lowest_Level_NW  b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</desc>
         </Context_Lowest_Level_NW>
-        <Context_Lowest_Level_NE  b="decimal">
+        <Context_Lowest_Level_NE  b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the NE extent within the square of the Context.</desc>
         </Context_Lowest_Level_NE>
-        <Context_Lowest_Level_SE  b="decimal">
+        <Context_Lowest_Level_SE  b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the SE extent within the square of the Context.</desc>
         </Context_Lowest_Level_SE>
-        <Context_Lowest_Level_SW  b="decimal">
+        <Context_Lowest_Level_SW  b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the SW extent within the square of the Context.</desc>
         </Context_Lowest_Level_SW>
-        <Context_Lowest_Level_Ctr b="decimal">
+        <Context_Lowest_Level_Ctr b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the centre of the Context.</desc>
         </Context_Lowest_Level_Ctr>
       </col>
@@ -201,22 +205,22 @@
       </opts>
     </Target_Spit_Thickness>
     <cols>
-      <Min_Context_Thickness b="decimal">
+      <Min_Context_Thickness b="decimal" f="notnull">
         <desc>The minimum thickness of the deposit based on the highest and lowest in each extent within the square.</desc>
       </Min_Context_Thickness>
       <Calculate_Min t="button"/>
     </cols>
     <cols>
-      <Max_Context_Thickness b="decimal">
+      <Max_Context_Thickness b="decimal" f="notnull">
         <desc>The maximum thickness of the deposit based on the highest and lowest in each extent within the square.</desc>
       </Max_Context_Thickness>
       <Calculate_Max t="button"/>
     </cols>
     <cols>
-      <Final_Bucket_Count b="decimal">
+      <Final_Bucket_Count b="decimal" f="notnull">
         <desc>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</desc>
       </Final_Bucket_Count>
-      <Deposit_Volume b="decimal">
+      <Deposit_Volume b="decimal" f="notnull">
         <desc>The total volume of sediment (in L) removed as part of the Context.</desc>
       </Deposit_Volume>
     </cols>
@@ -228,13 +232,13 @@
   </Context_General_Information>
   <Context_Deposits>
     <cols>
-      <Soil_Munsell_Colour>
+      <Soil_Munsell_Colour f="notnull">
         <desc>The Munsell Code for the soil colour. </desc>
         <opts>
           <!--@SOURCE: vocabs/munsel.xml-->
         </opts>
       </Soil_Munsell_Colour>
-      <Soil_Moisture>
+      <Soil_Moisture f="notnull">
         <desc>The overall moisture content of the soil.</desc>
         <opts>
           <opt>No Observation
@@ -296,7 +300,7 @@
       </Soil_Texture>
       <Texture_Helper l="Context/Texture_Helper"/>
     </cols>
-    <Soil_Compaction_Type>
+    <Soil_Compaction_Type f="notnull">
       <desc>The type of compaction of sediments in the deposit, eg 'Compact', 'Cemented' or 'Loose'.</desc>
       <opts>
         <opt>No Observation <desc>Can be excavated with hoe or trowel. (MoLAS 2004: 30)</desc></opt>
@@ -306,7 +310,7 @@
       </opts>
     </Soil_Compaction_Type>
     <cols>
-      <Deposit_Inclusions>
+      <Deposit_Inclusions t="checkbox" f="notnull">
         <desc>Brief description of inclusions.</desc>
         <opts>
           <opt>None</opt>
@@ -316,7 +320,7 @@
           <opt>Other</opt>
         </opts>
       </Deposit_Inclusions>
-      <Natural_Formations>
+      <Natural_Formations t="checkbox" f="notnull">
         <desc>Geological formations evident in the deposit</desc>
         <opts>
           <opt>None</opt>
@@ -326,7 +330,7 @@
           <opt>Other</opt>
         </opts>
       </Natural_Formations>
-      <Disturbances>
+      <Disturbances t="checkbox" f="notnull">
         <desc>Disturbances evident in the deposit</desc>
         <opts>
           <opt>None</opt>
@@ -407,7 +411,7 @@
           <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </Bulk_Sample_Mapped>
-    <Trench_Supervisor_Review>
+    <Trench_Supervisor_Review f="notnull">
       <desc>Has the Trench Supervisor reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
           <!--@SOURCE: vocabs/boolean.xml-->
@@ -420,7 +424,7 @@
       </opts>
     </Site_Director_Review>
     <cols>
-      <Date_Closed>
+      <Date_Closed f="notnull">
         <desc>The date (YYYY-MM-DD) on which the Context was closed.</desc>
       </Date_Closed>
       <Close t="button"/>
@@ -442,7 +446,7 @@
         <desc>ID of the Context Group/Geological Unit</desc>
       </Context_Group_ID>
     </cols>
-    <Title f="id">
+    <Title f="id notnull">
       <desc>Name of the context group</desc>
     </Title>
     <Description/>
@@ -664,7 +668,7 @@
     <Inclusions_Gravel_Fraction>
       <desc>Include amounts and qualities; i.e. 'Minor CaCO3 filaments' or 'Minor cultural material present'.</desc>
     </Inclusions_Gravel_Fraction>
-    <Disturbances>
+    <Disturbances t="checkbox">
       <desc>Disturbances evident in the deposit</desc>
       <opts>
         <opt>No Observation
@@ -775,11 +779,11 @@
       <Context_ID>
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
-      <Artefact_Group_ID f="id">
+      <Artefact_Group_ID f="id notnull">
         <desc>Unique number or code for the artefact group.</desc>
       </Artefact_Group_ID>
     </cols>
-    <Artefact_Class f="id">
+    <Artefact_Class f="id notnull">
       <desc>Broad Artefact Class for each Artefact.</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -814,14 +818,14 @@
   <desc>Deposit samples, or samples of building elements, recovered from this Context for the purpose of further analysis, or ongoing reference. </desc>
   <Sample_General_Information>
     <cols>
-      <Sample_ID f="id">
+      <Sample_ID f="id notnull">
         <desc>The unique code or reference for the Sample.</desc>
       </Sample_ID>
       <Context_ID>
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
     </cols>
-    <Sample_Type f="id">
+    <Sample_Type f="id notnull">
       <desc>The type of Sample collected, eg Soil, Wood, Pollen.</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -851,7 +855,7 @@
         </opt>
       </opts>
     </Collection_Method>
-    <Sample_Weight b="decimal" f="id">
+    <Sample_Weight b="decimal" f="id notnull">
     <desc>Weight (in grams) of the sample collected.</desc>
     </Sample_Weight>
     <Sample_Volume b="decimal">
@@ -872,11 +876,11 @@
       <Context_ID>
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
-      <Special_Find_ID f="id">
+      <Special_Find_ID f="id notnull">
          <desc>Unique number or code for the special find.</desc>
       </Special_Find_ID>
     </cols>
-    <Special_Find_Class f="id">
+    <Special_Find_Class f="id notnull">
       <desc>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -908,17 +912,17 @@
 <Special_Find_Location>
   <Special_Find_Location>
     <cols>
-      <X b="decimal" f="id">
+      <X b="decimal" f="id notnull">
         <desc>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </X>
-      <Y b="decimal" f="id">
+      <Y b="decimal" f="id notnull">
         <desc>The reading from the y-axis (vertical) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </Y>
-      <Z b="decimal" f="id">
+      <Z b="decimal" f="id notnull">
         <desc>The elevation or depth of the Special Find at the time of excavation.</desc>
       </Z>
     </cols>
-    <Notes f="id">
+    <Notes f="id notnull">
       <desc>Note about the part of the Plotted Find from which the Location measurement was taken</desc>
     </Notes>
   </Special_Find_Location>
@@ -930,7 +934,7 @@
     <Context_ID>
       <desc>Unique number or code for each Context</desc>
     </Context_ID>
-    <Photograph_Reference_ID f="id">
+    <Photograph_Reference_ID f="id notnull">
       <desc>Unique number or code allocated by creator of the image. It could be a filename or a reference number</desc>
     </Photograph_Reference_ID>
     <Looking_Toward>
@@ -959,5 +963,9 @@
 </Photograph_Log>
 
 <logic><![CDATA[
+  <!--@SOURCE: logic/calc-vol-min-max.bsh-->
+  <!--@SOURCE: logic/context-review.bsh-->
+  <!--@SOURCE: logic/texture-helper.bsh-->
+  <!--@SOURCE: logic/user-tab-validation.bsh-->
 ]]></logic>
 </module>

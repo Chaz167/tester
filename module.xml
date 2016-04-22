@@ -29,9 +29,7 @@
 
 <User f="nodata">
   <User f="noscroll">
-    <Users t="dropdown" f="user nocertainty noannotation">
-      <!--TODO: Validate me-->
-    </Users>
+    <Users t="dropdown" f="user nocertainty noannotation"/>
     <Login t="button" l="Control"/>
     <Guide t="button" l="User/Help"/>
   </User>
@@ -526,6 +524,8 @@
       <Start_Depth_Magnitude b="decimal">
         Start Depth
         <!--TODO: Save this as a measure-->
+        <!--Linked to Context/Start Depth in the dataschema as a measure using-->
+        <!--@POSTPROC.-->
       </Start_Depth_Magnitude>
     </cols>
     <cols>
@@ -977,6 +977,7 @@
 <logic><![CDATA[
   <!--@SOURCE: logic/calc-vol-min-max.bsh-->
   <!--@SOURCE: logic/context-review.bsh-->
+  <!--@SOURCE: logic/target-spit-thickness-population.bsh-->
   <!--@SOURCE: logic/texture-helper.bsh-->
   <!--@SOURCE: logic/user-tab-validation.bsh-->
 ]]></logic>

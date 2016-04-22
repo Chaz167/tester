@@ -1,0 +1,11 @@
+/******************************* CONTEXT REVIEW *******************************/
+addOnEvent("Context/Review/Close", "click", "closeContext()");
+
+closeContext() {
+  ref     = "Context/Review/Date_Closed";
+  fmt     = "yyyy-MM-dd";
+  date    = new Date();
+  dateFmt = new java.text.SimpleDateFormat(fmt);
+  dateStr = dateFmt.format(date);
+  setFieldValue(ref, dateStr);
+}

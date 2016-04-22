@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<!--TODO: Implement logic/*.bsh files-->
 <!--TODO: Make sure I've preserved the user flow-->
 <!--TODO: Gotta implement that stupid relationship thing-->
 <!--TODO: Populate guides-->
@@ -44,6 +45,11 @@
     <New_Context       t="button" l="Context"/>
     <New_Context_Group t="button" l="Context_Group"/>
     <autonum/>
+    <!--TODO: Save following two fields in local settings-->
+    <Target_Spit_Thickness t="dropdown">
+      <!--TODO: Populate me manually-->
+    </Target_Spit_Thickness>
+    <Bucket_Volume b="decimal"/>
   </Control>
   <search/>
 </Control>
@@ -192,7 +198,7 @@
         </Context_Lowest_Level_Ctr>
       </col>
     </cols>
-    <Target_Spit_Thickness>
+    <Target_Spit_Thickness t="dropdown">
       <desc>The minimum thickness of deposit</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -513,8 +519,16 @@
       <desc>The geological unit of the layer assigned by the geologist (typically decreasing numbers with depth).</desc>
     </Geological_Unit_Number>
     <cols>
-      <Start_Depth b="decimal"/>
-      <Start_Depth_Location/>
+      <Start_Depth t="radio">
+        <opts>
+          <opt>MBS<desc>Metres Below Surface</desc></opt>
+          <opt>MBD<desc>Meters Below Datum</desc></opt>
+        </opts>
+      </Start_Depth>
+      <Start_Depth_Magnitude b="decimal">
+        Start Depth
+        <!--TODO: Save this as a measure-->
+      </Start_Depth_Magnitude>
     </cols>
     <cols>
       <Soil_Munsell_Colour>

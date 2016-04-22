@@ -1,0 +1,71 @@
+/********************** CALCULATION OF VOL, MIN AND MAX ***********************/
+onEvent("Context/Context_General_Information/Calculate_Vol", "click", "calculateVol()");
+onEvent("Context/Context_General_Information/Calculate_Min", "click", "calculateMin()");
+onEvent("Context/Context_General_Information/Calculate_Max", "click", "calculateMax()");
+
+calculateVol() {
+    double count = isNull(getFieldValue("Context/Context_General_Information/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/Context_General_Information/Final_Bucket_Count"));
+    double vol   = isNull(getFieldValue("Control/Control/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Control/Bucket_Volume"));
+    setFieldValue("Context/Context_General_Information/Deposit_Volume", vol*count);
+}
+
+calculateMin() {
+    ArrayList vals = new ArrayList();
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE")));
+    }
+
+    if(vals.size() == 0) {
+        setFieldValue("Context/Context_General_Information/Min_Context_Thickness", 0);
+    } else {
+        double min = vals.get(0);
+        for(int i = 1; i < vals.size(); i++) {
+            if(vals.get(i) < min) {
+                min = vals.get(i);
+            }
+        }
+        setFieldValue("Context/Context_General_Information/Min_Context_Thickness", (double)Math.round(min * 100) / 100);
+    }
+}
+
+calculateMax() {
+    ArrayList vals = new ArrayList();
+     if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE")));
+    }
+    if(vals.size() == 0) {
+        setFieldValue("Context/Context_General_Information/Max_Context_Thickness", 0);
+    } else {
+        double max = vals.get(0);
+        for(int i = 1; i < vals.size(); i++) {
+            if(vals.get(i) > max) {
+                max = vals.get(i);
+            }
+        }
+        setFieldValue("Context/Context_General_Information/Max_Context_Thickness", (double)Math.round(max * 100) / 100);
+    }
+}

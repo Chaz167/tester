@@ -1,9 +1,7 @@
 <?xml version="1.0" ?>
-<!--TODO: Implement logic/*.bsh files-->
-<!--TODO: Make sure I've preserved the user flow-->
-<!--TODO: Gotta implement that stupid relationship thing-->
 <!--TODO: Populate guides-->
 <!--TODO: Double check that data schema properties have been preserved-->
+<!--TODO: Gotta implement that stupid relationship thing... Later.-->
 
 <!--@PREPROC:  ./preproc.sh-->
 <!--@POSTPROC: ./postproc.sh-->
@@ -141,15 +139,6 @@
         <opt>Other</opt>
       </opts>
     </Artefacts_Present>
-    <!--TODO: All this-->
-    <!--<container4_1>-->
-      <!--<child1>-->
-        <!--<guide/>-->
-      <!--</child1>-->
-      <!--<child2>-->
-        <!--<guide/>-->
-      <!--</child2>-->
-    <!--</container4_1>-->
     <Elevation_Datum_Type f="notnull">
       <desc>The type of elevation.</desc>
       <opts>
@@ -159,6 +148,7 @@
     </Elevation_Datum_Type>
     <cols>
       <col>
+        <Guide_Opening t="webview">Opening Elevations</Guide_Opening>
         <Context_Highest_Level_NW  b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the NW extent within the square of the Context.</desc>
         </Context_Highest_Level_NW>
@@ -176,6 +166,7 @@
         </Context_Highest_Level_Ctr>
       </col>
       <col>
+        <Guide_Closing t="webview">Closing Elevations</Guide_Closing>
         <Context_Lowest_Level_NW  b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</desc>
         </Context_Lowest_Level_NW>
@@ -349,7 +340,9 @@
     </cols>
   </Context_Deposits>
   <Context_Relationships_to_Other_Contexts f="hidden">
-    <Spacer t="webview"/>
+    <Spacer t="webview">
+      <!--TODO:-->
+    </Spacer>
     <cols>
       <This_Context f="nodata"/>
       <Relationship t="dropdown" f="nodata"/>

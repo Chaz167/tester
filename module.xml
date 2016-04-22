@@ -43,7 +43,6 @@
     <New_Context       t="button" l="Context"/>
     <New_Context_Group t="button" l="Context_Group"/>
     <autonum/>
-    <!--TODO: Save following two fields in local settings-->
     <Target_Spit_Thickness t="dropdown"/>
     <Bucket_Volume b="decimal"/>
   </Control>
@@ -977,6 +976,7 @@
 <logic><![CDATA[
   <!--@SOURCE: logic/calc-vol-min-max.bsh-->
   <!--@SOURCE: logic/context-review.bsh-->
+  <!--@SOURCE: logic/local-settings-saving.bsh-->
   <!--@SOURCE: logic/target-spit-thickness-population.bsh-->
   <!--@SOURCE: logic/texture-helper.bsh-->
   <!--@SOURCE: logic/user-tab-validation.bsh-->

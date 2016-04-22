@@ -1,0 +1,31 @@
+/*************************** LOCAL SETTINGS SAVING ****************************/
+/* Code to facilitate the loading and saving of the following fields in the   */
+/* local settings table.                                                      */
+/******************************************************************************/
+addOnEvent("Control/Control", "show", "loadTargetSpitThickness()");
+addOnEvent("Control/Control", "show", "loadBucketVolume()");
+
+addOnEvent("Control/Control/Target_Spit_Thickness", "blur", "saveTargetSpitThickness()");
+addOnEvent("Control/Control/Bucket_Volume",         "blur", "saveBucketVolume()");
+
+loadTargetSpitThickness() {
+  dst = "Control/Control/Target_Spit_Thickness";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveTargetSpitThickness() {
+  src = "Control/Control/Target_Spit_Thickness";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}
+
+loadBucketVolume() {
+  dst = "Control/Control/Bucket_Volume";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveBucketVolume() {
+  src = "Control/Control/Bucket_Volume";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}

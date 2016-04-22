@@ -46,9 +46,7 @@
     <New_Context_Group t="button" l="Context_Group"/>
     <autonum/>
     <!--TODO: Save following two fields in local settings-->
-    <Target_Spit_Thickness t="dropdown">
-      <!--TODO: Populate me manually-->
-    </Target_Spit_Thickness>
+    <Target_Spit_Thickness t="dropdown"/>
     <Bucket_Volume b="decimal"/>
   </Control>
   <search/>

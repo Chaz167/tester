@@ -394,14 +394,14 @@
     <New_Photo_Log  lc="Photograph_Log" t="button"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
   </Context_Attachments>
-  <Texture_Helper>
+  <Texture_Helper f="hidden">
     <Soil_Texture_Helper>
       <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
       <opts>
-        <!--@SOURCE: vocabs/soil-texture.xml-->
+        <!--@SOURCE: vocabs/soil-texture-helper.xml-->
       </opts>
     </Soil_Texture_Helper>
-    <Update_Texture t="button"/>
+    <Update_Texture l="Context/Context_Deposits"/>
   </Texture_Helper>
   <Map>
     <Map t="map"/>

@@ -1,5 +1,4 @@
 <?xml version="1.0" ?>
-<!--TODO: Populate guides-->
 <!--TODO: Double check that data schema properties have been preserved-->
 <!--TODO: Gotta implement that stupid relationship thing... Later.-->
 
@@ -340,9 +339,11 @@
     </cols>
   </Context_Deposits>
   <Context_Relationships_to_Other_Contexts f="hidden">
-    <Spacer t="webview">
-      <!--TODO:-->
-    </Spacer>
+    <Guide_0 t="webview">
+      Here you can enter relationships between contexts, eg ‘Above’ and ‘Below’.
+      Select the Type of Relationship on the left, the related Context from the
+      list on the right, and click the button ‘Relate Contexts’.
+    </Guide_0>
     <cols>
       <This_Context f="nodata"/>
       <Relationship t="dropdown" f="nodata"/>
@@ -747,18 +748,17 @@
     </cols>
   </Context_Group_Details>
   <Context_Group_Contexts>
+    <Not_Yet_Implemented t="webview">
+      This tab is not yet implemented
+    </Not_Yet_Implemented>
     <Guide t="webview">
-      <!--TODO: "Click to select a {Context} to add to the {Context_Group}"-->
+      Click to select a Context to add to the Context Group
     </Guide>
     <Context e="Context" t="dropdown"/>
     <Add_Context_to_Context_Group t="button"/>
     <Contexts_In_Group ec="Context" t="dropdown"/>
-    <Load_Context_and_Exit_Context_Group t="button">
-      <!--TODO: link me-->
-    </Load_Context_and_Exit_Context_Group>
-    <Remove_Context_From_Context_Group t="button">
-      <!--TODO: link me-->
-    </Remove_Context_From_Context_Group>
+    <Load_Context_and_Exit_Context_Group t="button"/>
+    <Remove_Context_From_Context_Group t="button"/>
   </Context_Group_Contexts>
   <Context_Group_Samples>
     <New_Sample  lc="Sample" t="button"/>
@@ -769,7 +769,8 @@
     <Context_Group_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
     <Guide t="webview">
-      <!--TODO: populate me?-->
+      Here you can enter filenames or unique reference numbers for image stored
+      on another device.
     </Guide>
     <New_Photo_Log  lc="Photograph_Log" t="button"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>

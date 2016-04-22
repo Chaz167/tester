@@ -348,15 +348,15 @@
       </Disturbances>
     </cols>
   </Context_Deposits>
-  <Context_Relationships_to_Other_Contexts>
+  <Context_Relationships_to_Other_Contexts f="hidden">
     <Spacer t="webview"/>
     <cols>
-      <This_Context/>
-      <Relationship t="dropdown"/>
-      <To_Context/>
+      <This_Context f="nodata"/>
+      <Relationship t="dropdown" f="nodata"/>
+      <To_Context f="nodata"/>
     </cols>
     <Relate_Contexts t="button"/>
-    <Associated_Entites t="dropdown"/>
+    <Associated_Entites t="dropdown" f="nodata"/>
     <Remove_Relationship t="button"/>
     <Show_Relationship t="button"/>
     <Guide_1 t="webview">
@@ -366,12 +366,12 @@
     <Guide_2 t="webview">
       You can add this Context to already existing Context Group.
     </Guide_2>
-    <Existing_And_Unrelated_Context_Groups t="dropdown"/>
+    <Existing_And_Unrelated_Context_Groups t="dropdown" f="nodata"/>
     <Add_To_Context_Group t="button"/>
     <Guide_3 t="webview">
       Here are the Context Groups that this Context belongs to.
     </Guide_3>
-    <Context_Group_List t="list"/>
+    <Context_Group_List t="list" f="nodata"/>
     <Show_Context_Group t="button"/>
     <Remove_From_Context_Group t="button"/>
   </Context_Relationships_to_Other_Contexts>

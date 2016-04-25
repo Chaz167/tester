@@ -2,6 +2,11 @@
 /* The autogen defines its own `onClickUserLogin` function. This is overriden */
 /* using @POSTPROC.                                                           */
 /******************************************************************************/
+addOnEvent("User/User", "show", "clearUsername()");
+
+clearUsername() {
+  username = ""; // `username` is defined by autogen
+}
 
 onClickUserLogin () {
   isSelectedUser = !isNull(username); // `username` is defined by autogen

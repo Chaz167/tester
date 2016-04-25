@@ -8,7 +8,7 @@ onClickContextUpdateTexture(){
                     " WHERE attributeName = 'Soil Texture' "+
                     "   AND vocabname = (SELECT vocabname " +
                                         "  FROM vocabulary JOIN attributekey USING (attributeid) " +
-                                        " WHERE vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture") +"' "+
+                                        " WHERE vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture_Helper") +"' "+
                                         "   AND attributeName = 'Soil Texture Helper'); ";
 
   fetchOne(soilQuery,

@@ -5,8 +5,9 @@
 addOnEvent("Control/Control", "show", "loadTargetSpitThickness()");
 addOnEvent("Control/Control", "show", "loadBucketVolume()");
 
-addOnEvent("Control/Control/Target_Spit_Thickness", "blur", "saveTargetSpitThickness()");
-addOnEvent("Control/Control/Bucket_Volume",         "blur", "saveBucketVolume()");
+// Occurs on blur
+onFocus("Control/Control/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
+onFocus("Control/Control/Bucket_Volume",         "", "saveBucketVolume()");
 
 loadTargetSpitThickness() {
   dst = "Control/Control/Target_Spit_Thickness";

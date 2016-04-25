@@ -1,0 +1,2221 @@
+import android.util.Log;
+
+Object dialog;          // Used to help coordinate the display of a "busy..." dialog
+String parentTabgroup;  // Used to allow entities to be saved as children
+String redirectTab;     // makes newTab work as expected
+String username = "";
+
+setFileSyncEnabled(true);
+setSyncDelay(5.0f);
+setSyncEnabled(true);
+setSyncMaxInterval(600.0f);
+setSyncMinInterval(5.0f);
+
+makeLocalID(){
+  fetchOne("CREATE TABLE IF NOT EXISTS localSettings (key text primary key, value text);", null);
+  fetchOne("DROP VIEW IF EXISTS parentchild;", null);
+  fetchOne("CREATE VIEW parentchild AS "+
+           "SELECT parent.uuid as parentuuid, child.uuid as childuuid, parent.participatesverb as parentparticipatesverb, parent.relationshipid, parent.aenttypename as parentaenttypename, child.participatesverb as childparticipatesverb, child.aenttypename as childaenttypename "+
+           "  FROM (SELECT uuid, participatesverb, aenttypename, relationshipid"+
+           "          FROM latestnondeletedaentreln "+
+           "          JOIN relationship USING (relationshipid) "+
+           "          JOIN latestnondeletedarchent USING (uuid) "+
+           "          JOIN aenttype USING (aenttypeid)) parent "+
+           "  JOIN (SELECT uuid, relationshipid, participatesverb, aenttypename "+
+           "          FROM latestnondeletedaentreln "+
+           "          JOIN relationship USING (relationshipid) "+
+           "          JOIN latestnondeletedarchent USING (uuid) "+
+           "          JOIN aenttype USING (aenttypeid)) child "+
+           "    ON (parent.relationshipid = child.relationshipid AND parent.uuid != child.uuid);", null);
+}
+makeLocalID();
+
+insertIntoLocalSettings(String key, String val) {
+  fetchOne("REPLACE INTO localSettings(key, value) VALUES('" + key + "', '" + val + "');");
+}
+
+insertIntoLocalSettings(String key, Integer val) {
+  insertIntoLocalSettings(key, Integer.toString(val));
+}
+
+setFieldValueFromLocalSettings(String key, String ref) {
+  String q = "SELECT value FROM localSettings WHERE key = '" + key + "';";
+  fetchOne(q, new FetchCallback() {
+    onFetch(result) {
+      if (!isNull(result)) {
+        setFieldValue(ref, result.get(0));
+      }
+    }
+  });
+}
+
+newTab(String tab, Boolean resolveTabGroups) {
+  if (!resolveTabGroups) {
+    return newTab(tab);
+  }
+
+  tab = tab.replaceAll("/$", "");
+  tab = tab.replaceAll("^/", "");
+
+  path = tab.split("/");
+  switch (path.length) {
+    case 0:
+      break;
+    case 1:
+      newTabGroup(path[0]);
+      break;
+    case 2:
+      String tabgroupString = path[0];
+      String tabString      = path[0] + "/" + path[1];
+
+      redirectTab = tabString;
+      String onShowTabgroup = "if (!isNull(redirectTab)) { newTab(redirectTab); redirectTab = \"\"; }";
+      addOnEvent(tabgroupString, "show", onShowTabgroup);
+
+      newTabGroup(tabgroupString);
+      newTab(tabString);
+      break;
+    default:
+  }
+}
+
+/******************************************************************************/
+/*                            BINDING ACCUMULATOR                             */
+/*                                                                            */
+/* Allows onEvent bindings for the same element to accumulate over multiple   */
+/* onEvent calls instead of having later calls override earlier ones.         */
+/******************************************************************************/
+Map events = new HashMap();
+String SEP = Character.toString ((char) 0); // Beanshell is stupid and won't let me write "\0"
+
+/* Returns the set of statements bound to an element at `ref` and occuring on
+ * `event`.
+ */
+getStatements(String ref, String event) {
+  String    key = ref + SEP + event;
+  ArrayList val = (ArrayList) events.get(key);
+  if (val == null) {
+    val = new ArrayList();
+    events.put(key, val);
+  }
+  return val;
+}
+
+addOnEvent(String ref, String event, String statement) {
+  // Calling `remove()` first ensures statement occurs once in the list, at the end.
+  while(getStatements(ref, event).remove(statement));
+  getStatements(ref, event).add(statement);
+}
+
+delOnEvent(String ref, String event, String statement) {
+  while(getStatements(ref, event).remove(statement));
+}
+
+bindOnEvent(String ref, String event) {
+  ArrayList stmts = getStatements(ref, event);
+  String stmtsExpr = "";
+  for (String s : stmts) {
+    stmtsExpr += s;
+    stmtsExpr += "; ";
+  }
+
+  onEvent(ref, event, stmtsExpr);
+}
+
+bindOnEvents() {
+  for (String key : events.keySet()) {
+    refevent = key.split(SEP);
+    ref   = refevent[0];
+    event = refevent[1];
+    bindOnEvent(ref, event);
+  }
+}
+
+/******************************************************************************/
+/*                           DROPDOWN VALUE GETTER                            */
+/*                                                                            */
+/* For consistency with `getListItemValue()`.                                 */
+/******************************************************************************/
+String dropdownItemValue = null;
+
+getDropdownItemValue() {
+  return dropdownItemValue;
+}
+
+addOnEvent("User/User/Users", "click", "dropdownItemValue = getFieldValue(\"User/User/Users\")");
+addOnEvent("Control/Control/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Control/Control/Target_Spit_Thickness\")");
+addOnEvent("Context/Context_General_Information/Your_Interpretation", "click", "dropdownItemValue = getFieldValue(\"Context/Context_General_Information/Your_Interpretation\")");
+addOnEvent("Context/Context_General_Information/Elevation_Datum_Type", "click", "dropdownItemValue = getFieldValue(\"Context/Context_General_Information/Elevation_Datum_Type\")");
+addOnEvent("Context/Context_General_Information/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Context/Context_General_Information/Target_Spit_Thickness\")");
+addOnEvent("Context/Context_Deposits/Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Munsell_Colour\")");
+addOnEvent("Context/Context_Deposits/Soil_Moisture", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Moisture\")");
+addOnEvent("Context/Context_Deposits/Soil_Texture", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Texture\")");
+addOnEvent("Context/Context_Deposits/Soil_Compaction_Type", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Compaction_Type\")");
+addOnEvent("Context/Context_Relationships_to_Other_Contexts/Relationship", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Relationships_to_Other_Contexts/Relationship\")");
+addOnEvent("Context/Context_Relationships_to_Other_Contexts/Associated_Entites", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Relationships_to_Other_Contexts/Associated_Entites\")");
+addOnEvent("Context/Context_Relationships_to_Other_Contexts/Existing_And_Unrelated_Context_Groups", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Relationships_to_Other_Contexts/Existing_And_Unrelated_Context_Groups\")");
+addOnEvent("Context/Context_Samples/Sample_List", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Samples/Sample_List\")");
+addOnEvent("Context/Context_Artefacts/Artefact_Group_List", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Artefacts/Artefact_Group_List\")");
+addOnEvent("Context/Context_Artefacts/Special_Find_List", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Artefacts/Special_Find_List\")");
+addOnEvent("Context/Context_Attachments/Load_Photo_Log", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Attachments/Load_Photo_Log\")");
+addOnEvent("Context/Texture_Helper/Soil_Texture_Helper", "click", "dropdownItemValue = getFieldValue(\"Context/Texture_Helper/Soil_Texture_Helper\")");
+addOnEvent("Context/Review/Bulk_Sample_Mapped", "click", "dropdownItemValue = getFieldValue(\"Context/Review/Bulk_Sample_Mapped\")");
+addOnEvent("Context/Review/Trench_Supervisor_Review", "click", "dropdownItemValue = getFieldValue(\"Context/Review/Trench_Supervisor_Review\")");
+addOnEvent("Context/Review/Site_Director_Review", "click", "dropdownItemValue = getFieldValue(\"Context/Review/Site_Director_Review\")");
+addOnEvent("Context_Group/Context_Group_Details/Profile_Aspect", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Profile_Aspect\")");
+addOnEvent("Context_Group/Context_Group_Details/Elevation_Determination", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Elevation_Determination\")");
+addOnEvent("Context_Group/Context_Group_Details/Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Soil_Munsell_Colour\")");
+addOnEvent("Context_Group/Context_Group_Details/Compaction", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Compaction\")");
+addOnEvent("Context_Group/Context_Group_Details/Soil_Texture_Actual", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Soil_Texture_Actual\")");
+addOnEvent("Context_Group/Context_Group_Details/Rounding", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Rounding\")");
+addOnEvent("Context_Group/Context_Group_Details/Structure", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Structure\")");
+addOnEvent("Context_Group/Context_Group_Details/Structure_Modifiers", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Structure_Modifiers\")");
+addOnEvent("Context_Group/Context_Group_Details/Sorting", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Sorting\")");
+addOnEvent("Context_Group/Context_Group_Details/Upper_Boundary", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Upper_Boundary\")");
+addOnEvent("Context_Group/Context_Group_Details/Lower_Boundary", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Lower_Boundary\")");
+addOnEvent("Context_Group/Context_Group_Contexts/Context", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Contexts/Context\")");
+addOnEvent("Context_Group/Context_Group_Contexts/Contexts_In_Group", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Contexts/Contexts_In_Group\")");
+addOnEvent("Context_Group/Context_Group_Samples/Sample_List", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Samples/Sample_List\")");
+addOnEvent("Context_Group/Context_Group_Attachments/Load_Photo_Log", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Attachments/Load_Photo_Log\")");
+addOnEvent("Artefact_Group/Artefact_Group_General_Information/Artefact_Class", "click", "dropdownItemValue = getFieldValue(\"Artefact_Group/Artefact_Group_General_Information/Artefact_Class\")");
+addOnEvent("Sample/Sample_General_Information/Sample_Type", "click", "dropdownItemValue = getFieldValue(\"Sample/Sample_General_Information/Sample_Type\")");
+addOnEvent("Sample/Sample_General_Information/Collection_Method", "click", "dropdownItemValue = getFieldValue(\"Sample/Sample_General_Information/Collection_Method\")");
+addOnEvent("Special_Find/Special_Find_General_Information/Special_Find_Class", "click", "dropdownItemValue = getFieldValue(\"Special_Find/Special_Find_General_Information/Special_Find_Class\")");
+addOnEvent("Special_Find/Special_Find_Location/List_Special_Find_Location", "click", "dropdownItemValue = getFieldValue(\"Special_Find/Special_Find_Location/List_Special_Find_Location\")");
+addOnEvent("Photograph_Log/Photograph_Log/Looking_Toward", "click", "dropdownItemValue = getFieldValue(\"Photograph_Log/Photograph_Log/Looking_Toward\")");
+addOnEvent("Photograph_Log/Photograph_Log/Scene_Type", "click", "dropdownItemValue = getFieldValue(\"Photograph_Log/Photograph_Log/Scene_Type\")");
+
+/******************************************************************************/
+/*                                 ACTION BAR                                 */
+/******************************************************************************/
+addActionBarItem("clean_synced_files", new ActionButtonCallback() {
+  actionOnLabel() {
+    "{Clean_Synced_Files}";
+  }
+  actionOn() {
+    cleanSyncedFiles();
+  }
+});
+
+addActionBarItem("sync", new ToggleActionButtonCallback() {
+  actionOnLabel() {
+    "{Disable_Sync}";
+  }
+  actionOn() {
+    setSyncEnabled(false);
+    setFileSyncEnabled(false);
+    showToast("{Sync_Disabled}");
+  }
+  isActionOff() {
+    isSyncEnabled();
+  }
+  actionOffLabel() {
+    "{Enable_Sync}";
+  }
+  actionOff() {
+    setSyncEnabled(true);
+    setFileSyncEnabled(true);
+    showToast("{Sync_Enabled}");
+  }
+});
+
+addActionBarItem("internal_gps", new ToggleActionButtonCallback() {
+  actionOnLabel() {
+    "{Disable_Internal_GPS}";
+  }
+  actionOn() {
+    stopGPS();
+    showToast("{Internal_GPS_Disabled}");
+    updateGPSDiagnostics();
+  }
+  isActionOff() {
+    isInternalGPSOn();
+  }
+  actionOffLabel() {
+    "{Enable_Internal_GPS}";
+  }
+  actionOff() {
+    if(isExternalGPSOn()) {
+      stopGPS();
+    }
+    startInternalGPS();
+    showToast("{Internal_GPS_Enabled}");
+    updateGPSDiagnostics();
+  }
+});
+
+addActionBarItem("external_gps", new ToggleActionButtonCallback() {
+  actionOnLabel() {
+    "{Disable_External_GPS}";
+  }
+  actionOn() {
+    stopGPS();
+    if (isBluetoothConnected()) {
+      showToast("{External_GPS_Disabled}");
+    } else {
+      showToast("{Please_Enable_Bluetooth}");
+    }
+    updateGPSDiagnostics();
+  }
+  isActionOff() {
+    isExternalGPSOn();
+  }
+  actionOffLabel() {
+    "{Enable_External_GPS}";
+  }
+  actionOff() {
+    if(isInternalGPSOn()) {
+      stopGPS();
+    }
+    startExternalGPS();
+    if(isBluetoothConnected()) {
+      showToast("{External_GPS_Enabled}");
+    } else {
+      showToast("{Please_Enable_Bluetooth}");
+      this.actionOn();
+    }
+    updateGPSDiagnostics();
+  }
+});
+
+
+/******************************************************************************/
+/*                                    GPS                                     */
+/******************************************************************************/
+
+updateGPSDiagnostics() {
+  String diagnosticsRef = "";
+  if (diagnosticsRef.equals("")) {
+    return;
+  }
+
+  String status         = "";
+  String previousStatus = getFieldValue(diagnosticsRef);
+  String notInitialised = "{GPS_is_not_initialised}";
+
+  // Check if GPS is initialised or was previously initialised.
+  if (!isExternalGPSOn() && !isInternalGPSOn()) {
+    if (!isNull(previousStatus) && !previousStatus.equals(notInitialised)) { // previous gps status is some last valid coordinate.
+      // This is hackish. Arch16n substitution happens only at display-time, but the following if clause requires substitution to have happened at run-time
+      String error = "";
+      error = "{GPS_is_no_longer_initialised}. {Previous_status}:";
+      setFieldValue(diagnosticsRef, error);   // Arch16n entry is substituted after this
+      error = getFieldValue(diagnosticsRef);
+
+      // check that error message wasn't previously appended to the previous status message.
+      if (previousStatus.length()    >= error.length() &&
+          previousStatus.subSequence(0, error.length()).equals(error)) {
+        status = previousStatus;
+      } else {
+        status = error + "\n" + previousStatus;
+      }
+    } else {
+      status = notInitialised;
+    }
+  } else {
+    status += "{Internal_GPS}: ";
+    if (isInternalGPSOn())
+    {
+      status += "{on}";
+    } else {
+      status += "{off}";
+    }
+    status += "\nExternal GPS: ";
+    if (isExternalGPSOn())
+    {
+      if (isBluetoothConnected()) {
+        status += "{on_and_bluetooth_connected}";
+      } else {
+        status += "{on_and_bluetooth_disconnected}";
+      }
+    } else {
+      status += "{off}";
+    }
+    Object position = getGPSPosition();
+    if (position != null) {
+      Object projPosition = getGPSPositionProjected();
+      status += "\n{Latitude}: " + position.getLatitude();
+      status += "   {Longitude}: " + position.getLongitude();
+      status += "\n{Northing}: " + projPosition.getLatitude();
+      status += "   {Easting}: " + projPosition.getLongitude();
+      status += "\n{Accuracy}: " + getGPSEstimatedAccuracy();
+    } else {
+      status += "\n{Position}: {no_GPS_position_could_be_found}";
+    }
+  }
+  setFieldValue(diagnosticsRef, status);
+}
+
+/******************************************************************************/
+/*                                 USER LOGIN                                 */
+/******************************************************************************/
+
+String userMenuPath = "User/User/Users";
+
+populateListForUsers(){
+  String getNonDeletedUsersQuery = "SELECT userid, fname || ' ' || lname "+
+                                   "  FROM user "+
+                                   " WHERE userdeleted is null;";
+
+  fetchAll(getNonDeletedUsersQuery, new FetchCallback() {
+    onFetch(result) {
+      populateDropDown(userMenuPath, result, true);
+    }
+  });
+}
+
+selectUser () {
+  String userVocabId  = getFieldValue(userMenuPath);
+  if (isNull(userVocabId))
+    return;
+
+  String userQ        = "SELECT userid,fname,lname,email FROM user " +
+                        "WHERE  userid='" + userVocabId + "';";
+  FetchCallback callback = new FetchCallback() {
+    onFetch(result) {
+      user = new User(
+            result.get(0),
+            result.get(1),
+            result.get(2),
+            result.get(3)
+      );
+      setUser(user);
+      username = result.get(1) + " " + result.get(2);
+    }
+  };
+
+  fetchOne(userQ, callback);
+}
+
+addOnEvent(userMenuPath, "show",  "populateListForUsers()");
+addOnEvent(userMenuPath, "click", "selectUser()");
+
+
+/******************************************************************************/
+/*                              MENU POPULATION                               */
+/******************************************************************************/
+/** Fetches the contents of a specifed vocabulary and stores it in the given list. **/
+fetchVocab(String vocabName, List storageList) {
+  fetchVocab(vocabName, storageList, null);
+}
+fetchVocab(String vocabName, List storageList, String callbackFunction) {
+  fetchAll("select vocabid, vocabname from vocabulary left join attributekey using (attributeid) where attributename = '" + vocabName + "';", new FetchCallback() {
+    onFetch(result) {
+      storageList.addAll(result);
+      Log.d("fetchVocab()", "Fetched vocabulary \"" + vocabname + "\" contents: " + result.toString());
+      if (callbackFunction != null && !isNull(callbackFunction)) {
+        execute(callbackFunction);
+      }
+    }
+  });
+}
+
+/** Wrapper for to make a vocab without an exlusion list **/
+makeVocab(String type, String path, String attrib) {
+  makeVocab(type, path, attrib, null);
+}
+
+/** Vocab Population **/
+/* Populates the path specified vocabulary from the database based on the given attribute name, where type 
+is the type of the vocab to populate (PictureGallery, HierarchicalPictureGallery, CheckBoxGroup, DropDown, HierarchicalDropDown, RadioGroup or List). */
+makeVocab(String type, String path, String attrib, List vocabExclusions) {
+    makeVocab(type, path, attrib, vocabExclusions, null);
+}
+
+/* Populates the path specified vocabulary from the database based on the given attribute name, where type 
+is the type of the vocab to populate (PictureGallery, HierarchicalPictureGallery, CheckBoxGroup, DropDown, HierarchicalDropDown, RadioGroup or List). */
+makeVocab(String type, String path, String attrib, List vocabExclusions, String callbackFunction){
+  if (isNull(type) || isNull(path) || isNull(attrib)) {
+    Log.e("makeVocab()", "Can't make populate a vocab when the given type, path or attribute is Null");
+    return;
+  }
+
+  if (type.equals("PictureGallery")) {
+    String pictureGalleryQuery = "SELECT vocabid, vocabname, pictureurl "+
+                                 "  FROM vocabulary "+
+                                 "  LEFT OUTER JOIN attributekey USING (attributeid) "+
+                                 " WHERE attributename = '" + attrib + "' "+
+                                 " ORDER BY  vocabcountorder;";
+    fetchAll(pictureGalleryQuery, new FetchCallback() {
+      onFetch(pictures) {
+        populatePictureGallery(path, pictures);
+        if (callbackFunction != null && !isNull(callbackFunction)) {
+          execute(callbackFunction);
+        }
+      }
+    });
+    return;
+  }
+
+  if (type.equals("HierarchicalPictureGallery")) {
+    populateHierarchicalPictureGallery(path, attrib);
+    if (callbackFunction != null && !isNull(callbackFunction)) {
+      execute(callbackFunction);
+    }
+    return;
+  }
+
+  if (type.equals("HierarchicalDropDown")) {
+    // populateHierarchicalDropDown(path, attrib);
+    populateHierarchicalDropDown(path, attrib, true);
+    if (callbackFunction != null && !isNull(callbackFunction)) {
+      execute(callbackFunction);
+    }
+    return;
+  }
+
+  String getAttributeVocabQuery = "SELECT vocabid, vocabname "+
+                                  "  FROM vocabulary "+
+                                  "  JOIN attributekey USING (attributeid) "+
+                                  " WHERE attributename = '" + attrib + "' "+
+                                  " ORDER BY vocabcountorder;";
+  fetchAll(getAttributeVocabQuery,
+    new FetchCallback() {
+      onFetch(result) {
+        // print("makeVocab() result: " + result);
+        if (result!=null && result.size()>0 && vocabExclusions!=null && vocabExclusions.size()>0) {
+          List filteredVocab = new ArrayList();
+          for(item : result) {
+            if (vocabExclusions.contains(item.get(1))) {
+              Log.d("makeVocab()", "removing vocab exclusion: " + item.get(1));
+            } else {
+              filteredVocab.add(item);
+            }
+          }
+          result=filteredVocab;
+        }
+        // print("makeVocab() filtered result: " + result);
+        if(type.equals("CheckBoxGroup")) {
+          populateCheckBoxGroup(path, result);
+        } else if(type.equals("DropDown")) {
+          // populateDropDown(path, result);
+          populateDropDown(path, result, true);
+        } else if(type.equals("RadioGroup")) {
+          populateRadioGroup(path, result);
+        } else if(type.equals("List")) {
+          populateList(path, result);
+        }
+        if (callbackFunction != null && !isNull(callbackFunction)) {
+          execute(callbackFunction);
+        }
+      }
+    });
+}
+makeVocab("RadioGroup", "Context/Context_General_Information/Wet_Sieved", "Wet Sieved");
+makeVocab("CheckBoxGroup", "Context/Context_General_Information/Excavation_Method", "Excavation Method");
+makeVocab("HierarchicalDropDown", "Context/Context_General_Information/Your_Interpretation", "Your Interpretation");
+makeVocab("CheckBoxGroup", "Context/Context_General_Information/Artefacts_Present", "Artefacts Present");
+makeVocab("DropDown", "Context/Context_General_Information/Elevation_Datum_Type", "Elevation Datum Type");
+makeVocab("DropDown", "Context/Context_General_Information/Target_Spit_Thickness", "Target Spit Thickness");
+makeVocab("HierarchicalDropDown", "Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
+makeVocab("DropDown", "Context/Context_Deposits/Soil_Moisture", "Soil Moisture");
+makeVocab("DropDown", "Context/Context_Deposits/Soil_Texture", "Soil Texture");
+makeVocab("DropDown", "Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
+makeVocab("CheckBoxGroup", "Context/Context_Deposits/Deposit_Inclusions", "Deposit Inclusions");
+makeVocab("CheckBoxGroup", "Context/Context_Deposits/Natural_Formations", "Natural Formations");
+makeVocab("CheckBoxGroup", "Context/Context_Deposits/Disturbances", "Disturbances");
+makeVocab("HierarchicalDropDown", "Context/Texture_Helper/Soil_Texture_Helper", "Soil Texture Helper");
+makeVocab("DropDown", "Context/Review/Bulk_Sample_Mapped", "Bulk Sample Mapped");
+makeVocab("DropDown", "Context/Review/Trench_Supervisor_Review", "Trench Supervisor Review");
+makeVocab("DropDown", "Context/Review/Site_Director_Review", "Site Director Review");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Profile_Aspect", "Profile Aspect");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Elevation_Determination", "Elevation Determination");
+makeVocab("RadioGroup", "Context_Group/Context_Group_Details/Start_Depth", "Start Depth");
+makeVocab("HierarchicalDropDown", "Context_Group/Context_Group_Details/Soil_Munsell_Colour", "Soil Munsell Colour");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Compaction", "Compaction");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Soil_Texture_Actual", "Soil Texture Actual");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Rounding", "Rounding");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Structure", "Structure");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Structure_Modifiers", "Structure Modifiers");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Sorting", "Sorting");
+makeVocab("CheckBoxGroup", "Context_Group/Context_Group_Details/Disturbances", "Disturbances");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Upper_Boundary", "Upper Boundary");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Lower_Boundary", "Lower Boundary");
+makeVocab("DropDown", "Artefact_Group/Artefact_Group_General_Information/Artefact_Class", "Artefact Class");
+makeVocab("DropDown", "Sample/Sample_General_Information/Sample_Type", "Sample Type");
+makeVocab("DropDown", "Sample/Sample_General_Information/Collection_Method", "Collection Method");
+makeVocab("DropDown", "Special_Find/Special_Find_General_Information/Special_Find_Class", "Special Find Class");
+makeVocab("DropDown", "Photograph_Log/Photograph_Log/Looking_Toward", "Looking Toward");
+makeVocab("DropDown", "Photograph_Log/Photograph_Log/Scene_Type", "Scene Type");
+
+
+/******************************************************************************/
+/*                                 VALIDATION                                 */
+/******************************************************************************/
+/* `ref`  is a reference/path to a field
+ * `name` is a human-readable name for that field
+ * `cond` is a String containing a boolean expression that evaluates to true if
+ *        and only if the the field pair returned by this function should be
+ *        validated.
+ *
+ *  Returns a field pair (really just an ArrayList).
+ */
+fieldPair(String ref, String name, String cond) {
+  List fp = new ArrayList();
+  fp.add(ref);
+  fp.add(name);
+  fp.add(cond);
+  return fp;
+}
+
+fieldPair(String ref, String name) {
+  String t = "true";
+  return fieldPair(ref, name, t);
+}
+
+/* Returns true if field specified by `ref` is valid. False otherwise.
+ */
+isValidField(String ref) {
+  return !isNull(getFieldValue(ref));
+}
+/* `format` can either be HTML or PLAINTEXT
+ */
+validateFields(List fields, String format) {
+  Integer numInvalid = 0;
+
+  /* Build validation message string (and count how many invalid fields exist) */
+  String out = "Please fill out the following fields:\n";
+  for(f : fields) {
+    String ref  = f.get(0); // Reference to field
+    String name = f.get(1); // Human-readable name
+    String cond = f.get(2); // Validation condition
+
+    // Only validate a field whose validation condition evaluates to `true`
+    Boolean doValidateField = (Boolean) eval(cond);
+    if (!doValidateField)
+      continue;
+
+    // Add any invalid fields to the output and tally them
+    if (!isValidField(ref)) {
+      out += "- " + name + "\n";
+      numInvalid++;
+    }
+  }
+  // All the fields are valid; just overwrite `out` with a cheery message
+  if (numInvalid == 0)
+    out = "All fields contain valid data!";
+
+  /* Format the output as dictated by `format` */
+  if (format == "HTML") {
+    out = out.replace("\n", "<br>");
+  } else if (format == "PLAINTEXT") {
+    ;
+  }
+
+  return out;
+}
+
+validateContext() {
+  List f = new ArrayList(); // Fields to be validated
+
+  f.add(fieldPair("Context/Context_General_Information/Grid_Location_Reference", "{Grid_Location_Reference}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_ID", "{Context_ID}"));
+  f.add(fieldPair("Context/Context_General_Information/Lot_ID", "{Lot_ID}"));
+  f.add(fieldPair("Context/Context_General_Information/Wet_Sieved", "{Wet_Sieved}"));
+  f.add(fieldPair("Context/Context_General_Information/Excavation_Method", "{Excavation_Method}"));
+  f.add(fieldPair("Context/Context_General_Information/Excavators", "{Excavators}"));
+  f.add(fieldPair("Context/Context_General_Information/Your_Interpretation", "{Your_Interpretation}"));
+  f.add(fieldPair("Context/Context_General_Information/Artefacts_Present", "{Artefacts_Present}"));
+  f.add(fieldPair("Context/Context_General_Information/Elevation_Datum_Type", "{Elevation_Datum_Type}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_NW", "{Context_Highest_Level_NW}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_NE", "{Context_Highest_Level_NE}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_SE", "{Context_Highest_Level_SE}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_SW", "{Context_Highest_Level_SW}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_Ctr", "{Context_Highest_Level_Ctr}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_NW", "{Context_Lowest_Level_NW}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_NE", "{Context_Lowest_Level_NE}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_SE", "{Context_Lowest_Level_SE}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_SW", "{Context_Lowest_Level_SW}"));
+  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_Ctr", "{Context_Lowest_Level_Ctr}"));
+  f.add(fieldPair("Context/Context_General_Information/Min_Context_Thickness", "{Min_Context_Thickness}"));
+  f.add(fieldPair("Context/Context_General_Information/Max_Context_Thickness", "{Max_Context_Thickness}"));
+  f.add(fieldPair("Context/Context_General_Information/Final_Bucket_Count", "{Final_Bucket_Count}"));
+  f.add(fieldPair("Context/Context_General_Information/Deposit_Volume", "{Deposit_Volume}"));
+  f.add(fieldPair("Context/Context_Deposits/Soil_Munsell_Colour", "{Soil_Munsell_Colour}"));
+  f.add(fieldPair("Context/Context_Deposits/Soil_Moisture", "{Soil_Moisture}"));
+  f.add(fieldPair("Context/Context_Deposits/Soil_Compaction_Type", "{Soil_Compaction_Type}"));
+  f.add(fieldPair("Context/Context_Deposits/Deposit_Inclusions", "{Deposit_Inclusions}"));
+  f.add(fieldPair("Context/Context_Deposits/Natural_Formations", "{Natural_Formations}"));
+  f.add(fieldPair("Context/Context_Deposits/Disturbances", "{Disturbances}"));
+  f.add(fieldPair("Context/Review/Trench_Supervisor_Review", "{Trench_Supervisor_Review}"));
+  f.add(fieldPair("Context/Review/Date_Closed", "{Date_Closed}"));
+
+  String validationMessage = validateFields(f, "PLAINTEXT");
+  showWarning("Validation Results", validationMessage);
+}
+
+validateContextGroup() {
+  List f = new ArrayList(); // Fields to be validated
+
+  f.add(fieldPair("Context_Group/Context_Group_Details/Title", "{Title}"));
+
+  String validationMessage = validateFields(f, "PLAINTEXT");
+  showWarning("Validation Results", validationMessage);
+}
+
+validateArtefactGroup() {
+  List f = new ArrayList(); // Fields to be validated
+
+  f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID", "{Artefact_Group_ID}"));
+  f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Class", "{Artefact_Class}"));
+
+  String validationMessage = validateFields(f, "PLAINTEXT");
+  showWarning("Validation Results", validationMessage);
+}
+
+validateSample() {
+  List f = new ArrayList(); // Fields to be validated
+
+  f.add(fieldPair("Sample/Sample_General_Information/Sample_ID", "{Sample_ID}"));
+  f.add(fieldPair("Sample/Sample_General_Information/Sample_Type", "{Sample_Type}"));
+  f.add(fieldPair("Sample/Sample_General_Information/Sample_Weight", "{Sample_Weight}"));
+
+  String validationMessage = validateFields(f, "PLAINTEXT");
+  showWarning("Validation Results", validationMessage);
+}
+
+validateSpecialFind() {
+  List f = new ArrayList(); // Fields to be validated
+
+  f.add(fieldPair("Special_Find/Special_Find_General_Information/Special_Find_ID", "{Special_Find_ID}"));
+  f.add(fieldPair("Special_Find/Special_Find_General_Information/Special_Find_Class", "{Special_Find_Class}"));
+
+  String validationMessage = validateFields(f, "PLAINTEXT");
+  showWarning("Validation Results", validationMessage);
+}
+
+validateSpecialFindLocation() {
+  List f = new ArrayList(); // Fields to be validated
+
+  f.add(fieldPair("Special_Find_Location/Special_Find_Location/X", "{X}"));
+  f.add(fieldPair("Special_Find_Location/Special_Find_Location/Y", "{Y}"));
+  f.add(fieldPair("Special_Find_Location/Special_Find_Location/Z", "{Z}"));
+  f.add(fieldPair("Special_Find_Location/Special_Find_Location/Notes", "{Notes}"));
+
+  String validationMessage = validateFields(f, "PLAINTEXT");
+  showWarning("Validation Results", validationMessage);
+}
+
+validatePhotographLog() {
+  List f = new ArrayList(); // Fields to be validated
+
+  f.add(fieldPair("Photograph_Log/Photograph_Log/Photograph_Reference_ID", "{Photograph_Reference_ID}"));
+
+  String validationMessage = validateFields(f, "PLAINTEXT");
+  showWarning("Validation Results", validationMessage);
+}
+
+
+
+/******************************************************************************/
+/*                                 AUTOSAVING                                 */
+/******************************************************************************/
+Map tabgroupToUuid = new HashMap();
+
+getUuid(String tabgroup) {
+  tabgroupToUuid.get(tabgroup);
+}
+
+setUuid(String tabgroup, String uuid) {
+  tabgroupToUuid.put(tabgroup, uuid);
+}
+
+saveTabGroup(String tabgroup) {
+  saveTabGroup(tabgroup, "");
+}
+
+saveTabGroup(String tabgroup, String callback) {
+  Boolean enableAutosave  = true;
+  String  id              = getUuid(tabgroup);
+  List    geometry        = null;
+  List    attributes      = null;
+  String  parentTabgroup_ = parentTabgroup;
+  Boolean userWasSet      = !username.equals("");
+
+  parentTabgroup = null;
+  SaveCallback saveCallback  = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      // Make a child-parent relationship if need be.
+      if (newRecord && !isNull(parentTabgroup_)) {
+        String rel = "";
+        rel += parentTabgroup_.replaceAll("_", " ");
+        rel += " - ";
+        rel += tabgroup.replaceAll("_", " ");
+        saveEntitiesToHierRel(
+          rel,
+          getUuid(parentTabgroup_),
+          uuid,
+          "Parent Of",
+          "Child Of",
+          null
+        );
+      }
+
+      // This fixes an interesting bug. Without this, if a user was not set
+      // (by calling `setUser`) at the time `saveTabGroup` was first called, but
+      // set by the time `onSave` was called, the tab group is saved correctly
+      // the first time only.
+      //
+      // Adding this allows subsequent saves to succeed. Presumably it plays
+      // some role in helping FAIMS associate the correct user with a record.
+      if (!userWasSet) {
+        saveTabGroup(tabgroup);
+      }
+
+      execute(callback);
+    }
+    onError(message) {
+      showToast(message);
+    }
+  };
+
+  saveTabGroup(tabgroup, id, geometry, attributes, saveCallback, enableAutosave);
+}
+
+populateAuthorAndTimestamp(String tabgroup) {
+  Map tabgroupToAuthor    = new HashMap();
+  Map tabgroupToTimestamp = new HashMap();
+  tabgroupToAuthor.put("Context", "Context/Context_General_Information/author");
+  tabgroupToTimestamp.put("Context", "Context/Context_General_Information/timestamp");
+
+  String authorPath    = tabgroupToAuthor.get(tabgroup);
+  String timestampPath = tabgroupToTimestamp.get(tabgroup);
+
+  fmt     = "yyyy-MM-dd HH:mm:ss z";
+  date    = new Date();
+  dateFmt = new java.text.SimpleDateFormat(fmt);
+  dateStr = dateFmt.format(date);
+
+  String authorVal    = username;
+  String timestampVal = dateStr;
+
+  if (!isNull(authorPath))    setFieldValue(authorPath,    authorVal);
+  if (!isNull(timestampPath)) setFieldValue(timestampPath, timestampVal);
+}
+
+onShowContext () {
+  // TODO: Add some things which should happen when this tabgroup is shown
+  saveTabGroup("Context");
+}
+onShowContextGroup () {
+  // TODO: Add some things which should happen when this tabgroup is shown
+  saveTabGroup("Context_Group");
+}
+onShowArtefactGroup () {
+  // TODO: Add some things which should happen when this tabgroup is shown
+  saveTabGroup("Artefact_Group");
+}
+onShowSample () {
+  // TODO: Add some things which should happen when this tabgroup is shown
+  saveTabGroup("Sample");
+}
+onShowSpecialFind () {
+  // TODO: Add some things which should happen when this tabgroup is shown
+  saveTabGroup("Special_Find");
+}
+onShowSpecialFindLocation () {
+  // TODO: Add some things which should happen when this tabgroup is shown
+  saveTabGroup("Special_Find_Location");
+}
+onShowPhotographLog () {
+  // TODO: Add some things which should happen when this tabgroup is shown
+  saveTabGroup("Photograph_Log");
+}
+
+addOnEvent("Context", "show", "onShowContext()");
+addOnEvent("Context_Group", "show", "onShowContextGroup()");
+addOnEvent("Artefact_Group", "show", "onShowArtefactGroup()");
+addOnEvent("Sample", "show", "onShowSample()");
+addOnEvent("Special_Find", "show", "onShowSpecialFind()");
+addOnEvent("Special_Find_Location", "show", "onShowSpecialFindLocation()");
+addOnEvent("Photograph_Log", "show", "onShowPhotographLog()");
+
+onClickUserGuide () {
+  // TODO: Add some things which should happen when this element is clicked
+  newTab("User/Help", true);
+}
+onClickControlNewContext () {
+  // TODO: Add some things which should happen when this element is clicked
+  newContext();
+}
+onClickControlNewContextGroup () {
+  // TODO: Add some things which should happen when this element is clicked
+  newContextGroup();
+}
+onClickContextTextureHelper () {
+  // TODO: Add some things which should happen when this element is clicked
+  newTab("Context/Texture_Helper", true);
+}
+onClickContextNewSample () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newSample();
+}
+onClickContextNewArtefactGroup () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newArtefactGroup();
+}
+onClickContextNewSpecialFind () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newSpecialFind();
+}
+onClickContextNewPhotoLog () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newPhotographLog();
+}
+onClickContextGroupNewSample () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context_Group";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newSample();
+}
+onClickContextGroupNewPhotoLog () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context_Group";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newPhotographLog();
+}
+onClickSpecialFindNewSpecialFindLocation () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Special_Find";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newSpecialFindLocation();
+}
+
+addOnEvent("User/User/Login", "click", "onClickUserLogin()");
+addOnEvent("User/User/Guide", "click", "onClickUserGuide()");
+addOnEvent("Control/Control/New_Context", "click", "onClickControlNewContext()");
+addOnEvent("Control/Control/New_Context_Group", "click", "onClickControlNewContextGroup()");
+addOnEvent("Context/Context_Deposits/Texture_Helper", "click", "onClickContextTextureHelper()");
+addOnEvent("Context/Context_Samples/New_Sample", "click", "onClickContextNewSample()");
+addOnEvent("Context/Context_Artefacts/New_Artefact_Group", "click", "onClickContextNewArtefactGroup()");
+addOnEvent("Context/Context_Artefacts/New_Special_Find", "click", "onClickContextNewSpecialFind()");
+addOnEvent("Context/Context_Attachments/New_Photo_Log", "click", "onClickContextNewPhotoLog()");
+addOnEvent("Context/Texture_Helper/Update_Texture", "click", "onClickContextUpdateTexture()");
+addOnEvent("Context_Group/Context_Group_Samples/New_Sample", "click", "onClickContextGroupNewSample()");
+addOnEvent("Context_Group/Context_Group_Attachments/New_Photo_Log", "click", "onClickContextGroupNewPhotoLog()");
+addOnEvent("Special_Find/Special_Find_Location/New_Special_Find_Location", "click", "onClickSpecialFindNewSpecialFindLocation()");
+
+
+/******************************************************************************/
+/*                   AUDIO, CAMERA, FILE AND VIDEO BINDINGS                   */
+/******************************************************************************/
+addOnEvent("Context/Context_Attachments/Button_Context_Photo", "click", "attachPictureTo(\"Context/Context_Attachments/Context_Photo\")");
+addOnEvent("Context_Group/Context_Group_Attachments/Button_Context_Group_Photo", "click", "attachPictureTo(\"Context_Group/Context_Group_Attachments/Context_Group_Photo\")");
+addOnEvent("Artefact_Group/Artefact_Group_General_Information/Button_Artefact_Group_Photo", "click", "attachPictureTo(\"Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Photo\")");
+addOnEvent("Sample/Sample_General_Information/Button_Sample_Photo", "click", "attachPictureTo(\"Sample/Sample_General_Information/Sample_Photo\")");
+addOnEvent("Special_Find/Special_Find_General_Information/Button_Special_Find_Photo", "click", "attachPictureTo(\"Special_Find/Special_Find_General_Information/Special_Find_Photo\")");
+addOnEvent("Context/Context_Attachments/Button_Context_Sketch", "click", "attachFileTo(\"Context/Context_Attachments/Context_Sketch\")");
+addOnEvent("Context_Group/Context_Group_Attachments/Button_Context_Group_Sketch", "click", "attachFileTo(\"Context_Group/Context_Group_Attachments/Context_Group_Sketch\")");
+addOnEvent("Artefact_Group/Artefact_Group_General_Information/Button_Artefact_Group_Sketch", "click", "attachFileTo(\"Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Sketch\")");
+addOnEvent("Sample/Sample_General_Information/Button_Sample_Sketch", "click", "attachFileTo(\"Sample/Sample_General_Information/Sample_Sketch\")");
+addOnEvent("Special_Find/Special_Find_General_Information/Button_Special_Find_Sketch", "click", "attachFileTo(\"Special_Find/Special_Find_General_Information/Special_Find_Sketch\")");
+
+/******************************************************************************/
+/*                 BINDINGS FOR 'VIEW ATTACHED FILES' BUTTONS                 */
+/******************************************************************************/
+addOnEvent("Context/Context_Attachments/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Context\"))");
+addOnEvent("Context_Group/Context_Group_Attachments/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Context_Group\"))");
+addOnEvent("Artefact_Group/Artefact_Group_General_Information/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Artefact_Group\"))");
+addOnEvent("Sample/Sample_General_Information/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Sample\"))");
+addOnEvent("Special_Find/Special_Find_General_Information/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Special_Find\"))");
+
+/******************************************************************************/
+/*                             NAVIGATION DRAWER                              */
+/******************************************************************************/
+removeNavigationButtons() {
+  removeNavigationButton("new");
+  removeNavigationButton("duplicate");
+  removeNavigationButton("delete");
+  removeNavigationButton("validate");
+}
+
+addNavigationButtons(String tabgroup) {
+  removeNavigationButtons();
+  List tabgroupsToValidate = new ArrayList();
+  tabgroupsToValidate.add("Context");
+  tabgroupsToValidate.add("Context_Group");
+  tabgroupsToValidate.add("Artefact_Group");
+  tabgroupsToValidate.add("Sample");
+  tabgroupsToValidate.add("Special_Find");
+  tabgroupsToValidate.add("Special_Find_Location");
+  tabgroupsToValidate.add("Photograph_Log");
+
+  addNavigationButton("new", new ActionButtonCallback() {
+    actionOnLabel() {
+      "{New}";
+    }
+    actionOn() {
+      if(!isNull(getUuid(tabgroup))) {
+          newRecord(tabgroup);
+          showToast("{New_record_created}");
+      } else {
+          showAlert("{Warning}", "{Any_unsaved_changes_will_be_lost}", "newRecord(\""+tabgroup+"\")", "");
+      }
+    }
+  }, "success");
+  addNavigationButton("duplicate", new ActionButtonCallback() {
+    actionOnLabel() {
+      "{Duplicate}";
+    }
+    actionOn() {
+      if(!isNull(getUuid(tabgroup))) {
+          duplicateRecord(tabgroup);
+      } else {
+          showWarning("{Warning}", "{This_record_is_unsaved_and_cannot_be_duplicated}");
+      }
+    }
+  }, "primary");
+  addNavigationButton("delete", new ActionButtonCallback() {
+    actionOnLabel() {
+      "{Delete}";
+    }
+    actionOn() {
+      deleteRecord(tabgroup);
+    }
+  }, "danger");
+  if (tabgroupsToValidate.contains(tabgroup)) {
+    addNavigationButton("validate", new ActionButtonCallback() {
+      actionOnLabel() {
+        "{Validate}";
+      }
+      actionOn() {
+        String validationFunction = "validate" + tabgroup.replaceAll("_", "") + "()";
+        eval(validationFunction);
+      }
+    }, "default");
+  }
+}
+
+/******************************************************************************/
+/*        ENTITY AND RELATIONSHIP SAVING AND LOADING HELPER FUNCTIONS         */
+/******************************************************************************/
+/** Saves two entity id's as a relation. **/
+saveEntitiesToRel(String type, String entity1, String entity2) {
+  String callback = null;
+  saveEntitiesToRel(type, entity1, entity2, callback);
+}
+
+/** Saves two entity id's as a relation with some callback executed. **/
+saveEntitiesToRel(String type, String entity1, String entity2, String callback) {
+  String e1verb = null;
+  String e2verb = null;
+  saveEntitiesToHierRel(type, entity1, entity2, e1verb, e2verb, callback);
+}
+
+/** Saves two entity id's as a hierachical relation with some callback executed. **/
+saveEntitiesToHierRel(String type, String entity1, String entity2, String e1verb, String e2verb, String callback) {
+  if (isNull(entity1) || isNull(entity2)) return;
+  saveRel(null, type, null, null, new SaveCallback() {
+    onSave(rel_id, newRecord) {
+      addReln(entity1, rel_id, e1verb);
+      addReln(entity2, rel_id, e2verb);
+      if(!isNull(callback)) {
+         execute(callback);
+      }
+    }
+    onError(message) {
+      Log.e("saveEntitiesToHierRel", message);
+      showToast(message);
+    }
+  });
+}
+
+// Makes a new record of the given tabgroup
+newRecord(String tabgroup) {
+  cancelTabGroup(tabgroup, false);
+
+  String newTabGroupFunction = "new" + tabgroup.replaceAll("_", "") + "()"; // Typical value: "newTabgroup()"
+  eval(newTabGroupFunction);
+
+  Log.d("newRecord", tabgroup);
+}
+
+// Deletes the current record of the given tabgroup
+deleteRecord(String tabgroup) {
+  String deleteTabGroupFunction = "delete" + tabgroup.replaceAll("_", "") + "()"; // Typical value: "deleteTabgroup()"
+  eval(deleteTabGroupFunction);
+
+  Log.d("deleteRecord", tabgroup);
+}
+
+// Duplicates the current record of the given tabgroup
+duplicateRecord(String tabgroup) {
+  dialog = showBusy("Duplicating", "Please wait...");
+
+  String duplicateTabGroupFunction = "duplicate" + tabgroup.replaceAll("_", "") + "()"; // Typical value: "duplicateTabgroup()"
+  eval(duplicateTabGroupFunction);
+
+  Log.d("duplicateRecord", tabgroup);
+}
+
+// generic fetch saved attributes query
+getDuplicateAttributeQuery(String originalRecordID, String attributesToDupe) {
+  if (attributesToDupe.equals("")) {
+    attributesToDupe = "''";
+  }
+  String duplicateQuery = "SELECT attributename, freetext, vocabid, measure, certainty " +
+                          "  FROM latestnondeletedaentvalue JOIN attributekey USING (attributeid) " +
+                          " WHERE attributename IN ('', "+attributesToDupe+") " +
+                          "   AND uuid = '"+originalRecordID+"'; ";
+  return duplicateQuery;
+}
+
+getDuplicateRelnQuery(String originalRecordID) {
+  String dupeRelnQuery = "SELECT relntypename, parentparticipatesverb, childparticipatesverb, parentuuid "+
+                         "  FROM parentchild join relationship using (relationshipid) "+
+                         "  JOIN relntype using (relntypeid) "+
+                         " WHERE childuuid = '"+originalRecordID+"' " +
+                         "   AND parentparticipatesverb = 'Parent Of' ";
+  return dupeRelnQuery;
+}
+
+makeDuplicateRelationships(fetchedAttributes, String newuuid){
+  Log.e("Module", "makeDuplicateRelationships");
+  for (savedAttribute : fetchedAttributes){
+    //  saveEntitiesToHierRel(relnname, parent, child, parentverb, childverb, relSaveCallback);
+    //relntypename, parentparticipatesverb, childparticipatesverb, childuuid
+    String relntypename           = savedAttribute.get(0);
+    String parentparticipatesverb = savedAttribute.get(1);
+    String childparticipatesverb  = savedAttribute.get(2);
+    String childuuid              = savedAttribute.get(3);
+    saveEntitiesToHierRel(relntypename, newuuid, childuuid, parentparticipatesverb, childparticipatesverb, null);
+  }
+}
+
+// generic get extra attributes
+getExtraAttributes(fetchedAttributes) {
+  List extraAttributes = createAttributeList();
+  Log.d("Module", "Duplicating fetched attributes: " + fetchedAttributes.toString());
+  for (savedAttribute : fetchedAttributes) {
+    extraAttributes.add(
+      createEntityAttribute(
+        savedAttribute.get(0),
+        savedAttribute.get(1),
+        savedAttribute.get(2),
+        savedAttribute.get(3),
+        savedAttribute.get(4)
+      )
+    );
+  }
+  return extraAttributes;
+}
+
+loadEntity() {
+  loadEntity(false);
+}
+loadEntity(Boolean isDropdown) {
+  if (isDropdown) {
+    loadEntityFrom(getDropdownItemValue());
+  } else {
+    loadEntityFrom(getListItemValue());
+  }
+}
+
+loadEntityFrom(String entityID) {
+  if (isNull(entityID)) {
+    Log.e("Module", "Cannot load an entity with a null ID.");
+    return;
+  }
+
+  String getEntTypeNameQ = "SELECT aenttypename " +
+                           "  FROM latestnondeletedarchent " +
+                           "  JOIN aenttype " +
+                           " USING (aenttypeid) " +
+                           " WHERE uuid = '" + entityID + "'";
+  fetchAll(getEntTypeNameQ, new FetchCallback() {
+    onFetch(result) {
+      String archEntName = result.get(0).get(0);
+      String loadFunction = "load" + archEntName.replaceAll(" ", "") + "From(entityID)"; // Typical value: loadContextFrom(entityID)
+      eval(loadFunction);
+    }
+  });
+}
+
+newContext(){
+  String tabgroup = "Context";
+
+  String autoNumSource = "";
+  autoNumSource = getFieldValue("Control/Control/Next_Site_Code");
+  if (isNull(autoNumSource)) {
+    showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
+    return;
+  }
+  autoNumSource = getFieldValue("Control/Control/Next_Area_Code");
+  if (isNull(autoNumSource)) {
+    showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
+    return;
+  }
+
+  setUuid(tabgroup, null);
+  newTabGroup(tabgroup);
+  populateAuthorAndTimestamp(tabgroup);
+  String autoNumDest = "";
+  autoNumDest = "Context/Context_General_Information/Site_Code";
+  incAutoNum(autoNumDest);
+  autoNumDest = "Context/Context_General_Information/Area_Code";
+  incAutoNum(autoNumDest);
+}
+
+duplicateContext(){
+  String tabgroup = "Context";
+  String uuidOld = getUuid(tabgroup);
+
+  disableAutoSave(tabgroup);
+
+  String autoNumDest = "";
+  autoNumDest = "Context/Context_General_Information/Site_Code";
+  incAutoNum(autoNumDest);
+  autoNumDest = "Context/Context_General_Information/Area_Code";
+  incAutoNum(autoNumDest);
+
+  populateFileList("Context/Context_Attachments/Context_Sketch", new ArrayList());
+  populateCameraPictureGallery("Context/Context_Attachments/Context_Photo", new ArrayList());
+
+
+  saveCallback = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      populateAuthorAndTimestamp(tabgroup);
+
+      Boolean enable_autosave = true;
+
+      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
+        onFetch(result) {
+          Log.e("Module", result.toString());
+          makeDuplicateRelationships(result, getUuid(tabgroup));
+          showToast("{Duplicated_record}");
+          dialog.dismiss();
+        }
+      });
+
+      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
+        onSave(autosaveUuid, autosaveNewRecord) {
+          setUuid(tabgroup, autosaveUuid);
+        }
+      }, enable_autosave);
+    }
+  };
+
+  String extraDupeAttributes = "";
+  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
+    onFetch(result) {
+      excludeAttributes = new ArrayList();
+      excludeAttributes.add("Context Sketch");
+      excludeAttributes.add("Context Photo");
+
+      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
+    }
+  });
+}
+
+deleteContext(){
+  String tabgroup = "Context";
+
+  if (isNull(getUuid(tabgroup))) {
+    cancelTabGroup(tabgroup, true);
+  } else {
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteContext()", "doNotDelete()");
+  }
+}
+
+reallyDeleteContext(){
+  String tabgroup = "Context";
+  deleteArchEnt(getUuid(tabgroup));
+  cancelTabGroup(tabgroup, false);
+}
+
+newContextGroup(){
+  String tabgroup = "Context_Group";
+
+
+  setUuid(tabgroup, null);
+  newTabGroup(tabgroup);
+  populateAuthorAndTimestamp(tabgroup);
+}
+
+duplicateContextGroup(){
+  String tabgroup = "Context_Group";
+  String uuidOld = getUuid(tabgroup);
+
+  disableAutoSave(tabgroup);
+
+
+  populateFileList("Context_Group/Context_Group_Attachments/Context_Group_Sketch", new ArrayList());
+  populateCameraPictureGallery("Context_Group/Context_Group_Attachments/Context_Group_Photo", new ArrayList());
+
+
+  saveCallback = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      populateAuthorAndTimestamp(tabgroup);
+
+      Boolean enable_autosave = true;
+
+      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
+        onFetch(result) {
+          Log.e("Module", result.toString());
+          makeDuplicateRelationships(result, getUuid(tabgroup));
+          showToast("{Duplicated_record}");
+          dialog.dismiss();
+        }
+      });
+
+      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
+        onSave(autosaveUuid, autosaveNewRecord) {
+          setUuid(tabgroup, autosaveUuid);
+        }
+      }, enable_autosave);
+    }
+  };
+
+  String extraDupeAttributes = "";
+  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
+    onFetch(result) {
+      excludeAttributes = new ArrayList();
+      excludeAttributes.add("Context Group Sketch");
+      excludeAttributes.add("Context Group Photo");
+
+      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
+    }
+  });
+}
+
+deleteContextGroup(){
+  String tabgroup = "Context_Group";
+
+  if (isNull(getUuid(tabgroup))) {
+    cancelTabGroup(tabgroup, true);
+  } else {
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteContextGroup()", "doNotDelete()");
+  }
+}
+
+reallyDeleteContextGroup(){
+  String tabgroup = "Context_Group";
+  deleteArchEnt(getUuid(tabgroup));
+  cancelTabGroup(tabgroup, false);
+}
+
+newArtefactGroup(){
+  String tabgroup = "Artefact_Group";
+
+
+  setUuid(tabgroup, null);
+  newTabGroup(tabgroup);
+  populateAuthorAndTimestamp(tabgroup);
+}
+
+duplicateArtefactGroup(){
+  String tabgroup = "Artefact_Group";
+  String uuidOld = getUuid(tabgroup);
+
+  disableAutoSave(tabgroup);
+
+
+  populateFileList("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Sketch", new ArrayList());
+  populateCameraPictureGallery("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Photo", new ArrayList());
+
+
+  saveCallback = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      populateAuthorAndTimestamp(tabgroup);
+
+      Boolean enable_autosave = true;
+
+      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
+        onFetch(result) {
+          Log.e("Module", result.toString());
+          makeDuplicateRelationships(result, getUuid(tabgroup));
+          showToast("{Duplicated_record}");
+          dialog.dismiss();
+        }
+      });
+
+      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
+        onSave(autosaveUuid, autosaveNewRecord) {
+          setUuid(tabgroup, autosaveUuid);
+        }
+      }, enable_autosave);
+    }
+  };
+
+  String extraDupeAttributes = "";
+  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
+    onFetch(result) {
+      excludeAttributes = new ArrayList();
+      excludeAttributes.add("Artefact Group Sketch");
+      excludeAttributes.add("Artefact Group Photo");
+
+      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
+    }
+  });
+}
+
+deleteArtefactGroup(){
+  String tabgroup = "Artefact_Group";
+
+  if (isNull(getUuid(tabgroup))) {
+    cancelTabGroup(tabgroup, true);
+  } else {
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteArtefactGroup()", "doNotDelete()");
+  }
+}
+
+reallyDeleteArtefactGroup(){
+  String tabgroup = "Artefact_Group";
+  deleteArchEnt(getUuid(tabgroup));
+  cancelTabGroup(tabgroup, false);
+}
+
+newSample(){
+  String tabgroup = "Sample";
+
+
+  setUuid(tabgroup, null);
+  newTabGroup(tabgroup);
+  populateAuthorAndTimestamp(tabgroup);
+}
+
+duplicateSample(){
+  String tabgroup = "Sample";
+  String uuidOld = getUuid(tabgroup);
+
+  disableAutoSave(tabgroup);
+
+
+  populateFileList("Sample/Sample_General_Information/Sample_Sketch", new ArrayList());
+  populateCameraPictureGallery("Sample/Sample_General_Information/Sample_Photo", new ArrayList());
+
+
+  saveCallback = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      populateAuthorAndTimestamp(tabgroup);
+
+      Boolean enable_autosave = true;
+
+      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
+        onFetch(result) {
+          Log.e("Module", result.toString());
+          makeDuplicateRelationships(result, getUuid(tabgroup));
+          showToast("{Duplicated_record}");
+          dialog.dismiss();
+        }
+      });
+
+      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
+        onSave(autosaveUuid, autosaveNewRecord) {
+          setUuid(tabgroup, autosaveUuid);
+        }
+      }, enable_autosave);
+    }
+  };
+
+  String extraDupeAttributes = "";
+  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
+    onFetch(result) {
+      excludeAttributes = new ArrayList();
+      excludeAttributes.add("Sample Sketch");
+      excludeAttributes.add("Sample Photo");
+
+      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
+    }
+  });
+}
+
+deleteSample(){
+  String tabgroup = "Sample";
+
+  if (isNull(getUuid(tabgroup))) {
+    cancelTabGroup(tabgroup, true);
+  } else {
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteSample()", "doNotDelete()");
+  }
+}
+
+reallyDeleteSample(){
+  String tabgroup = "Sample";
+  deleteArchEnt(getUuid(tabgroup));
+  cancelTabGroup(tabgroup, false);
+}
+
+newSpecialFind(){
+  String tabgroup = "Special_Find";
+
+
+  setUuid(tabgroup, null);
+  newTabGroup(tabgroup);
+  populateAuthorAndTimestamp(tabgroup);
+}
+
+duplicateSpecialFind(){
+  String tabgroup = "Special_Find";
+  String uuidOld = getUuid(tabgroup);
+
+  disableAutoSave(tabgroup);
+
+
+  populateFileList("Special_Find/Special_Find_General_Information/Special_Find_Sketch", new ArrayList());
+  populateCameraPictureGallery("Special_Find/Special_Find_General_Information/Special_Find_Photo", new ArrayList());
+
+
+  saveCallback = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      populateAuthorAndTimestamp(tabgroup);
+
+      Boolean enable_autosave = true;
+
+      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
+        onFetch(result) {
+          Log.e("Module", result.toString());
+          makeDuplicateRelationships(result, getUuid(tabgroup));
+          showToast("{Duplicated_record}");
+          dialog.dismiss();
+        }
+      });
+
+      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
+        onSave(autosaveUuid, autosaveNewRecord) {
+          setUuid(tabgroup, autosaveUuid);
+        }
+      }, enable_autosave);
+    }
+  };
+
+  String extraDupeAttributes = "";
+  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
+    onFetch(result) {
+      excludeAttributes = new ArrayList();
+      excludeAttributes.add("Special Find Sketch");
+      excludeAttributes.add("Special Find Photo");
+
+      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
+    }
+  });
+}
+
+deleteSpecialFind(){
+  String tabgroup = "Special_Find";
+
+  if (isNull(getUuid(tabgroup))) {
+    cancelTabGroup(tabgroup, true);
+  } else {
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteSpecialFind()", "doNotDelete()");
+  }
+}
+
+reallyDeleteSpecialFind(){
+  String tabgroup = "Special_Find";
+  deleteArchEnt(getUuid(tabgroup));
+  cancelTabGroup(tabgroup, false);
+}
+
+newSpecialFindLocation(){
+  String tabgroup = "Special_Find_Location";
+
+
+  setUuid(tabgroup, null);
+  newTabGroup(tabgroup);
+  populateAuthorAndTimestamp(tabgroup);
+}
+
+duplicateSpecialFindLocation(){
+  String tabgroup = "Special_Find_Location";
+  String uuidOld = getUuid(tabgroup);
+
+  disableAutoSave(tabgroup);
+
+
+
+
+  saveCallback = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      populateAuthorAndTimestamp(tabgroup);
+
+      Boolean enable_autosave = true;
+
+      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
+        onFetch(result) {
+          Log.e("Module", result.toString());
+          makeDuplicateRelationships(result, getUuid(tabgroup));
+          showToast("{Duplicated_record}");
+          dialog.dismiss();
+        }
+      });
+
+      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
+        onSave(autosaveUuid, autosaveNewRecord) {
+          setUuid(tabgroup, autosaveUuid);
+        }
+      }, enable_autosave);
+    }
+  };
+
+  String extraDupeAttributes = "";
+  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
+    onFetch(result) {
+      excludeAttributes = new ArrayList();
+
+      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
+    }
+  });
+}
+
+deleteSpecialFindLocation(){
+  String tabgroup = "Special_Find_Location";
+
+  if (isNull(getUuid(tabgroup))) {
+    cancelTabGroup(tabgroup, true);
+  } else {
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteSpecialFindLocation()", "doNotDelete()");
+  }
+}
+
+reallyDeleteSpecialFindLocation(){
+  String tabgroup = "Special_Find_Location";
+  deleteArchEnt(getUuid(tabgroup));
+  cancelTabGroup(tabgroup, false);
+}
+
+newPhotographLog(){
+  String tabgroup = "Photograph_Log";
+
+
+  setUuid(tabgroup, null);
+  newTabGroup(tabgroup);
+  populateAuthorAndTimestamp(tabgroup);
+}
+
+duplicatePhotographLog(){
+  String tabgroup = "Photograph_Log";
+  String uuidOld = getUuid(tabgroup);
+
+  disableAutoSave(tabgroup);
+
+
+
+
+  saveCallback = new SaveCallback() {
+    onSave(uuid, newRecord) {
+      setUuid(tabgroup, uuid);
+      populateAuthorAndTimestamp(tabgroup);
+
+      Boolean enable_autosave = true;
+
+      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
+        onFetch(result) {
+          Log.e("Module", result.toString());
+          makeDuplicateRelationships(result, getUuid(tabgroup));
+          showToast("{Duplicated_record}");
+          dialog.dismiss();
+        }
+      });
+
+      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
+        onSave(autosaveUuid, autosaveNewRecord) {
+          setUuid(tabgroup, autosaveUuid);
+        }
+      }, enable_autosave);
+    }
+  };
+
+  String extraDupeAttributes = "";
+  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
+    onFetch(result) {
+      excludeAttributes = new ArrayList();
+
+      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
+    }
+  });
+}
+
+deletePhotographLog(){
+  String tabgroup = "Photograph_Log";
+
+  if (isNull(getUuid(tabgroup))) {
+    cancelTabGroup(tabgroup, true);
+  } else {
+    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeletePhotographLog()", "doNotDelete()");
+  }
+}
+
+reallyDeletePhotographLog(){
+  String tabgroup = "Photograph_Log";
+  deleteArchEnt(getUuid(tabgroup));
+  cancelTabGroup(tabgroup, false);
+}
+
+
+doNotDelete(){
+  showToast("{Delete_Cancelled}");
+}
+addOnEvent("User", "show", "removeNavigationButtons()");
+addOnEvent("Control", "show", "removeNavigationButtons()");
+addOnEvent("Context", "show", "addNavigationButtons(\"Context\")");
+addOnEvent("Context_Group", "show", "addNavigationButtons(\"Context_Group\")");
+addOnEvent("Artefact_Group", "show", "addNavigationButtons(\"Artefact_Group\")");
+addOnEvent("Sample", "show", "addNavigationButtons(\"Sample\")");
+addOnEvent("Special_Find", "show", "addNavigationButtons(\"Special_Find\")");
+addOnEvent("Special_Find_Location", "show", "addNavigationButtons(\"Special_Find_Location\")");
+addOnEvent("Photograph_Log", "show", "addNavigationButtons(\"Photograph_Log\")");
+
+/******************************************************************************/
+/*                                   SEARCH                                   */
+/******************************************************************************/
+addOnEvent("Control/Search"               , "show"  , "search();");
+addOnEvent("Control/Search/Entity_List"   , "click" , "loadEntity();");
+addOnEvent("Control/Search/Search_Button" , "click" , "search()");
+addOnEvent("Control/Search/Search_Term"   , "click" , "clearSearch()");
+addOnEvent("Control/Search/Entity_Types"  , "click" , "search()");
+
+entityTypes = new ArrayList();
+entityTypes.add(new NameValuePair("{All}", ""));
+entityTypes.add(new NameValuePair("{Context}", "Context"));
+entityTypes.add(new NameValuePair("{Context_Group}", "Context Group"));
+entityTypes.add(new NameValuePair("{Artefact_Group}", "Artefact Group"));
+entityTypes.add(new NameValuePair("{Sample}", "Sample"));
+entityTypes.add(new NameValuePair("{Special_Find}", "Special Find"));
+entityTypes.add(new NameValuePair("{Special_Find_Location}", "Special Find Location"));
+entityTypes.add(new NameValuePair("{Photograph_Log}", "Photograph Log"));
+populateDropDown("Control/Search/Entity_Types", entityTypes);
+
+clearSearch(){
+  setFieldValue("Control/Search/Search_Term","");
+}
+
+search(){
+  String tabgroup = "Control";
+  String refEntityList  = tabgroup + "/Search/Entity_List";
+  String refSearchTerm  = tabgroup + "/Search/Search_Term";
+  String refEntityTypes = tabgroup + "/Search/Entity_Types";
+
+  String type = getFieldValue(refEntityTypes);
+  String term = getFieldValue(refSearchTerm);
+  String searchQuery = "SELECT uuid, response "+
+                       "  FROM latestNonDeletedArchEntFormattedIdentifiers  "+
+                       " WHERE uuid in (SELECT uuid "+
+                       "                  FROM latestNonDeletedArchEntIdentifiers "+
+                       "                 WHERE measure LIKE '"+term+"'||'%'  "+
+                       "                   AND ( aenttypename LIKE '"+type+"' OR '' = '"+type+"' ) "+
+                       "                )  "+
+                       " ORDER BY response "+
+                       " LIMIT ? "+
+                       "OFFSET ? ";
+
+  populateCursorList(refEntityList, searchQuery, 25);
+  refreshTabgroupCSS(tabgroup);
+
+  Log.d("Module", "Search query: " + searchQuery);
+}
+
+loadContextFrom(String uuid) {
+  String tabgroup = "Context";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+loadContextGroupFrom(String uuid) {
+  String tabgroup = "Context_Group";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+loadArtefactGroupFrom(String uuid) {
+  String tabgroup = "Artefact_Group";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+loadSampleFrom(String uuid) {
+  String tabgroup = "Sample";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+loadSpecialFindFrom(String uuid) {
+  String tabgroup = "Special_Find";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+loadSpecialFindLocationFrom(String uuid) {
+  String tabgroup = "Special_Find_Location";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+loadPhotographLogFrom(String uuid) {
+  String tabgroup = "Photograph_Log";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  showTabGroup(tabgroup, uuid);
+}
+
+
+/******************************************************************************/
+/*                       AUTONUMBERING HELPER FUNCTIONS                       */
+/******************************************************************************/
+/*
+ * If value of field specified by `ref` is null, sets the field to `defaultVal`,
+ * otherwise increments its value.
+ *
+ * Returns the value the field was updated to.
+ */
+incField(String ref, Integer defaultVal) {
+  String val = getFieldValue(ref);
+
+  if (isNull(val)) {
+    setFieldValue(ref, defaultVal);
+    return defaultVal;
+  }
+
+  Integer inc = Integer.parseInt(val) + 1;
+  setFieldValue(ref, inc);
+  insertIntoLocalSettings(ref, inc.toString());
+
+  return inc;
+}
+
+/* Increments the field at `ref` or returns null if it does not contain a
+ * number.
+ */
+incField(String ref) {
+  return incField(ref, 1);
+}
+
+addOnEvent("Control/Control", "show", "onShowAutonum()");
+
+/* This function should only be called once since it creates event handlers,
+ * otherwise multiple copies of the same handler will trigger with the event.
+ */
+onShowAutonum() {
+  List l = new ArrayList();
+  l.add("Control/Control/Next_Site_Code");
+  l.add("Control/Control/Next_Area_Code");
+
+
+  for (ref : l) {
+    loadStartingId(ref);
+  }
+  for (ref : l) {
+    onFocus(ref, null,  "insertIntoLocalSettings(\"" + ref + "\", getFieldValue(\"" + ref + "\"));");
+  }
+}
+
+loadStartingId(String ref) {
+  String idQ = "SELECT value FROM localSettings WHERE key = '" + ref + "';";
+  fetchOne(idQ, new FetchCallback() {
+    onFetch(result) {
+      if (!isNull(result)) {
+        setFieldValue(ref, result.get(0));
+      } else {
+        setFieldValue(ref, "1");
+      }
+    }
+  });
+}
+
+incAutoNum(String destPath) {
+  Map destToSource = new HashMap();
+  destToSource.put("Context/Context_General_Information/Site_Code", "Control/Control/Next_Site_Code");
+  destToSource.put("Context/Context_General_Information/Area_Code", "Control/Control/Next_Area_Code");
+
+  String sourcePath = destToSource.get(destPath);
+  String destVal    = getFieldValue(sourcePath);
+  setFieldValue(destPath, destVal);
+  incField(sourcePath);
+}
+
+/******************************************************************************/
+/*                POPULATION OF ENTITY AND CHILD ENTITY LISTS                 */
+/******************************************************************************/
+/*
+ * `viewType`   the type of GUI element to be populated. It can either equal
+ *              "DropDown" or "List".
+ * `path`       the reference of the GUI element to be populated.
+ * `parentUuid` the parent in the relationship denoted by `relType`.
+ * `entType`    the type of the entities the menu will be populated with.
+ * `relType`    the name of the relationship the children are to be in with the
+ *              entity denoted by `parentUuid`.
+ */
+populateMenuWithEntities (
+  String viewType,
+  String path,
+  String parentUuid,
+  String entType,
+  String relType
+) {
+  String getChildEntitiesQ = "" +
+    "SELECT childuuid, response "+
+    "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers ON (childuuid = uuid) " +
+    "  JOIN createdmodifiedatby USING (uuid) " +
+    " WHERE relationshipid IN (SELECT relationshipid  " +
+    "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid) " +
+    "                           WHERE relntypename = '"+relType+"') " +
+    "   AND parentuuid = " + parentUuid + " " +
+    "   AND (childaenttypename = '"+entType+"' OR '"+entType+"' = '') " +
+    " ORDER BY createdat DESC ";
+
+  String getEntitiesQ = "" +
+    "SELECT uuid, response "+
+    "  FROM latestNonDeletedArchEntFormattedIdentifiers  "+
+    " WHERE uuid in (SELECT uuid "+
+    "                  FROM latestNonDeletedArchEntIdentifiers "+
+    "                 WHERE aenttypename = '"+entType+"' OR '"+entType+"' = '' " +
+    "               )  "+
+    " ORDER BY response ";
+
+  String q = null;
+  if (relType.equals("")) {
+    q = getEntitiesQ;
+  } else {
+    q = getChildEntitiesQ;
+  }
+
+  FetchCallback cbPopulateDropDown = new FetchCallback() {
+    onFetch(result) {
+      populateDropDown(path, result, true);
+    }
+  };
+
+  switch (viewType) {
+    case "DropDown":
+      fetchAll(q, cbPopulateDropDown);
+      break;
+    case "List":
+      q += " LIMIT ? OFFSET ? ";
+      populateCursorList(path, q, 25);
+      break;
+    default:
+      Log.e("populateMenuWithEntities ", "Unexpected type '" + viewType + "'");
+  }
+}
+
+menus = new ArrayList();
+menus.add(new String[] {
+  "DropDown",
+  "Context_Group/Context_Group_Contexts/Context",
+  "getUuid(\"Context_Group\")",
+  "Context",
+  ""
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context/Context_Samples/Sample_List",
+  "getUuid(\"Context\")",
+  "Sample",
+  "Context - Sample",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context/Context_Artefacts/Artefact_Group_List",
+  "getUuid(\"Context\")",
+  "Artefact Group",
+  "Context - Artefact Group",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context/Context_Artefacts/Special_Find_List",
+  "getUuid(\"Context\")",
+  "Special Find",
+  "Context - Special Find",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context/Context_Attachments/Load_Photo_Log",
+  "getUuid(\"Context\")",
+  "Photograph Log",
+  "Context - Photograph Log",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context_Group/Context_Group_Contexts/Contexts_In_Group",
+  "getUuid(\"Context_Group\")",
+  "Context",
+  "Context Group - Context",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context_Group/Context_Group_Samples/Sample_List",
+  "getUuid(\"Context_Group\")",
+  "Sample",
+  "Context Group - Sample",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context_Group/Context_Group_Attachments/Load_Photo_Log",
+  "getUuid(\"Context_Group\")",
+  "Photograph Log",
+  "Context Group - Photograph Log",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Special_Find/Special_Find_Location/List_Special_Find_Location",
+  "getUuid(\"Special_Find\")",
+  "Special Find Location",
+  "Special Find - Special Find Location",
+});
+for (m : menus) {
+  String viewType       = m[0];
+  String path           = m[1];
+  String parentUuidCall = m[2];
+  String entType        = m[3];
+  String relType        = m[4];
+
+  String functionCall = "";
+  functionCall += "populateMenuWithEntities(";
+  functionCall += "\"" + viewType       + "\"";
+  functionCall += ", ";
+  functionCall += "\"" + path           + "\"";
+  functionCall += ", ";
+  functionCall +=        parentUuidCall       ;
+  functionCall += ", ";
+  functionCall += "\"" + entType        + "\"";
+  functionCall += ", ";
+  functionCall += "\"" + relType        + "\"";
+  functionCall += ")";
+
+  addOnEvent(path, "show", functionCall);
+}
+addOnEvent("Context/Context_Samples/Sample_List", "click", "loadEntity(true)");
+addOnEvent("Context/Context_Artefacts/Artefact_Group_List", "click", "loadEntity(true)");
+addOnEvent("Context/Context_Artefacts/Special_Find_List", "click", "loadEntity(true)");
+addOnEvent("Context/Context_Attachments/Load_Photo_Log", "click", "loadEntity(true)");
+addOnEvent("Context_Group/Context_Group_Contexts/Context", "click", "loadEntity(true)");
+addOnEvent("Context_Group/Context_Group_Contexts/Contexts_In_Group", "click", "loadEntity(true)");
+addOnEvent("Context_Group/Context_Group_Samples/Sample_List", "click", "loadEntity(true)");
+addOnEvent("Context_Group/Context_Group_Attachments/Load_Photo_Log", "click", "loadEntity(true)");
+addOnEvent("Special_Find/Special_Find_Location/List_Special_Find_Location", "click", "loadEntity(true)");
+
+/******************************************************************************/
+/*                             HANDWRITTEN LOGIC                              */
+/******************************************************************************/
+
+/********************** CALCULATION OF VOL, MIN AND MAX ***********************/
+onEvent("Context/Context_General_Information/Calculate_Vol", "click", "calculateVol()");
+onEvent("Context/Context_General_Information/Calculate_Min", "click", "calculateMin()");
+onEvent("Context/Context_General_Information/Calculate_Max", "click", "calculateMax()");
+
+calculateVol() {
+    double count = isNull(getFieldValue("Context/Context_General_Information/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/Context_General_Information/Final_Bucket_Count"));
+    double vol   = isNull(getFieldValue("Control/Control/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Control/Bucket_Volume"));
+    setFieldValue("Context/Context_General_Information/Deposit_Volume", vol*count);
+}
+
+calculateMin() {
+    ArrayList vals = new ArrayList();
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE")));
+    }
+
+    if(vals.size() == 0) {
+        setFieldValue("Context/Context_General_Information/Min_Context_Thickness", 0);
+    } else {
+        double min = vals.get(0);
+        for(int i = 1; i < vals.size(); i++) {
+            if(vals.get(i) < min) {
+                min = vals.get(i);
+            }
+        }
+        setFieldValue("Context/Context_General_Information/Min_Context_Thickness", (double)Math.round(min * 100) / 100);
+    }
+}
+
+calculateMax() {
+    ArrayList vals = new ArrayList();
+     if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW")));
+    }
+    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE")));
+    }
+    if(vals.size() == 0) {
+        setFieldValue("Context/Context_General_Information/Max_Context_Thickness", 0);
+    } else {
+        double max = vals.get(0);
+        for(int i = 1; i < vals.size(); i++) {
+            if(vals.get(i) > max) {
+                max = vals.get(i);
+            }
+        }
+        setFieldValue("Context/Context_General_Information/Max_Context_Thickness", (double)Math.round(max * 100) / 100);
+    }
+}
+/******************************* CONTEXT REVIEW *******************************/
+addOnEvent("Context/Review/Close", "click", "closeContext()");
+
+closeContext() {
+  ref     = "Context/Review/Date_Closed";
+  fmt     = "yyyy-MM-dd";
+  date    = new Date();
+  dateFmt = new java.text.SimpleDateFormat(fmt);
+  dateStr = dateFmt.format(date);
+  setFieldValue(ref, dateStr);
+}
+/*************************** LOCAL SETTINGS SAVING ****************************/
+/* Code to facilitate the loading and saving of the following fields in the   */
+/* local settings table.                                                      */
+/******************************************************************************/
+addOnEvent("Control/Control", "show", "loadTargetSpitThickness()");
+addOnEvent("Control/Control", "show", "loadBucketVolume()");
+
+// Occurs on blur
+onFocus("Control/Control/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
+onFocus("Control/Control/Bucket_Volume",         "", "saveBucketVolume()");
+
+loadTargetSpitThickness() {
+  dst = "Control/Control/Target_Spit_Thickness";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveTargetSpitThickness() {
+  src = "Control/Control/Target_Spit_Thickness";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}
+
+loadBucketVolume() {
+  dst = "Control/Control/Bucket_Volume";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveBucketVolume() {
+  src = "Control/Control/Bucket_Volume";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}
+/********************** TARGET SPIT THICKNESS POPULATION ***********************/
+makeVocab("DropDown", "Control/Control/Target_Spit_Thickness", "Target Spit Thickness");
+/******************************* TEXTURE HELPER *******************************/
+/* @POSTPROC is used to override the autogenerated                            */
+/* `onClickContextUpdateTexture` definition.                                  */
+/******************************************************************************/
+onClickContextUpdateTexture(){
+  String soilQuery= "SELECT vocabid " +
+                    "  FROM vocabulary JOIN attributekey USING (attributeid) "+
+                    " WHERE attributeName = 'Soil Texture' "+
+                    "   AND vocabname = (SELECT vocabname " +
+                                        "  FROM vocabulary JOIN attributekey USING (attributeid) " +
+                                        " WHERE vocabid = '"+ getFieldValue("Context/Texture_Helper/Soil_Texture_Helper") +"' "+
+                                        "   AND attributeName = 'Soil Texture Helper'); ";
+
+  fetchOne(soilQuery,
+    new FetchCallback() {
+      onFetch(textureToSet) {
+        if(!isNull(textureToSet)){
+          Log.d("foo1", textureToSet.get(0));
+          setFieldValue("Context/Context_Deposits/Soil_Texture", textureToSet.get(0));
+        } else {
+          showToast("Match not found. You shouldn't see this, but select the result manually.");
+        }
+
+        cancelTab("Context/Texture_Helper", false);
+        showTab("Context/Context_Deposits");
+      }
+    }
+  );
+}
+/**************************** LOGIN TAB VALIDATION ****************************/
+/* The autogen defines its own `onClickUserLogin` function. This is overriden */
+/* using @POSTPROC.                                                           */
+/******************************************************************************/
+addOnEvent("User/User", "show", "clearUsername()");
+
+clearUsername() {
+  username = ""; // `username` is defined by autogen
+}
+
+onClickUserLogin () {
+  isSelectedUser = !isNull(username); // `username` is defined by autogen
+
+  if (!isSelectedUser) { noUserSelected(); return; }
+
+  newTab("Control", true);
+}
+
+noUserSelected() {
+  msgHead = "No User Selected";
+  msgBody = "A user must be selected in order to log in.";
+  showWarning(msgHead, msgBody);
+}
+
+/******************************************************************************/
+/*                                    INIT                                    */
+/*                                                                            */
+/* Stuff which needs to be done last.                                         */
+/******************************************************************************/
+bindOnEvents();

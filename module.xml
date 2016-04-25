@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
 <!--TODO: Double check that data schema properties have been preserved-->
 <!--TODO: Gotta implement that stupid relationship thing... Later.-->
+<!--TODO: Copy format strings-->
 
 <!--@PREPROC:  ./preproc.sh-->
 <!--@POSTPROC: ./postproc.sh-->
-<module>
+<module suppressWarnings="true">
 <rels>
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts.</description>
@@ -218,7 +219,9 @@
     <Calculate_Vol t="button"/>
     <cols>
       <author/>
-      <timestamp/>
+      <!--<timestamp>-->
+        <!--TODO: Figure out why this even exists-->
+      <!--</timestamp>-->
     </cols>
   </Context_General_Information>
   <Context_Deposits>
@@ -289,7 +292,7 @@
           </opt>
         </opts>
       </Soil_Texture>
-      <Texture_Helper l="Context/Texture_Helper"/>
+      <Texture_Helper t="button" l="Context/Texture_Helper"/>
     </cols>
     <Soil_Compaction_Type f="notnull">
       <desc>The type of compaction of sediments in the deposit, eg 'Compact', 'Cemented' or 'Loose'.</desc>
@@ -394,7 +397,7 @@
         <!--@SOURCE: vocabs/soil-texture-helper.xml-->
       </opts>
     </Soil_Texture_Helper>
-    <Update_Texture l="Context/Context_Deposits"/>
+    <Update_Texture t="button" l="Context/Context_Deposits"/>
   </Texture_Helper>
   <Map>
     <Map t="map"/>
@@ -514,11 +517,11 @@
           <opt>MBD<desc>Meters Below Datum</desc></opt>
         </opts>
       </Start_Depth>
-      <Start_Depth_Magnitude b="decimal">
+      <Start_Depth_Magnitude b="decimal" f="nodata">
         Start Depth
         <!--TODO: Save this as a measure-->
-        <!--Linked to Context/Start Depth in the dataschema as a measure using-->
-        <!--@POSTPROC.-->
+        <!--Linked to Context/Start Depth in the dataschema as a measure-->
+        <!--using @POSTPROC.-->
       </Start_Depth_Magnitude>
     </cols>
     <cols>

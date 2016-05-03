@@ -52,21 +52,52 @@
   <Context_General_Information>
     <cols>
       <Site_Code f="id autonum">
+        <str>
+          <fmt>LOT-$2</fmt>
+          <app>-</app>
+        </str>
         <desc>Short code to signify the excavation site and often the year of excavation.</desc>
       </Site_Code>
       <Area_Code f="id autonum">
+        <str>
+          <fmt>-$2</fmt>
+          <app>-</app>
+        </str>
         <desc>Area or Trench: the working subdivision of an archaeological site.</desc>
       </Area_Code>
     </cols>
     <cols>
       <Grid_Location_Reference f="id notnull">
+        <str>
+          <fmt>-$2</fmt>
+          <app>-</app>
+        </str>
         <desc>Reference number for the grid square(s) within which this Context falls.</desc>
       </Grid_Location_Reference>
+      <Subsquare f="id notnull">
+        <str>
+          <fmt>-$1</fmt>
+          <app>-</app>
+        </str>
+        <opts>
+          <opt>A</opt>
+          <opt>B</opt>
+          <opt>C</opt>
+          <opt>D</opt>
+          <opt>Other</opt>
+          <opt>N/A</opt>
+        </opts>
+      </Subsquare>
       <Context_ID f="id notnull">
+        <str>
+          <fmt>-$2</fmt>
+          <app>-</app>
+        </str>
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
-      <Lot_ID f="id notnull">
-        <desc>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</desc>
+      <Lot_ID>
+        <!--TODO: Set on blur of any identifier attribute or on tab show, to be
+             the record's identifier-->
       </Lot_ID>
     </cols>
     <cols>
@@ -434,17 +465,29 @@
   <desc>A group of contexts.</desc>
   <Context_Group_Details>
     <cols>
-      <Site_Code>
+      <Site_Code f="id notnull">
+        <str>
+          <fmt>CTXGR-$2-</fmt>
+          <app>-</app>
+        </str>
         <desc>Short code to signify the excavation site and often the year of excavation.</desc>
       </Site_Code>
-      <Area_Code>
+      <Area_Code f="id notnull">
+        <str>
+          <fmt>$2-</fmt>
+          <app>-</app>
+        </str>
         <desc>Area or Trench: the working subdivision of an archaeological site.</desc>
       </Area_Code>
-      <Context_Group_ID>
+      <Context_Group_ID f="id notnull">
+        <str>
+          <fmt>$2</fmt>
+          <app>-</app>
+        </str>
         <desc>ID of the Context Group/Geological Unit</desc>
       </Context_Group_ID>
     </cols>
-    <Title f="id notnull">
+    <Title>
       <desc>Name of the context group</desc>
     </Title>
     <Description/>
@@ -788,10 +831,13 @@
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
       <Artefact_Group_ID f="id notnull">
+        <str>
+          <fmt>AG-$2</fmt>
+        </str>
         <desc>Unique number or code for the artefact group.</desc>
       </Artefact_Group_ID>
     </cols>
-    <Artefact_Class f="id notnull">
+    <Artefact_Class>
       <desc>Broad Artefact Class for each Artefact.</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -827,6 +873,11 @@
   <Sample_General_Information>
     <cols>
       <Sample_ID f="id notnull">
+        <str>
+          <pos>2</pos>
+          <fmt>-$2</fmt>
+          <app>-</app>
+        </str>
         <desc>The unique code or reference for the Sample.</desc>
       </Sample_ID>
       <Context_ID>
@@ -834,6 +885,11 @@
       </Context_ID>
     </cols>
     <Sample_Type f="id notnull">
+      <str>
+        <pos>1</pos>
+        <fmt>$1</fmt>
+        <app>-</app>
+      </str>
       <desc>The type of Sample collected, eg Soil, Wood, Pollen.</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -863,7 +919,7 @@
         </opt>
       </opts>
     </Collection_Method>
-    <Sample_Weight b="decimal" f="id notnull">
+    <Sample_Weight b="decimal">
     <desc>Weight (in grams) of the sample collected.</desc>
     </Sample_Weight>
     <Sample_Volume b="decimal">
@@ -885,10 +941,13 @@
         <desc>Unique number or code for each Context.</desc>
       </Context_ID>
       <Special_Find_ID f="id notnull">
+         <str>
+           <fmt>SF-$2</fmt>
+         </str>
          <desc>Unique number or code for the special find.</desc>
       </Special_Find_ID>
     </cols>
-    <Special_Find_Class f="id notnull">
+    <Special_Find_Class>
       <desc>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>

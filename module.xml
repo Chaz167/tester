@@ -431,6 +431,7 @@
     <Update_Texture t="button" l="Context/Context_Deposits"/>
   </Texture_Helper>
   <Review>
+    <Validate t="button"/>
     <Bulk_Sample_Mapped>
       <desc>Has the bulk sample been mapped?</desc>
       <opts>
@@ -1033,5 +1034,6 @@
   <!--@SOURCE: logic/target-spit-thickness-population.bsh-->
   <!--@SOURCE: logic/texture-helper.bsh-->
   <!--@SOURCE: logic/user-tab-validation.bsh-->
+  <!--@SOURCE: logic/context-validation-button.bsh-->
 ]]></logic>
 </module>

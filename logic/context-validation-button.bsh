@@ -1,0 +1,3 @@
+/************************* CONTEXT VALIDATION BUTTON **************************/
+// `validateContext()` is an auto-generated function
+addOnEvent("Context/Review/Validate", "click", "validateContext()");

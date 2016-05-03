@@ -430,9 +430,6 @@
     </Soil_Texture_Helper>
     <Update_Texture t="button" l="Context/Context_Deposits"/>
   </Texture_Helper>
-  <Map>
-    <Map t="map"/>
-  </Map>
   <Review>
     <Bulk_Sample_Mapped>
       <desc>Has the bulk sample been mapped?</desc>

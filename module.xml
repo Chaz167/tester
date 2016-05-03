@@ -491,7 +491,7 @@
       <desc>Name of the context group</desc>
     </Title>
     <Description/>
-    <Depth b="decimal">
+    <Depth b="decimal" f="notnull">
       <desc>Depth or Height, in mm.</desc>
     </Depth>
     <Your_Discussion/>
@@ -521,7 +521,7 @@
     <Datum>
       <desc>The datum used for establishing your global position. Comment: default to WGS84, otherwise type manually. Enter Zone in Annotation Field.</desc>
     </Datum>
-    <Elevation b="decimal">
+    <Elevation b="decimal" f="notnull">
       <desc>Elevation of the top of the profile, in m.</desc>
     </Elevation>
     <Elevation_Determination>
@@ -550,11 +550,11 @@
         </opt>
       </opts>
     </Elevation_Determination>
-    <Geological_Unit_Number>
+    <Geological_Unit_Number f="notnull">
       <desc>The geological unit of the layer assigned by the geologist (typically decreasing numbers with depth).</desc>
     </Geological_Unit_Number>
     <cols>
-      <Start_Depth t="radio">
+      <Start_Depth t="radio" f="notnull">
         <opts>
           <opt>MBS<desc>Metres Below Surface</desc></opt>
           <opt>MBD<desc>Meters Below Datum</desc></opt>
@@ -574,7 +574,7 @@
           <!--@SOURCE: vocabs/munsel.xml-->
         </opts>
       </Soil_Munsell_Colour>
-      <Soil_Colour>
+      <Soil_Colour f="notnull">
         <desc>Simple description of the colour of the soil. This field is interpreted from the Soil Munsell Colour</desc>
       </Soil_Colour>
     </cols>
@@ -719,7 +719,7 @@
     <Inclusions_Gravel_Fraction>
       <desc>Include amounts and qualities; i.e. 'Minor CaCO3 filaments' or 'Minor cultural material present'.</desc>
     </Inclusions_Gravel_Fraction>
-    <Disturbances t="checkbox">
+    <Disturbances t="checkbox" f="notnull">
       <desc>Disturbances evident in the deposit</desc>
       <opts>
         <opt>No Observation
@@ -789,8 +789,8 @@
       </opts>
     </Lower_Boundary>
     <cols>
-      <Created_By/>
-      <Creation_Date/>
+      <Created_By f="notnull"/>
+      <Creation_Date f="notnull"/>
     </cols>
   </Context_Group_Details>
   <Context_Group_Contexts>
@@ -853,10 +853,10 @@
         <opt>Other</opt>
       </opts>
     </Artefact_Class>
-    <Artefact_Quantity b="decimal">
+    <Artefact_Quantity b="decimal" f="notnull">
       <desc>The number of Artefacts in this group.</desc>
     </Artefact_Quantity>
-    <Artefact_Weight b="decimal">
+    <Artefact_Weight b="decimal" f="notnull">
       <desc>The total weight (in grams) of all Artefacts in this Group.</desc>
     </Artefact_Weight>
     <Artefact_Group_Comment b="string">
@@ -922,7 +922,7 @@
     <Sample_Weight b="decimal">
     <desc>Weight (in grams) of the sample collected.</desc>
     </Sample_Weight>
-    <Sample_Volume b="decimal">
+    <Sample_Volume b="decimal" f="notnull">
       <desc>Volume (in litres) of the sample collected.</desc>
     </Sample_Volume>
     <Sample_Comments>
@@ -963,7 +963,7 @@
         <opt>Other</opt>
       </opts>
     </Special_Find_Class>
-    <Special_Find_Name/>
+    <Special_Find_Name f="notnull"/>
     <Special_Find_Description/>
     <Special_Find_Comment/>
     <Special_Find_Sketch t="file"/>

@@ -195,6 +195,7 @@
         <Context_Highest_Level_Ctr b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the centre of the Context.</desc>
         </Context_Highest_Level_Ctr>
+        <Take_Opening_Photo t="camera"/>
       </col>
       <col>
         <Guide_Closing t="webview">Closing Elevations</Guide_Closing>
@@ -213,6 +214,7 @@
         <Context_Lowest_Level_Ctr b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the centre of the Context.</desc>
         </Context_Lowest_Level_Ctr>
+        <Take_Closing_Photo t="camera"/>
       </col>
     </cols>
     <Target_Spit_Thickness t="dropdown">

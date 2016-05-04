@@ -43,6 +43,9 @@
     <autonum/>
     <Target_Spit_Thickness t="dropdown"/>
     <Bucket_Volume b="decimal"/>
+    <Mesh_Size_mm b="decimal">
+      Mesh Size (mm)
+    </Mesh_Size_mm>
   </Control>
   <search/>
 </Control>

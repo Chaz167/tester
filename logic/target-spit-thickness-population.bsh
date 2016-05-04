@@ -1,2 +1,9 @@
-/********************** TARGET SPIT THICKNESS POPULATION ***********************/
+/*************************** TARGET SPIT THICKNESS ****************************/
 makeVocab("DropDown", "Control/Control/Target_Spit_Thickness", "Target Spit Thickness");
+
+copyTargetSpitThickness() {
+  src = "Control/Control/Target_Spit_Thickness";
+  dst = "Context/Vars/Target_Spit_Thickness";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}

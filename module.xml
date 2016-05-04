@@ -3,7 +3,7 @@
 <!--TODO: Gotta implement that stupid relationship thing... Later.-->
 <!--TODO: Copy format strings-->
 
-<!--@PREPROC:  ./preproc.sh-->
+<!-- PREPROC:  ./preproc.sh-->
 <!--@POSTPROC: ./postproc.sh-->
 <module suppressWarnings="true">
 <rels>
@@ -42,7 +42,7 @@
     <New_Context_Group t="button" l="Context_Group"/>
     <autonum/>
     <Target_Spit_Thickness t="dropdown">
-      <!--Populated from Context/General/Target_Spit_Thickness-->
+      <!--Populated from Context/Vars/Target_Spit_Thickness-->
     </Target_Spit_Thickness>
     <Bucket_Volume b="decimal"/>
     <Mesh_Size_mm b="decimal">
@@ -230,18 +230,6 @@
         <Take_Closing_Photo t="camera"/>
       </col>
     </cols>
-    <Target_Spit_Thickness t="dropdown">
-      <desc>The minimum thickness of deposit</desc>
-      <opts>
-        <opt>No Observation<desc>Data not collected</desc></opt>
-        <opt>2cm</opt>
-        <opt>5cm</opt>
-        <opt>10cm</opt>
-        <opt>20cm</opt>
-        <opt>25cm</opt>
-        <opt>50cm</opt>
-      </opts>
-    </Target_Spit_Thickness>
     <cols>
       <Min_Context_Thickness b="decimal" f="notnull">
         <desc>The minimum thickness of the deposit based on the highest and lowest in each extent within the square.</desc>
@@ -472,6 +460,20 @@
       <Close t="button"/>
     </cols>
   </Review>
+  <Vars f="hidden">
+    <Target_Spit_Thickness t="dropdown">
+      <desc>The minimum thickness of deposit</desc>
+      <opts>
+        <opt>No Observation<desc>Data not collected</desc></opt>
+        <opt>2cm</opt>
+        <opt>5cm</opt>
+        <opt>10cm</opt>
+        <opt>20cm</opt>
+        <opt>25cm</opt>
+        <opt>50cm</opt>
+      </opts>
+    </Target_Spit_Thickness>
+  </Vars>
 </Context>
 
 <Context_Group>

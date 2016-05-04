@@ -20,6 +20,15 @@ onClickContextUpdateTexture () {
 replacement=""
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
 
+# I hate this regex so much. Anyway, what it does is match everything in the
+# function definition of `newContext`, including the name, parens and opening
+# curly brace, but excluding the closing curly brace. This allows us to stick
+# a line right before the closing curly brace.
+string="(newContext\\(\\){((?!\\n}).)+)"
+replacement="\\1
+  copyTargetSpitThickness();"
+perl -0777 -i.original -pe "s/$string/$replacement/igs" ui_logic.bsh
+
 # Link Start_Depth_Magnitude to data schema as measure
 string="<input ref=\"Start_Depth_Magnitude\""
 replacement="$string faims_attribute_type=\"measure\""

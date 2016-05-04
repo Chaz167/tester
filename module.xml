@@ -54,29 +54,29 @@
   <desc>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</desc>
   <General>
     <cols>
-      <Site_Code f="id autonum">
+      <Site f="id autonum">
         <str>
           <fmt>LOT-$2</fmt>
           <app>-</app>
         </str>
         <desc>Short code to signify the excavation site and often the year of excavation.</desc>
-      </Site_Code>
-      <Area_Code f="id autonum">
+      </Site>
+      <Area f="id autonum">
         <str>
           <fmt>-$2</fmt>
           <app>-</app>
         </str>
         <desc>Area or Trench: the working subdivision of an archaeological site.</desc>
-      </Area_Code>
+      </Area>
     </cols>
     <cols>
-      <Grid_Location_Reference f="id notnull">
+      <Square f="id notnull">
         <str>
           <fmt>-$2</fmt>
           <app>-</app>
         </str>
         <desc>Reference number for the grid square(s) within which this Context falls.</desc>
-      </Grid_Location_Reference>
+      </Square>
       <Subsquare f="id notnull">
         <str>
           <fmt>-$1</fmt>
@@ -91,13 +91,13 @@
           <opt>N/A</opt>
         </opts>
       </Subsquare>
-      <Context_ID f="id notnull">
+      <Context f="id notnull">
         <str>
           <fmt>-$2</fmt>
           <app>-</app>
         </str>
         <desc>Unique number or code for each Context.</desc>
-      </Context_ID>
+      </Context>
       <Lot_ID>
         <!--TODO: Set on blur of any identifier attribute or on tab show, to be
              the record's identifier-->
@@ -468,20 +468,20 @@
   <desc>A group of contexts.</desc>
   <Context_Group_Details>
     <cols>
-      <Site_Code f="id notnull">
+      <Site f="id notnull">
         <str>
           <fmt>CTXGR-$2-</fmt>
           <app>-</app>
         </str>
         <desc>Short code to signify the excavation site and often the year of excavation.</desc>
-      </Site_Code>
-      <Area_Code f="id notnull">
+      </Site>
+      <Area f="id notnull">
         <str>
           <fmt>$2-</fmt>
           <app>-</app>
         </str>
         <desc>Area or Trench: the working subdivision of an archaeological site.</desc>
-      </Area_Code>
+      </Area>
       <Context_Group_ID f="id notnull">
         <str>
           <fmt>$2</fmt>
@@ -830,9 +830,9 @@
   <desc>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</desc>
   <Artefact_Group_General_Information>
     <cols>
-      <Context_ID>
+      <Context>
         <desc>Unique number or code for each Context.</desc>
-      </Context_ID>
+      </Context>
       <Artefact_Group_ID f="id notnull">
         <str>
           <fmt>AG-$2</fmt>
@@ -883,9 +883,9 @@
         </str>
         <desc>The unique code or reference for the Sample.</desc>
       </Sample_ID>
-      <Context_ID>
+      <Context>
         <desc>Unique number or code for each Context.</desc>
-      </Context_ID>
+      </Context>
     </cols>
     <Sample_Type f="id notnull">
       <str>
@@ -940,9 +940,9 @@
 <Special_Find>
   <Special_Find_General_Information>
     <cols>
-      <Context_ID>
+      <Context>
         <desc>Unique number or code for each Context.</desc>
-      </Context_ID>
+      </Context>
       <Special_Find_ID f="id notnull">
          <str>
            <fmt>SF-$2</fmt>
@@ -1001,9 +1001,9 @@
 <Photograph_Log>
   <desc>A record of images created and stored on another device, eg by a professional site photographer.</desc>
   <Photograph_Log>
-    <Context_ID>
+    <Context>
       <desc>Unique number or code for each Context</desc>
-    </Context_ID>
+    </Context>
     <Photograph_Reference_ID f="id notnull">
       <desc>Unique number or code allocated by creator of the image. It could be a filename or a reference number</desc>
     </Photograph_Reference_ID>

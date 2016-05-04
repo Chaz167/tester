@@ -916,6 +916,7 @@
         <opt>Isotope</opt>
         <opt>14C</opt>
         <opt>Archeomagnetic</opt>
+        <opt>DNA</opt>
         <opt>Other</opt>
       </opts>
     </Sample_Type>
@@ -932,6 +933,7 @@
         <opt>Clean Trowel
           <desc>A collection using standard excavation tools into a sterilised container.</desc>
         </opt>
+        <opt>Sterile Gloves</opt>
       </opts>
     </Collection_Method>
     <Sample_Weight b="decimal">

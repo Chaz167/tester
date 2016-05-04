@@ -41,7 +41,9 @@
     <New_Context       t="button" l="Context"/>
     <New_Context_Group t="button" l="Context_Group"/>
     <autonum/>
-    <Target_Spit_Thickness t="dropdown"/>
+    <Target_Spit_Thickness t="dropdown">
+      <!--Populated from Context/General/Target_Spit_Thickness-->
+    </Target_Spit_Thickness>
     <Bucket_Volume b="decimal"/>
     <Mesh_Size_mm b="decimal">
       Mesh Size (mm)

@@ -3,7 +3,7 @@
 <!--TODO: Gotta implement that stupid relationship thing... Later.-->
 <!--TODO: Copy format strings-->
 
-<!-- PREPROC:  ./preproc.sh-->
+<!--@PREPROC:  ./preproc.sh-->
 <!--@POSTPROC: ./postproc.sh-->
 <module suppressWarnings="true">
 <rels>

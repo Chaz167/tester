@@ -15,7 +15,7 @@ perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
 string="
 onClickContextUpdateTexture () {
   \/\/ TODO: Add some things which should happen when this element is clicked
-  newTab(\"Context\/Context_Deposits\", true);
+  newTab(\"Context\/Deposit\", true);
 }"
 replacement=""
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
@@ -29,7 +29,7 @@ perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_schema.xml
 string="
 onClickContextUpdateTexture () {
   \/\/ TODO: Add some things which should happen when this element is clicked
-  newTab(\"Context\/Context_Deposits\", true);
+  newTab(\"Context\/Deposit\", true);
 }"
 replacement=""
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_schema.xml

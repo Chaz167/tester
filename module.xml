@@ -52,7 +52,7 @@
 
 <Context>
   <desc>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</desc>
-  <Context_General_Information>
+  <General>
     <cols>
       <Site_Code f="id autonum">
         <str>
@@ -259,8 +259,8 @@
         <!--TODO: Figure out why this even exists-->
       <!--</timestamp>-->
     </cols>
-  </Context_General_Information>
-  <Context_Deposits>
+  </General>
+  <Deposit>
     <cols>
       <Soil_Munsell_Colour f="notnull">
         <desc>The Munsell Code for the soil colour. </desc>
@@ -376,7 +376,7 @@
         </opts>
       </Disturbances>
     </cols>
-  </Context_Deposits>
+  </Deposit>
   <Context_Relationships_to_Other_Contexts f="hidden">
     <Guide_0 t="webview">
       Here you can enter relationships between contexts, eg ‘Above’ and ‘Below’.
@@ -408,24 +408,24 @@
     <Show_Context_Group t="button"/>
     <Remove_From_Context_Group t="button"/>
   </Context_Relationships_to_Other_Contexts>
-  <Context_Samples>
+  <Samples>
     <New_Sample  lc="Sample" t="button"/>
     <Sample_List ec="Sample" t="dropdown"/>
-  </Context_Samples>
-  <Context_Artefacts>
-    <New_Artefact_Group  lc="Artefact_Group" t="button"/>
-    <Artefact_Group_List ec="Artefact_Group" t="dropdown"/>
-    <New_Special_Find  lc="Special_Find" t="button"/>
-    <Special_Find_List ec="Special_Find" t="dropdown"/>
-  </Context_Artefacts>
-  <Context_Attachments>
+  </Samples>
+  <Attachments>
     <Context_Sketch t="file"/>
     <Context_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
     <Guide t="webview"/>
     <New_Photo_Log  lc="Photograph_Log" t="button"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
-  </Context_Attachments>
+  </Attachments>
+  <Artefacts>
+    <New_Artefact_Group  lc="Artefact_Group" t="button"/>
+    <Artefact_Group_List ec="Artefact_Group" t="dropdown"/>
+    <New_Special_Find  lc="Special_Find" t="button"/>
+    <Special_Find_List ec="Special_Find" t="dropdown"/>
+  </Artefacts>
   <Texture_Helper f="hidden">
     <Soil_Texture_Helper>
       <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
@@ -433,7 +433,7 @@
         <!--@SOURCE: vocabs/soil-texture-helper.xml-->
       </opts>
     </Soil_Texture_Helper>
-    <Update_Texture t="button" l="Context/Context_Deposits"/>
+    <Update_Texture t="button" l="Context/Deposit"/>
   </Texture_Helper>
   <Review>
     <Validate t="button"/>

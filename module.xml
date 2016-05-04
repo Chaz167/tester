@@ -123,6 +123,7 @@
           <opt>Trowel</opt>
           <opt>Pick</opt>
           <opt>Other</opt>
+          <opt>Fine</opt>
         </opts>
       </Excavation_Method>
       <Excavators f="notnull">

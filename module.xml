@@ -100,10 +100,10 @@
         </str>
         <desc>Unique number or code for each Context.</desc>
       </Context>
-      <Lot_ID>
+      <LOT_ID>
         <!--TODO: Set on blur of any identifier attribute or on tab show, to be
              the record's identifier-->
-      </Lot_ID>
+      </LOT_ID>
     </cols>
     <cols>
       <timestamp>

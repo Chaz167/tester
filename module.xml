@@ -172,6 +172,12 @@
         <opt>Charcoal</opt>
         <opt>Ceramic</opt>
         <opt>Recent material</opt>
+        <opt>Ochre</opt>
+        <opt>Grindstones</opt>
+        <opt>Shell</opt>
+        <opt>Glass</opt>
+        <opt>Metal</opt>
+        <opt>Slag</opt>
         <opt>Other</opt>
       </opts>
     </Artefacts_Present>

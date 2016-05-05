@@ -39,7 +39,7 @@ replacement="
   newSample();
   if (parentTabgroup__.equals(\"Context\"))
       copyLotId();"
-perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_schema.xml
+perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
 
 # Link Start_Depth_Magnitude to data schema as measure
 string="<input ref=\"Start_Depth_Magnitude\""

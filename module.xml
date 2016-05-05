@@ -895,9 +895,9 @@
         </str>
         <desc>The unique code or reference for the Sample.</desc>
       </Sample_ID>
-      <Context>
+      <LOT_ID>
         <desc>Unique number or code for each Context.</desc>
-      </Context>
+      </LOT_ID>
     </cols>
     <Sample_Type f="id notnull">
       <str>
@@ -1054,5 +1054,6 @@
   <!--@SOURCE: logic/texture-helper.bsh-->
   <!--@SOURCE: logic/user-tab-validation.bsh-->
   <!--@SOURCE: logic/context-validation-button.bsh-->
+  <!--@SOURCE: logic/sample-lot-id-population.bsh-->
 ]]></logic>
 </module>

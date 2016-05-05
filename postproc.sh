@@ -29,6 +29,18 @@ replacement="\\1
   copyTargetSpitThickness();"
 perl -0777 -i.original -pe "s/$string/$replacement/igs" ui_logic.bsh
 
+# Code to inherit LOT_ID from Context into Sample
+string="
+  parentTabgroup = tabgroup;
+  newSample();"
+replacement="
+  parentTabgroup   = tabgroup;
+  parentTabgroup__ = tabgroup;
+  newSample();
+  if (parentTabgroup__.equals(\"Context\"))
+      copyLotId();"
+perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_schema.xml
+
 # Link Start_Depth_Magnitude to data schema as measure
 string="<input ref=\"Start_Depth_Magnitude\""
 replacement="$string faims_attribute_type=\"measure\""

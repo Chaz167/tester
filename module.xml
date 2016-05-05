@@ -100,10 +100,16 @@
         </str>
         <desc>Unique number or code for each Context.</desc>
       </Context>
-      <LOT_ID>
+      <LOT_ID f="id notnull">
+        <str>
+          <fmt>-$2</fmt>
+          <app>-</app>
+        </str>
+      </LOT_ID>
+      <Lot_Label t="webview">
         <!--TODO: Set on blur of any identifier attribute or on tab show, to be
              the record's identifier-->
-      </LOT_ID>
+      </Lot_Label>
     </cols>
     <cols>
       <timestamp>

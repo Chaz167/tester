@@ -1,0 +1,6 @@
+/********************** CLOSE CONTEXT AND REVIEW BUTTON ***********************/
+
+// Overrides the original function definition using @POSTPROC.
+onClickContextCloseContextandReview () {
+  showTab("Context/Review");
+}

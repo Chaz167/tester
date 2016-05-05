@@ -257,6 +257,10 @@
       </Max_Context_Thickness>
       <Calculate_Max t="button"/>
     </cols>
+    <Close_Context_and_Review t="button" l="Context/Review">
+      <!--Here the semantics of the `l` attribute have been altered using
+          @POSTPROC-->
+    </Close_Context_and_Review>
     <cols>
       <Final_Bucket_Count b="decimal" f="notnull">
         <desc>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</desc>
@@ -1070,5 +1074,6 @@
   <!--@SOURCE: logic/user-tab-validation.bsh-->
   <!--@SOURCE: logic/context-validation-button.bsh-->
   <!--@SOURCE: logic/sample-lot-id-population.bsh-->
+  <!--@SOURCE: logic/close-context-and-review-button.bsh-->
 ]]></logic>
 </module>

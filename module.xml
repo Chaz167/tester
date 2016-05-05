@@ -2,6 +2,7 @@
 <!--TODO: Double check that data schema properties have been preserved-->
 <!--TODO: Gotta implement that stupid relationship thing... Later.-->
 <!--TODO: Copy format strings-->
+<!--TODO: Ensure module matches https://docs.google.com/spreadsheets/d/1pkCjgntx7EYTGpdyDV0xFLptdAiHokyMJIcDXk0jzQk/edit#gid=0 where necessary-->
 
 <!--@PREPROC:  ./preproc.sh-->
 <!--@POSTPROC: ./postproc.sh-->
@@ -123,6 +124,14 @@
         </opts>
       </Wet_Sieved>
     </cols>
+    <Surface_Area>
+      <opts>
+        <opt>Entire Square/Subsquare</opt>
+        <opt>&gt;0.5 Square/Subsquare</opt>
+        <opt>&lt;0.5 Square/Subsquare</opt>
+        <opt>Other</opt>
+      </opts>
+    </Surface_Area>
     <cols>
       <Excavation_Method f="notnull" t="checkbox">
         <desc>Method and conditions of archaeological excavation.</desc>

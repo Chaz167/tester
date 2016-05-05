@@ -450,7 +450,7 @@
   </Texture_Helper>
   <Review>
     <Validate t="button"/>
-    <Bulk_Sample_Mapped>
+    <Bulk_Sample_Mapped f="notnull">
       <desc>Has the bulk sample been mapped?</desc>
       <opts>
           <!--@SOURCE: vocabs/boolean.xml-->

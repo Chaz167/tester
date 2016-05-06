@@ -1,0 +1,38 @@
+<opt>No Observation
+  <desc>No Observation. Use the Texture helper to prefil this.</desc>
+</opt>
+<opt>Sand
+  <desc>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)</desc>
+</opt>
+<opt>Loamy Sand
+  <desc>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)</desc>
+</opt>
+<opt>Silty Clay Loam
+  <desc>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)</desc>
+</opt>
+<opt>Clay Loam
+  <desc>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)</desc>
+</opt>
+<opt>Sandy Clay Loam
+  <desc>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058) </desc>
+</opt>
+
+<opt>Silty Clay
+  <desc>A silty clay is like a clay but smoother. (VDEPI 2009: AG0058) </desc>
+</opt>
+<opt>Clay
+  <desc>Clays are tough and can be moulded into shapes when moist. Clays form a long flexible ribbon when rubbed between the palms and the ribbon can often be bent into a U shape without breaking. Clays dry into very hard clods. (VDEPI 2009: AG0058) </desc>
+</opt>
+<opt>Sandy Clay
+  <desc>A sandy clay is like a clay but sand grains can be felt (and heard - see Sandy Loam). (VDEPI 2009: AG0058) </desc>
+</opt>
+
+<opt>Silt Loam
+  <desc>A silty loam is like a loam but has a smooth silky feel when a moist sample is pushed between the index finger and thumb. On drying a sample can form a hard lump but this may be broken by hand. (VDEPI 2009: AG0058) </desc>
+</opt>
+<opt>Loam
+  <desc>A loam breaks into crumbs but will tend to stick together. Sand grains cannot be felt in a moist sample which when squeezed will retain its shape when handled freely. Loams are usually soft to the feel. (VDEPI 2009: AG0058) </desc>
+</opt>
+<opt>Sandy Loam
+  <desc>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058) </desc>
+</opt>

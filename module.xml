@@ -418,6 +418,12 @@
   </Context_Relationships_to_Other_Contexts>
   <Samples>
     <New_Sample  lc="Sample" t="button"/>
+    <Bulk_Sample_Mapped f="notnull">
+      <desc>Has the bulk sample been mapped?</desc>
+      <opts>
+        <!--@SOURCE: vocabs/boolean.xml-->
+      </opts>
+    </Bulk_Sample_Mapped>
     <Sample_List ec="Sample" t="dropdown"/>
   </Samples>
   <Attachments>
@@ -464,12 +470,6 @@
         <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </All_Below_Relationship_Indicated>
-    <Bulk_Sample_Mapped f="notnull">
-      <desc>Has the bulk sample been mapped?</desc>
-      <opts>
-        <!--@SOURCE: vocabs/boolean.xml-->
-      </opts>
-    </Bulk_Sample_Mapped>
     <Trench_Supervisor_Review f="notnull">
       <desc>Has the Trench Supervisor reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>

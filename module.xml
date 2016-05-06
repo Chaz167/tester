@@ -454,6 +454,16 @@
       </Deposit_Volume>
     </cols>
     <Calculate_Vol t="button"/>
+    <Closing_Photo_Taken t="radio">
+      <opts>
+        <!--@SOURCE: vocabs/boolean.xml-->
+      </opts>
+    </Closing_Photo_Taken>
+    <All_Below_Relationship_Indicated t="radio">
+      <opts>
+        <!--@SOURCE: vocabs/boolean.xml-->
+      </opts>
+    </All_Below_Relationship_Indicated>
     <Bulk_Sample_Mapped f="notnull">
       <desc>Has the bulk sample been mapped?</desc>
       <opts>

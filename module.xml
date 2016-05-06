@@ -56,14 +56,14 @@
   <desc>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</desc>
   <General>
     <cols>
-      <Site f="id">
+      <Site f="id notnull">
         <str>
           <fmt>LOT-$2</fmt>
           <app>-</app>
         </str>
         <desc>Short code to signify the excavation site and often the year of excavation.</desc>
       </Site>
-      <Area f="id">
+      <Area f="id notnull">
         <str>
           <fmt>-$2</fmt>
           <app>-</app>

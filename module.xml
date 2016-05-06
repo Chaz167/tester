@@ -108,11 +108,11 @@
           <app>-</app>
         </str>
       </LOT_ID>
-      <Lot_Label t="webview">
-        <!--TODO: Set on blur of any identifier attribute or on tab show, to be
-             the record's identifier-->
-      </Lot_Label>
     </cols>
+    <Lot_Label t="webview">
+      <!--TODO: Set on blur of any identifier attribute or on tab show, to be
+           the record's identifier-->
+    </Lot_Label>
     <cols>
       <timestamp>
         Date Opened

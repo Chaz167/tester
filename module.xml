@@ -262,15 +262,6 @@
           @POSTPROC-->
     </Close_Context_and_Review>
     <cols>
-      <Final_Bucket_Count b="decimal" f="notnull">
-        <desc>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</desc>
-      </Final_Bucket_Count>
-      <Deposit_Volume b="decimal" f="notnull">
-        <desc>The total volume of sediment (in L) removed as part of the Context.</desc>
-      </Deposit_Volume>
-    </cols>
-    <Calculate_Vol t="button"/>
-    <cols>
       <author/>
       <!--<timestamp>-->
         <!--TODO: Figure out why this even exists-->
@@ -454,6 +445,15 @@
   </Texture_Helper>
   <Review>
     <Validate t="button"/>
+    <cols>
+      <Final_Bucket_Count b="decimal" f="notnull">
+        <desc>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</desc>
+      </Final_Bucket_Count>
+      <Deposit_Volume b="decimal" f="notnull">
+        <desc>The total volume of sediment (in L) removed as part of the Context.</desc>
+      </Deposit_Volume>
+    </cols>
+    <Calculate_Vol t="button"/>
     <Bulk_Sample_Mapped f="notnull">
       <desc>Has the bulk sample been mapped?</desc>
       <opts>

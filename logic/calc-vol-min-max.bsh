@@ -1,12 +1,12 @@
 /********************** CALCULATION OF VOL, MIN AND MAX ***********************/
-onEvent("Context/General/Calculate_Vol", "click", "calculateVol()");
-onEvent("Context/General/Calculate_Min", "click", "calculateMin()");
 onEvent("Context/General/Calculate_Max", "click", "calculateMax()");
+onEvent("Context/General/Calculate_Min", "click", "calculateMin()");
+onEvent("Context/Review/Calculate_Vol",  "click", "calculateVol()");
 
 calculateVol() {
-    double count = isNull(getFieldValue("Context/General/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/General/Final_Bucket_Count"));
+    double count = isNull(getFieldValue("Context/Review/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/Review/Final_Bucket_Count"));
     double vol   = isNull(getFieldValue("Control/Control/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Control/Bucket_Volume"));
-    setFieldValue("Context/General/Deposit_Volume", vol*count);
+    setFieldValue("Context/Review/Deposit_Volume", vol*count);
 }
 
 calculateMin() {

@@ -1016,13 +1016,6 @@
     <Special_Find_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
   </Special_Find_General_Information>
-  <Special_Find_Location f="noscroll">
-    <New_Special_Find_Location  lc="Special_Find_Location" t="button"/>
-    <List_Special_Find_Location ec="Special_Find_Location" t="dropdown"/>
-  </Special_Find_Location>
-</Special_Find>
-
-<Special_Find_Location>
   <Special_Find_Location>
     <cols>
       <X b="decimal" f="id notnull">
@@ -1039,7 +1032,7 @@
       <desc>Note about the part of the Plotted Find from which the Location measurement was taken</desc>
     </Notes>
   </Special_Find_Location>
-</Special_Find_Location>
+</Special_Find>
 
 <Photograph_Log>
   <desc>A record of images created and stored on another device, eg by a professional site photographer.</desc>

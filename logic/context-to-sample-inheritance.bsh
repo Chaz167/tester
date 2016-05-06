@@ -1,4 +1,4 @@
-/************************** SAMPLE LOT ID POPULATION **************************/
+/*********************** CONTEXT-TO-SAMPLE INHERITANCE ************************/
 
 copyLotId() {
   src = "Context/General/LOT_ID";

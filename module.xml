@@ -1004,7 +1004,7 @@
   <!--@SOURCE: logic/texture-helper.bsh-->
   <!--@SOURCE: logic/user-tab-validation.bsh-->
   <!--@SOURCE: logic/context-validation-button.bsh-->
-  <!--@SOURCE: logic/sample-lot-id-population.bsh-->
+  <!--@SOURCE: logic/context-to-sample-inheritance.bsh-->
   <!--@SOURCE: logic/close-context-and-review-button.bsh-->
   <!--@SOURCE: logic/lot-label-population.bsh-->
   <!--@SOURCE: logic/control-to-general-inheritance.bsh-->

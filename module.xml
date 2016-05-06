@@ -176,28 +176,6 @@
     <Context_Comments>
       <desc>Additional comments on the description of the Context.</desc>
     </Context_Comments>
-    <Artefacts_Present f="notnull" t="checkbox">
-      <desc>Whether or not artefacts were present in the Context.</desc>
-      <opts>
-        <opt>None</opt>
-        <opt>Flakes</opt>
-        <opt>Cores</opt>
-        <opt>Fire Cracked Rock</opt>
-        <opt>Hammerstone</opt>
-        <opt>Manuport</opt>
-        <opt>Bone</opt>
-        <opt>Charcoal</opt>
-        <opt>Ceramic</opt>
-        <opt>Recent material</opt>
-        <opt>Ochre</opt>
-        <opt>Grindstones</opt>
-        <opt>Shell</opt>
-        <opt>Glass</opt>
-        <opt>Metal</opt>
-        <opt>Slag</opt>
-        <opt>Other</opt>
-      </opts>
-    </Artefacts_Present>
     <Elevation_Datum_Type f="notnull">
       <desc>The type of elevation.</desc>
       <opts>
@@ -261,6 +239,28 @@
       <!--Here the semantics of the `l` attribute have been altered using
           @POSTPROC-->
     </Close_Context_and_Review>
+    <Artefacts_Present f="notnull" t="checkbox">
+      <desc>Whether or not artefacts were present in the Context.</desc>
+      <opts>
+        <opt>None</opt>
+        <opt>Flakes</opt>
+        <opt>Cores</opt>
+        <opt>Fire Cracked Rock</opt>
+        <opt>Hammerstone</opt>
+        <opt>Manuport</opt>
+        <opt>Bone</opt>
+        <opt>Charcoal</opt>
+        <opt>Ceramic</opt>
+        <opt>Recent material</opt>
+        <opt>Ochre</opt>
+        <opt>Grindstones</opt>
+        <opt>Shell</opt>
+        <opt>Glass</opt>
+        <opt>Metal</opt>
+        <opt>Slag</opt>
+        <opt>Other</opt>
+      </opts>
+    </Artefacts_Present>
     <cols>
       <author/>
       <!--<timestamp>-->

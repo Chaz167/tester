@@ -48,6 +48,7 @@
     <Mesh_Size_mm b="decimal">
       Mesh Size (mm)
     </Mesh_Size_mm>
+    <Excavators/>
   </Control>
   <search/>
 </Control>
@@ -1000,12 +1001,12 @@
   <!--@SOURCE: logic/calc-vol-min-max.bsh-->
   <!--@SOURCE: logic/context-review.bsh-->
   <!--@SOURCE: logic/local-settings-saving.bsh-->
-  <!--@SOURCE: logic/target-spit-thickness-population.bsh-->
   <!--@SOURCE: logic/texture-helper.bsh-->
   <!--@SOURCE: logic/user-tab-validation.bsh-->
   <!--@SOURCE: logic/context-validation-button.bsh-->
   <!--@SOURCE: logic/sample-lot-id-population.bsh-->
   <!--@SOURCE: logic/close-context-and-review-button.bsh-->
   <!--@SOURCE: logic/lot-label-population.bsh-->
+  <!--@SOURCE: logic/control-to-general-inheritance.bsh-->
 ]]></logic>
 </module>

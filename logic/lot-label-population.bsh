@@ -9,7 +9,7 @@
 /* by overwriting the auto-generated function `loadContextFrom` using         */
 /* @POSTPROC.                                                                 */
 /******************************************************************************/
-addOnEvent("Feature", "show", "updateLotLabel()");
+addOnEvent("Context", "show", "updateLotLabel()");
 
 CONTEXT_IDENTIFIER_REFS = new ArrayList();
 

@@ -41,6 +41,7 @@
     <New_Context       t="button" l="Context"/>
     <New_Context_Group t="button" l="Context_Group"/>
     <autonum/>
+    <!--TODO: Ensure these fields are actually inherited-->
     <Target_Spit_Thickness t="dropdown">
       <!--Populated from Context/Vars/Target_Spit_Thickness-->
     </Target_Spit_Thickness>
@@ -382,7 +383,7 @@
   </Context_Relationships_to_Other_Contexts>
   <Samples>
     <New_Sample  lc="Sample" t="button"/>
-    <Bulk_Sample_Mapped f="notnull">
+    <Bulk_Sample_Mapped f="notnull" t="radio">
       <desc>Has the bulk sample been mapped?</desc>
       <opts>
         <!--@SOURCE: vocabs/boolean.xml-->
@@ -434,13 +435,13 @@
         <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </All_Below_Relationship_Indicated>
-    <Trench_Supervisor_Review f="notnull">
+    <Trench_Supervisor_Review f="notnull" t="radio">
       <desc>Has the Trench Supervisor reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
         <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </Trench_Supervisor_Review>
-    <Site_Director_Review>
+    <Site_Director_Review t="radio">
       <desc>Has the Site Director reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
         <!--@SOURCE: vocabs/boolean.xml-->
@@ -568,7 +569,7 @@
           <opt>MBD<desc>Meters Below Datum</desc></opt>
         </opts>
       </Start_Depth>
-      <Start_Depth_Magnitude b="decimal" f="nodata">
+      <Start_Depth_Magnitude b="decimal" f="nodata notnull">
         Start Depth
         <!--TODO: Save this as a measure-->
         <!--Linked to Context/Start Depth in the dataschema as a measure-->
@@ -767,6 +768,7 @@
     </cols>
   </Context_Group_Details>
   <Context_Group_Contexts>
+    <!--TODO: Relationships-->
     <Not_Yet_Implemented t="webview">
       This tab is not yet implemented
     </Not_Yet_Implemented>
@@ -998,6 +1000,8 @@
 </Photograph_Log>
 
 <logic><![CDATA[
+  <!--@SOURCE: logic/utils.bsh-->
+
   <!--@SOURCE: logic/calc-vol-min-max.bsh-->
   <!--@SOURCE: logic/context-review.bsh-->
   <!--@SOURCE: logic/local-settings-saving.bsh-->

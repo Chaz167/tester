@@ -90,7 +90,7 @@ perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
 
 # Link Start_Depth_Magnitude to data schema as measure
 string="<input ref=\"Start_Depth_Magnitude\""
-replacement="$string faims_attribute_type=\"measure\""
+replacement="$string faims_attribute_name=\"Start Depth\" faims_attribute_type=\"measure\""
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_schema.xml
 
 rm ui_logic.bsh.original

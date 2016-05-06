@@ -467,19 +467,19 @@
     <Bulk_Sample_Mapped f="notnull">
       <desc>Has the bulk sample been mapped?</desc>
       <opts>
-          <!--@SOURCE: vocabs/boolean.xml-->
+        <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </Bulk_Sample_Mapped>
     <Trench_Supervisor_Review f="notnull">
       <desc>Has the Trench Supervisor reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
-          <!--@SOURCE: vocabs/boolean.xml-->
+        <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </Trench_Supervisor_Review>
     <Site_Director_Review>
       <desc>Has the Site Director reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
-          <!--@SOURCE: vocabs/boolean.xml-->
+        <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </Site_Director_Review>
     <cols>

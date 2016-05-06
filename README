@@ -1,0 +1,56 @@
+                                  MEMSAP 2016
+
+                               Project Structure
+
+  This project is comprised of several notable files and directories.  These are
+as follows:
+
+    - module.xml
+    - logic/
+    - module/
+    - proc/
+    - vocabs/
+    - wireframe/
+
+  The module directory contains the module's source.  This is what is uploaded
+to the FAIMS server.  The contents of the module and wireframe directories are
+created by the autogenerator.  They are never modified by hand.
+
+  The module.xml file is the main way of specifying the module and wireframe.
+As well as having other functions, it defines the appearance of the GUI, the
+properties in the data schema, and the module workflow, including links between
+tabs and tab groups.
+
+  In this project, the logic and vocabs directories contain Beanshell and XML
+files, respectively.  These could have been included in the module.xml file
+explicitly but, for the sake of neatness, were placed in their own files.
+
+  The proc directory contains pre- and post-processor scripts to be executed by
+the autogenerator.  The pre-processor script defines a directive with much the
+same function as that of #include in the C language. For example, writing
+
+    <!--@SOURCE: logic/context-review.bsh-->
+
+in the module.xml file replaces the line on which that comment occurs with the
+contents of the file at logic/context-review.bsh.  On the other hand, the
+post-processor is typical for a project like this.
+
+                   Project Structure Guidelines and Rationale
+
+  XML snippets have been moved to files in the vocab directory if they satisfy
+at least one of the two criteria: 1) The XML snippet was repeated in the
+module.xml file; or 2) the XML snippet was large enough to significantly reduce
+the readability of the module.xml file.
+
+  All logic was exported to its own directory. The idea is similar to how in web
+development, it is generally preferred to write
+
+    <script src="path/to/script.js"></script>
+
+instead of mixing Javascript with XML.
+
+  To avoid inconsistencies between the auto-generated generated code, and the
+code from which it was generated, code in the module and wireframe directories
+is never modified by hand.  Instead, the module defintion files and wireframe
+are created using the autogenerator and augmented using the post processor
+script in the proc directory.  The post-processor script is defined by hand.

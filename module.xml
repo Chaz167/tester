@@ -3,8 +3,8 @@
 <!--TODO: Gotta implement that stupid relationship thing... Later.-->
 <!--TODO: Ensure module matches https://docs.google.com/spreadsheets/d/1pkCjgntx7EYTGpdyDV0xFLptdAiHokyMJIcDXk0jzQk/edit#gid=0 where necessary-->
 
-<!--@PREPROC:  ./preproc.sh-->
-<!--@POSTPROC: ./postproc.sh-->
+<!--@PREPROC:  ./proc/pre.sh-->
+<!--@POSTPROC: ./proc/post.sh-->
 <module suppressWarnings="true">
 <rels>
   <RelationshipElement name="AboveBelow" type="hierarchical">

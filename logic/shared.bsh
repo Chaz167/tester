@@ -1,0 +1,43 @@
+/*********************************** SHARED ***********************************/
+/* Shared functions which are not general enough to be placed in utils.bsh.   */
+/******************************************************************************/
+
+populateSquare(ref) {
+  String q = "";
+  q += " SELECT DISTINCT measure, measure";
+  q += " FROM            latestnondeletedaentvalue";
+  q += " JOIN            attributekey USING (attributeid)";
+  q += " WHERE           attributename = 'Square'";
+  q += " ORDER BY        measure;";
+
+  FetchCallback populate = new FetchCallback() {
+    onFetch(result) {
+      populateDropDown(ref, result);
+    }
+  };
+
+  fetchAll(q, populate);
+}
+
+populateLotLabel(lotRef) {
+  String tabGroup = "Context";
+  String uuid     = getUuid(tabGroup);
+
+  if (isNull(uuid)) return;
+
+  String q = "";
+  q += "SELECT uuid, response ";
+  q += "FROM latestnondeletedarchentformattedidentifiers ";
+  q += "WHERE uuid = '%s' ";
+  q  = replaceFirst(q, "%s", uuid);
+
+  cb = new FetchCallback() {
+    onFetch(result) {
+      identifier  = result.get(1);
+
+      populateWebViewHtml(lotRef, identifier);
+    }
+  };
+
+  fetchOne(q, cb);
+}

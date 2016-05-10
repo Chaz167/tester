@@ -93,5 +93,13 @@ string="<input ref=\"Start_Depth_Magnitude\""
 replacement="$string faims_attribute_name=\"Start Depth\" faims_attribute_type=\"measure\""
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_schema.xml
 
+# Change the style of this column to be skinner than the others. This is
+# intended to apply to the "Review" tab in "Control", but there's not much
+# enforcing that... Note that this match is NOT global, unlike the others in
+# this script.
+string="<group ref=\"Col_1\" faims_style=\"even\">"
+replacement="<group ref=\"Col_1\" faims_style=\"large\">"
+perl -0777 -i.original -pe "s/\\Q$string/$replacement/is" ui_schema.xml
+
 rm ui_logic.bsh.original
 rm ui_schema.xml.original

@@ -1,0 +1,44 @@
+/******************************* SEARCH REVIEW ********************************/
+addOnEvent("Control"                      , "show"  , "populateSearchSquare()");
+addOnEvent("Control/Review"               , "show"  , "searchReview()");
+addOnEvent("Control/Review/Entity_List"   , "click" , "loadEntity()");
+addOnEvent("Control/Review/Search"        , "click" , "searchReview()");
+addOnEvent("Control/Review/Square"        , "click" , "clearSearchReview()");
+
+clearSearchReview(){
+  setFieldValue("Control/Review/Square","");
+}
+
+searchReview(){
+  String tabgroup      = "Control";
+  String refEntityList = tabgroup + "/Review/Entity_List";
+  String refSquare     = tabgroup + "/Review/Square";
+
+  String square = getFieldValue(refSquare);
+  String q = "";
+  q += "SELECT uuid, response  ";
+  q += "  FROM latestNonDeletedArchEntFormattedIdentifiers   ";
+  q += " WHERE uuid IN (SELECT uuid ";
+  q += "        FROM latestnondeletedaentvalue  ";
+  q += "        JOIN attributekey USING (attributeid) ";
+  q += "        LEFT OUTER JOIN vocabulary USING (vocabid, attributeid) ";
+  q += "        WHERE uuid IN (   SELECT uuid  ";
+  q += "                     FROM latestnondeletedaentvalue JOIN attributekey USING (attributeid) ";
+  q += "                  WHERE attributename = 'Square' ";
+  q += "                    AND measure = '"+square+"' ";
+  q += "                )   ";
+  q += "        AND (attributename IN ('Site Director Review', 'Trench Supervisor Review') ";
+  q += "        AND (vocabname = '{No}' OR vocabname IS null)) ";
+  q += "      ) ";
+  q += " ORDER BY response ";
+  q += "  LIMIT ? ";
+  q += " OFFSET ? ";
+
+  populateCursorList(refEntityList, q, 25);
+  refreshTabgroupCSS(tabgroup);
+}
+
+populateSearchSquare() {
+  String ref = "Control/Review/Square";
+  populateSquare(ref);
+}

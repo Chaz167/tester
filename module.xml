@@ -8,18 +8,15 @@
 <module suppressWarnings="true">
 <rels>
   <RelationshipElement name="AboveBelow" type="hierarchical">
-    <description>Implements a above below for contexts.</description>
+    <description>Implements a above below for contexts</description>
     <parent>Above</parent>
     <child>Below</child>
   </RelationshipElement>
   <RelationshipElement name="Adjacent to" type="bidirectional">
     <description>Implements adjacent to for contexts</description>
   </RelationshipElement>
-  <RelationshipElement name="Equivalent" type="bidirectional">
-    <description>Implements equivalent to for contexts</description>
-  </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
-    <description>Implements a contains-containedby for contexts.</description>
+    <description>Implements a contains-containedby for contexts</description>
     <parent>Contains</parent>
     <child>Contained By</child>
   </RelationshipElement>
@@ -27,7 +24,10 @@
 
 <User f="nodata">
   <User f="noscroll">
-    <Users t="dropdown" f="user nocertainty noannotation"/>
+    <Users t="dropdown" f="user nocertainty noannotation">
+      <!--TODO: If a user is selected then set back to null, the Login button-->
+      <!--doesn't produce a validation error.-->
+    </Users>
     <Login t="button" l="Control"/>
     <Guide t="button" l="User/Help"/>
   </User>
@@ -52,6 +52,14 @@
     <Excavators/>
   </Control>
   <search/>
+  <Review f="noscroll">
+    <cols>
+      <!--The semantics of this cols element have been changed with @POSTPROC-->
+      <Square t="dropdown"/>
+      <Search t="button"/>
+    </cols>
+    <Entity_List t="list"/>
+  </Review>
 </Control>
 
 <Context>
@@ -112,6 +120,7 @@
     <Lot_Label t="webview">
       <!--TODO: Set on blur of any identifier attribute or on tab show, to be
            the record's identifier-->
+      <!--TODO: Make capitalisation consistent-->
     </Lot_Label>
     <cols>
       <timestamp>
@@ -350,37 +359,20 @@
       </Disturbances>
     </cols>
   </Deposit>
-  <Context_Relationships_to_Other_Contexts f="hidden">
-    <Guide_0 t="webview">
-      Here you can enter relationships between contexts, eg ‘Above’ and ‘Below’.
-      Select the Type of Relationship on the left, the related Context from the
-      list on the right, and click the button ‘Relate Contexts’.
-    </Guide_0>
+  <Relationships>
+    <Create_Relationships_to_This_Context t="button" l="Relationship">
+      <!--TODO: Notify user that they cannot proceed if they have not saved-->
+      <!--the current tab group-->
+    </Create_Relationships_to_This_Context>
     <cols>
-      <This_Context f="nodata"/>
-      <Relationship t="dropdown" f="nodata"/>
-      <To_Context f="nodata"/>
+      <Existing_Relationships_to_This_Context t="list" f="nodata"/>
+      <col>
+        <Selected_Relationship t="webview"/>
+        <Load_Related_Context  t="button"/>
+        <Delete_Relationship   t="button"/>
+      </col>
     </cols>
-    <Relate_Contexts t="button"/>
-    <Associated_Entites t="dropdown" f="nodata"/>
-    <Remove_Relationship t="button"/>
-    <Show_Relationship t="button"/>
-    <Guide_1 t="webview">
-      Here you can group contexts into a single Context Group.
-    </Guide_1>
-    <Add_Context_Group t="button"/>
-    <Guide_2 t="webview">
-      You can add this Context to already existing Context Group.
-    </Guide_2>
-    <Existing_And_Unrelated_Context_Groups t="dropdown" f="nodata"/>
-    <Add_To_Context_Group t="button"/>
-    <Guide_3 t="webview">
-      Here are the Context Groups that this Context belongs to.
-    </Guide_3>
-    <Context_Group_List t="list" f="nodata"/>
-    <Show_Context_Group t="button"/>
-    <Remove_From_Context_Group t="button"/>
-  </Context_Relationships_to_Other_Contexts>
+  </Relationships>
   <Samples>
     <New_Sample  lc="Sample" t="button"/>
     <Bulk_Sample_Mapped f="notnull" t="radio">
@@ -571,7 +563,6 @@
       </Start_Depth>
       <Start_Depth_Magnitude b="decimal" f="nodata notnull">
         Start Depth
-        <!--TODO: Save this as a measure-->
         <!--Linked to Context/Start Depth in the dataschema as a measure-->
         <!--using @POSTPROC.-->
       </Start_Depth_Magnitude>
@@ -767,20 +758,6 @@
       <Creation_Date f="notnull"/>
     </cols>
   </Context_Group_Details>
-  <Context_Group_Contexts>
-    <!--TODO: Relationships-->
-    <Not_Yet_Implemented t="webview">
-      This tab is not yet implemented
-    </Not_Yet_Implemented>
-    <Guide t="webview">
-      Click to select a Context to add to the Context Group
-    </Guide>
-    <Context e="Context" t="dropdown"/>
-    <Add_Context_to_Context_Group t="button"/>
-    <Contexts_In_Group ec="Context" t="dropdown"/>
-    <Load_Context_and_Exit_Context_Group t="button"/>
-    <Remove_Context_From_Context_Group t="button"/>
-  </Context_Group_Contexts>
   <Context_Group_Samples>
     <New_Sample  lc="Sample" t="button"/>
     <Sample_List ec="Sample" t="dropdown"/>
@@ -999,8 +976,25 @@
   </Photograph_Log>
 </Photograph_Log>
 
+<Relationship f="nodata">
+  <Relationships>
+    <Square            t="dropdown"/>
+    <Relationship_Type t="dropdown"/>
+    <Search            t="button"/>
+    <cols>
+      <Relationship_Description t="webview" f="nolabel"/>
+      <Add_Relationship         t="button"/>
+    </cols>
+    <cols>
+      <Unrelated_Contexts     t="list"/>
+      <Existing_Relationships t="list"/>
+    </cols>
+  </Relationships>
+</Relationship>
+
 <logic><![CDATA[
   <!--@SOURCE: logic/utils.bsh-->
+  <!--@SOURCE: logic/shared.bsh-->
 
   <!--@SOURCE: logic/calc-vol-min-max.bsh-->
   <!--@SOURCE: logic/context-review.bsh-->
@@ -1012,5 +1006,7 @@
   <!--@SOURCE: logic/close-context-and-review-button.bsh-->
   <!--@SOURCE: logic/lot-label-population.bsh-->
   <!--@SOURCE: logic/control-to-general-inheritance.bsh-->
+  <!--@SOURCE: logic/review-search.bsh-->
+  <!--@SOURCE: logic/relationships.bsh-->
 ]]></logic>
 </module>

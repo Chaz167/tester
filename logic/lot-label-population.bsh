@@ -3,13 +3,14 @@
 /*   (a) When a Context is newly created.                                     */
 /*   (b) When a Context has been loaded.                                      */
 /*                                                                            */
-/* Case (a) is handled by on-click events which trigger `updateLotLabel()`.   */
+/* Case (a) is handled by on-click events which trigger                       */
+/* `populateLotLabelGeneral()`.                                               */
 /*                                                                            */
 /* Case (b) is handled by a callback to `showTabGroup`. This is implemented   */
 /* by overwriting the auto-generated function `loadContextFrom` using         */
 /* @POSTPROC.                                                                 */
 /******************************************************************************/
-addOnEvent("Context", "show", "updateLotLabel()");
+addOnEvent("Context", "show", "populateLotLabelGeneral()");
 
 CONTEXT_IDENTIFIER_REFS = new ArrayList();
 
@@ -22,33 +23,14 @@ CONTEXT_IDENTIFIER_REFS.add("Context/General/LOT_ID");
 
 for (ref : CONTEXT_IDENTIFIER_REFS) {
   String onFocus = "";
-  String onBlur  = "updateLotLabel()";
+  String onBlur  = "populateLotLabelGeneral()";
 
   onFocus(ref, onFocus, onBlur);
 }
 
-updateLotLabel() {
-  String tabGroup = "Context";
-  String uuid     = getUuid(tabGroup);
-  String lotRef   = "Context/General/Lot_Label";
-
-  if (isNull(uuid)) return;
-
-  String q = "";
-  q += "SELECT uuid, response ";
-  q += "FROM latestnondeletedarchentformattedidentifiers ";
-  q += "WHERE uuid = '%s' ";
-  q  = replaceFirst(q, "%s", uuid);
-
-  cb = new FetchCallback() {
-    onFetch(result) {
-      identifier  = result.get(1);
-
-      populateWebViewHtml(lotRef, identifier);
-    }
-  };
-
-  fetchOne(q, cb);
+populateLotLabelGeneral() {
+  String lotRef = "Context/General/Lot_Label";
+  populateLotLabel(lotRef);
 }
 
 loadContextFrom(String uuid) {
@@ -58,7 +40,7 @@ loadContextFrom(String uuid) {
 
   FetchCallback cb = new FetchCallback() {
     onFetch(result) {
-      updateLotLabel();
+      populateLotLabelGeneral();
     }
   };
   showTabGroup(tabgroup, uuid, cb);

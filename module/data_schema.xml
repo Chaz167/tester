@@ -5,17 +5,17 @@
     <parent>Parent Of</parent>
     <child>Child Of</child>
   </RelationshipElement>
+  <RelationshipElement name="Context - Photograph Log" type="hierarchical">
+    <description>A 1-to-n relationship between the parent and its children, respectively.</description>
+    <parent>Parent Of</parent>
+    <child>Child Of</child>
+  </RelationshipElement>
   <RelationshipElement name="Context - Artefact Group" type="hierarchical">
     <description>A 1-to-n relationship between the parent and its children, respectively.</description>
     <parent>Parent Of</parent>
     <child>Child Of</child>
   </RelationshipElement>
   <RelationshipElement name="Context - Special Find" type="hierarchical">
-    <description>A 1-to-n relationship between the parent and its children, respectively.</description>
-    <parent>Parent Of</parent>
-    <child>Child Of</child>
-  </RelationshipElement>
-  <RelationshipElement name="Context - Photograph Log" type="hierarchical">
     <description>A 1-to-n relationship between the parent and its children, respectively.</description>
     <parent>Parent Of</parent>
     <child>Child Of</child>
@@ -30,53 +30,64 @@
     <parent>Parent Of</parent>
     <child>Child Of</child>
   </RelationshipElement>
-  <RelationshipElement name="Special Find - Special Find Location" type="hierarchical">
-    <description>A 1-to-n relationship between the parent and its children, respectively.</description>
-    <parent>Parent Of</parent>
-    <child>Child Of</child>
-  </RelationshipElement>
   <RelationshipElement name="AboveBelow" type="hierarchical">
-    <description>Implements a above below for contexts.</description>
+    <description>Implements a above below for contexts</description>
     <parent>Above</parent>
     <child>Below</child>
   </RelationshipElement>
   <RelationshipElement name="Adjacent to" type="bidirectional">
     <description>Implements adjacent to for contexts</description>
   </RelationshipElement>
-  <RelationshipElement name="Equivalent" type="bidirectional">
-    <description>Implements equivalent to for contexts</description>
-  </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
-    <description>Implements a contains-containedby for contexts.</description>
+    <description>Implements a contains-containedby for contexts</description>
     <parent>Contains</parent>
     <child>Contained By</child>
   </RelationshipElement>
   <ArchaeologicalElement name="Context">
     <description>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</description>
-    <property name="Site Code" isIdentifier="true" type="measure">
+    <property name="Site" isIdentifier="true" type="measure">
       <description>Short code to signify the excavation site and often the year of excavation.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[LOT-$2]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
-    <property name="Area Code" isIdentifier="true" type="measure">
+    <property name="Area" isIdentifier="true" type="measure">
       <description>Area or Trench: the working subdivision of an archaeological site.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[-$2]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
-    <property name="Grid Location Reference" isIdentifier="true" type="measure">
+    <property name="Square" isIdentifier="true" type="measure">
       <description>Reference number for the grid square(s) within which this Context falls.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[-$2]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
-    <property name="Context ID" isIdentifier="true" type="measure">
+    <property name="Subsquare" isIdentifier="true" type="vocab">
+      <description/>
+      <formatString><![CDATA[-$1]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
+      <lookup>
+        <term>{A}
+<description/></term>
+        <term>{B}
+<description/></term>
+        <term>{C}
+<description/></term>
+        <term>{D}
+<description/></term>
+        <term>{Other}
+<description/></term>
+        <term>{N_A}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Context" isIdentifier="true" type="measure">
       <description>Unique number or code for each Context.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[-$2]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
-    <property name="Lot ID" isIdentifier="true" type="measure">
-      <description>A running 'lot' number that is a shorthand for Site-Area-Square-Context.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    <property name="LOT ID" isIdentifier="true" type="measure">
+      <description/>
+      <formatString><![CDATA[-$2]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
     <property name="timestamp" type="measure">
       <description>Date (YYYY-MM-DD) on which the Context was first excavated.</description>
@@ -96,6 +107,21 @@
 <description/></term>
       </lookup>
     </property>
+    <property name="Surface Area" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Entire_Square_Subsquare}
+<description/></term>
+        <term>{_0_5_Square_Subsquare}
+<description/></term>
+        <term>{_0_5_Square_Subsquare}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
+    </property>
     <property name="Excavation Method" type="vocab">
       <description>Method and conditions of archaeological excavation.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
@@ -108,6 +134,8 @@
         <term>{Pick}
 <description/></term>
         <term>{Other}
+<description/></term>
+        <term>{Fine}
 <description/></term>
       </lookup>
     </property>
@@ -134,6 +162,7 @@
 <description/></term><term>{Post_hole}
 <description/></term><term>{Pit}
 <description/></term><term>{Burrow}
+<description/></term><term>{Burial}
 <description/></term></term>
         <term>{Anthropogenic_Layer}
 <description/><term>{Dense_cultural_material}
@@ -146,35 +175,6 @@
       <description>Additional comments on the description of the Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-    </property>
-    <property name="Artefacts Present" type="vocab">
-      <description>Whether or not artefacts were present in the Context.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-      <lookup>
-        <term>{None}
-<description/></term>
-        <term>{Flakes}
-<description/></term>
-        <term>{Cores}
-<description/></term>
-        <term>{Fire_Cracked_Rock}
-<description/></term>
-        <term>{Hammerstone}
-<description/></term>
-        <term>{Manuport}
-<description/></term>
-        <term>{Bone}
-<description/></term>
-        <term>{Charcoal}
-<description/></term>
-        <term>{Ceramic}
-<description/></term>
-        <term>{Recent_material}
-<description/></term>
-        <term>{Other}
-<description/></term>
-      </lookup>
     </property>
     <property name="Elevation Datum Type" type="vocab">
       <description>The type of elevation.</description>
@@ -212,6 +212,11 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
+    <property name="Take Opening Photo" type="file" file="true" thumbnail="true">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    </property>
     <property name="Context Lowest Level NW" type="measure">
       <description>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
@@ -237,26 +242,10 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Target Spit Thickness" type="vocab">
-      <description>The minimum thickness of deposit</description>
+    <property name="Take Closing Photo" type="file" file="true" thumbnail="true">
+      <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-      <lookup>
-        <term>{No_Observation}
-<description>Data not collected</description></term>
-        <term>{2cm}
-<description/></term>
-        <term>{5cm}
-<description/></term>
-        <term>{10cm}
-<description/></term>
-        <term>{20cm}
-<description/></term>
-        <term>{25cm}
-<description/></term>
-        <term>{50cm}
-<description/></term>
-      </lookup>
     </property>
     <property name="Min Context Thickness" type="measure">
       <description>The minimum thickness of the deposit based on the highest and lowest in each extent within the square.</description>
@@ -268,15 +257,46 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Final Bucket Count" type="measure">
-      <description>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</description>
+    <property name="Artefacts Present" type="vocab">
+      <description>Whether or not artefacts were present in the Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-    </property>
-    <property name="Deposit Volume" type="measure">
-      <description>The total volume of sediment (in L) removed as part of the Context.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{None}
+<description/></term>
+        <term>{Flakes}
+<description/></term>
+        <term>{Cores}
+<description/></term>
+        <term>{Fire_Cracked_Rock}
+<description/></term>
+        <term>{Hammerstone}
+<description/></term>
+        <term>{Manuport}
+<description/></term>
+        <term>{Bone}
+<description/></term>
+        <term>{Charcoal}
+<description/></term>
+        <term>{Ceramic}
+<description/></term>
+        <term>{Recent_material}
+<description/></term>
+        <term>{Ochre}
+<description/></term>
+        <term>{Grindstones}
+<description/></term>
+        <term>{Shell}
+<description/></term>
+        <term>{Glass}
+<description/></term>
+        <term>{Metal}
+<description/></term>
+        <term>{Slag}
+<description/></term>
+        <term>{Other}
+<description/></term>
+      </lookup>
     </property>
     <property name="author" type="measure">
       <description/>
@@ -3570,6 +3590,17 @@
 <description/></term>
       </lookup>
     </property>
+    <property name="Bulk Sample Mapped" type="vocab">
+      <description>Has the bulk sample been mapped?</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Yes}
+<description/></term>
+        <term>{No}
+<description/></term>
+      </lookup>
+    </property>
     <property name="Context Sketch" type="file" file="true" thumbnail="true">
       <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
@@ -3628,8 +3659,29 @@
 <description>A sandy loam sticks together more than a loamy sand but can be easily broken. Individual sand grains can be felt and heard if a wet sample is rubbed between the index finger and thumb and held close to the ear. (VDEPI 2009: AG0058) </description></term></term></term></term></term></term></term>
       </lookup>
     </property>
-    <property name="Bulk Sample Mapped" type="vocab">
-      <description>Has the bulk sample been mapped?</description>
+    <property name="Final Bucket Count" type="measure">
+      <description>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    </property>
+    <property name="Deposit Volume" type="measure">
+      <description>The total volume of sediment (in L) removed as part of the Context.</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    </property>
+    <property name="Closing Photo Taken" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Yes}
+<description/></term>
+        <term>{No}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="All Below Relationship Indicated" type="vocab">
+      <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
@@ -3666,25 +3718,46 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
+    <property name="Target Spit Thickness" type="vocab">
+      <description>The minimum thickness of deposit</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{No_Observation}
+<description>Data not collected</description></term>
+        <term>{2cm}
+<description/></term>
+        <term>{5cm}
+<description/></term>
+        <term>{10cm}
+<description/></term>
+        <term>{20cm}
+<description/></term>
+        <term>{25cm}
+<description/></term>
+        <term>{50cm}
+<description/></term>
+      </lookup>
+    </property>
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Context Group">
     <description>A group of contexts.</description>
-    <property name="Site Code" type="measure">
+    <property name="Site" isIdentifier="true" type="measure">
       <description>Short code to signify the excavation site and often the year of excavation.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[CTXGR-$2-]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
-    <property name="Area Code" type="measure">
+    <property name="Area" isIdentifier="true" type="measure">
       <description>Area or Trench: the working subdivision of an archaeological site.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[$2-]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
-    <property name="Context Group ID" type="measure">
+    <property name="Context Group ID" isIdentifier="true" type="measure">
       <description>ID of the Context Group/Geological Unit</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[$2]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
-    <property name="Title" isIdentifier="true" type="measure">
+    <property name="Title" type="measure">
       <description>Name of the context group</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
@@ -6973,15 +7046,15 @@
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term>{No_Observation}
-<description>No Observation. Use the Texture helper to prefil this.  </description></term>
+<description>No Observation. Use the Texture helper to prefil this.</description></term>
         <term>{Sand}
-<description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058) </description></term>
+<description>A sand has a loose gritty feel and does not stick together. Individual sand grains can be seen or felt. (VDEPI 2009: AG0058)</description></term>
         <term>{Loamy_Sand}
-<description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058) </description></term>
+<description>In a loamy sand particles barely stick together and a moulded piece of soil just holds its shape. (VDEPI 2009: AG0058)</description></term>
         <term>{Silty_Clay_Loam}
-<description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058) </description></term>
+<description>A silty clay loam is like a clay loam but silty as well and smooth to the touch. (VDEPI 2009: AG0058)</description></term>
         <term>{Clay_Loam}
-<description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058) </description></term>
+<description>More easily moulded into a shape than a loam, a clay loam rolls out to a thin ribbon between the palms while a loam will break-up. When dry a clay loam will form a lump but is not as tough to break as a clay.(VDEPI 2009: AG0058)</description></term>
         <term>{Sandy_Clay_Loam}
 <description>A sandy clay loam is like a clay loam but sand grains can be felt (and heard - see Sandy Loam) (VDEPI 2009: AG0058) </description></term>
         <term>{Silty_Clay}
@@ -7175,17 +7248,17 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Artefact Group">
     <description>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</description>
-    <property name="Context ID" type="measure">
+    <property name="Context" type="measure">
       <description>Unique number or code for each Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Artefact Group ID" isIdentifier="true" type="measure">
       <description>Unique number or code for the artefact group.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <formatString><![CDATA[AG-$2]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Artefact Class" isIdentifier="true" type="vocab">
+    <property name="Artefact Class" type="vocab">
       <description>Broad Artefact Class for each Artefact.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
@@ -7242,20 +7315,10 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Sample">
     <description>Deposit samples, or samples of building elements, recovered from this Context for the purpose of further analysis, or ongoing reference. </description>
-    <property name="Sample ID" isIdentifier="true" type="measure">
-      <description>The unique code or reference for the Sample.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-    </property>
-    <property name="Context ID" type="measure">
-      <description>Unique number or code for each Context.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-    </property>
     <property name="Sample Type" isIdentifier="true" type="vocab">
       <description>The type of Sample collected, eg Soil, Wood, Pollen.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <formatString><![CDATA[$1]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
       <lookup>
         <term>{No_Observation}
 <description>Data not collected</description></term>
@@ -7275,9 +7338,21 @@
 <description/></term>
         <term>{Archeomagnetic}
 <description/></term>
+        <term>{DNA}
+<description/></term>
         <term>{Other}
 <description/></term>
       </lookup>
+    </property>
+    <property name="Sample ID" isIdentifier="true" type="measure">
+      <description>The unique code or reference for the Sample.</description>
+      <formatString><![CDATA[-$2]]></formatString>
+      <appendCharacterString><![CDATA[-]]></appendCharacterString>
+    </property>
+    <property name="LOT ID" type="measure">
+      <description>Unique number or code for each Context.</description>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Collection Method" type="vocab">
       <description>Method of collecting the sample.</description>
@@ -7292,9 +7367,11 @@
 <description>Other collection method.</description></term>
         <term>{Clean_Trowel}
 <description>A collection using standard excavation tools into a sterilised container.</description></term>
+        <term>{Sterile_Gloves}
+<description/></term>
       </lookup>
     </property>
-    <property name="Sample Weight" isIdentifier="true" type="measure">
+    <property name="Sample Weight" type="measure">
       <description>Weight (in grams) of the sample collected.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
@@ -7322,17 +7399,17 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Special Find">
     <description/>
-    <property name="Context ID" type="measure">
+    <property name="Context" type="measure">
       <description>Unique number or code for each Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Special Find ID" isIdentifier="true" type="measure">
       <description>Unique number or code for the special find.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <formatString><![CDATA[SF-$2]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Special Find Class" isIdentifier="true" type="vocab">
+    <property name="Special Find Class" type="vocab">
       <description>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
@@ -7386,9 +7463,6 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-  </ArchaeologicalElement>
-  <ArchaeologicalElement name="Special Find Location">
-    <description/>
     <property name="X" isIdentifier="true" type="measure">
       <description>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
@@ -7412,7 +7486,7 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Photograph Log">
     <description>A record of images created and stored on another device, eg by a professional site photographer.</description>
-    <property name="Context ID" type="measure">
+    <property name="Context" type="measure">
       <description>Unique number or code for each Context</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>

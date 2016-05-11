@@ -1,17 +1,32 @@
 <?xml version="1.0"?>
 <ValidationSchema>
   <ArchaeologicalElement name="Context">
-    <property name="Grid Location Reference">
+    <property name="Site">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Context ID">
+    <property name="Area">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Lot ID">
+    <property name="Square">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Subsquare">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Context">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="LOT ID">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
@@ -34,11 +49,6 @@
     <property name="Your Interpretation">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
-      </validator>
-    </property>
-    <property name="Artefacts Present">
-      <validator type="blankchecker">
-        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Elevation Datum Type">
@@ -106,14 +116,9 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Final Bucket Count">
+    <property name="Artefacts Present">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
-      </validator>
-    </property>
-    <property name="Deposit Volume">
-      <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Soil Munsell Colour">
@@ -146,9 +151,24 @@
         <param value="vocab" type="field"/>
       </validator>
     </property>
-    <property name="Trench Supervisor Review">
+    <property name="Bulk Sample Mapped">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
+    <property name="Final Bucket Count">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Deposit Volume">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Trench Supervisor Review">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Date Closed">
@@ -158,7 +178,57 @@
     </property>
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Context_Group">
-    <property name="Title">
+    <property name="Site">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Area">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Context Group ID">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Depth">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Elevation">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Geological Unit Number">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Start Depth">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
+    <property name="Soil Colour">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Disturbances">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
+    <property name="Created By">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Creation Date">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
@@ -170,7 +240,12 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Artefact Class">
+    <property name="Artefact Quantity">
+      <validator type="blankchecker">
+        <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Artefact Weight">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
@@ -187,7 +262,7 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Sample Weight">
+    <property name="Sample Volume">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
@@ -199,13 +274,11 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Special Find Class">
+    <property name="Special Find Name">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
     </property>
-  </ArchaeologicalElement>
-  <ArchaeologicalElement name="Special_Find_Location">
     <property name="X">
       <validator type="blankchecker">
         <param value="measure" type="field"/>

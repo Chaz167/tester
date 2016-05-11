@@ -4,6 +4,7 @@ Object dialog;          // Used to help coordinate the display of a "busy..." di
 String parentTabgroup;  // Used to allow entities to be saved as children
 String redirectTab;     // makes newTab work as expected
 String username = "";
+String userid   = "";
 
 setFileSyncEnabled(true);
 setSyncDelay(5.0f);
@@ -144,24 +145,21 @@ getDropdownItemValue() {
 
 addOnEvent("User/User/Users", "click", "dropdownItemValue = getFieldValue(\"User/User/Users\")");
 addOnEvent("Control/Control/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Control/Control/Target_Spit_Thickness\")");
-addOnEvent("Context/Context_General_Information/Your_Interpretation", "click", "dropdownItemValue = getFieldValue(\"Context/Context_General_Information/Your_Interpretation\")");
-addOnEvent("Context/Context_General_Information/Elevation_Datum_Type", "click", "dropdownItemValue = getFieldValue(\"Context/Context_General_Information/Elevation_Datum_Type\")");
-addOnEvent("Context/Context_General_Information/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Context/Context_General_Information/Target_Spit_Thickness\")");
-addOnEvent("Context/Context_Deposits/Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Munsell_Colour\")");
-addOnEvent("Context/Context_Deposits/Soil_Moisture", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Moisture\")");
-addOnEvent("Context/Context_Deposits/Soil_Texture", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Texture\")");
-addOnEvent("Context/Context_Deposits/Soil_Compaction_Type", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Deposits/Soil_Compaction_Type\")");
-addOnEvent("Context/Context_Relationships_to_Other_Contexts/Relationship", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Relationships_to_Other_Contexts/Relationship\")");
-addOnEvent("Context/Context_Relationships_to_Other_Contexts/Associated_Entites", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Relationships_to_Other_Contexts/Associated_Entites\")");
-addOnEvent("Context/Context_Relationships_to_Other_Contexts/Existing_And_Unrelated_Context_Groups", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Relationships_to_Other_Contexts/Existing_And_Unrelated_Context_Groups\")");
-addOnEvent("Context/Context_Samples/Sample_List", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Samples/Sample_List\")");
-addOnEvent("Context/Context_Artefacts/Artefact_Group_List", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Artefacts/Artefact_Group_List\")");
-addOnEvent("Context/Context_Artefacts/Special_Find_List", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Artefacts/Special_Find_List\")");
-addOnEvent("Context/Context_Attachments/Load_Photo_Log", "click", "dropdownItemValue = getFieldValue(\"Context/Context_Attachments/Load_Photo_Log\")");
+addOnEvent("Control/Review/Square", "click", "dropdownItemValue = getFieldValue(\"Control/Review/Square\")");
+addOnEvent("Context/General/Subsquare", "click", "dropdownItemValue = getFieldValue(\"Context/General/Subsquare\")");
+addOnEvent("Context/General/Surface_Area", "click", "dropdownItemValue = getFieldValue(\"Context/General/Surface_Area\")");
+addOnEvent("Context/General/Your_Interpretation", "click", "dropdownItemValue = getFieldValue(\"Context/General/Your_Interpretation\")");
+addOnEvent("Context/General/Elevation_Datum_Type", "click", "dropdownItemValue = getFieldValue(\"Context/General/Elevation_Datum_Type\")");
+addOnEvent("Context/Deposit/Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Munsell_Colour\")");
+addOnEvent("Context/Deposit/Soil_Moisture", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Moisture\")");
+addOnEvent("Context/Deposit/Soil_Texture", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Texture\")");
+addOnEvent("Context/Deposit/Soil_Compaction_Type", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Compaction_Type\")");
+addOnEvent("Context/Samples/Sample_List", "click", "dropdownItemValue = getFieldValue(\"Context/Samples/Sample_List\")");
+addOnEvent("Context/Attachments/Load_Photo_Log", "click", "dropdownItemValue = getFieldValue(\"Context/Attachments/Load_Photo_Log\")");
+addOnEvent("Context/Artefacts/Artefact_Group_List", "click", "dropdownItemValue = getFieldValue(\"Context/Artefacts/Artefact_Group_List\")");
+addOnEvent("Context/Artefacts/Special_Find_List", "click", "dropdownItemValue = getFieldValue(\"Context/Artefacts/Special_Find_List\")");
 addOnEvent("Context/Texture_Helper/Soil_Texture_Helper", "click", "dropdownItemValue = getFieldValue(\"Context/Texture_Helper/Soil_Texture_Helper\")");
-addOnEvent("Context/Review/Bulk_Sample_Mapped", "click", "dropdownItemValue = getFieldValue(\"Context/Review/Bulk_Sample_Mapped\")");
-addOnEvent("Context/Review/Trench_Supervisor_Review", "click", "dropdownItemValue = getFieldValue(\"Context/Review/Trench_Supervisor_Review\")");
-addOnEvent("Context/Review/Site_Director_Review", "click", "dropdownItemValue = getFieldValue(\"Context/Review/Site_Director_Review\")");
+addOnEvent("Context/Vars/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Context/Vars/Target_Spit_Thickness\")");
 addOnEvent("Context_Group/Context_Group_Details/Profile_Aspect", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Profile_Aspect\")");
 addOnEvent("Context_Group/Context_Group_Details/Elevation_Determination", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Elevation_Determination\")");
 addOnEvent("Context_Group/Context_Group_Details/Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Soil_Munsell_Colour\")");
@@ -173,17 +171,16 @@ addOnEvent("Context_Group/Context_Group_Details/Structure_Modifiers", "click", "
 addOnEvent("Context_Group/Context_Group_Details/Sorting", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Sorting\")");
 addOnEvent("Context_Group/Context_Group_Details/Upper_Boundary", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Upper_Boundary\")");
 addOnEvent("Context_Group/Context_Group_Details/Lower_Boundary", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Lower_Boundary\")");
-addOnEvent("Context_Group/Context_Group_Contexts/Context", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Contexts/Context\")");
-addOnEvent("Context_Group/Context_Group_Contexts/Contexts_In_Group", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Contexts/Contexts_In_Group\")");
 addOnEvent("Context_Group/Context_Group_Samples/Sample_List", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Samples/Sample_List\")");
 addOnEvent("Context_Group/Context_Group_Attachments/Load_Photo_Log", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Attachments/Load_Photo_Log\")");
 addOnEvent("Artefact_Group/Artefact_Group_General_Information/Artefact_Class", "click", "dropdownItemValue = getFieldValue(\"Artefact_Group/Artefact_Group_General_Information/Artefact_Class\")");
 addOnEvent("Sample/Sample_General_Information/Sample_Type", "click", "dropdownItemValue = getFieldValue(\"Sample/Sample_General_Information/Sample_Type\")");
 addOnEvent("Sample/Sample_General_Information/Collection_Method", "click", "dropdownItemValue = getFieldValue(\"Sample/Sample_General_Information/Collection_Method\")");
 addOnEvent("Special_Find/Special_Find_General_Information/Special_Find_Class", "click", "dropdownItemValue = getFieldValue(\"Special_Find/Special_Find_General_Information/Special_Find_Class\")");
-addOnEvent("Special_Find/Special_Find_Location/List_Special_Find_Location", "click", "dropdownItemValue = getFieldValue(\"Special_Find/Special_Find_Location/List_Special_Find_Location\")");
 addOnEvent("Photograph_Log/Photograph_Log/Looking_Toward", "click", "dropdownItemValue = getFieldValue(\"Photograph_Log/Photograph_Log/Looking_Toward\")");
 addOnEvent("Photograph_Log/Photograph_Log/Scene_Type", "click", "dropdownItemValue = getFieldValue(\"Photograph_Log/Photograph_Log/Scene_Type\")");
+addOnEvent("Relationship/Relationships/Square", "click", "dropdownItemValue = getFieldValue(\"Relationship/Relationships/Square\")");
+addOnEvent("Relationship/Relationships/Relationship_Type", "click", "dropdownItemValue = getFieldValue(\"Relationship/Relationships/Relationship_Type\")");
 
 /******************************************************************************/
 /*                                 ACTION BAR                                 */
@@ -381,6 +378,7 @@ selectUser () {
       );
       setUser(user);
       username = result.get(1) + " " + result.get(2);
+      userid   = result.get(0);
     }
   };
 
@@ -501,23 +499,27 @@ makeVocab(String type, String path, String attrib, List vocabExclusions, String 
       }
     });
 }
-makeVocab("RadioGroup", "Context/Context_General_Information/Wet_Sieved", "Wet Sieved");
-makeVocab("CheckBoxGroup", "Context/Context_General_Information/Excavation_Method", "Excavation Method");
-makeVocab("HierarchicalDropDown", "Context/Context_General_Information/Your_Interpretation", "Your Interpretation");
-makeVocab("CheckBoxGroup", "Context/Context_General_Information/Artefacts_Present", "Artefacts Present");
-makeVocab("DropDown", "Context/Context_General_Information/Elevation_Datum_Type", "Elevation Datum Type");
-makeVocab("DropDown", "Context/Context_General_Information/Target_Spit_Thickness", "Target Spit Thickness");
-makeVocab("HierarchicalDropDown", "Context/Context_Deposits/Soil_Munsell_Colour", "Soil Munsell Colour");
-makeVocab("DropDown", "Context/Context_Deposits/Soil_Moisture", "Soil Moisture");
-makeVocab("DropDown", "Context/Context_Deposits/Soil_Texture", "Soil Texture");
-makeVocab("DropDown", "Context/Context_Deposits/Soil_Compaction_Type", "Soil Compaction Type");
-makeVocab("CheckBoxGroup", "Context/Context_Deposits/Deposit_Inclusions", "Deposit Inclusions");
-makeVocab("CheckBoxGroup", "Context/Context_Deposits/Natural_Formations", "Natural Formations");
-makeVocab("CheckBoxGroup", "Context/Context_Deposits/Disturbances", "Disturbances");
+makeVocab("DropDown", "Context/General/Subsquare", "Subsquare");
+makeVocab("RadioGroup", "Context/General/Wet_Sieved", "Wet Sieved");
+makeVocab("DropDown", "Context/General/Surface_Area", "Surface Area");
+makeVocab("CheckBoxGroup", "Context/General/Excavation_Method", "Excavation Method");
+makeVocab("HierarchicalDropDown", "Context/General/Your_Interpretation", "Your Interpretation");
+makeVocab("DropDown", "Context/General/Elevation_Datum_Type", "Elevation Datum Type");
+makeVocab("CheckBoxGroup", "Context/General/Artefacts_Present", "Artefacts Present");
+makeVocab("HierarchicalDropDown", "Context/Deposit/Soil_Munsell_Colour", "Soil Munsell Colour");
+makeVocab("DropDown", "Context/Deposit/Soil_Moisture", "Soil Moisture");
+makeVocab("DropDown", "Context/Deposit/Soil_Texture", "Soil Texture");
+makeVocab("DropDown", "Context/Deposit/Soil_Compaction_Type", "Soil Compaction Type");
+makeVocab("CheckBoxGroup", "Context/Deposit/Deposit_Inclusions", "Deposit Inclusions");
+makeVocab("CheckBoxGroup", "Context/Deposit/Natural_Formations", "Natural Formations");
+makeVocab("CheckBoxGroup", "Context/Deposit/Disturbances", "Disturbances");
+makeVocab("RadioGroup", "Context/Samples/Bulk_Sample_Mapped", "Bulk Sample Mapped");
 makeVocab("HierarchicalDropDown", "Context/Texture_Helper/Soil_Texture_Helper", "Soil Texture Helper");
-makeVocab("DropDown", "Context/Review/Bulk_Sample_Mapped", "Bulk Sample Mapped");
-makeVocab("DropDown", "Context/Review/Trench_Supervisor_Review", "Trench Supervisor Review");
-makeVocab("DropDown", "Context/Review/Site_Director_Review", "Site Director Review");
+makeVocab("RadioGroup", "Context/Review/Closing_Photo_Taken", "Closing Photo Taken");
+makeVocab("RadioGroup", "Context/Review/All_Below_Relationship_Indicated", "All Below Relationship Indicated");
+makeVocab("RadioGroup", "Context/Review/Trench_Supervisor_Review", "Trench Supervisor Review");
+makeVocab("RadioGroup", "Context/Review/Site_Director_Review", "Site Director Review");
+makeVocab("DropDown", "Context/Vars/Target_Spit_Thickness", "Target Spit Thickness");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Profile_Aspect", "Profile Aspect");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Elevation_Determination", "Elevation Determination");
 makeVocab("RadioGroup", "Context_Group/Context_Group_Details/Start_Depth", "Start Depth");
@@ -608,35 +610,39 @@ validateFields(List fields, String format) {
 validateContext() {
   List f = new ArrayList(); // Fields to be validated
 
-  f.add(fieldPair("Context/Context_General_Information/Grid_Location_Reference", "{Grid_Location_Reference}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_ID", "{Context_ID}"));
-  f.add(fieldPair("Context/Context_General_Information/Lot_ID", "{Lot_ID}"));
-  f.add(fieldPair("Context/Context_General_Information/Wet_Sieved", "{Wet_Sieved}"));
-  f.add(fieldPair("Context/Context_General_Information/Excavation_Method", "{Excavation_Method}"));
-  f.add(fieldPair("Context/Context_General_Information/Excavators", "{Excavators}"));
-  f.add(fieldPair("Context/Context_General_Information/Your_Interpretation", "{Your_Interpretation}"));
-  f.add(fieldPair("Context/Context_General_Information/Artefacts_Present", "{Artefacts_Present}"));
-  f.add(fieldPair("Context/Context_General_Information/Elevation_Datum_Type", "{Elevation_Datum_Type}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_NW", "{Context_Highest_Level_NW}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_NE", "{Context_Highest_Level_NE}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_SE", "{Context_Highest_Level_SE}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_SW", "{Context_Highest_Level_SW}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Highest_Level_Ctr", "{Context_Highest_Level_Ctr}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_NW", "{Context_Lowest_Level_NW}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_NE", "{Context_Lowest_Level_NE}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_SE", "{Context_Lowest_Level_SE}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_SW", "{Context_Lowest_Level_SW}"));
-  f.add(fieldPair("Context/Context_General_Information/Context_Lowest_Level_Ctr", "{Context_Lowest_Level_Ctr}"));
-  f.add(fieldPair("Context/Context_General_Information/Min_Context_Thickness", "{Min_Context_Thickness}"));
-  f.add(fieldPair("Context/Context_General_Information/Max_Context_Thickness", "{Max_Context_Thickness}"));
-  f.add(fieldPair("Context/Context_General_Information/Final_Bucket_Count", "{Final_Bucket_Count}"));
-  f.add(fieldPair("Context/Context_General_Information/Deposit_Volume", "{Deposit_Volume}"));
-  f.add(fieldPair("Context/Context_Deposits/Soil_Munsell_Colour", "{Soil_Munsell_Colour}"));
-  f.add(fieldPair("Context/Context_Deposits/Soil_Moisture", "{Soil_Moisture}"));
-  f.add(fieldPair("Context/Context_Deposits/Soil_Compaction_Type", "{Soil_Compaction_Type}"));
-  f.add(fieldPair("Context/Context_Deposits/Deposit_Inclusions", "{Deposit_Inclusions}"));
-  f.add(fieldPair("Context/Context_Deposits/Natural_Formations", "{Natural_Formations}"));
-  f.add(fieldPair("Context/Context_Deposits/Disturbances", "{Disturbances}"));
+  f.add(fieldPair("Context/General/Site", "{Site}"));
+  f.add(fieldPair("Context/General/Area", "{Area}"));
+  f.add(fieldPair("Context/General/Square", "{Square}"));
+  f.add(fieldPair("Context/General/Subsquare", "{Subsquare}"));
+  f.add(fieldPair("Context/General/Context", "{Context}"));
+  f.add(fieldPair("Context/General/LOT_ID", "{LOT_ID}"));
+  f.add(fieldPair("Context/General/Wet_Sieved", "{Wet_Sieved}"));
+  f.add(fieldPair("Context/General/Excavation_Method", "{Excavation_Method}"));
+  f.add(fieldPair("Context/General/Excavators", "{Excavators}"));
+  f.add(fieldPair("Context/General/Your_Interpretation", "{Your_Interpretation}"));
+  f.add(fieldPair("Context/General/Elevation_Datum_Type", "{Elevation_Datum_Type}"));
+  f.add(fieldPair("Context/General/Context_Highest_Level_NW", "{Context_Highest_Level_NW}"));
+  f.add(fieldPair("Context/General/Context_Highest_Level_NE", "{Context_Highest_Level_NE}"));
+  f.add(fieldPair("Context/General/Context_Highest_Level_SE", "{Context_Highest_Level_SE}"));
+  f.add(fieldPair("Context/General/Context_Highest_Level_SW", "{Context_Highest_Level_SW}"));
+  f.add(fieldPair("Context/General/Context_Highest_Level_Ctr", "{Context_Highest_Level_Ctr}"));
+  f.add(fieldPair("Context/General/Context_Lowest_Level_NW", "{Context_Lowest_Level_NW}"));
+  f.add(fieldPair("Context/General/Context_Lowest_Level_NE", "{Context_Lowest_Level_NE}"));
+  f.add(fieldPair("Context/General/Context_Lowest_Level_SE", "{Context_Lowest_Level_SE}"));
+  f.add(fieldPair("Context/General/Context_Lowest_Level_SW", "{Context_Lowest_Level_SW}"));
+  f.add(fieldPair("Context/General/Context_Lowest_Level_Ctr", "{Context_Lowest_Level_Ctr}"));
+  f.add(fieldPair("Context/General/Min_Context_Thickness", "{Min_Context_Thickness}"));
+  f.add(fieldPair("Context/General/Max_Context_Thickness", "{Max_Context_Thickness}"));
+  f.add(fieldPair("Context/General/Artefacts_Present", "{Artefacts_Present}"));
+  f.add(fieldPair("Context/Deposit/Soil_Munsell_Colour", "{Soil_Munsell_Colour}"));
+  f.add(fieldPair("Context/Deposit/Soil_Moisture", "{Soil_Moisture}"));
+  f.add(fieldPair("Context/Deposit/Soil_Compaction_Type", "{Soil_Compaction_Type}"));
+  f.add(fieldPair("Context/Deposit/Deposit_Inclusions", "{Deposit_Inclusions}"));
+  f.add(fieldPair("Context/Deposit/Natural_Formations", "{Natural_Formations}"));
+  f.add(fieldPair("Context/Deposit/Disturbances", "{Disturbances}"));
+  f.add(fieldPair("Context/Samples/Bulk_Sample_Mapped", "{Bulk_Sample_Mapped}"));
+  f.add(fieldPair("Context/Review/Final_Bucket_Count", "{Final_Bucket_Count}"));
+  f.add(fieldPair("Context/Review/Deposit_Volume", "{Deposit_Volume}"));
   f.add(fieldPair("Context/Review/Trench_Supervisor_Review", "{Trench_Supervisor_Review}"));
   f.add(fieldPair("Context/Review/Date_Closed", "{Date_Closed}"));
 
@@ -647,7 +653,18 @@ validateContext() {
 validateContextGroup() {
   List f = new ArrayList(); // Fields to be validated
 
-  f.add(fieldPair("Context_Group/Context_Group_Details/Title", "{Title}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Site", "{Site}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Area", "{Area}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_ID", "{Context_Group_ID}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Depth", "{Depth}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Elevation", "{Elevation}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Geological_Unit_Number", "{Geological_Unit_Number}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth", "{Start_Depth}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth_Magnitude", "{Start_Depth}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Soil_Colour", "{Soil_Colour}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Disturbances", "{Disturbances}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Created_By", "{Created_By}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Creation_Date", "{Creation_Date}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -657,7 +674,8 @@ validateArtefactGroup() {
   List f = new ArrayList(); // Fields to be validated
 
   f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID", "{Artefact_Group_ID}"));
-  f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Class", "{Artefact_Class}"));
+  f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Quantity", "{Artefact_Quantity}"));
+  f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Weight", "{Artefact_Weight}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -668,7 +686,7 @@ validateSample() {
 
   f.add(fieldPair("Sample/Sample_General_Information/Sample_ID", "{Sample_ID}"));
   f.add(fieldPair("Sample/Sample_General_Information/Sample_Type", "{Sample_Type}"));
-  f.add(fieldPair("Sample/Sample_General_Information/Sample_Weight", "{Sample_Weight}"));
+  f.add(fieldPair("Sample/Sample_General_Information/Sample_Volume", "{Sample_Volume}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -678,19 +696,11 @@ validateSpecialFind() {
   List f = new ArrayList(); // Fields to be validated
 
   f.add(fieldPair("Special_Find/Special_Find_General_Information/Special_Find_ID", "{Special_Find_ID}"));
-  f.add(fieldPair("Special_Find/Special_Find_General_Information/Special_Find_Class", "{Special_Find_Class}"));
-
-  String validationMessage = validateFields(f, "PLAINTEXT");
-  showWarning("Validation Results", validationMessage);
-}
-
-validateSpecialFindLocation() {
-  List f = new ArrayList(); // Fields to be validated
-
-  f.add(fieldPair("Special_Find_Location/Special_Find_Location/X", "{X}"));
-  f.add(fieldPair("Special_Find_Location/Special_Find_Location/Y", "{Y}"));
-  f.add(fieldPair("Special_Find_Location/Special_Find_Location/Z", "{Z}"));
-  f.add(fieldPair("Special_Find_Location/Special_Find_Location/Notes", "{Notes}"));
+  f.add(fieldPair("Special_Find/Special_Find_General_Information/Special_Find_Name", "{Special_Find_Name}"));
+  f.add(fieldPair("Special_Find/Special_Find_Location/X", "{X}"));
+  f.add(fieldPair("Special_Find/Special_Find_Location/Y", "{Y}"));
+  f.add(fieldPair("Special_Find/Special_Find_Location/Z", "{Z}"));
+  f.add(fieldPair("Special_Find/Special_Find_Location/Notes", "{Notes}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -776,8 +786,8 @@ saveTabGroup(String tabgroup, String callback) {
 populateAuthorAndTimestamp(String tabgroup) {
   Map tabgroupToAuthor    = new HashMap();
   Map tabgroupToTimestamp = new HashMap();
-  tabgroupToAuthor.put("Context", "Context/Context_General_Information/author");
-  tabgroupToTimestamp.put("Context", "Context/Context_General_Information/timestamp");
+  tabgroupToAuthor.put("Context", "Context/General/author");
+  tabgroupToTimestamp.put("Context", "Context/General/timestamp");
 
   String authorPath    = tabgroupToAuthor.get(tabgroup);
   String timestampPath = tabgroupToTimestamp.get(tabgroup);
@@ -814,10 +824,6 @@ onShowSpecialFind () {
   // TODO: Add some things which should happen when this tabgroup is shown
   saveTabGroup("Special_Find");
 }
-onShowSpecialFindLocation () {
-  // TODO: Add some things which should happen when this tabgroup is shown
-  saveTabGroup("Special_Find_Location");
-}
 onShowPhotographLog () {
   // TODO: Add some things which should happen when this tabgroup is shown
   saveTabGroup("Photograph_Log");
@@ -828,7 +834,6 @@ addOnEvent("Context_Group", "show", "onShowContextGroup()");
 addOnEvent("Artefact_Group", "show", "onShowArtefactGroup()");
 addOnEvent("Sample", "show", "onShowSample()");
 addOnEvent("Special_Find", "show", "onShowSpecialFind()");
-addOnEvent("Special_Find_Location", "show", "onShowSpecialFindLocation()");
 addOnEvent("Photograph_Log", "show", "onShowPhotographLog()");
 
 onClickUserGuide () {
@@ -847,6 +852,10 @@ onClickContextTextureHelper () {
   // TODO: Add some things which should happen when this element is clicked
   newTab("Context/Texture_Helper", true);
 }
+onClickContextCreateRelationshipstoThisContext () {
+  // TODO: Add some things which should happen when this element is clicked
+  newTab("Relationship", true);
+}
 onClickContextNewSample () {
   // TODO: Add some things which should happen when this element is clicked
   String tabgroup = "Context";
@@ -854,8 +863,21 @@ onClickContextNewSample () {
     showToast("{You_must_save_this_tabgroup_first}");
     return;
   }
-  parentTabgroup = tabgroup;
+  parentTabgroup   = tabgroup;
+  parentTabgroup__ = tabgroup;
   newSample();
+  if (parentTabgroup__.equals("Context"))
+      copyLotId();
+}
+onClickContextNewPhotoLog () {
+  // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  parentTabgroup = tabgroup;
+  newPhotographLog();
 }
 onClickContextNewArtefactGroup () {
   // TODO: Add some things which should happen when this element is clicked
@@ -877,16 +899,6 @@ onClickContextNewSpecialFind () {
   parentTabgroup = tabgroup;
   newSpecialFind();
 }
-onClickContextNewPhotoLog () {
-  // TODO: Add some things which should happen when this element is clicked
-  String tabgroup = "Context";
-  if (isNull(getUuid(tabgroup))){
-    showToast("{You_must_save_this_tabgroup_first}");
-    return;
-  }
-  parentTabgroup = tabgroup;
-  newPhotographLog();
-}
 onClickContextGroupNewSample () {
   // TODO: Add some things which should happen when this element is clicked
   String tabgroup = "Context_Group";
@@ -894,8 +906,11 @@ onClickContextGroupNewSample () {
     showToast("{You_must_save_this_tabgroup_first}");
     return;
   }
-  parentTabgroup = tabgroup;
+  parentTabgroup   = tabgroup;
+  parentTabgroup__ = tabgroup;
   newSample();
+  if (parentTabgroup__.equals("Context"))
+      copyLotId();
 }
 onClickContextGroupNewPhotoLog () {
   // TODO: Add some things which should happen when this element is clicked
@@ -907,41 +922,34 @@ onClickContextGroupNewPhotoLog () {
   parentTabgroup = tabgroup;
   newPhotographLog();
 }
-onClickSpecialFindNewSpecialFindLocation () {
-  // TODO: Add some things which should happen when this element is clicked
-  String tabgroup = "Special_Find";
-  if (isNull(getUuid(tabgroup))){
-    showToast("{You_must_save_this_tabgroup_first}");
-    return;
-  }
-  parentTabgroup = tabgroup;
-  newSpecialFindLocation();
-}
 
 addOnEvent("User/User/Login", "click", "onClickUserLogin()");
 addOnEvent("User/User/Guide", "click", "onClickUserGuide()");
 addOnEvent("Control/Control/New_Context", "click", "onClickControlNewContext()");
 addOnEvent("Control/Control/New_Context_Group", "click", "onClickControlNewContextGroup()");
-addOnEvent("Context/Context_Deposits/Texture_Helper", "click", "onClickContextTextureHelper()");
-addOnEvent("Context/Context_Samples/New_Sample", "click", "onClickContextNewSample()");
-addOnEvent("Context/Context_Artefacts/New_Artefact_Group", "click", "onClickContextNewArtefactGroup()");
-addOnEvent("Context/Context_Artefacts/New_Special_Find", "click", "onClickContextNewSpecialFind()");
-addOnEvent("Context/Context_Attachments/New_Photo_Log", "click", "onClickContextNewPhotoLog()");
+addOnEvent("Context/General/Close_Context_and_Review", "click", "onClickContextCloseContextandReview()");
+addOnEvent("Context/Deposit/Texture_Helper", "click", "onClickContextTextureHelper()");
+addOnEvent("Context/Relationships/Create_Relationships_to_This_Context", "click", "onClickContextCreateRelationshipstoThisContext()");
+addOnEvent("Context/Samples/New_Sample", "click", "onClickContextNewSample()");
+addOnEvent("Context/Attachments/New_Photo_Log", "click", "onClickContextNewPhotoLog()");
+addOnEvent("Context/Artefacts/New_Artefact_Group", "click", "onClickContextNewArtefactGroup()");
+addOnEvent("Context/Artefacts/New_Special_Find", "click", "onClickContextNewSpecialFind()");
 addOnEvent("Context/Texture_Helper/Update_Texture", "click", "onClickContextUpdateTexture()");
 addOnEvent("Context_Group/Context_Group_Samples/New_Sample", "click", "onClickContextGroupNewSample()");
 addOnEvent("Context_Group/Context_Group_Attachments/New_Photo_Log", "click", "onClickContextGroupNewPhotoLog()");
-addOnEvent("Special_Find/Special_Find_Location/New_Special_Find_Location", "click", "onClickSpecialFindNewSpecialFindLocation()");
 
 
 /******************************************************************************/
 /*                   AUDIO, CAMERA, FILE AND VIDEO BINDINGS                   */
 /******************************************************************************/
-addOnEvent("Context/Context_Attachments/Button_Context_Photo", "click", "attachPictureTo(\"Context/Context_Attachments/Context_Photo\")");
+addOnEvent("Context/General/Button_Take_Opening_Photo", "click", "attachPictureTo(\"Context/General/Take_Opening_Photo\")");
+addOnEvent("Context/General/Button_Take_Closing_Photo", "click", "attachPictureTo(\"Context/General/Take_Closing_Photo\")");
+addOnEvent("Context/Attachments/Button_Context_Photo", "click", "attachPictureTo(\"Context/Attachments/Context_Photo\")");
 addOnEvent("Context_Group/Context_Group_Attachments/Button_Context_Group_Photo", "click", "attachPictureTo(\"Context_Group/Context_Group_Attachments/Context_Group_Photo\")");
 addOnEvent("Artefact_Group/Artefact_Group_General_Information/Button_Artefact_Group_Photo", "click", "attachPictureTo(\"Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Photo\")");
 addOnEvent("Sample/Sample_General_Information/Button_Sample_Photo", "click", "attachPictureTo(\"Sample/Sample_General_Information/Sample_Photo\")");
 addOnEvent("Special_Find/Special_Find_General_Information/Button_Special_Find_Photo", "click", "attachPictureTo(\"Special_Find/Special_Find_General_Information/Special_Find_Photo\")");
-addOnEvent("Context/Context_Attachments/Button_Context_Sketch", "click", "attachFileTo(\"Context/Context_Attachments/Context_Sketch\")");
+addOnEvent("Context/Attachments/Button_Context_Sketch", "click", "attachFileTo(\"Context/Attachments/Context_Sketch\")");
 addOnEvent("Context_Group/Context_Group_Attachments/Button_Context_Group_Sketch", "click", "attachFileTo(\"Context_Group/Context_Group_Attachments/Context_Group_Sketch\")");
 addOnEvent("Artefact_Group/Artefact_Group_General_Information/Button_Artefact_Group_Sketch", "click", "attachFileTo(\"Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Sketch\")");
 addOnEvent("Sample/Sample_General_Information/Button_Sample_Sketch", "click", "attachFileTo(\"Sample/Sample_General_Information/Sample_Sketch\")");
@@ -950,7 +958,7 @@ addOnEvent("Special_Find/Special_Find_General_Information/Button_Special_Find_Sk
 /******************************************************************************/
 /*                 BINDINGS FOR 'VIEW ATTACHED FILES' BUTTONS                 */
 /******************************************************************************/
-addOnEvent("Context/Context_Attachments/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Context\"))");
+addOnEvent("Context/Attachments/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Context\"))");
 addOnEvent("Context_Group/Context_Group_Attachments/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Context_Group\"))");
 addOnEvent("Artefact_Group/Artefact_Group_General_Information/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Artefact_Group\"))");
 addOnEvent("Sample/Sample_General_Information/View_Attached_Files", "click", "viewArchEntAttachedFiles(getUuid(\"Sample\"))");
@@ -961,7 +969,6 @@ addOnEvent("Special_Find/Special_Find_General_Information/View_Attached_Files", 
 /******************************************************************************/
 removeNavigationButtons() {
   removeNavigationButton("new");
-  removeNavigationButton("duplicate");
   removeNavigationButton("delete");
   removeNavigationButton("validate");
 }
@@ -974,7 +981,6 @@ addNavigationButtons(String tabgroup) {
   tabgroupsToValidate.add("Artefact_Group");
   tabgroupsToValidate.add("Sample");
   tabgroupsToValidate.add("Special_Find");
-  tabgroupsToValidate.add("Special_Find_Location");
   tabgroupsToValidate.add("Photograph_Log");
 
   addNavigationButton("new", new ActionButtonCallback() {
@@ -990,18 +996,6 @@ addNavigationButtons(String tabgroup) {
       }
     }
   }, "success");
-  addNavigationButton("duplicate", new ActionButtonCallback() {
-    actionOnLabel() {
-      "{Duplicate}";
-    }
-    actionOn() {
-      if(!isNull(getUuid(tabgroup))) {
-          duplicateRecord(tabgroup);
-      } else {
-          showWarning("{Warning}", "{This_record_is_unsaved_and_cannot_be_duplicated}");
-      }
-    }
-  }, "primary");
   addNavigationButton("delete", new ActionButtonCallback() {
     actionOnLabel() {
       "{Delete}";
@@ -1171,26 +1165,12 @@ loadEntityFrom(String entityID) {
 newContext(){
   String tabgroup = "Context";
 
-  String autoNumSource = "";
-  autoNumSource = getFieldValue("Control/Control/Next_Site_Code");
-  if (isNull(autoNumSource)) {
-    showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
-    return;
-  }
-  autoNumSource = getFieldValue("Control/Control/Next_Area_Code");
-  if (isNull(autoNumSource)) {
-    showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
-    return;
-  }
 
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
   populateAuthorAndTimestamp(tabgroup);
-  String autoNumDest = "";
-  autoNumDest = "Context/Context_General_Information/Site_Code";
-  incAutoNum(autoNumDest);
-  autoNumDest = "Context/Context_General_Information/Area_Code";
-  incAutoNum(autoNumDest);
+  copyTargetSpitThickness();
+  copyExcavators();
 }
 
 duplicateContext(){
@@ -1199,14 +1179,11 @@ duplicateContext(){
 
   disableAutoSave(tabgroup);
 
-  String autoNumDest = "";
-  autoNumDest = "Context/Context_General_Information/Site_Code";
-  incAutoNum(autoNumDest);
-  autoNumDest = "Context/Context_General_Information/Area_Code";
-  incAutoNum(autoNumDest);
 
-  populateFileList("Context/Context_Attachments/Context_Sketch", new ArrayList());
-  populateCameraPictureGallery("Context/Context_Attachments/Context_Photo", new ArrayList());
+  populateCameraPictureGallery("Context/General/Take_Opening_Photo", new ArrayList());
+  populateCameraPictureGallery("Context/General/Take_Closing_Photo", new ArrayList());
+  populateFileList("Context/Attachments/Context_Sketch", new ArrayList());
+  populateCameraPictureGallery("Context/Attachments/Context_Photo", new ArrayList());
 
 
   saveCallback = new SaveCallback() {
@@ -1237,6 +1214,8 @@ duplicateContext(){
   fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
     onFetch(result) {
       excludeAttributes = new ArrayList();
+      excludeAttributes.add("Take Opening Photo");
+      excludeAttributes.add("Take Closing Photo");
       excludeAttributes.add("Context Sketch");
       excludeAttributes.add("Context Photo");
 
@@ -1336,10 +1315,19 @@ reallyDeleteContextGroup(){
 newArtefactGroup(){
   String tabgroup = "Artefact_Group";
 
+  String autoNumSource = "";
+  autoNumSource = getFieldValue("Control/Control/Next_Artefact_Group_ID");
+  if (isNull(autoNumSource)) {
+    showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
+    return;
+  }
 
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
   populateAuthorAndTimestamp(tabgroup);
+  String autoNumDest = "";
+  autoNumDest = "Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID";
+  incAutoNum(autoNumDest);
 }
 
 duplicateArtefactGroup(){
@@ -1348,6 +1336,9 @@ duplicateArtefactGroup(){
 
   disableAutoSave(tabgroup);
 
+  String autoNumDest = "";
+  autoNumDest = "Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID";
+  incAutoNum(autoNumDest);
 
   populateFileList("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Sketch", new ArrayList());
   populateCameraPictureGallery("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Photo", new ArrayList());
@@ -1480,10 +1471,19 @@ reallyDeleteSample(){
 newSpecialFind(){
   String tabgroup = "Special_Find";
 
+  String autoNumSource = "";
+  autoNumSource = getFieldValue("Control/Control/Next_Special_Find_ID");
+  if (isNull(autoNumSource)) {
+    showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
+    return;
+  }
 
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
   populateAuthorAndTimestamp(tabgroup);
+  String autoNumDest = "";
+  autoNumDest = "Special_Find/Special_Find_General_Information/Special_Find_ID";
+  incAutoNum(autoNumDest);
 }
 
 duplicateSpecialFind(){
@@ -1492,6 +1492,9 @@ duplicateSpecialFind(){
 
   disableAutoSave(tabgroup);
 
+  String autoNumDest = "";
+  autoNumDest = "Special_Find/Special_Find_General_Information/Special_Find_ID";
+  incAutoNum(autoNumDest);
 
   populateFileList("Special_Find/Special_Find_General_Information/Special_Find_Sketch", new ArrayList());
   populateCameraPictureGallery("Special_Find/Special_Find_General_Information/Special_Find_Photo", new ArrayList());
@@ -1545,74 +1548,6 @@ deleteSpecialFind(){
 
 reallyDeleteSpecialFind(){
   String tabgroup = "Special_Find";
-  deleteArchEnt(getUuid(tabgroup));
-  cancelTabGroup(tabgroup, false);
-}
-
-newSpecialFindLocation(){
-  String tabgroup = "Special_Find_Location";
-
-
-  setUuid(tabgroup, null);
-  newTabGroup(tabgroup);
-  populateAuthorAndTimestamp(tabgroup);
-}
-
-duplicateSpecialFindLocation(){
-  String tabgroup = "Special_Find_Location";
-  String uuidOld = getUuid(tabgroup);
-
-  disableAutoSave(tabgroup);
-
-
-
-
-  saveCallback = new SaveCallback() {
-    onSave(uuid, newRecord) {
-      setUuid(tabgroup, uuid);
-      populateAuthorAndTimestamp(tabgroup);
-
-      Boolean enable_autosave = true;
-
-      fetchAll(getDuplicateRelnQuery(uuidOld), new FetchCallback(){
-        onFetch(result) {
-          Log.e("Module", result.toString());
-          makeDuplicateRelationships(result, getUuid(tabgroup));
-          showToast("{Duplicated_record}");
-          dialog.dismiss();
-        }
-      });
-
-      saveTabGroup(tabgroup, getUuid(tabgroup), null, null, new SaveCallback(){
-        onSave(autosaveUuid, autosaveNewRecord) {
-          setUuid(tabgroup, autosaveUuid);
-        }
-      }, enable_autosave);
-    }
-  };
-
-  String extraDupeAttributes = "";
-  fetchAll(getDuplicateAttributeQuery(getUuid(tabgroup), extraDupeAttributes), new FetchCallback(){
-    onFetch(result) {
-      excludeAttributes = new ArrayList();
-
-      duplicateTabGroup(tabgroup, null, getExtraAttributes(result), excludeAttributes, saveCallback);
-    }
-  });
-}
-
-deleteSpecialFindLocation(){
-  String tabgroup = "Special_Find_Location";
-
-  if (isNull(getUuid(tabgroup))) {
-    cancelTabGroup(tabgroup, true);
-  } else {
-    showAlert("{Confirm_Deletion}", "{Press_OK_to_Delete_this_Record}", "reallyDeleteSpecialFindLocation()", "doNotDelete()");
-  }
-}
-
-reallyDeleteSpecialFindLocation(){
-  String tabgroup = "Special_Find_Location";
   deleteArchEnt(getUuid(tabgroup));
   cancelTabGroup(tabgroup, false);
 }
@@ -1691,12 +1626,12 @@ doNotDelete(){
 }
 addOnEvent("User", "show", "removeNavigationButtons()");
 addOnEvent("Control", "show", "removeNavigationButtons()");
+addOnEvent("Relationship", "show", "removeNavigationButtons()");
 addOnEvent("Context", "show", "addNavigationButtons(\"Context\")");
 addOnEvent("Context_Group", "show", "addNavigationButtons(\"Context_Group\")");
 addOnEvent("Artefact_Group", "show", "addNavigationButtons(\"Artefact_Group\")");
 addOnEvent("Sample", "show", "addNavigationButtons(\"Sample\")");
 addOnEvent("Special_Find", "show", "addNavigationButtons(\"Special_Find\")");
-addOnEvent("Special_Find_Location", "show", "addNavigationButtons(\"Special_Find_Location\")");
 addOnEvent("Photograph_Log", "show", "addNavigationButtons(\"Photograph_Log\")");
 
 /******************************************************************************/
@@ -1715,7 +1650,6 @@ entityTypes.add(new NameValuePair("{Context_Group}", "Context Group"));
 entityTypes.add(new NameValuePair("{Artefact_Group}", "Artefact Group"));
 entityTypes.add(new NameValuePair("{Sample}", "Sample"));
 entityTypes.add(new NameValuePair("{Special_Find}", "Special Find"));
-entityTypes.add(new NameValuePair("{Special_Find_Location}", "Special Find Location"));
 entityTypes.add(new NameValuePair("{Photograph_Log}", "Photograph Log"));
 populateDropDown("Control/Search/Entity_Types", entityTypes);
 
@@ -1748,13 +1682,6 @@ search(){
   Log.d("Module", "Search query: " + searchQuery);
 }
 
-loadContextFrom(String uuid) {
-  String tabgroup = "Context";
-  setUuid(tabgroup, uuid);
-  if (isNull(uuid)) return;
-
-  showTabGroup(tabgroup, uuid);
-}
 
 loadContextGroupFrom(String uuid) {
   String tabgroup = "Context_Group";
@@ -1782,14 +1709,6 @@ loadSampleFrom(String uuid) {
 
 loadSpecialFindFrom(String uuid) {
   String tabgroup = "Special_Find";
-  setUuid(tabgroup, uuid);
-  if (isNull(uuid)) return;
-
-  showTabGroup(tabgroup, uuid);
-}
-
-loadSpecialFindLocationFrom(String uuid) {
-  String tabgroup = "Special_Find_Location";
   setUuid(tabgroup, uuid);
   if (isNull(uuid)) return;
 
@@ -1843,8 +1762,8 @@ addOnEvent("Control/Control", "show", "onShowAutonum()");
  */
 onShowAutonum() {
   List l = new ArrayList();
-  l.add("Control/Control/Next_Site_Code");
-  l.add("Control/Control/Next_Area_Code");
+  l.add("Control/Control/Next_Artefact_Group_ID");
+  l.add("Control/Control/Next_Special_Find_ID");
 
 
   for (ref : l) {
@@ -1870,8 +1789,8 @@ loadStartingId(String ref) {
 
 incAutoNum(String destPath) {
   Map destToSource = new HashMap();
-  destToSource.put("Context/Context_General_Information/Site_Code", "Control/Control/Next_Site_Code");
-  destToSource.put("Context/Context_General_Information/Area_Code", "Control/Control/Next_Area_Code");
+  destToSource.put("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID", "Control/Control/Next_Artefact_Group_ID");
+  destToSource.put("Special_Find/Special_Find_General_Information/Special_Find_ID", "Control/Control/Next_Special_Find_ID");
 
   String sourcePath = destToSource.get(destPath);
   String destVal    = getFieldValue(sourcePath);
@@ -1947,45 +1866,31 @@ populateMenuWithEntities (
 menus = new ArrayList();
 menus.add(new String[] {
   "DropDown",
-  "Context_Group/Context_Group_Contexts/Context",
-  "getUuid(\"Context_Group\")",
-  "Context",
-  ""
-});
-menus.add(new String[] {
-  "DropDown",
-  "Context/Context_Samples/Sample_List",
+  "Context/Samples/Sample_List",
   "getUuid(\"Context\")",
   "Sample",
   "Context - Sample",
 });
 menus.add(new String[] {
   "DropDown",
-  "Context/Context_Artefacts/Artefact_Group_List",
-  "getUuid(\"Context\")",
-  "Artefact Group",
-  "Context - Artefact Group",
-});
-menus.add(new String[] {
-  "DropDown",
-  "Context/Context_Artefacts/Special_Find_List",
-  "getUuid(\"Context\")",
-  "Special Find",
-  "Context - Special Find",
-});
-menus.add(new String[] {
-  "DropDown",
-  "Context/Context_Attachments/Load_Photo_Log",
+  "Context/Attachments/Load_Photo_Log",
   "getUuid(\"Context\")",
   "Photograph Log",
   "Context - Photograph Log",
 });
 menus.add(new String[] {
   "DropDown",
-  "Context_Group/Context_Group_Contexts/Contexts_In_Group",
-  "getUuid(\"Context_Group\")",
-  "Context",
-  "Context Group - Context",
+  "Context/Artefacts/Artefact_Group_List",
+  "getUuid(\"Context\")",
+  "Artefact Group",
+  "Context - Artefact Group",
+});
+menus.add(new String[] {
+  "DropDown",
+  "Context/Artefacts/Special_Find_List",
+  "getUuid(\"Context\")",
+  "Special Find",
+  "Context - Special Find",
 });
 menus.add(new String[] {
   "DropDown",
@@ -2000,13 +1905,6 @@ menus.add(new String[] {
   "getUuid(\"Context_Group\")",
   "Photograph Log",
   "Context Group - Photograph Log",
-});
-menus.add(new String[] {
-  "DropDown",
-  "Special_Find/Special_Find_Location/List_Special_Find_Location",
-  "getUuid(\"Special_Find\")",
-  "Special Find Location",
-  "Special Find - Special Find Location",
 });
 for (m : menus) {
   String viewType       = m[0];
@@ -2030,51 +1928,105 @@ for (m : menus) {
 
   addOnEvent(path, "show", functionCall);
 }
-addOnEvent("Context/Context_Samples/Sample_List", "click", "loadEntity(true)");
-addOnEvent("Context/Context_Artefacts/Artefact_Group_List", "click", "loadEntity(true)");
-addOnEvent("Context/Context_Artefacts/Special_Find_List", "click", "loadEntity(true)");
-addOnEvent("Context/Context_Attachments/Load_Photo_Log", "click", "loadEntity(true)");
-addOnEvent("Context_Group/Context_Group_Contexts/Context", "click", "loadEntity(true)");
-addOnEvent("Context_Group/Context_Group_Contexts/Contexts_In_Group", "click", "loadEntity(true)");
+addOnEvent("Context/Samples/Sample_List", "click", "loadEntity(true)");
+addOnEvent("Context/Attachments/Load_Photo_Log", "click", "loadEntity(true)");
+addOnEvent("Context/Artefacts/Artefact_Group_List", "click", "loadEntity(true)");
+addOnEvent("Context/Artefacts/Special_Find_List", "click", "loadEntity(true)");
 addOnEvent("Context_Group/Context_Group_Samples/Sample_List", "click", "loadEntity(true)");
 addOnEvent("Context_Group/Context_Group_Attachments/Load_Photo_Log", "click", "loadEntity(true)");
-addOnEvent("Special_Find/Special_Find_Location/List_Special_Find_Location", "click", "loadEntity(true)");
 
 /******************************************************************************/
 /*                             HANDWRITTEN LOGIC                              */
 /******************************************************************************/
 
+/***************************** UTILITY FUNCTIONS ******************************/
+
+// Regex-free string replacement function
+replaceFirst(haystack, needle, replacement) {
+  i = haystack.indexOf(needle);
+  if (i == -1)           return haystack;
+  if (needle.equals("")) return haystack;
+  pre  = haystack.substring(0, i                                   );
+  post = haystack.substring(   i+needle.length(), haystack.length());
+  return pre + replacement + post;
+}
+/*********************************** SHARED ***********************************/
+/* Shared functions which are not general enough to be placed in utils.bsh.   */
+/******************************************************************************/
+contextIdentifer = "";
+
+populateSquare(ref) {
+  String q = "";
+  q += " SELECT DISTINCT measure, measure";
+  q += " FROM            latestnondeletedaentvalue";
+  q += " JOIN            attributekey USING (attributeid)";
+  q += " WHERE           attributename = 'Square'";
+  q += " AND             measure IS NOT NULL";
+  q += " ORDER BY        measure;";
+
+  FetchCallback populate = new FetchCallback() {
+    onFetch(result) {
+      populateDropDown(ref, result);
+    }
+  };
+
+  fetchAll(q, populate);
+}
+
+populateLotLabel(lotRef) {
+  String tabGroup = "Context";
+  String uuid     = getUuid(tabGroup);
+
+  if (isNull(uuid)) return;
+
+  String q = "";
+  q += "SELECT uuid, response ";
+  q += "FROM latestnondeletedarchentformattedidentifiers ";
+  q += "WHERE uuid = '%s' ";
+  q  = replaceFirst(q, "%s", uuid);
+
+  cb = new FetchCallback() {
+    onFetch(result) {
+      contextIdentifer  = result.get(1);
+
+      populateWebViewHtml(lotRef, contextIdentifer);
+    }
+  };
+
+  fetchOne(q, cb);
+}
+
 /********************** CALCULATION OF VOL, MIN AND MAX ***********************/
-onEvent("Context/Context_General_Information/Calculate_Vol", "click", "calculateVol()");
-onEvent("Context/Context_General_Information/Calculate_Min", "click", "calculateMin()");
-onEvent("Context/Context_General_Information/Calculate_Max", "click", "calculateMax()");
+onEvent("Context/General/Calculate_Max", "click", "calculateMax()");
+onEvent("Context/General/Calculate_Min", "click", "calculateMin()");
+onEvent("Context/Review/Calculate_Vol",  "click", "calculateVol()");
 
 calculateVol() {
-    double count = isNull(getFieldValue("Context/Context_General_Information/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/Context_General_Information/Final_Bucket_Count"));
+    double count = isNull(getFieldValue("Context/Review/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/Review/Final_Bucket_Count"));
     double vol   = isNull(getFieldValue("Control/Control/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Control/Bucket_Volume"));
-    setFieldValue("Context/Context_General_Information/Deposit_Volume", vol*count);
+    setFieldValue("Context/Review/Deposit_Volume", vol*count);
 }
 
 calculateMin() {
     ArrayList vals = new ArrayList();
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_NW")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_NE")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_Ctr")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_SW")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_SE")));
     }
 
     if(vals.size() == 0) {
-        setFieldValue("Context/Context_General_Information/Min_Context_Thickness", 0);
+        setFieldValue("Context/General/Min_Context_Thickness", 0);
     } else {
         double min = vals.get(0);
         for(int i = 1; i < vals.size(); i++) {
@@ -2082,29 +2034,29 @@ calculateMin() {
                 min = vals.get(i);
             }
         }
-        setFieldValue("Context/Context_General_Information/Min_Context_Thickness", (double)Math.round(min * 100) / 100);
+        setFieldValue("Context/General/Min_Context_Thickness", (double)Math.round(min * 100) / 100);
     }
 }
 
 calculateMax() {
     ArrayList vals = new ArrayList();
-     if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NW")));
+     if(!isNull(getFieldValue("Context/General/Context_Highest_Level_NW")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_NW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_NW")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_NW")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_NE")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_NE")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_NE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_NE")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_NE")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_Ctr")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_Ctr")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_Ctr"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_Ctr")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_Ctr")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SW")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_SW")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_SW"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_SW")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_SW")));
     }
-    if(!isNull(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE"))) {
-        vals.add(Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/Context_General_Information/Context_Lowest_Level_SE")));
+    if(!isNull(getFieldValue("Context/General/Context_Highest_Level_SE")) && !isNull(getFieldValue("Context/General/Context_Lowest_Level_SE"))) {
+        vals.add(Double.parseDouble(getFieldValue("Context/General/Context_Highest_Level_SE")) - Double.parseDouble(getFieldValue("Context/General/Context_Lowest_Level_SE")));
     }
     if(vals.size() == 0) {
-        setFieldValue("Context/Context_General_Information/Max_Context_Thickness", 0);
+        setFieldValue("Context/General/Max_Context_Thickness", 0);
     } else {
         double max = vals.get(0);
         for(int i = 1; i < vals.size(); i++) {
@@ -2112,7 +2064,7 @@ calculateMax() {
                 max = vals.get(i);
             }
         }
-        setFieldValue("Context/Context_General_Information/Max_Context_Thickness", (double)Math.round(max * 100) / 100);
+        setFieldValue("Context/General/Max_Context_Thickness", (double)Math.round(max * 100) / 100);
     }
 }
 /******************************* CONTEXT REVIEW *******************************/
@@ -2158,8 +2110,6 @@ saveBucketVolume() {
   val = getFieldValue(src);
   insertIntoLocalSettings(src, val);
 }
-/********************** TARGET SPIT THICKNESS POPULATION ***********************/
-makeVocab("DropDown", "Control/Control/Target_Spit_Thickness", "Target Spit Thickness");
 /******************************* TEXTURE HELPER *******************************/
 /* @POSTPROC is used to override the autogenerated                            */
 /* `onClickContextUpdateTexture` definition.                                  */
@@ -2178,13 +2128,13 @@ onClickContextUpdateTexture(){
       onFetch(textureToSet) {
         if(!isNull(textureToSet)){
           Log.d("foo1", textureToSet.get(0));
-          setFieldValue("Context/Context_Deposits/Soil_Texture", textureToSet.get(0));
+          setFieldValue("Context/Deposit/Soil_Texture", textureToSet.get(0));
         } else {
           showToast("Match not found. You shouldn't see this, but select the result manually.");
         }
 
         cancelTab("Context/Texture_Helper", false);
-        showTab("Context/Context_Deposits");
+        showTab("Context/Deposit");
       }
     }
   );
@@ -2211,6 +2161,440 @@ noUserSelected() {
   msgHead = "No User Selected";
   msgBody = "A user must be selected in order to log in.";
   showWarning(msgHead, msgBody);
+}
+/************************* CONTEXT VALIDATION BUTTON **************************/
+// `validateContext()` is an auto-generated function
+addOnEvent("Context/Review/Validate", "click", "validateContext()");
+/*********************** CONTEXT-TO-SAMPLE INHERITANCE ************************/
+
+copyLotId() {
+  src = "Context/General/LOT_ID";
+  dst = "Sample/Sample_General_Information/LOT_ID";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}
+/********************** CLOSE CONTEXT AND REVIEW BUTTON ***********************/
+
+// Overrides the original function definition using @POSTPROC.
+onClickContextCloseContextandReview () {
+  showTab("Context/Review");
+}
+/**************************** LOT LABEL POPULATION ****************************/
+/* There are two cases to handle:                                             */
+/*   (a) When a Context is newly created.                                     */
+/*   (b) When a Context has been loaded.                                      */
+/*                                                                            */
+/* Case (a) is handled by on-click events which trigger                       */
+/* `populateLotLabelGeneral()`.                                               */
+/*                                                                            */
+/* Case (b) is handled by a callback to `showTabGroup`. This is implemented   */
+/* by overwriting the auto-generated function `loadContextFrom` using         */
+/* @POSTPROC.                                                                 */
+/******************************************************************************/
+addOnEvent("Context", "show", "populateLotLabelGeneral()");
+
+CONTEXT_IDENTIFIER_REFS = new ArrayList();
+
+CONTEXT_IDENTIFIER_REFS.add("Context/General/Site");
+CONTEXT_IDENTIFIER_REFS.add("Context/General/Area");
+CONTEXT_IDENTIFIER_REFS.add("Context/General/Square");
+CONTEXT_IDENTIFIER_REFS.add("Context/General/Subsquare");
+CONTEXT_IDENTIFIER_REFS.add("Context/General/Context");
+CONTEXT_IDENTIFIER_REFS.add("Context/General/LOT_ID");
+
+for (ref : CONTEXT_IDENTIFIER_REFS) {
+  String onFocus = "";
+  String onBlur  = "populateLotLabelGeneral()";
+
+  onFocus(ref, onFocus, onBlur);
+}
+
+populateLotLabelGeneral() {
+  String lotRef = "Context/General/Lot_Label";
+  populateLotLabel(lotRef);
+}
+
+loadContextFrom(String uuid) {
+  String tabgroup = "Context";
+  setUuid(tabgroup, uuid);
+  if (isNull(uuid)) return;
+
+  FetchCallback cb = new FetchCallback() {
+    onFetch(result) {
+      populateLotLabelGeneral();
+    }
+  };
+  showTabGroup(tabgroup, uuid, cb);
+}
+/*********************** CONTROL-TO-GENERAL INHERITANCE ***********************/
+/* These functions are triggered when a new context is created, using         */
+/* @POSTPROC.                                                                 */
+/******************************************************************************/
+makeVocab("DropDown", "Control/Control/Target_Spit_Thickness", "Target Spit Thickness");
+
+copyTargetSpitThickness() {
+  src = "Control/Control/Target_Spit_Thickness";
+  dst = "Context/Vars/Target_Spit_Thickness";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}
+
+copyExcavators() {
+  src = "Control/Control/Excavators";
+  dst = "Context/General/Excavators";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}
+/******************************* SEARCH REVIEW ********************************/
+addOnEvent("Control"                      , "show"  , "populateSearchSquare()");
+addOnEvent("Control/Review"               , "show"  , "searchReview()");
+addOnEvent("Control/Review/Entity_List"   , "click" , "loadEntity()");
+addOnEvent("Control/Review/Search"        , "click" , "searchReview()");
+addOnEvent("Control/Review/Square"        , "click" , "clearSearchReview()");
+
+clearSearchReview(){
+  setFieldValue("Control/Review/Square","");
+}
+
+searchReview(){
+  String tabgroup      = "Control";
+  String refEntityList = tabgroup + "/Review/Entity_List";
+  String refSquare     = tabgroup + "/Review/Square";
+
+  String square = getFieldValue(refSquare);
+  String q = "";
+  q += "SELECT uuid, response  ";
+  q += "  FROM latestNonDeletedArchEntFormattedIdentifiers   ";
+  q += " WHERE uuid IN (SELECT uuid ";
+  q += "        FROM latestnondeletedaentvalue  ";
+  q += "        JOIN attributekey USING (attributeid) ";
+  q += "        LEFT OUTER JOIN vocabulary USING (vocabid, attributeid) ";
+  q += "        WHERE uuid IN (   SELECT uuid  ";
+  q += "                     FROM latestnondeletedaentvalue JOIN attributekey USING (attributeid) ";
+  q += "                  WHERE attributename = 'Square' ";
+  q += "                    AND measure = '"+square+"' ";
+  q += "                )   ";
+  q += "        AND (attributename IN ('Site Director Review', 'Trench Supervisor Review') ";
+  q += "        AND (vocabname = '{No}' OR vocabname IS null)) ";
+  q += "      ) ";
+  q += " ORDER BY response ";
+  q += "  LIMIT ? ";
+  q += " OFFSET ? ";
+
+  populateCursorList(refEntityList, q, 25);
+  refreshTabgroupCSS(tabgroup);
+}
+
+populateSearchSquare() {
+  String ref = "Control/Review/Square";
+  populateSquare(ref);
+}
+/******************************* RELATIONSHIPS ********************************/
+/* Context-to-Context relationships.                                          */
+/* TODO: Make sure that globals are cleared these tab groups are left.        */
+/* equivalently, make sure that globals are initialised when this tab group   */
+/* is entered.                                                                */
+/******************************************************************************/
+String WEB_REL_DESC_FMT      = "%s <u>&nbsp;%s&nbsp;</u> <u>&nbsp;%s&nbsp;</u>";
+String WEB_REL_DESC_FILL     = "?";
+String WEB_REL_NONE          = "<i>None</i>";
+String WEB_REL_BLANK         = "&nbsp;";
+
+getSelectedRelationshipComponent(String arg) {
+  arg = arg.toLowerCase();
+
+  String REF_REL_TYPE = "Relationship/Relationships/Relationship_Type";
+
+  String   val       = getFieldValue(REF_REL_TYPE);
+  String[] arguments = null;
+  if (val == null)
+      return null;
+  else
+      arguments = val.split("~!~");
+
+  String   relationshipName = arguments[0];
+  String   parentRole       = arguments[1];
+  String   childRole        = arguments[2];
+
+  if      (arg.equals("name"))   return relationshipName;
+  else if (arg.equals("parent")) return parentRole;
+  else if (arg.equals("child"))  return childRole;
+  else                           return null;
+}
+
+//////////////////// FUNCTIONS AFFECTING CONTEXT TAB GROUP /////////////////////
+addOnEvent("Context",                                    "show",  "clearSelectedEntity()");
+addOnEvent("Context",                                    "show",  "populateExistingRelationships()");
+addOnEvent("Context/Relationships/Load_Related_Context", "click", "loadRelatedEntity()");
+
+String REF_SELECTED_REL_CONTEXT   = "Context/Relationships/Selected_Relationship";
+String selectedEntityUuid = null;
+
+populateExistingRelationships(){
+  String tabGroup    = "Context";
+  String currentUuid = getUuid(tabGroup);
+  String refExistingRelationships = "Context/Relationships/Existing_Relationships_to_This_Context";
+
+  String q = "";
+  q += "SELECT childuuid, parentparticipatesverb||' '||response ";
+  q += "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers on (childuuid = uuid) ";
+  q += "  JOIN createdmodifiedatby USING (uuid) ";
+  q += " WHERE relationshipid in (SELECT relationshipid  ";
+  q += "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid)  ";
+  q += "                           WHERE relntypename not like 'Context%') ";
+  q += "   and parentuuid = '"+currentUuid+"' ";
+  q += "   and parentaenttypename = 'Context' ";
+  q += " ORDER BY createdat desc ";
+  q += " LIMIT ? OFFSET ?";
+
+  populateCursorList(refExistingRelationships, q, 25);
+  refreshTabgroupCSS(tabGroup);
+}
+
+clearSelectedEntity() {
+
+  populateWebViewHtml(REF_SELECTED_REL_CONTEXT, WEB_REL_NONE);
+}
+
+// TODO: Link me
+selectEntity() {
+  selectedEntityUuid = getListItemValue();
+
+  String q = "";
+  q += "SELECT uuid, response  ";
+  q += "  FROM latestNonDeletedArchEntFormattedIdentifiers   ";
+  q += "WHERE  uuid = '%s'";
+  q  = replaceFirst(q, "%s", selectedEntityUuid);
+
+  FetchCallback populate = new FetchCallback() {
+    onFetch(result) {
+      selectedEntityIdentifer = result.get(0).get(0);
+      populateWebViewHtml(REF_SELECTED_REL_CONTEXT, selectedEntityIdentifer);
+    }
+  };
+
+  fetchAll(q, populate);
+}
+
+loadRelatedEntity() {
+
+}
+
+////////////////// FUNCTIONS AFFECTING RELATIONSHIP TAB GROUP //////////////////
+addOnEvent("Relationship",                                      "show",  "populateProposedRelationship()");
+addOnEvent("Relationship",                                      "show",  "populateRelationshipSquare()");
+addOnEvent("Relationship",                                      "show",  "populateRelationshipType()");
+addOnEvent("Relationship/Relationships/Add_Relationship",       "click", "relateContext()");
+addOnEvent("Relationship/Relationships/Delete_Relationship",    "click", "deleteRelationship()");
+addOnEvent("Relationship/Relationships/Existing_Relationships", "click", "selectExistingRelationship()");
+addOnEvent("Relationship/Relationships/Relationship_Type",      "click", "populateProposedRelationship()");
+addOnEvent("Relationship/Relationships/Search",                 "click", "populateProposedRelationship()");
+addOnEvent("Relationship/Relationships/Search",                 "click", "searchRelationship()");
+addOnEvent("Relationship/Relationships/Search",                 "show",  "searchRelationship()");
+addOnEvent("Relationship/Relationships/Unrelated_Contexts",     "click", "selectProposedChild()");
+
+String selectedRelId           = null;
+String proposedChildUuid       = null;
+String proposedChildIdentifier = null;
+
+String REF_PROPOSED_REL              = "Relationship/Relationships/Proposed_Relationship";
+String REF_SELECTED_REL_RELATIONSHIP = "Relationship/Relationships/Selected_Relationship";
+
+populateRelationshipSquare() {
+  String ref = "Relationship/Relationships/Square";
+  populateSquare(ref);
+}
+
+populateRelationshipType() {
+  refRelationshipType = "Relationship/Relationships/Relationship_Type";
+
+  String q = "";
+  q += "SELECT relntypename||'~!~'||coalesce(nullif(parent||'~!~'||child,'~!~'),relntypename||'~!~'||relntypename) as relntypeid, coalesce(nullif(parent,''), relntypename) as name, relntypeid ";
+  q += "  FROM relntype ";
+  q += " WHERE relntypename not like '%Context%' ";
+  q += "   AND relntypename not like '%Special Find%' ";
+  q += " UNION ";
+  q += " SELECT relntypename||'~!~'||coalesce(nullif(child||'~!~'||parent,'~!~'),relntypename||'~!~'||relntypename), coalesce(nullif(child,''), relntypename) as name, relntypeid ";
+  q += "  FROM relntype ";
+  q += " WHERE relntypename not like '%Context%' ";
+  q += "   AND relntypename not like '%Special Find%' ";
+  q += " ORDER BY relntypeid, name";
+
+  FetchCallback populate = new FetchCallback() {
+    onFetch(result) {
+      showWarning("" + result.get(0).size(), result + "");
+      populateDropDown(refRelationshipType, result);
+    }
+  };
+
+  fetchAll(q, populate);
+}
+
+populateProposedRelationship() {
+  String identifierFrom;
+  String relationship;
+  String identifierTo;
+
+  identifierFrom = contextIdentifer; // Defined in logic/shared.bsh
+  relationship   = getSelectedRelationshipComponent("parent");
+  identifierTo   = proposedChildIdentifier;
+
+  if (isNull(identifierFrom)) identifierFrom = WEB_REL_DESC_FILL;
+  if (isNull(relationship  )) relationship   = WEB_REL_DESC_FILL;
+  if (isNull(identifierTo  )) identifierTo   = WEB_REL_DESC_FILL;
+
+  String webviewHtml = WEB_REL_DESC_FMT;
+  webviewHtml = replaceFirst(webviewHtml, "%s", identifierFrom);
+  webviewHtml = replaceFirst(webviewHtml, "%s", relationship  );
+  webviewHtml = replaceFirst(webviewHtml, "%s", identifierTo  );
+
+  populateWebViewHtml(REF_PROPOSED_REL, webviewHtml);
+}
+
+searchRelationship() {
+  String parentTabGroup = "Context";
+  String parentUuid     = getUuid(parentTabGroup);
+
+  String tabGroup     = "Relationship";
+  String refUnrelated = tabGroup + "/Relationships/Unrelated_Contexts";
+  String refRelated   = tabGroup + "/Relationships/Existing_Relationships";
+  String refSquare    = tabGroup + "/Relationships/Square";
+
+  String square     = getFieldValue(refSquare);
+  String parentRole = getSelectedRelationshipComponent("parent");
+  String unrelatedQ = "";
+  String relatedQ   = "";
+
+  unrelatedQ += " SELECT 'unrelated' || char(0) || uuid || char(0) || response, response  ";
+  unrelatedQ += "   FROM latestNonDeletedArchEntFormattedIdentifiers   ";
+  unrelatedQ += "  WHERE uuid IN (SELECT uuid ";
+  unrelatedQ += "         FROM latestnondeletedaentvalue  ";
+  unrelatedQ += "         JOIN attributekey USING (attributeid) ";
+  unrelatedQ += "         WHERE uuid IN (   SELECT uuid  ";
+  unrelatedQ += "                             FROM latestnondeletedaentvalue JOIN attributekey USING (attributeid) ";
+  unrelatedQ += "                            WHERE attributename = 'Square' ";
+  unrelatedQ += "                              AND measure = '"+square+"' ";
+  unrelatedQ += "                              and uuid not in (select childuuid ";
+  unrelatedQ += "                                                 from parentchild ";
+  unrelatedQ += "                                                where parentuuid = '"+parentUuid+"' ";
+  unrelatedQ += "                                                  and parentparticipatesverb != '"+parentRole+"')";
+  unrelatedQ += "                              AND uuid != '"+parentUuid+"'";
+  unrelatedQ += "                       )   ";
+  unrelatedQ += "                ) ";
+  unrelatedQ += "  ORDER BY response ";
+  unrelatedQ += "  LIMIT ? OFFSET ?";
+
+  relatedQ += "SELECT 'related' || char(0) || relationshipid || char(0) || parentparticipatesverb||' '||response, parentparticipatesverb||' '||response ";
+  relatedQ += "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers on (childuuid = uuid) ";
+  relatedQ += "  JOIN createdmodifiedatby USING (uuid) ";
+  relatedQ += " WHERE relationshipid in (SELECT relationshipid  ";
+  relatedQ += "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid)  ";
+  relatedQ += "                           WHERE relntypename not like 'Context%') ";
+  relatedQ += "   and parentuuid = '"+parentUuid+"' ";
+  relatedQ += "   and parentaenttypename = 'Context' ";
+  relatedQ += " ORDER BY createdat desc ";
+  relatedQ += " LIMIT ? OFFSET ? ";
+
+  proposedChildUuid       = null;
+  proposedChildIdentifier = null;
+  populateCursorList(refUnrelated, unrelatedQ, 25);
+  populateCursorList(refRelated,   relatedQ,   25);
+}
+
+selectProposedChild() {
+  String val = getListItemValue();
+  if (isNull(val)) return;
+  String[] arguments = val.split(SEP); // `SEP` defined by autogen as \0
+  String   listName  = arguments[0];
+  if (!listName.equals("unrelated")) return;
+
+  proposedChildUuid       = arguments[1];
+  proposedChildIdentifier = arguments[2];
+
+  populateProposedRelationship();
+}
+
+relateContext() {
+  String parentTabGroup = "Context";
+
+  String relName        = getSelectedRelationshipComponent("name");
+  String parentUuid     = getUuid(parentTabGroup);
+  String childUuid      = proposedChildUuid;
+  String parentRole     = getSelectedRelationshipComponent("parent");
+  String childRole      = getSelectedRelationshipComponent("child");
+  String callback       = "relateContextSucceeded()";
+
+  if (isNull(parentUuid)) {
+    String msgHead = "Logic Error";
+    String msgBody = "Something happened that never should.";
+    showWarning(msgHead, msgBody);
+    return;
+  }
+  if (isNull(childUuid)) {
+    showToast("No Context selected");
+    return;
+  }
+
+  saveEntitiesToHierRel(
+      relName,
+      parentUuid, childUuid,
+      childRole,  parentRole,
+      callback
+  );
+}
+
+relateContextSucceeded() {
+  proposedChildUuid       = null;
+  proposedChildIdentifier = null;
+
+  populateWebViewHtml(REF_PROPOSED_REL, WEB_REL_BLANK);
+
+  searchRelationship();
+}
+
+selectExistingRelationship() {
+  String val = getListItemValue();
+  if (isNull(val)) return;
+
+  String[] arguments = val.split(SEP); // `SEP` defined by autogen as \0
+  String   listName  = arguments[0];
+  if (!listName.equals("related")) return;
+
+  selectedRelId         = arguments[1];
+  selectedRelIdentifier = arguments[2];
+
+  populateWebViewHtml(REF_SELECTED_REL_RELATIONSHIP, selectedRelIdentifier);
+}
+
+deleteRelationship() {
+  if (isNull(selectedRelId)) {
+    showToast("No relationship selected");
+    return;
+  }
+
+  String q = "";
+  q += " INSERT INTO aentreln (uuid, relationshipid, deleted, participatesverb, userid)";
+  q += " SELECT uuid, relationshipid, 'true', participatesverb, '"+userid+"'";
+  q += " FROM latestnondeletedaentreln";
+  q += " WHERE relationshipid = '"+selectedRelId+"'";
+
+  DeleteCallback cb = new DeleteCallback() {
+    onDelete(uuid) {
+      deleteRelationshipSuceeded();
+    }
+  };
+
+  fetchOne(q);
+  deleteRel(selectedRelId, cb);
+}
+
+deleteRelationshipSuceeded() {
+  selectedRelId         = null;
+  selectedRelIdentifier = null;
+
+  populateWebViewHtml(REF_SELECTED_REL_RELATIONSHIP, WEB_REL_NONE);
+
+  searchRelationship();
 }
 
 /******************************************************************************/

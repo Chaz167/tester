@@ -27,9 +27,6 @@
             </RelationshipElement>
             <RelationshipElement>
               <description/>
-            </RelationshipElement>
-            <RelationshipElement>
-              <description/>
               <parent/>
               <child/>
             </RelationshipElement>
@@ -48,10 +45,12 @@
             <Control>
               <New_Context/>
               <New_Context_Group/>
-              <Next_Site_Code/>
-              <Next_Area_Code/>
+              <Next_Artefact_Group_ID/>
+              <Next_Special_Find_ID/>
               <Target_Spit_Thickness/>
               <Bucket_Volume/>
+              <Mesh_Size_mm/>
+              <Excavators/>
             </Control>
             <Search>
               <Colgroup_0>
@@ -65,28 +64,43 @@
               <Entity_Types/>
               <Entity_List/>
             </Search>
-          </Control>
-          <Context>
-            <Context_General_Information>
+            <Review>
               <Colgroup_0>
                 <Col_0>
-                  <Site_Code/>
+                  <Square/>
                 </Col_0>
                 <Col_1>
-                  <Area_Code/>
+                  <Search/>
+                </Col_1>
+              </Colgroup_0>
+              <Entity_List/>
+            </Review>
+          </Control>
+          <Context>
+            <General>
+              <Colgroup_0>
+                <Col_0>
+                  <Site/>
+                </Col_0>
+                <Col_1>
+                  <Area/>
                 </Col_1>
               </Colgroup_0>
               <Colgroup_1>
                 <Col_0>
-                  <Grid_Location_Reference/>
+                  <Square/>
                 </Col_0>
                 <Col_1>
-                  <Context_ID/>
+                  <Subsquare/>
                 </Col_1>
                 <Col_2>
-                  <Lot_ID/>
+                  <Context/>
                 </Col_2>
+                <Col_3>
+                  <LOT_ID/>
+                </Col_3>
               </Colgroup_1>
+              <Lot_Label/>
               <Colgroup_2>
                 <Col_0>
                   <timestamp/>
@@ -95,6 +109,7 @@
                   <Wet_Sieved/>
                 </Col_1>
               </Colgroup_2>
+              <Surface_Area/>
               <Colgroup_3>
                 <Col_0>
                   <Excavation_Method/>
@@ -105,7 +120,6 @@
               </Colgroup_3>
               <Your_Interpretation/>
               <Context_Comments/>
-              <Artefacts_Present/>
               <Elevation_Datum_Type/>
               <Colgroup_4>
                 <Col_0>
@@ -115,6 +129,8 @@
                   <Context_Highest_Level_SE/>
                   <Context_Highest_Level_SW/>
                   <Context_Highest_Level_Ctr/>
+                  <Take_Opening_Photo/>
+                  <Button_Take_Opening_Photo/>
                 </Col_0>
                 <Col_1>
                   <Guide_Closing/>
@@ -123,9 +139,10 @@
                   <Context_Lowest_Level_SE/>
                   <Context_Lowest_Level_SW/>
                   <Context_Lowest_Level_Ctr/>
+                  <Take_Closing_Photo/>
+                  <Button_Take_Closing_Photo/>
                 </Col_1>
               </Colgroup_4>
-              <Target_Spit_Thickness/>
               <Colgroup_5>
                 <Col_0>
                   <Min_Context_Thickness/>
@@ -142,22 +159,11 @@
                   <Calculate_Max/>
                 </Col_1>
               </Colgroup_6>
-              <Colgroup_7>
-                <Col_0>
-                  <Final_Bucket_Count/>
-                </Col_0>
-                <Col_1>
-                  <Deposit_Volume/>
-                </Col_1>
-              </Colgroup_7>
-              <Calculate_Vol/>
-              <Colgroup_8>
-                <Col_0>
-                  <author/>
-                </Col_0>
-              </Colgroup_8>
-            </Context_General_Information>
-            <Context_Deposits>
+              <Close_Context_and_Review/>
+              <Artefacts_Present/>
+              <author/>
+            </General>
+            <Deposit>
               <Colgroup_0>
                 <Col_0>
                   <Soil_Munsell_Colour/>
@@ -186,45 +192,26 @@
                   <Disturbances/>
                 </Col_2>
               </Colgroup_2>
-            </Context_Deposits>
-            <Context_Relationships_to_Other_Contexts>
-              <Guide_0/>
+            </Deposit>
+            <Relationships>
+              <Create_Relationships_to_This_Context/>
               <Colgroup_0>
                 <Col_0>
-                  <This_Context/>
+                  <Existing_Relationships_to_This_Context/>
                 </Col_0>
                 <Col_1>
-                  <Relationship/>
+                  <Selected_Relationship/>
+                  <Load_Related_Context/>
+                  <Delete_Relationship/>
                 </Col_1>
-                <Col_2>
-                  <To_Context/>
-                </Col_2>
               </Colgroup_0>
-              <Relate_Contexts/>
-              <Associated_Entites/>
-              <Remove_Relationship/>
-              <Show_Relationship/>
-              <Guide_1/>
-              <Add_Context_Group/>
-              <Guide_2/>
-              <Existing_And_Unrelated_Context_Groups/>
-              <Add_To_Context_Group/>
-              <Guide_3/>
-              <Context_Group_List/>
-              <Show_Context_Group/>
-              <Remove_From_Context_Group/>
-            </Context_Relationships_to_Other_Contexts>
-            <Context_Samples>
+            </Relationships>
+            <Samples>
               <New_Sample/>
+              <Bulk_Sample_Mapped/>
               <Sample_List/>
-            </Context_Samples>
-            <Context_Artefacts>
-              <New_Artefact_Group/>
-              <Artefact_Group_List/>
-              <New_Special_Find/>
-              <Special_Find_List/>
-            </Context_Artefacts>
-            <Context_Attachments>
+            </Samples>
+            <Attachments>
               <Context_Sketch/>
               <Button_Context_Sketch/>
               <Context_Photo/>
@@ -233,36 +220,53 @@
               <Guide/>
               <New_Photo_Log/>
               <Load_Photo_Log/>
-            </Context_Attachments>
+            </Attachments>
+            <Artefacts>
+              <New_Artefact_Group/>
+              <Artefact_Group_List/>
+              <New_Special_Find/>
+              <Special_Find_List/>
+            </Artefacts>
             <Texture_Helper>
               <Soil_Texture_Helper/>
               <Update_Texture/>
             </Texture_Helper>
-            <Map>
-              <Map/>
-            </Map>
             <Review>
-              <Bulk_Sample_Mapped/>
+              <Validate/>
+              <Colgroup_0>
+                <Col_0>
+                  <Final_Bucket_Count/>
+                </Col_0>
+                <Col_1>
+                  <Deposit_Volume/>
+                </Col_1>
+              </Colgroup_0>
+              <Calculate_Vol/>
+              <Closing_Photo_Taken/>
+              <All_Below_Relationship_Indicated/>
               <Trench_Supervisor_Review/>
               <Site_Director_Review/>
-              <Colgroup_0>
+              <Colgroup_1>
                 <Col_0>
                   <Date_Closed/>
                 </Col_0>
                 <Col_1>
                   <Close/>
                 </Col_1>
-              </Colgroup_0>
+              </Colgroup_1>
             </Review>
+            <Vars>
+              <Target_Spit_Thickness/>
+            </Vars>
           </Context>
           <Context_Group>
             <Context_Group_Details>
               <Colgroup_0>
                 <Col_0>
-                  <Site_Code/>
+                  <Site/>
                 </Col_0>
                 <Col_1>
-                  <Area_Code/>
+                  <Area/>
                 </Col_1>
                 <Col_2>
                   <Context_Group_ID/>
@@ -320,15 +324,6 @@
                 </Col_1>
               </Colgroup_4>
             </Context_Group_Details>
-            <Context_Group_Contexts>
-              <Not_Yet_Implemented/>
-              <Guide/>
-              <Context/>
-              <Add_Context_to_Context_Group/>
-              <Contexts_In_Group/>
-              <Load_Context_and_Exit_Context_Group/>
-              <Remove_Context_From_Context_Group/>
-            </Context_Group_Contexts>
             <Context_Group_Samples>
               <New_Sample/>
               <Sample_List/>
@@ -348,7 +343,7 @@
             <Artefact_Group_General_Information>
               <Colgroup_0>
                 <Col_0>
-                  <Context_ID/>
+                  <Context/>
                 </Col_0>
                 <Col_1>
                   <Artefact_Group_ID/>
@@ -372,7 +367,7 @@
                   <Sample_ID/>
                 </Col_0>
                 <Col_1>
-                  <Context_ID/>
+                  <LOT_ID/>
                 </Col_1>
               </Colgroup_0>
               <Sample_Type/>
@@ -391,7 +386,7 @@
             <Special_Find_General_Information>
               <Colgroup_0>
                 <Col_0>
-                  <Context_ID/>
+                  <Context/>
                 </Col_0>
                 <Col_1>
                   <Special_Find_ID/>
@@ -408,12 +403,6 @@
               <View_Attached_Files/>
             </Special_Find_General_Information>
             <Special_Find_Location>
-              <New_Special_Find_Location/>
-              <List_Special_Find_Location/>
-            </Special_Find_Location>
-          </Special_Find>
-          <Special_Find_Location>
-            <Special_Find_Location>
               <Colgroup_0>
                 <Col_0>
                   <X/>
@@ -427,50 +416,82 @@
               </Colgroup_0>
               <Notes/>
             </Special_Find_Location>
-          </Special_Find_Location>
+          </Special_Find>
           <Photograph_Log>
             <Photograph_Log>
-              <Context_ID/>
+              <Context/>
               <Photograph_Reference_ID/>
               <Looking_Toward/>
               <Scene_Type/>
             </Photograph_Log>
           </Photograph_Log>
+          <Relationship>
+            <Relationships>
+              <Colgroup_0>
+                <Col_0>
+                  <Square/>
+                </Col_0>
+                <Col_1>
+                  <Relationship_Type/>
+                </Col_1>
+              </Colgroup_0>
+              <Search/>
+              <Colgroup_1>
+                <Col_0>
+                  <Add_Relationship/>
+                  <Proposed_Relationship/>
+                </Col_0>
+                <Col_1>
+                  <Delete_Relationship/>
+                  <Selected_Relationship/>
+                </Col_1>
+              </Colgroup_1>
+              <Colgroup_2>
+                <Col_0>
+                  <Unrelated_Contexts/>
+                </Col_0>
+                <Col_1>
+                  <Existing_Relationships/>
+                </Col_1>
+              </Colgroup_2>
+            </Relationships>
+          </Relationship>
           <logic/>
         </faims>
       </instance>
-      <bind type="decimal" nodeset="/faims/Control/Control/Next_Site_Code"/>
-      <bind type="decimal" nodeset="/faims/Control/Control/Next_Area_Code"/>
+      <bind type="decimal" nodeset="/faims/Control/Control/Next_Artefact_Group_ID"/>
+      <bind type="decimal" nodeset="/faims/Control/Control/Next_Special_Find_ID"/>
       <bind type="decimal" nodeset="/faims/Control/Control/Bucket_Volume"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_0/Col_0/Site_Code"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_0/Col_1/Area_Code"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_0/Context_Highest_Level_NW"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_0/Context_Highest_Level_NE"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_0/Context_Highest_Level_SE"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_0/Context_Highest_Level_SW"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_0/Context_Highest_Level_Ctr"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_1/Context_Lowest_Level_NW"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_1/Context_Lowest_Level_NE"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_1/Context_Lowest_Level_SE"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_1/Context_Lowest_Level_SW"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_4/Col_1/Context_Lowest_Level_Ctr"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_5/Col_0/Min_Context_Thickness"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_6/Col_0/Max_Context_Thickness"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_7/Col_0/Final_Bucket_Count"/>
-      <bind type="decimal" nodeset="/faims/Context/Context_General_Information/Colgroup_7/Col_1/Deposit_Volume"/>
+      <bind type="decimal" nodeset="/faims/Control/Control/Mesh_Size_mm"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_0/Context_Highest_Level_NW"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_0/Context_Highest_Level_NE"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_0/Context_Highest_Level_SE"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_0/Context_Highest_Level_SW"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_0/Context_Highest_Level_Ctr"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_1/Context_Lowest_Level_NW"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_1/Context_Lowest_Level_NE"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_1/Context_Lowest_Level_SE"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_1/Context_Lowest_Level_SW"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_4/Col_1/Context_Lowest_Level_Ctr"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_5/Col_0/Min_Context_Thickness"/>
+      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_6/Col_0/Max_Context_Thickness"/>
+      <bind type="decimal" nodeset="/faims/Context/Review/Colgroup_0/Col_0/Final_Bucket_Count"/>
+      <bind type="decimal" nodeset="/faims/Context/Review/Colgroup_0/Col_1/Deposit_Volume"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Depth"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_0/UTM_Easting"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_1/UTM_Northing"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Elevation"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_2/Col_1/Start_Depth_Magnitude"/>
+      <bind type="decimal" nodeset="/faims/Artefact_Group/Artefact_Group_General_Information/Colgroup_0/Col_1/Artefact_Group_ID"/>
       <bind type="decimal" nodeset="/faims/Artefact_Group/Artefact_Group_General_Information/Artefact_Quantity"/>
       <bind type="decimal" nodeset="/faims/Artefact_Group/Artefact_Group_General_Information/Artefact_Weight"/>
       <bind type="string" nodeset="/faims/Artefact_Group/Artefact_Group_General_Information/Artefact_Group_Comment"/>
       <bind type="decimal" nodeset="/faims/Sample/Sample_General_Information/Sample_Weight"/>
       <bind type="decimal" nodeset="/faims/Sample/Sample_General_Information/Sample_Volume"/>
-      <bind type="decimal" nodeset="/faims/Special_Find_Location/Special_Find_Location/Colgroup_0/Col_0/X"/>
-      <bind type="decimal" nodeset="/faims/Special_Find_Location/Special_Find_Location/Colgroup_0/Col_1/Y"/>
-      <bind type="decimal" nodeset="/faims/Special_Find_Location/Special_Find_Location/Colgroup_0/Col_2/Z"/>
+      <bind type="decimal" nodeset="/faims/Special_Find/Special_Find_General_Information/Colgroup_0/Col_1/Special_Find_ID"/>
+      <bind type="decimal" nodeset="/faims/Special_Find/Special_Find_Location/Colgroup_0/Col_0/X"/>
+      <bind type="decimal" nodeset="/faims/Special_Find/Special_Find_Location/Colgroup_0/Col_1/Y"/>
+      <bind type="decimal" nodeset="/faims/Special_Find/Special_Find_Location/Colgroup_0/Col_2/Z"/>
     </model>
   </h:head>
   <h:body>
@@ -530,11 +551,11 @@
         <trigger ref="New_Context_Group">
           <label>{New_Context_Group}</label>
         </trigger>
-        <input ref="Next_Site_Code" faims_style_class="required">
-          <label>{Next_Site_Code}</label>
+        <input ref="Next_Artefact_Group_ID" faims_style_class="required">
+          <label>{Next_Artefact_Group_ID}</label>
         </input>
-        <input ref="Next_Area_Code" faims_style_class="required">
-          <label>{Next_Area_Code}</label>
+        <input ref="Next_Special_Find_ID" faims_style_class="required">
+          <label>{Next_Special_Find_ID}</label>
         </input>
         <select1 ref="Target_Spit_Thickness">
           <label>{Target_Spit_Thickness}</label>
@@ -545,6 +566,12 @@
         </select1>
         <input ref="Bucket_Volume">
           <label>{Bucket_Volume}</label>
+        </input>
+        <input ref="Mesh_Size_mm">
+          <label>{Mesh_Size__mm_}</label>
+        </input>
+        <input ref="Excavators">
+          <label>{Excavators}</label>
         </input>
       </group>
       <group ref="Search" faims_scrollable="false">
@@ -579,23 +606,52 @@
           </item>
         </select1>
       </group>
-    </group>
-    <group ref="Context" faims_archent_type="Context">
-      <label>{Context}</label>
-      <group ref="Context_General_Information">
-        <label>{Context_General_Information}</label>
+      <group ref="Review" faims_scrollable="false">
+        <label>{Review}</label>
         <group ref="Colgroup_0" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Site_Code" faims_attribute_name="Site Code">
-              <label>{Site_Code}</label>
+            <select1 ref="Square">
+              <label>{Square}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
+          </group>
+          <group ref="Col_1" faims_style="large">
+            <label/>
+            <trigger ref="Search">
+              <label>{Search}</label>
+            </trigger>
+          </group>
+        </group>
+        <select1 appearance="compact" ref="Entity_List">
+          <label>{Entity_List}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+      </group>
+    </group>
+    <group ref="Context" faims_archent_type="Context">
+      <label>{Context}</label>
+      <group ref="General">
+        <label>{General}</label>
+        <group ref="Colgroup_0" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <input faims_attribute_type="measure" ref="Site" faims_attribute_name="Site" faims_style_class="required">
+              <label>{Site}</label>
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Area_Code" faims_attribute_name="Area Code">
-              <label>{Area_Code}</label>
+            <input faims_attribute_type="measure" ref="Area" faims_attribute_name="Area" faims_style_class="required">
+              <label>{Area}</label>
             </input>
           </group>
         </group>
@@ -603,23 +659,36 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Grid_Location_Reference" faims_attribute_name="Grid Location Reference" faims_style_class="required">
-              <label>{Grid_Location_Reference}</label>
+            <input faims_attribute_type="measure" ref="Square" faims_attribute_name="Square" faims_style_class="required">
+              <label>{Square}</label>
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Context_ID" faims_attribute_name="Context ID" faims_style_class="required">
-              <label>{Context_ID}</label>
-            </input>
+            <select1 faims_attribute_type="vocab" ref="Subsquare" faims_attribute_name="Subsquare" faims_style_class="required">
+              <label>{Subsquare}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
           </group>
           <group ref="Col_2" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Lot_ID" faims_attribute_name="Lot ID" faims_style_class="required">
-              <label>{Lot_ID}</label>
+            <input faims_attribute_type="measure" ref="Context" faims_attribute_name="Context" faims_style_class="required">
+              <label>{Context}</label>
+            </input>
+          </group>
+          <group ref="Col_3" faims_style="even">
+            <label/>
+            <input faims_attribute_type="measure" ref="LOT_ID" faims_attribute_name="LOT ID" faims_style_class="required">
+              <label>{LOT_ID}</label>
             </input>
           </group>
         </group>
+        <input faims_web="true" ref="Lot_Label">
+          <label>{Lot_Label}</label>
+        </input>
         <group ref="Colgroup_2" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
@@ -639,6 +708,13 @@
             </select1>
           </group>
         </group>
+        <select1 faims_attribute_type="vocab" ref="Surface_Area" faims_attribute_name="Surface Area">
+          <label>{Surface_Area}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
         <group ref="Colgroup_3" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
@@ -668,13 +744,6 @@
         <input faims_attribute_type="measure" ref="Context_Comments" faims_attribute_name="Context Comments">
           <label>{Context_Comments}</label>
         </input>
-        <select faims_attribute_type="vocab" ref="Artefacts_Present" faims_attribute_name="Artefacts Present" faims_style_class="required">
-          <label>{Artefacts_Present}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select>
         <select1 faims_attribute_type="vocab" ref="Elevation_Datum_Type" faims_attribute_name="Elevation Datum Type" faims_style_class="required">
           <label>{Elevation_Datum_Type}</label>
           <item>
@@ -704,6 +773,16 @@
             <input faims_attribute_type="measure" ref="Context_Highest_Level_Ctr" faims_attribute_name="Context Highest Level Ctr" faims_style_class="required">
               <label>{Context_Highest_Level_Ctr}</label>
             </input>
+            <select type="camera" faims_attribute_type="measure" faims_sync="true" ref="Take_Opening_Photo" faims_attribute_name="Take Opening Photo">
+              <label>{Take_Opening_Photo}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select>
+            <trigger ref="Button_Take_Opening_Photo">
+              <label>{Button_Take_Opening_Photo}</label>
+            </trigger>
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
@@ -725,15 +804,18 @@
             <input faims_attribute_type="measure" ref="Context_Lowest_Level_Ctr" faims_attribute_name="Context Lowest Level Ctr" faims_style_class="required">
               <label>{Context_Lowest_Level_Ctr}</label>
             </input>
+            <select type="camera" faims_attribute_type="measure" faims_sync="true" ref="Take_Closing_Photo" faims_attribute_name="Take Closing Photo">
+              <label>{Take_Closing_Photo}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select>
+            <trigger ref="Button_Take_Closing_Photo">
+              <label>{Button_Take_Closing_Photo}</label>
+            </trigger>
           </group>
         </group>
-        <select1 faims_attribute_type="vocab" ref="Target_Spit_Thickness" faims_attribute_name="Target Spit Thickness">
-          <label>{Target_Spit_Thickness}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
         <group ref="Colgroup_5" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
@@ -764,36 +846,22 @@
             </trigger>
           </group>
         </group>
-        <group ref="Colgroup_7" faims_style="orientation">
-          <label/>
-          <group ref="Col_0" faims_style="even">
-            <label/>
-            <input faims_attribute_type="measure" ref="Final_Bucket_Count" faims_attribute_name="Final Bucket Count" faims_style_class="required">
-              <label>{Final_Bucket_Count}</label>
-            </input>
-          </group>
-          <group ref="Col_1" faims_style="even">
-            <label/>
-            <input faims_attribute_type="measure" ref="Deposit_Volume" faims_attribute_name="Deposit Volume" faims_style_class="required">
-              <label>{Deposit_Volume}</label>
-            </input>
-          </group>
-        </group>
-        <trigger ref="Calculate_Vol">
-          <label>{Calculate_Vol}</label>
+        <trigger ref="Close_Context_and_Review">
+          <label>{Close_Context_and_Review}</label>
         </trigger>
-        <group ref="Colgroup_8" faims_style="orientation">
-          <label/>
-          <group ref="Col_0" faims_style="even">
-            <label/>
-            <input faims_attribute_type="measure" ref="author" faims_attribute_name="author">
-              <label>{author}</label>
-            </input>
-          </group>
-        </group>
+        <select faims_attribute_type="vocab" ref="Artefacts_Present" faims_attribute_name="Artefacts Present" faims_style_class="required">
+          <label>{Artefacts_Present}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <input ref="author" faims_attribute_name="author" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
+          <label>{author}</label>
+        </input>
       </group>
-      <group ref="Context_Deposits">
-        <label>{Context_Deposits}</label>
+      <group ref="Deposit">
+        <label>{Deposit}</label>
         <group ref="Colgroup_0" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
@@ -877,93 +945,49 @@
           </group>
         </group>
       </group>
-      <group ref="Context_Relationships_to_Other_Contexts" faims_hidden="true">
-        <label>{Context_Relationships_to_Other_Contexts}</label>
-        <input faims_web="true" ref="Guide_0">
-          <label>{Here_you_can_enter_relationships_between_contexts__eg__Above__and__Below___Select_the_Type_of_Relationship_on_the_left__the_related_Context_from_the_list_on_the_right__and_click_the_button__Relate_Contexts__}</label>
-        </input>
+      <group ref="Relationships">
+        <label>{Relationships}</label>
+        <trigger ref="Create_Relationships_to_This_Context">
+          <label>{Create_Relationships_to_This_Context}</label>
+        </trigger>
         <group ref="Colgroup_0" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input ref="This_Context" faims_certainty="false" faims_annotation="false">
-              <label>{This_Context}</label>
-            </input>
-          </group>
-          <group ref="Col_1" faims_style="even">
-            <label/>
-            <select1 ref="Relationship" faims_certainty="false" faims_annotation="false">
-              <label>{Relationship}</label>
+            <select1 appearance="compact" ref="Existing_Relationships_to_This_Context" faims_certainty="false" faims_annotation="false">
+              <label>{Existing_Relationships_to_This_Context}</label>
               <item>
                 <label>Options not loaded</label>
                 <value>0</value>
               </item>
             </select1>
           </group>
-          <group ref="Col_2" faims_style="even">
+          <group ref="Col_1" faims_style="even">
             <label/>
-            <input ref="To_Context" faims_certainty="false" faims_annotation="false">
-              <label>{To_Context}</label>
+            <input faims_web="true" ref="Selected_Relationship">
+              <label>{Selected_Relationship}</label>
             </input>
+            <trigger ref="Load_Related_Context">
+              <label>{Load_Related_Context}</label>
+            </trigger>
+            <trigger ref="Delete_Relationship">
+              <label>{Delete_Relationship}</label>
+            </trigger>
           </group>
         </group>
-        <trigger ref="Relate_Contexts">
-          <label>{Relate_Contexts}</label>
-        </trigger>
-        <select1 ref="Associated_Entites" faims_certainty="false" faims_annotation="false">
-          <label>{Associated_Entites}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <trigger ref="Remove_Relationship">
-          <label>{Remove_Relationship}</label>
-        </trigger>
-        <trigger ref="Show_Relationship">
-          <label>{Show_Relationship}</label>
-        </trigger>
-        <input faims_web="true" ref="Guide_1">
-          <label>{Here_you_can_group_contexts_into_a_single_Context_Group_}</label>
-        </input>
-        <trigger ref="Add_Context_Group">
-          <label>{Add_Context_Group}</label>
-        </trigger>
-        <input faims_web="true" ref="Guide_2">
-          <label>{You_can_add_this_Context_to_already_existing_Context_Group_}</label>
-        </input>
-        <select1 ref="Existing_And_Unrelated_Context_Groups" faims_certainty="false" faims_annotation="false">
-          <label>{Existing_And_Unrelated_Context_Groups}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <trigger ref="Add_To_Context_Group">
-          <label>{Add_To_Context_Group}</label>
-        </trigger>
-        <input faims_web="true" ref="Guide_3">
-          <label>{Here_are_the_Context_Groups_that_this_Context_belongs_to_}</label>
-        </input>
-        <select1 appearance="compact" ref="Context_Group_List" faims_certainty="false" faims_annotation="false">
-          <label>{Context_Group_List}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <trigger ref="Show_Context_Group">
-          <label>{Show_Context_Group}</label>
-        </trigger>
-        <trigger ref="Remove_From_Context_Group">
-          <label>{Remove_From_Context_Group}</label>
-        </trigger>
       </group>
-      <group ref="Context_Samples">
-        <label>{Context_Samples}</label>
+      <group ref="Samples">
+        <label>{Samples}</label>
         <trigger ref="New_Sample">
           <label>{New_Sample}</label>
         </trigger>
+        <select1 appearance="full" faims_attribute_type="vocab" ref="Bulk_Sample_Mapped" faims_attribute_name="Bulk Sample Mapped" faims_style_class="required">
+          <label>{Bulk_Sample_Mapped}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
         <select1 ref="Sample_List" faims_annotation="false" faims_certainty="false">
           <label>{Sample_List}</label>
           <item>
@@ -972,31 +996,8 @@
           </item>
         </select1>
       </group>
-      <group ref="Context_Artefacts">
-        <label>{Context_Artefacts}</label>
-        <trigger ref="New_Artefact_Group">
-          <label>{New_Artefact_Group}</label>
-        </trigger>
-        <select1 ref="Artefact_Group_List" faims_annotation="false" faims_certainty="false">
-          <label>{Artefact_Group_List}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <trigger ref="New_Special_Find">
-          <label>{New_Special_Find}</label>
-        </trigger>
-        <select1 ref="Special_Find_List" faims_annotation="false" faims_certainty="false">
-          <label>{Special_Find_List}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-      </group>
-      <group ref="Context_Attachments">
-        <label>{Context_Attachments}</label>
+      <group ref="Attachments">
+        <label>{Attachments}</label>
         <select type="file" faims_attribute_type="measure" faims_sync="true" ref="Context_Sketch" faims_attribute_name="Context Sketch">
           <label>{Context_Sketch}</label>
           <item>
@@ -1034,6 +1035,29 @@
           </item>
         </select1>
       </group>
+      <group ref="Artefacts">
+        <label>{Artefacts}</label>
+        <trigger ref="New_Artefact_Group">
+          <label>{New_Artefact_Group}</label>
+        </trigger>
+        <select1 ref="Artefact_Group_List" faims_annotation="false" faims_certainty="false">
+          <label>{Artefact_Group_List}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <trigger ref="New_Special_Find">
+          <label>{New_Special_Find}</label>
+        </trigger>
+        <select1 ref="Special_Find_List" faims_annotation="false" faims_certainty="false">
+          <label>{Special_Find_List}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+      </group>
       <group ref="Texture_Helper" faims_hidden="true">
         <label>{Texture_Helper}</label>
         <select1 faims_attribute_type="vocab" ref="Soil_Texture_Helper" faims_attribute_name="Soil Texture Helper">
@@ -1047,36 +1071,58 @@
           <label>{Update_Texture}</label>
         </trigger>
       </group>
-      <group ref="Map" faims_scrollable="false">
-        <label>{Map}</label>
-        <input faims_map="true" ref="Map">
-          <label/>
-        </input>
-      </group>
       <group ref="Review">
         <label>{Review}</label>
-        <select1 faims_attribute_type="vocab" ref="Bulk_Sample_Mapped" faims_attribute_name="Bulk Sample Mapped">
-          <label>{Bulk_Sample_Mapped}</label>
+        <trigger ref="Validate">
+          <label>{Validate}</label>
+        </trigger>
+        <group ref="Colgroup_0" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <input faims_attribute_type="measure" ref="Final_Bucket_Count" faims_attribute_name="Final Bucket Count" faims_style_class="required">
+              <label>{Final_Bucket_Count}</label>
+            </input>
+          </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <input faims_attribute_type="measure" ref="Deposit_Volume" faims_attribute_name="Deposit Volume" faims_style_class="required">
+              <label>{Deposit_Volume}</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Calculate_Vol">
+          <label>{Calculate_Vol}</label>
+        </trigger>
+        <select1 appearance="full" faims_attribute_type="vocab" ref="Closing_Photo_Taken" faims_attribute_name="Closing Photo Taken">
+          <label>{Closing_Photo_Taken}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select1>
-        <select1 faims_attribute_type="vocab" ref="Trench_Supervisor_Review" faims_attribute_name="Trench Supervisor Review" faims_style_class="required">
+        <select1 appearance="full" faims_attribute_type="vocab" ref="All_Below_Relationship_Indicated" faims_attribute_name="All Below Relationship Indicated">
+          <label>{All_Below_Relationship_Indicated}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <select1 appearance="full" faims_attribute_type="vocab" ref="Trench_Supervisor_Review" faims_attribute_name="Trench Supervisor Review" faims_style_class="required">
           <label>{Trench_Supervisor_Review}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select1>
-        <select1 faims_attribute_type="vocab" ref="Site_Director_Review" faims_attribute_name="Site Director Review">
+        <select1 appearance="full" faims_attribute_type="vocab" ref="Site_Director_Review" faims_attribute_name="Site Director Review">
           <label>{Site_Director_Review}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select1>
-        <group ref="Colgroup_0" faims_style="orientation">
+        <group ref="Colgroup_1" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
@@ -1092,6 +1138,16 @@
           </group>
         </group>
       </group>
+      <group ref="Vars" faims_hidden="true">
+        <label>{Vars}</label>
+        <select1 faims_attribute_type="vocab" ref="Target_Spit_Thickness" faims_attribute_name="Target Spit Thickness">
+          <label>{Target_Spit_Thickness}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+      </group>
     </group>
     <group ref="Context_Group" faims_archent_type="Context Group">
       <label>{Context_Group}</label>
@@ -1101,30 +1157,30 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Site_Code" faims_attribute_name="Site Code">
-              <label>{Site_Code}</label>
+            <input faims_attribute_type="measure" ref="Site" faims_attribute_name="Site" faims_style_class="required">
+              <label>{Site}</label>
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Area_Code" faims_attribute_name="Area Code">
-              <label>{Area_Code}</label>
+            <input faims_attribute_type="measure" ref="Area" faims_attribute_name="Area" faims_style_class="required">
+              <label>{Area}</label>
             </input>
           </group>
           <group ref="Col_2" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Context_Group_ID" faims_attribute_name="Context Group ID">
+            <input faims_attribute_type="measure" ref="Context_Group_ID" faims_attribute_name="Context Group ID" faims_style_class="required">
               <label>{Context_Group_ID}</label>
             </input>
           </group>
         </group>
-        <input faims_attribute_type="measure" ref="Title" faims_attribute_name="Title" faims_style_class="required">
+        <input faims_attribute_type="measure" ref="Title" faims_attribute_name="Title">
           <label>{Title}</label>
         </input>
         <input faims_attribute_type="measure" ref="Description" faims_attribute_name="Description">
           <label>{Description}</label>
         </input>
-        <input faims_attribute_type="measure" ref="Depth" faims_attribute_name="Depth">
+        <input faims_attribute_type="measure" ref="Depth" faims_attribute_name="Depth" faims_style_class="required">
           <label>{Depth}</label>
         </input>
         <input faims_attribute_type="measure" ref="Your_Discussion" faims_attribute_name="Your Discussion">
@@ -1155,7 +1211,7 @@
         <input faims_attribute_type="measure" ref="Datum" faims_attribute_name="Datum">
           <label>{Datum}</label>
         </input>
-        <input faims_attribute_type="measure" ref="Elevation" faims_attribute_name="Elevation">
+        <input faims_attribute_type="measure" ref="Elevation" faims_attribute_name="Elevation" faims_style_class="required">
           <label>{Elevation}</label>
         </input>
         <select1 faims_attribute_type="vocab" ref="Elevation_Determination" faims_attribute_name="Elevation Determination">
@@ -1165,14 +1221,14 @@
             <value>0</value>
           </item>
         </select1>
-        <input faims_attribute_type="measure" ref="Geological_Unit_Number" faims_attribute_name="Geological Unit Number">
+        <input faims_attribute_type="measure" ref="Geological_Unit_Number" faims_attribute_name="Geological Unit Number" faims_style_class="required">
           <label>{Geological_Unit_Number}</label>
         </input>
         <group ref="Colgroup_2" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <select1 appearance="full" faims_attribute_type="vocab" ref="Start_Depth" faims_attribute_name="Start Depth">
+            <select1 appearance="full" faims_attribute_type="vocab" ref="Start_Depth" faims_attribute_name="Start Depth" faims_style_class="required">
               <label>{Start_Depth}</label>
               <item>
                 <label>Options not loaded</label>
@@ -1182,7 +1238,7 @@
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input ref="Start_Depth_Magnitude" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false">
+            <input ref="Start_Depth_Magnitude" faims_attribute_name="Start Depth" faims_attribute_type="measure" faims_certainty="false" faims_annotation="false" faims_style_class="required">
               <label>{Start_Depth}</label>
             </input>
           </group>
@@ -1201,7 +1257,7 @@
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Soil_Colour" faims_attribute_name="Soil Colour">
+            <input faims_attribute_type="measure" ref="Soil_Colour" faims_attribute_name="Soil Colour" faims_style_class="required">
               <label>{Soil_Colour}</label>
             </input>
           </group>
@@ -1251,7 +1307,7 @@
         <input faims_attribute_type="measure" ref="Inclusions_Gravel_Fraction" faims_attribute_name="Inclusions Gravel Fraction">
           <label>{Inclusions_Gravel_Fraction}</label>
         </input>
-        <select faims_attribute_type="vocab" ref="Disturbances" faims_attribute_name="Disturbances">
+        <select faims_attribute_type="vocab" ref="Disturbances" faims_attribute_name="Disturbances" faims_style_class="required">
           <label>{Disturbances}</label>
           <item>
             <label>Options not loaded</label>
@@ -1276,49 +1332,17 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Created_By" faims_attribute_name="Created By">
+            <input faims_attribute_type="measure" ref="Created_By" faims_attribute_name="Created By" faims_style_class="required">
               <label>{Created_By}</label>
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Creation_Date" faims_attribute_name="Creation Date">
+            <input faims_attribute_type="measure" ref="Creation_Date" faims_attribute_name="Creation Date" faims_style_class="required">
               <label>{Creation_Date}</label>
             </input>
           </group>
         </group>
-      </group>
-      <group ref="Context_Group_Contexts">
-        <label>{Context_Group_Contexts}</label>
-        <input faims_web="true" ref="Not_Yet_Implemented">
-          <label>{This_tab_is_not_yet_implemented}</label>
-        </input>
-        <input faims_web="true" ref="Guide">
-          <label>{Click_to_select_a_Context_to_add_to_the_Context_Group}</label>
-        </input>
-        <select1 ref="Context" faims_annotation="false" faims_certainty="false">
-          <label>{Context}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <trigger ref="Add_Context_to_Context_Group">
-          <label>{Add_Context_to_Context_Group}</label>
-        </trigger>
-        <select1 ref="Contexts_In_Group" faims_annotation="false" faims_certainty="false">
-          <label>{Contexts_In_Group}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <trigger ref="Load_Context_and_Exit_Context_Group">
-          <label>{Load_Context_and_Exit_Context_Group}</label>
-        </trigger>
-        <trigger ref="Remove_Context_From_Context_Group">
-          <label>{Remove_Context_From_Context_Group}</label>
-        </trigger>
       </group>
       <group ref="Context_Group_Samples">
         <label>{Context_Group_Samples}</label>
@@ -1381,8 +1405,8 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Context_ID" faims_attribute_name="Context ID">
-              <label>{Context_ID}</label>
+            <input faims_attribute_type="measure" ref="Context" faims_attribute_name="Context">
+              <label>{Context}</label>
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
@@ -1392,17 +1416,17 @@
             </input>
           </group>
         </group>
-        <select1 faims_attribute_type="vocab" ref="Artefact_Class" faims_attribute_name="Artefact Class" faims_style_class="required">
+        <select1 faims_attribute_type="vocab" ref="Artefact_Class" faims_attribute_name="Artefact Class">
           <label>{Artefact_Class}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select1>
-        <input faims_attribute_type="measure" ref="Artefact_Quantity" faims_attribute_name="Artefact Quantity">
+        <input faims_attribute_type="measure" ref="Artefact_Quantity" faims_attribute_name="Artefact Quantity" faims_style_class="required">
           <label>{Artefact_Quantity}</label>
         </input>
-        <input faims_attribute_type="measure" ref="Artefact_Weight" faims_attribute_name="Artefact Weight">
+        <input faims_attribute_type="measure" ref="Artefact_Weight" faims_attribute_name="Artefact Weight" faims_style_class="required">
           <label>{Artefact_Weight}</label>
         </input>
         <input faims_attribute_type="measure" ref="Artefact_Group_Comment" faims_attribute_name="Artefact Group Comment">
@@ -1447,8 +1471,8 @@
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Context_ID" faims_attribute_name="Context ID">
-              <label>{Context_ID}</label>
+            <input faims_attribute_type="measure" ref="LOT_ID" faims_attribute_name="LOT ID">
+              <label>{LOT_ID}</label>
             </input>
           </group>
         </group>
@@ -1466,10 +1490,10 @@
             <value>0</value>
           </item>
         </select1>
-        <input faims_attribute_type="measure" ref="Sample_Weight" faims_attribute_name="Sample Weight" faims_style_class="required">
+        <input faims_attribute_type="measure" ref="Sample_Weight" faims_attribute_name="Sample Weight">
           <label>{Sample_Weight}</label>
         </input>
-        <input faims_attribute_type="measure" ref="Sample_Volume" faims_attribute_name="Sample Volume">
+        <input faims_attribute_type="measure" ref="Sample_Volume" faims_attribute_name="Sample Volume" faims_style_class="required">
           <label>{Sample_Volume}</label>
         </input>
         <input faims_attribute_type="measure" ref="Sample_Comments" faims_attribute_name="Sample Comments">
@@ -1508,8 +1532,8 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Context_ID" faims_attribute_name="Context ID">
-              <label>{Context_ID}</label>
+            <input faims_attribute_type="measure" ref="Context" faims_attribute_name="Context">
+              <label>{Context}</label>
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
@@ -1519,14 +1543,14 @@
             </input>
           </group>
         </group>
-        <select1 faims_attribute_type="vocab" ref="Special_Find_Class" faims_attribute_name="Special Find Class" faims_style_class="required">
+        <select1 faims_attribute_type="vocab" ref="Special_Find_Class" faims_attribute_name="Special Find Class">
           <label>{Special_Find_Class}</label>
           <item>
             <label>Options not loaded</label>
             <value>0</value>
           </item>
         </select1>
-        <input faims_attribute_type="measure" ref="Special_Find_Name" faims_attribute_name="Special Find Name">
+        <input faims_attribute_type="measure" ref="Special_Find_Name" faims_attribute_name="Special Find Name" faims_style_class="required">
           <label>{Special_Find_Name}</label>
         </input>
         <input faims_attribute_type="measure" ref="Special_Find_Description" faims_attribute_name="Special Find Description">
@@ -1559,22 +1583,6 @@
           <label>{View_Attached_Files}</label>
         </trigger>
       </group>
-      <group ref="Special_Find_Location" faims_scrollable="false">
-        <label>{Special_Find_Location}</label>
-        <trigger ref="New_Special_Find_Location">
-          <label>{New_Special_Find_Location}</label>
-        </trigger>
-        <select1 ref="List_Special_Find_Location" faims_annotation="false" faims_certainty="false">
-          <label>{List_Special_Find_Location}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-      </group>
-    </group>
-    <group ref="Special_Find_Location" faims_archent_type="Special Find Location">
-      <label>{Special_Find_Location}</label>
       <group ref="Special_Find_Location">
         <label>{Special_Find_Location}</label>
         <group ref="Colgroup_0" faims_style="orientation">
@@ -1607,8 +1615,8 @@
       <label>{Photograph_Log}</label>
       <group ref="Photograph_Log">
         <label>{Photograph_Log}</label>
-        <input faims_attribute_type="measure" ref="Context_ID" faims_attribute_name="Context ID">
-          <label>{Context_ID}</label>
+        <input faims_attribute_type="measure" ref="Context" faims_attribute_name="Context">
+          <label>{Context}</label>
         </input>
         <input faims_attribute_type="measure" ref="Photograph_Reference_ID" faims_attribute_name="Photograph Reference ID" faims_style_class="required">
           <label>{Photograph_Reference_ID}</label>
@@ -1627,6 +1635,82 @@
             <value>0</value>
           </item>
         </select1>
+      </group>
+    </group>
+    <group ref="Relationship">
+      <label>{Relationship}</label>
+      <group ref="Relationships" faims_scrollable="false">
+        <label>{Relationships}</label>
+        <group ref="Colgroup_0" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <select1 ref="Square">
+              <label>{Square}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
+          </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <select1 ref="Relationship_Type">
+              <label>{Relationship_Type}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
+          </group>
+        </group>
+        <trigger ref="Search">
+          <label>{Search}</label>
+        </trigger>
+        <group ref="Colgroup_1" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <trigger ref="Add_Relationship">
+              <label>{Add_Relationship}</label>
+            </trigger>
+            <input faims_web="true" ref="Proposed_Relationship">
+              <label>{Proposed_Relationship}</label>
+            </input>
+          </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <trigger ref="Delete_Relationship">
+              <label>{Delete_Relationship}</label>
+            </trigger>
+            <input faims_web="true" ref="Selected_Relationship">
+              <label>{Selected_Relationship}</label>
+            </input>
+          </group>
+        </group>
+        <group ref="Colgroup_2" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <select1 appearance="compact" ref="Unrelated_Contexts">
+              <label>{Unrelated_Contexts}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
+          </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <select1 appearance="compact" ref="Existing_Relationships">
+              <label>{Existing_Relationships}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
+          </group>
+        </group>
       </group>
     </group>
   </h:body>

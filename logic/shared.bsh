@@ -1,6 +1,7 @@
 /*********************************** SHARED ***********************************/
 /* Shared functions which are not general enough to be placed in utils.bsh.   */
 /******************************************************************************/
+contextIdentifer = "";
 
 populateSquare(ref) {
   String q = "";
@@ -8,6 +9,7 @@ populateSquare(ref) {
   q += " FROM            latestnondeletedaentvalue";
   q += " JOIN            attributekey USING (attributeid)";
   q += " WHERE           attributename = 'Square'";
+  q += " AND             measure IS NOT NULL";
   q += " ORDER BY        measure;";
 
   FetchCallback populate = new FetchCallback() {
@@ -23,7 +25,10 @@ populateLotLabel(lotRef) {
   String tabGroup = "Context";
   String uuid     = getUuid(tabGroup);
 
-  if (isNull(uuid)) return;
+  if (isNull(uuid)) {
+    populateWebViewHtml(lotRef, "&nbsp;");
+    return;
+  }
 
   String q = "";
   q += "SELECT uuid, response ";
@@ -33,9 +38,9 @@ populateLotLabel(lotRef) {
 
   cb = new FetchCallback() {
     onFetch(result) {
-      identifier  = result.get(1);
+      contextIdentifer  = result.get(1);
 
-      populateWebViewHtml(lotRef, identifier);
+      populateWebViewHtml(lotRef, contextIdentifer);
     }
   };
 

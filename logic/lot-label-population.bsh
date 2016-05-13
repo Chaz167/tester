@@ -3,7 +3,7 @@
 /*   (a) When a Context is newly created.                                     */
 /*   (b) When a Context has been loaded.                                      */
 /*                                                                            */
-/* Case (a) is handled by on-click events which trigger                       */
+/* Case (a) is handled by blur events which trigger                           */
 /* `populateLotLabelGeneral()`.                                               */
 /*                                                                            */
 /* Case (b) is handled by a callback to `showTabGroup`. This is implemented   */
@@ -29,8 +29,8 @@ for (ref : CONTEXT_IDENTIFIER_REFS) {
 }
 
 populateLotLabelGeneral() {
-  String lotRef = "Context/General/Lot_Label";
-  populateLotLabel(lotRef);
+  String lotRef = "Context/General/LOT_Label";
+  populateLotLabel(lotRef); // Defined in logic/shared.bsh
 }
 
 loadContextFrom(String uuid) {

@@ -9,25 +9,22 @@
 <rels>
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts</description>
-    <parent>Above</parent>
-    <child>Below</child>
+    <parent>is above</parent>
+    <child>is below</child>
   </RelationshipElement>
-  <RelationshipElement name="Adjacent to" type="bidirectional">
+  <RelationshipElement name="is adjacent to" type="bidirectional">
     <description>Implements adjacent to for contexts</description>
   </RelationshipElement>
   <RelationshipElement name="Contains - Contained By" type="hierarchical">
     <description>Implements a contains-containedby for contexts</description>
-    <parent>Contains</parent>
-    <child>Contained By</child>
+    <parent>contains</parent>
+    <child>is contained by</child>
   </RelationshipElement>
 </rels>
 
 <User f="nodata">
   <User f="noscroll">
-    <Users t="dropdown" f="user nocertainty noannotation">
-      <!--TODO: If a user is selected then set back to null, the Login button-->
-      <!--doesn't produce a validation error.-->
-    </Users>
+    <Users t="dropdown" f="user nocertainty noannotation"/>
     <Login t="button" l="Control"/>
     <Guide t="button" l="User/Help"/>
   </User>
@@ -117,11 +114,7 @@
         </str>
       </LOT_ID>
     </cols>
-    <Lot_Label t="webview">
-      <!--TODO: Set on blur of any identifier attribute or on tab show, to be
-           the record's identifier-->
-      <!--TODO: Make capitalisation consistent-->
-    </Lot_Label>
+    <LOT_Label t="webview"/>
     <cols>
       <timestamp>
         Date Opened
@@ -360,10 +353,7 @@
     </cols>
   </Deposit>
   <Relationships>
-    <Create_Relationships_to_This_Context t="button" l="Relationship">
-      <!--TODO: Notify user that they cannot proceed if they have not saved-->
-      <!--the current tab group-->
-    </Create_Relationships_to_This_Context>
+    <Create_Relationships_to_This_Context t="button" l="Relationship"/>
     <cols>
       <Existing_Relationships_to_This_Context t="list" f="nodata"/>
       <col>
@@ -977,13 +967,22 @@
 </Photograph_Log>
 
 <Relationship f="nodata">
-  <Relationships>
-    <Square            t="dropdown"/>
-    <Relationship_Type t="dropdown"/>
+  <Relationships f="noscroll">
+    <LOT_Label t="webview"/>
+    <cols>
+      <Square            t="dropdown"/>
+      <Relationship_Type t="dropdown"/>
+    </cols>
     <Search            t="button"/>
     <cols>
-      <Relationship_Description t="webview" f="nolabel"/>
-      <Add_Relationship         t="button"/>
+      <col>
+        <Add_Relationship      t="button"/>
+        <Proposed_Relationship t="webview"/>
+      </col>
+      <col>
+        <Delete_Relationship t="button"/>
+        <Selected_Relationship t="webview"/>
+      </col>
     </cols>
     <cols>
       <Unrelated_Contexts     t="list"/>

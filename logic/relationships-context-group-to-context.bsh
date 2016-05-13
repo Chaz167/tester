@@ -1,0 +1,159 @@
+/******************************* RELATIONSHIPS ********************************/
+/* Context Group to Context relationships.                                    */
+/* TODO:
+ * Copy functions
+ * Copy global vars
+ * Any strings containing refs should be modified
+ * Any identifiers referencing global vars should be modified
+ * onEvent -> addOnEvent
+ * Write out arch16n entries
+ *
+ * TODO: Remove the retarded auto save thing
+/******************************************************************************/
+addOnEvent("Context_Group/Context_Group_Contexts", "show", "populateContextGroupContextsArea();populateContextGroupRelatedContexts();");
+addOnEvent("Context_Group/Context_Group_Contexts/Populate_Target_Context", "delayclick", "populateWebViewHtml(\"Context_Group/Context_Group_Contexts/Selected_Entity\", WEB_REL_NONE); populateContextGroup();");
+addOnEvent("Context_Group/Context_Group_Contexts/Add_Context_to_Group"    , "delayclick" , "addToContextGroup()");
+addOnEvent("Context_Group/Context_Group_Contexts/Load_Context"   , "click" , "loadContextFromContextGroup()");
+addOnEvent("Context_Group/Context_Group_Contexts/Remove_Context_from_Group" , "click" , "removeFromContextGroup()");
+addOnEvent("Context_Group/Context_Group_Contexts/Contexts_in_Group" , "click" , "selectAssociatedEntityContextGroup()");
+
+String selectedEntityIdentifer = null;
+
+selectAssociatedEntityContextGroup() {
+    selectedEntityIdentifer = getListItemValue();
+    populateWebViewHtml("Context_Group/Context_Group_Contexts/Selected_Entity", selectedEntityIdentifer);
+}
+
+populateContextGroupContextsArea() {
+    populateSquare("Context_Group/Context_Group_Contexts/Square");
+    populateWebViewHtml("Context_Group/Context_Group_Contexts/Selected_Entity", WEB_REL_NONE);
+    selectedEntityIdentifer = null;
+}
+
+populateContextGroupRelatedContexts(){
+    String contextGroupQuery="SELECT childuuid, response "+
+                            "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers on (childuuid = uuid) "+
+                            "  JOIN createdmodifiedatby USING (uuid) "+
+                            " WHERE relationshipid in (SELECT relationshipid  "+
+                             "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid)  "+
+                             "                           WHERE relntypename = 'Context Group - Context') "+
+                            "   and parentuuid = '"+getUuid("Context_Group")+"' "+
+                            "   and parentaenttypename = 'Context Group' "+
+                            " ORDER BY CAST(response as integer) "+
+                            " limit ? offset ? ;";
+    populateCursorList(
+                "Context_Group/Context_Group_Contexts/Contexts_in_Group",
+                contextGroupQuery,
+                25
+        );
+
+    Log.d("foo", contextGroupQuery);
+    refreshTabgroupCSS("Context_Group");
+
+}
+
+addToContextGroup() {
+    if (isNull(getUuid("Context_Group"))) {
+        saveContextGroup();
+        showToast("{You_must_have_saved_your_entity}");
+        return;
+    }
+    String selectedContextID = getFieldValue("Context_Group/Context_Group_Contexts/Add_Additional_Context");
+    if (isNull(selectedContextID)) {
+      return;
+    }
+    String relSaveCallback = "populateContextGroup();populateContextGroupRelatedContexts();";
+    saveEntitiesToRel("Context Group - Context", selectedContextID, getUuid("Context_Group"), relSaveCallback);    
+}
+
+saveContextGroup(){
+    Boolean enable_autosave = true;
+    attributes = createAttributeList();
+    attributes.add(createEntityAttribute("Site Code", null, null, null, null));
+    saveTabGroup("Context_Group", getUuid("Context_Group"), null, attributes, new SaveCallback() {
+        onSave(uuid, newRecord) {
+            getUuid("Context_Group") = uuid;
+            if (newRecord) {
+              onContextGroupSaved();
+            }
+            populateContextGroup();
+        }
+        onError(message) {
+            showToast(message);
+        }
+    }, enable_autosave);
+}
+
+onContextGroupSaved(){
+    if(!isNull(setUuid("Context"))) {
+        saveEntitiesToRel("Context Group - Context", setUuid("Context"), getUuid("Context_Group"));
+    }
+}
+
+populateContextGroup() {
+  // TODO Brian: query to list avaliable contexts to add to the group based on search criteria, and query to list contexts in current group
+
+    String targetContext = getFieldValue("Context_Group/Context_Group_Contexts/Context");
+    String targetContextSquare = getFieldValue("Context_Group/Context_Group_Contexts/Square");
+
+    String targetContextQuery = "SELECT uuid, response "+
+                                "  FROM latestnondeletedarchentformattedidentifiers "+
+                                " WHERE (aenttypename='Legacy' "+
+                                "    OR (aenttypename = 'Context' "+
+                                "        AND ('null' = '"+targetContextSquare+"' "+
+                                "             OR uuid IN (SELECT uuid "+
+                                "                            FROM latestnondeletedaentvalue  "+
+                                "                            JOIN attributekey USING (attributeid) "+
+                                "                           WHERE attributename = 'Square' "+
+                                "                             AND vocabid = '"+targetContextSquare+"') "+
+                                "                ) "+
+                                "        )) "+
+                                "   AND uuid IN (SELECT uuid "+
+                                "                  FROM latestnondeletedaentvalue  "+
+                                "                  JOIN attributekey USING (attributeid) "+
+                                "                 WHERE attributename IN ('Context', 'LegacyIdentifier') "+
+                                "                   AND measure LIKE '"+targetContext+"'||'%' "+
+                                "                )         "+
+                                " ORDER BY CAST(response as integer); ";
+
+       //updateNonContextRelationshipBasedDropdown("Context_Group/Context_Group_Contexts/Add_Additional_Context", 'Context Group - Context', 'ContextGroup', getUuid("Context_Group"));
+//     //TODO: Discuss how to turn these into cursor lists. I don't think this scales well.
+
+        fetchAll(
+            targetContextQuery,
+            new FetchCallback() {
+                onFetch(result) {
+                    print(result);
+                    populateDropDown("Context_Group/Context_Group_Contexts/Add_Additional_Context", result);
+                }
+            }
+        );
+}
+
+removeFromContextGroup() {
+  String childuuid = selectedEntityIdentifer;
+  if (!isNull(childuuid)){
+    String relationshipidQuery = "select relationshipid from parentchild where parentuuid = '"+getUuid("Context_Group")+"' and childuuid = '"+childuuid+"';";
+    fetchOne(relationshipidQuery, new FetchCallback() {
+      onFetch(result) {
+        String deletequery = "insert into aentreln (uuid, relationshipid, deleted, participatesverb, userid) SELECT uuid, relationshipid, 'true', participatesverb, '"+userid+"' FROM latestnondeletedaentreln WHERE relationshipid = '"+result.get(0)+"';";
+        fetchOne(deletequery, null);
+        deleteRel(result.get(0));
+        populateWebViewHtml("Context_Group/Context_Group_Contexts/Selected_Entity", WEB_REL_NONE);
+        selectedEntityIdentifer = null;
+        populateContextGroupRelatedContexts();
+      }
+    });        
+  } else {
+    showWarning("{Nothing_Selected}", "{Please_select_a_child_entity_in_the_list}");
+  }
+}
+
+loadContextFromContextGroup(){
+    String childuuid = selectedEntityIdentifer;
+    if (!isNull(childuuid)){
+        loadEntityFrom(childuuid);
+    } else {
+        showWarning("{Nothing_Selected}", "{Please_select_a_child_entity_in_the_list}");
+    }
+}

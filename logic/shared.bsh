@@ -1,6 +1,8 @@
 /*********************************** SHARED ***********************************/
 /* Shared functions which are not general enough to be placed in utils.bsh.   */
 /******************************************************************************/
+String WEB_REL_NONE = "<i>None</i>";
+
 contextIdentifer = "";
 
 populateSquare(ref) {

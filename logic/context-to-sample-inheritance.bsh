@@ -2,7 +2,7 @@
 
 copyLotId() {
   src = "Context/General/LOT_ID";
-  dst = "Sample/Sample_General_Information/LOT_ID";
+  dst = "Sample/Sample_General_Information/Sample_LOT_ID";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }

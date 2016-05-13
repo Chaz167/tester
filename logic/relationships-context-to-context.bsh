@@ -6,7 +6,6 @@ addOnEvent("Relationship", "show", "onDisplayRelationship()");
 
 String WEB_REL_DESC_FMT      = "%s <u>&nbsp;%s&nbsp;</u> <u>&nbsp;%s&nbsp;</u>";
 String WEB_REL_DESC_FILL     = "?";
-String WEB_REL_NONE          = "<i>None</i>";
 String WEB_REL_BLANK         = "&nbsp;";
 
 String selectedRelId         = null;

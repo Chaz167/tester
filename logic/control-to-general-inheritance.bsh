@@ -2,17 +2,17 @@
 /* These functions are triggered when a new context is created, using         */
 /* @POSTPROC.                                                                 */
 /******************************************************************************/
-makeVocab("DropDown", "Control/Control/Target_Spit_Thickness", "Target Spit Thickness");
+makeVocab("DropDown", "Control/Defaults/Target_Spit_Thickness", "Target Spit Thickness");
 
 copyTargetSpitThickness() {
-  src = "Control/Control/Target_Spit_Thickness";
+  src = "Control/Defaults/Target_Spit_Thickness";
   dst = "Context/Vars/Target_Spit_Thickness";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
 
 copyExcavators() {
-  src = "Control/Control/Excavators";
+  src = "Control/Defaults/Excavators";
   dst = "Context/General/Excavators";
   val = getFieldValue(src);
   setFieldValue(dst, val);

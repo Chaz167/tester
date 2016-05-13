@@ -2,31 +2,31 @@
 /* Code to facilitate the loading and saving of the following fields in the   */
 /* local settings table.                                                      */
 /******************************************************************************/
-addOnEvent("Control/Control", "show", "loadTargetSpitThickness()");
-addOnEvent("Control/Control", "show", "loadBucketVolume()");
+addOnEvent("Control/Defaults", "show", "loadTargetSpitThickness()");
+addOnEvent("Control/Defaults", "show", "loadBucketVolume()");
 
 // Occurs on blur
-onFocus("Control/Control/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
-onFocus("Control/Control/Bucket_Volume",         "", "saveBucketVolume()");
+onFocus("Control/Defaults/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
+onFocus("Control/Defaults/Bucket_Volume",         "", "saveBucketVolume()");
 
 loadTargetSpitThickness() {
-  dst = "Control/Control/Target_Spit_Thickness";
+  dst = "Control/Defaults/Target_Spit_Thickness";
   setFieldValueFromLocalSettings(dst, dst);
 }
 
 saveTargetSpitThickness() {
-  src = "Control/Control/Target_Spit_Thickness";
+  src = "Control/Defaults/Target_Spit_Thickness";
   val = getFieldValue(src);
   insertIntoLocalSettings(src, val);
 }
 
 loadBucketVolume() {
-  dst = "Control/Control/Bucket_Volume";
+  dst = "Control/Defaults/Bucket_Volume";
   setFieldValueFromLocalSettings(dst, dst);
 }
 
 saveBucketVolume() {
-  src = "Control/Control/Bucket_Volume";
+  src = "Control/Defaults/Bucket_Volume";
   val = getFieldValue(src);
   insertIntoLocalSettings(src, val);
 }

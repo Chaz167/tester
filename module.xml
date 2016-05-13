@@ -1,12 +1,15 @@
 <?xml version="1.0" ?>
-<!--TODO: Double check that data schema properties have been preserved-->
-<!--TODO: Gotta implement that stupid relationship thing... Later.-->
-<!--TODO: Ensure module matches https://docs.google.com/spreadsheets/d/1pkCjgntx7EYTGpdyDV0xFLptdAiHokyMJIcDXk0jzQk/edit#gid=0 where necessary-->
-
 <!--@PREPROC:  ./proc/pre.sh-->
 <!--@POSTPROC: ./proc/post.sh-->
 <module suppressWarnings="true">
 <rels>
+  <RelationshipElement name="Context Group - Context" type="hierarchical">
+    <description>A 1-to-n relationship between the parent and its children, respectively.</description>
+    <parent>Parent Of</parent>
+    <child>Child Of</child>
+  </RelationshipElement>
+
+  <!--Context-to-Context relationships-->
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts</description>
     <parent>is above</parent>
@@ -38,7 +41,8 @@
     <New_Context       t="button" l="Context"/>
     <New_Context_Group t="button" l="Context_Group"/>
     <autonum/>
-    <!--TODO: Ensure these fields are actually inherited-->
+  </Control>
+  <Defaults>
     <Target_Spit_Thickness t="dropdown">
       <!--Populated from Context/Vars/Target_Spit_Thickness-->
     </Target_Spit_Thickness>
@@ -47,7 +51,7 @@
       Mesh Size (mm)
     </Mesh_Size_mm>
     <Excavators/>
-  </Control>
+  </Defaults>
   <search/>
   <Review f="noscroll">
     <cols>
@@ -335,7 +339,7 @@
           <opt>Other</opt>
         </opts>
       </Natural_Formations>
-      <Disturbances t="checkbox" f="notnull">
+      <Context_Disturbances t="checkbox" f="notnull">
         <desc>Disturbances evident in the deposit</desc>
         <opts>
           <opt>None</opt>
@@ -349,7 +353,7 @@
           <opt>Rootlets</opt>
           <opt>Other</opt>
         </opts>
-      </Disturbances>
+      </Context_Disturbances>
     </cols>
   </Deposit>
   <Relationships>
@@ -456,20 +460,20 @@
   <desc>A group of contexts.</desc>
   <Context_Group_Details>
     <cols>
-      <Site f="id notnull">
+      <Context_Group_Site f="id notnull">
         <str>
           <fmt>CTXGR-$2-</fmt>
           <app>-</app>
         </str>
         <desc>Short code to signify the excavation site and often the year of excavation.</desc>
-      </Site>
-      <Area f="id notnull">
+      </Context_Group_Site>
+      <Context_Group_Area f="id notnull">
         <str>
           <fmt>$2-</fmt>
           <app>-</app>
         </str>
         <desc>Area or Trench: the working subdivision of an archaeological site.</desc>
-      </Area>
+      </Context_Group_Area>
       <Context_Group_ID f="id notnull">
         <str>
           <fmt>$2</fmt>
@@ -558,12 +562,12 @@
       </Start_Depth_Magnitude>
     </cols>
     <cols>
-      <Soil_Munsell_Colour>
+      <Context_Group_Soil_Munsell_Colour>
         <desc>The Munsell Code for the soil colour. </desc>
         <opts>
           <!--@SOURCE: vocabs/munsel.xml-->
         </opts>
-      </Soil_Munsell_Colour>
+      </Context_Group_Soil_Munsell_Colour>
       <Soil_Colour f="notnull">
         <desc>Simple description of the colour of the soil. This field is interpreted from the Soil Munsell Colour</desc>
       </Soil_Colour>
@@ -674,7 +678,7 @@
     <Inclusions_Gravel_Fraction>
       <desc>Include amounts and qualities; i.e. 'Minor CaCO3 filaments' or 'Minor cultural material present'.</desc>
     </Inclusions_Gravel_Fraction>
-    <Disturbances t="checkbox" f="notnull">
+    <Context_Group_Disturbances t="checkbox" f="notnull">
       <desc>Disturbances evident in the deposit</desc>
       <opts>
         <opt>No Observation
@@ -690,7 +694,7 @@
         <opt>Rootlets</opt>
         <opt>Other</opt>
       </opts>
-    </Disturbances>
+    </Context_Group_Disturbances>
     <Upper_Boundary>
       <desc>Describe the overall way in which the upper boundary of the horizon contacts the one above it. If a secondary boundary type applies, describe it in the comments.</desc>
       <opts>
@@ -752,14 +756,34 @@
     <New_Sample  lc="Sample" t="button"/>
     <Sample_List ec="Sample" t="dropdown"/>
   </Context_Group_Samples>
+  <Context_Group_Contexts f="noscroll">
+    <cols>
+      <Square  f="nodata" t="dropdown"/>
+      <Populate_Target_Context t="button"/>
+    </cols>
+    <Add_Additional_Context f="nodata" t="dropdown"/>
+    <Add_Context_to_Group t="button"/>
+    <cols>
+      <Contexts_in_Group f="nodata" t="list"/>
+      <col>
+        <Selected_Entity t="webview"/>
+        <Guide_0 t="webview">
+          To load or remove Contexts, tap one from the list on the left and
+          press button below:
+        </Guide_0>
+        <Load_Context t="button"/>
+        <Remove_Context_from_Group t="button"/>
+      </col>
+    </cols>
+  </Context_Group_Contexts>
   <Context_Group_Attachments>
     <Context_Group_Sketch t="file"/>
     <Context_Group_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
-    <Guide t="webview">
+    <Guide_1 t="webview">
       Here you can enter filenames or unique reference numbers for image stored
       on another device.
-    </Guide>
+    </Guide_1>
     <New_Photo_Log  lc="Photograph_Log" t="button"/>
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
   </Context_Group_Attachments>
@@ -769,9 +793,9 @@
   <desc>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</desc>
   <Artefact_Group_General_Information>
     <cols>
-      <Context>
+      <Artefact_Group_Context>
         <desc>Unique number or code for each Context.</desc>
-      </Context>
+      </Artefact_Group_Context>
       <Artefact_Group_ID f="id notnull autonum">
         <str>
           <fmt>AG-$2</fmt>
@@ -822,9 +846,9 @@
         </str>
         <desc>The unique code or reference for the Sample.</desc>
       </Sample_ID>
-      <LOT_ID>
+      <Sample_LOT_ID>
         <desc>Unique number or code for each Context.</desc>
-      </LOT_ID>
+      </Sample_LOT_ID>
     </cols>
     <Sample_Type f="id notnull">
       <str>
@@ -881,9 +905,9 @@
 <Special_Find>
   <Special_Find_General_Information>
     <cols>
-      <Context>
+      <Special_Find_Context>
         <desc>Unique number or code for each Context.</desc>
-      </Context>
+      </Special_Find_Context>
       <Special_Find_ID f="id notnull autonum">
          <str>
            <fmt>SF-$2</fmt>
@@ -935,9 +959,9 @@
 <Photograph_Log>
   <desc>A record of images created and stored on another device, eg by a professional site photographer.</desc>
   <Photograph_Log>
-    <Context>
+    <Photograph_Log_Context>
       <desc>Unique number or code for each Context</desc>
-    </Context>
+    </Photograph_Log_Context>
     <Photograph_Reference_ID f="id notnull">
       <desc>Unique number or code allocated by creator of the image. It could be a filename or a reference number</desc>
     </Photograph_Reference_ID>
@@ -1006,6 +1030,7 @@
   <!--@SOURCE: logic/lot-label-population.bsh-->
   <!--@SOURCE: logic/control-to-general-inheritance.bsh-->
   <!--@SOURCE: logic/review-search.bsh-->
-  <!--@SOURCE: logic/relationships.bsh-->
+  <!--@SOURCE: logic/relationships-context-to-context.bsh-->
+  <!--@SOURCE: logic/relationships-context-group-to-context.bsh-->
 ]]></logic>
 </module>

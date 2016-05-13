@@ -5,7 +5,7 @@ onEvent("Context/Review/Calculate_Vol",  "click", "calculateVol()");
 
 calculateVol() {
     double count = isNull(getFieldValue("Context/Review/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/Review/Final_Bucket_Count"));
-    double vol   = isNull(getFieldValue("Control/Control/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Control/Bucket_Volume"));
+    double vol   = isNull(getFieldValue("Control/Defaults/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Defaults/Bucket_Volume"));
     setFieldValue("Context/Review/Deposit_Volume", vol*count);
 }
 

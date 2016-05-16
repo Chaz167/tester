@@ -17,3 +17,10 @@ copyExcavators() {
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
+
+copyMeshSize() {
+  src = "Control/Defaults/Mesh_Size_mm";
+  dst = "Context/General/Mesh_Size_mm";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}

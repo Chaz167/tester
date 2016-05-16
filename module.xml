@@ -40,9 +40,9 @@
   <Control>
     <New_Context       t="button" l="Context"/>
     <New_Context_Group t="button" l="Context_Group"/>
-    <autonum/>
   </Control>
   <Defaults>
+    <autonum/>
     <Target_Spit_Thickness t="dropdown">
       <!--Populated from Context/Vars/Target_Spit_Thickness-->
     </Target_Spit_Thickness>
@@ -131,14 +131,21 @@
         </opts>
       </Wet_Sieved>
     </cols>
-    <Surface_Area>
-      <opts>
-        <opt>Entire Square/Subsquare</opt>
-        <opt>&gt;0.5 Square/Subsquare</opt>
-        <opt>&lt;0.5 Square/Subsquare</opt>
-        <opt>Other</opt>
-      </opts>
-    </Surface_Area>
+    <cols>
+      <Mesh_Size_mm b="decimal" f="readonly">
+        Mesh Size (mm)
+      </Mesh_Size_mm>
+      <Surface_Area>
+        <opts>
+          <opt>Entire Square/Subsquare</opt>
+          <opt>&gt;0.5 Square/Subsquare</opt>
+          <!--#160 is a non-breaking space. This is a workaround for a quirk-->
+          <!--in the autogen where arch16n keys are repeated.-->
+          <opt>&lt;0.5 Square/Subsquare&#160;</opt>
+          <opt>Other</opt>
+        </opts>
+      </Surface_Area>
+    </cols>
     <cols>
       <Excavation_Method f="notnull" t="checkbox">
         <desc>Method and conditions of archaeological excavation.</desc>
@@ -356,17 +363,6 @@
       </Context_Disturbances>
     </cols>
   </Deposit>
-  <Relationships>
-    <Create_Relationships_to_This_Context t="button" l="Relationship"/>
-    <cols>
-      <Existing_Relationships_to_This_Context t="list" f="nodata"/>
-      <col>
-        <Selected_Relationship t="webview"/>
-        <Load_Related_Context  t="button"/>
-        <Delete_Relationship   t="button"/>
-      </col>
-    </cols>
-  </Relationships>
   <Samples>
     <New_Sample  lc="Sample" t="button"/>
     <Bulk_Sample_Mapped f="notnull" t="radio">
@@ -400,6 +396,17 @@
     </Soil_Texture_Helper>
     <Update_Texture t="button" l="Context/Deposit"/>
   </Texture_Helper>
+  <Relationships>
+    <Create_Relationships_to_This_Context t="button" l="Relationship"/>
+    <cols>
+      <Existing_Relationships_to_This_Context t="list" f="nodata"/>
+      <col>
+        <Selected_Relationship t="webview"/>
+        <Load_Related_Context  t="button"/>
+        <Delete_Relationship   t="button"/>
+      </col>
+    </cols>
+  </Relationships>
   <Review>
     <Validate t="button"/>
     <cols>
@@ -940,17 +947,17 @@
   </Special_Find_General_Information>
   <Special_Find_Location>
     <cols>
-      <X b="decimal" f="id notnull">
+      <X b="decimal" f="notnull">
         <desc>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </X>
-      <Y b="decimal" f="id notnull">
+      <Y b="decimal" f="notnull">
         <desc>The reading from the y-axis (vertical) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </Y>
-      <Z b="decimal" f="id notnull">
+      <Z b="decimal" f="notnull">
         <desc>The elevation or depth of the Special Find at the time of excavation.</desc>
       </Z>
     </cols>
-    <Notes f="id notnull">
+    <Notes f="notnull">
       <desc>Note about the part of the Plotted Find from which the Location measurement was taken</desc>
     </Notes>
   </Special_Find_Location>

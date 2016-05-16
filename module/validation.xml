@@ -146,7 +146,7 @@
         <param value="vocab" type="field"/>
       </validator>
     </property>
-    <property name="Disturbances">
+    <property name="Context Disturbances">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
       </validator>
@@ -178,12 +178,12 @@
     </property>
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Context_Group">
-    <property name="Site">
+    <property name="Context Group Site">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Area">
+    <property name="Context Group Area">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
@@ -218,7 +218,7 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Disturbances">
+    <property name="Context Group Disturbances">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
       </validator>

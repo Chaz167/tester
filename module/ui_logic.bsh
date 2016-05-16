@@ -144,7 +144,7 @@ getDropdownItemValue() {
 }
 
 addOnEvent("User/User/Users", "click", "dropdownItemValue = getFieldValue(\"User/User/Users\")");
-addOnEvent("Control/Control/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Control/Control/Target_Spit_Thickness\")");
+addOnEvent("Control/Defaults/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Control/Defaults/Target_Spit_Thickness\")");
 addOnEvent("Control/Review/Square", "click", "dropdownItemValue = getFieldValue(\"Control/Review/Square\")");
 addOnEvent("Context/General/Subsquare", "click", "dropdownItemValue = getFieldValue(\"Context/General/Subsquare\")");
 addOnEvent("Context/General/Surface_Area", "click", "dropdownItemValue = getFieldValue(\"Context/General/Surface_Area\")");
@@ -162,7 +162,7 @@ addOnEvent("Context/Texture_Helper/Soil_Texture_Helper", "click", "dropdownItemV
 addOnEvent("Context/Vars/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Context/Vars/Target_Spit_Thickness\")");
 addOnEvent("Context_Group/Context_Group_Details/Profile_Aspect", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Profile_Aspect\")");
 addOnEvent("Context_Group/Context_Group_Details/Elevation_Determination", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Elevation_Determination\")");
-addOnEvent("Context_Group/Context_Group_Details/Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Soil_Munsell_Colour\")");
+addOnEvent("Context_Group/Context_Group_Details/Context_Group_Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Context_Group_Soil_Munsell_Colour\")");
 addOnEvent("Context_Group/Context_Group_Details/Compaction", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Compaction\")");
 addOnEvent("Context_Group/Context_Group_Details/Soil_Texture_Actual", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Soil_Texture_Actual\")");
 addOnEvent("Context_Group/Context_Group_Details/Rounding", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Rounding\")");
@@ -172,6 +172,8 @@ addOnEvent("Context_Group/Context_Group_Details/Sorting", "click", "dropdownItem
 addOnEvent("Context_Group/Context_Group_Details/Upper_Boundary", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Upper_Boundary\")");
 addOnEvent("Context_Group/Context_Group_Details/Lower_Boundary", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Lower_Boundary\")");
 addOnEvent("Context_Group/Context_Group_Samples/Sample_List", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Samples/Sample_List\")");
+addOnEvent("Context_Group/Context_Group_Contexts/Square", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Contexts/Square\")");
+addOnEvent("Context_Group/Context_Group_Contexts/Add_Additional_Context", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Contexts/Add_Additional_Context\")");
 addOnEvent("Context_Group/Context_Group_Attachments/Load_Photo_Log", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Attachments/Load_Photo_Log\")");
 addOnEvent("Artefact_Group/Artefact_Group_General_Information/Artefact_Class", "click", "dropdownItemValue = getFieldValue(\"Artefact_Group/Artefact_Group_General_Information/Artefact_Class\")");
 addOnEvent("Sample/Sample_General_Information/Sample_Type", "click", "dropdownItemValue = getFieldValue(\"Sample/Sample_General_Information/Sample_Type\")");
@@ -363,9 +365,11 @@ populateListForUsers(){
 
 selectUser () {
   String userVocabId  = getFieldValue(userMenuPath);
-  if (isNull(userVocabId))
+  if (isNull(userVocabId)) {
+    username = "";
+    userid = "";
     return;
-
+  }
   String userQ        = "SELECT userid,fname,lname,email FROM user " +
                         "WHERE  userid='" + userVocabId + "';";
   FetchCallback callback = new FetchCallback() {
@@ -512,7 +516,7 @@ makeVocab("DropDown", "Context/Deposit/Soil_Texture", "Soil Texture");
 makeVocab("DropDown", "Context/Deposit/Soil_Compaction_Type", "Soil Compaction Type");
 makeVocab("CheckBoxGroup", "Context/Deposit/Deposit_Inclusions", "Deposit Inclusions");
 makeVocab("CheckBoxGroup", "Context/Deposit/Natural_Formations", "Natural Formations");
-makeVocab("CheckBoxGroup", "Context/Deposit/Disturbances", "Disturbances");
+makeVocab("CheckBoxGroup", "Context/Deposit/Context_Disturbances", "Context Disturbances");
 makeVocab("RadioGroup", "Context/Samples/Bulk_Sample_Mapped", "Bulk Sample Mapped");
 makeVocab("HierarchicalDropDown", "Context/Texture_Helper/Soil_Texture_Helper", "Soil Texture Helper");
 makeVocab("RadioGroup", "Context/Review/Closing_Photo_Taken", "Closing Photo Taken");
@@ -523,14 +527,14 @@ makeVocab("DropDown", "Context/Vars/Target_Spit_Thickness", "Target Spit Thickne
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Profile_Aspect", "Profile Aspect");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Elevation_Determination", "Elevation Determination");
 makeVocab("RadioGroup", "Context_Group/Context_Group_Details/Start_Depth", "Start Depth");
-makeVocab("HierarchicalDropDown", "Context_Group/Context_Group_Details/Soil_Munsell_Colour", "Soil Munsell Colour");
+makeVocab("HierarchicalDropDown", "Context_Group/Context_Group_Details/Context_Group_Soil_Munsell_Colour", "Context Group Soil Munsell Colour");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Compaction", "Compaction");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Soil_Texture_Actual", "Soil Texture Actual");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Rounding", "Rounding");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Structure", "Structure");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Structure_Modifiers", "Structure Modifiers");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Sorting", "Sorting");
-makeVocab("CheckBoxGroup", "Context_Group/Context_Group_Details/Disturbances", "Disturbances");
+makeVocab("CheckBoxGroup", "Context_Group/Context_Group_Details/Context_Group_Disturbances", "Context Group Disturbances");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Upper_Boundary", "Upper Boundary");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Lower_Boundary", "Lower Boundary");
 makeVocab("DropDown", "Artefact_Group/Artefact_Group_General_Information/Artefact_Class", "Artefact Class");
@@ -639,7 +643,7 @@ validateContext() {
   f.add(fieldPair("Context/Deposit/Soil_Compaction_Type", "{Soil_Compaction_Type}"));
   f.add(fieldPair("Context/Deposit/Deposit_Inclusions", "{Deposit_Inclusions}"));
   f.add(fieldPair("Context/Deposit/Natural_Formations", "{Natural_Formations}"));
-  f.add(fieldPair("Context/Deposit/Disturbances", "{Disturbances}"));
+  f.add(fieldPair("Context/Deposit/Context_Disturbances", "{Context_Disturbances}"));
   f.add(fieldPair("Context/Samples/Bulk_Sample_Mapped", "{Bulk_Sample_Mapped}"));
   f.add(fieldPair("Context/Review/Final_Bucket_Count", "{Final_Bucket_Count}"));
   f.add(fieldPair("Context/Review/Deposit_Volume", "{Deposit_Volume}"));
@@ -653,8 +657,8 @@ validateContext() {
 validateContextGroup() {
   List f = new ArrayList(); // Fields to be validated
 
-  f.add(fieldPair("Context_Group/Context_Group_Details/Site", "{Site}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/Area", "{Area}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_Site", "{Context_Group_Site}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_Area", "{Context_Group_Area}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_ID", "{Context_Group_ID}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Depth", "{Depth}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Elevation", "{Elevation}"));
@@ -662,7 +666,7 @@ validateContextGroup() {
   f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth", "{Start_Depth}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth_Magnitude", "{Start_Depth}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Soil_Colour", "{Soil_Colour}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/Disturbances", "{Disturbances}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_Disturbances", "{Context_Group_Disturbances}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Created_By", "{Created_By}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Creation_Date", "{Creation_Date}"));
 
@@ -848,12 +852,14 @@ onClickControlNewContextGroup () {
   // TODO: Add some things which should happen when this element is clicked
   newContextGroup();
 }
-onClickContextTextureHelper () {
-  // TODO: Add some things which should happen when this element is clicked
-  newTab("Context/Texture_Helper", true);
-}
 onClickContextCreateRelationshipstoThisContext () {
   // TODO: Add some things which should happen when this element is clicked
+  String tabgroup = "Context";
+  if (isNull(getUuid(tabgroup))){
+    showToast("{You_must_save_this_tabgroup_first}");
+    return;
+  }
+  
   newTab("Relationship", true);
 }
 onClickContextNewSample () {
@@ -929,12 +935,12 @@ addOnEvent("Control/Control/New_Context", "click", "onClickControlNewContext()")
 addOnEvent("Control/Control/New_Context_Group", "click", "onClickControlNewContextGroup()");
 addOnEvent("Context/General/Close_Context_and_Review", "click", "onClickContextCloseContextandReview()");
 addOnEvent("Context/Deposit/Texture_Helper", "click", "onClickContextTextureHelper()");
-addOnEvent("Context/Relationships/Create_Relationships_to_This_Context", "click", "onClickContextCreateRelationshipstoThisContext()");
 addOnEvent("Context/Samples/New_Sample", "click", "onClickContextNewSample()");
 addOnEvent("Context/Attachments/New_Photo_Log", "click", "onClickContextNewPhotoLog()");
 addOnEvent("Context/Artefacts/New_Artefact_Group", "click", "onClickContextNewArtefactGroup()");
 addOnEvent("Context/Artefacts/New_Special_Find", "click", "onClickContextNewSpecialFind()");
 addOnEvent("Context/Texture_Helper/Update_Texture", "click", "onClickContextUpdateTexture()");
+addOnEvent("Context/Relationships/Create_Relationships_to_This_Context", "click", "onClickContextCreateRelationshipstoThisContext()");
 addOnEvent("Context_Group/Context_Group_Samples/New_Sample", "click", "onClickContextGroupNewSample()");
 addOnEvent("Context_Group/Context_Group_Attachments/New_Photo_Log", "click", "onClickContextGroupNewPhotoLog()");
 
@@ -1169,8 +1175,9 @@ newContext(){
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
   populateAuthorAndTimestamp(tabgroup);
-  copyTargetSpitThickness();
   copyExcavators();
+  copyMeshSize();
+  copyTargetSpitThickness();
 }
 
 duplicateContext(){
@@ -1316,7 +1323,7 @@ newArtefactGroup(){
   String tabgroup = "Artefact_Group";
 
   String autoNumSource = "";
-  autoNumSource = getFieldValue("Control/Control/Next_Artefact_Group_ID");
+  autoNumSource = getFieldValue("Control/Defaults/Next_Artefact_Group_ID");
   if (isNull(autoNumSource)) {
     showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
     return;
@@ -1472,7 +1479,7 @@ newSpecialFind(){
   String tabgroup = "Special_Find";
 
   String autoNumSource = "";
-  autoNumSource = getFieldValue("Control/Control/Next_Special_Find_ID");
+  autoNumSource = getFieldValue("Control/Defaults/Next_Special_Find_ID");
   if (isNull(autoNumSource)) {
     showWarning("{Alert}","{A_next_ID_has_not_been_entered_please_provide_one}");
     return;
@@ -1755,15 +1762,15 @@ incField(String ref) {
   return incField(ref, 1);
 }
 
-addOnEvent("Control/Control", "show", "onShowAutonum()");
+addOnEvent("Control/Defaults", "show", "onShowAutonum()");
 
 /* This function should only be called once since it creates event handlers,
  * otherwise multiple copies of the same handler will trigger with the event.
  */
 onShowAutonum() {
   List l = new ArrayList();
-  l.add("Control/Control/Next_Artefact_Group_ID");
-  l.add("Control/Control/Next_Special_Find_ID");
+  l.add("Control/Defaults/Next_Artefact_Group_ID");
+  l.add("Control/Defaults/Next_Special_Find_ID");
 
 
   for (ref : l) {
@@ -1789,8 +1796,8 @@ loadStartingId(String ref) {
 
 incAutoNum(String destPath) {
   Map destToSource = new HashMap();
-  destToSource.put("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID", "Control/Control/Next_Artefact_Group_ID");
-  destToSource.put("Special_Find/Special_Find_General_Information/Special_Find_ID", "Control/Control/Next_Special_Find_ID");
+  destToSource.put("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID", "Control/Defaults/Next_Artefact_Group_ID");
+  destToSource.put("Special_Find/Special_Find_General_Information/Special_Find_ID", "Control/Defaults/Next_Special_Find_ID");
 
   String sourcePath = destToSource.get(destPath);
   String destVal    = getFieldValue(sourcePath);
@@ -1953,6 +1960,8 @@ replaceFirst(haystack, needle, replacement) {
 /*********************************** SHARED ***********************************/
 /* Shared functions which are not general enough to be placed in utils.bsh.   */
 /******************************************************************************/
+String WEB_REL_NONE = "<i>None</i>";
+
 contextIdentifer = "";
 
 populateSquare(ref) {
@@ -1977,7 +1986,10 @@ populateLotLabel(lotRef) {
   String tabGroup = "Context";
   String uuid     = getUuid(tabGroup);
 
-  if (isNull(uuid)) return;
+  if (isNull(uuid)) {
+    populateWebViewHtml(lotRef, "&nbsp;");
+    return;
+  }
 
   String q = "";
   q += "SELECT uuid, response ";
@@ -2003,7 +2015,7 @@ onEvent("Context/Review/Calculate_Vol",  "click", "calculateVol()");
 
 calculateVol() {
     double count = isNull(getFieldValue("Context/Review/Final_Bucket_Count")) ? 0 : Double.parseDouble(getFieldValue("Context/Review/Final_Bucket_Count"));
-    double vol   = isNull(getFieldValue("Control/Control/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Control/Bucket_Volume"));
+    double vol   = isNull(getFieldValue("Control/Defaults/Bucket_Volume")) ? 0 : Double.parseDouble(getFieldValue("Control/Defaults/Bucket_Volume"));
     setFieldValue("Context/Review/Deposit_Volume", vol*count);
 }
 
@@ -2082,37 +2094,38 @@ closeContext() {
 /* Code to facilitate the loading and saving of the following fields in the   */
 /* local settings table.                                                      */
 /******************************************************************************/
-addOnEvent("Control/Control", "show", "loadTargetSpitThickness()");
-addOnEvent("Control/Control", "show", "loadBucketVolume()");
+addOnEvent("Control/Defaults", "show", "loadTargetSpitThickness()");
+addOnEvent("Control/Defaults", "show", "loadBucketVolume()");
 
 // Occurs on blur
-onFocus("Control/Control/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
-onFocus("Control/Control/Bucket_Volume",         "", "saveBucketVolume()");
+onFocus("Control/Defaults/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
+onFocus("Control/Defaults/Bucket_Volume",         "", "saveBucketVolume()");
 
 loadTargetSpitThickness() {
-  dst = "Control/Control/Target_Spit_Thickness";
+  dst = "Control/Defaults/Target_Spit_Thickness";
   setFieldValueFromLocalSettings(dst, dst);
 }
 
 saveTargetSpitThickness() {
-  src = "Control/Control/Target_Spit_Thickness";
+  src = "Control/Defaults/Target_Spit_Thickness";
   val = getFieldValue(src);
   insertIntoLocalSettings(src, val);
 }
 
 loadBucketVolume() {
-  dst = "Control/Control/Bucket_Volume";
+  dst = "Control/Defaults/Bucket_Volume";
   setFieldValueFromLocalSettings(dst, dst);
 }
 
 saveBucketVolume() {
-  src = "Control/Control/Bucket_Volume";
+  src = "Control/Defaults/Bucket_Volume";
   val = getFieldValue(src);
   insertIntoLocalSettings(src, val);
 }
 /******************************* TEXTURE HELPER *******************************/
 /* @POSTPROC is used to override the autogenerated                            */
-/* `onClickContextUpdateTexture` definition.                                  */
+/* `onClickContextUpdateTexture` and `onClickContextTextureHelper`            */
+/* definitions.                                                               */
 /******************************************************************************/
 onClickContextUpdateTexture(){
   String soilQuery= "SELECT vocabid " +
@@ -2138,6 +2151,11 @@ onClickContextUpdateTexture(){
       }
     }
   );
+}
+
+onClickContextTextureHelper () {
+  // TODO: Add some things which should happen when this element is clicked
+  showTab("Context/Texture_Helper");
 }
 /**************************** LOGIN TAB VALIDATION ****************************/
 /* The autogen defines its own `onClickUserLogin` function. This is overriden */
@@ -2169,7 +2187,7 @@ addOnEvent("Context/Review/Validate", "click", "validateContext()");
 
 copyLotId() {
   src = "Context/General/LOT_ID";
-  dst = "Sample/Sample_General_Information/LOT_ID";
+  dst = "Sample/Sample_General_Information/Sample_LOT_ID";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
@@ -2184,7 +2202,7 @@ onClickContextCloseContextandReview () {
 /*   (a) When a Context is newly created.                                     */
 /*   (b) When a Context has been loaded.                                      */
 /*                                                                            */
-/* Case (a) is handled by on-click events which trigger                       */
+/* Case (a) is handled by blur events which trigger                           */
 /* `populateLotLabelGeneral()`.                                               */
 /*                                                                            */
 /* Case (b) is handled by a callback to `showTabGroup`. This is implemented   */
@@ -2210,8 +2228,8 @@ for (ref : CONTEXT_IDENTIFIER_REFS) {
 }
 
 populateLotLabelGeneral() {
-  String lotRef = "Context/General/Lot_Label";
-  populateLotLabel(lotRef);
+  String lotRef = "Context/General/LOT_Label";
+  populateLotLabel(lotRef); // Defined in logic/shared.bsh
 }
 
 loadContextFrom(String uuid) {
@@ -2230,18 +2248,25 @@ loadContextFrom(String uuid) {
 /* These functions are triggered when a new context is created, using         */
 /* @POSTPROC.                                                                 */
 /******************************************************************************/
-makeVocab("DropDown", "Control/Control/Target_Spit_Thickness", "Target Spit Thickness");
+makeVocab("DropDown", "Control/Defaults/Target_Spit_Thickness", "Target Spit Thickness");
 
 copyTargetSpitThickness() {
-  src = "Control/Control/Target_Spit_Thickness";
+  src = "Control/Defaults/Target_Spit_Thickness";
   dst = "Context/Vars/Target_Spit_Thickness";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
 
 copyExcavators() {
-  src = "Control/Control/Excavators";
+  src = "Control/Defaults/Excavators";
   dst = "Context/General/Excavators";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}
+
+copyMeshSize() {
+  src = "Control/Defaults/Mesh_Size_mm";
+  dst = "Context/General/Mesh_Size_mm";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
@@ -2291,18 +2316,64 @@ populateSearchSquare() {
 }
 /******************************* RELATIONSHIPS ********************************/
 /* Context-to-Context relationships.                                          */
-/* TODO: Make sure that globals are cleared these tab groups are left.        */
-/* equivalently, make sure that globals are initialised when this tab group   */
-/* is entered.                                                                */
 /******************************************************************************/
+addOnEvent("Context",      "show", "onDisplayContext()");
+addOnEvent("Relationship", "show", "onDisplayRelationship()");
+
 String WEB_REL_DESC_FMT      = "%s <u>&nbsp;%s&nbsp;</u> <u>&nbsp;%s&nbsp;</u>";
 String WEB_REL_DESC_FILL     = "?";
-String WEB_REL_NONE          = "<i>None</i>";
 String WEB_REL_BLANK         = "&nbsp;";
 
-getSelectedRelationshipComponent(String arg) {
-  arg = arg.toLowerCase();
+String selectedRelId         = null;
+String selectedRelIdentifier = null;
 
+String displayedTabGroup     = null;
+
+onDisplayContext()        {displayedTabGroup = "Context";}
+onDisplayRelationship()   {displayedTabGroup = "Relationship";}
+isDisplayedContext()      {return displayedTabGroup.equals("Context");}
+isDisplayedRelationship() {return displayedTabGroup.equals("Relationship");}
+
+// Depends on the following globals:
+//   - selectedRelId
+//   - userid        (Defined by autogen)
+deleteRelationship() {
+  if (isNull(selectedRelId)) {
+    showToast("No relationship selected");
+    return;
+  }
+
+  String q = "";
+  q += " INSERT INTO aentreln (uuid, relationshipid, deleted, participatesverb, userid)";
+  q += " SELECT uuid, relationshipid, 'true', participatesverb, '"+userid+"'";
+  q += " FROM latestnondeletedaentreln";
+  q += " WHERE relationshipid = '"+selectedRelId+"'";
+
+  DeleteCallback cb = new DeleteCallback() {
+    onDelete(uuid) {
+      deleteRelationshipSuceeded();
+    }
+  };
+
+  fetchOne(q);
+  deleteRel(selectedRelId, cb);
+}
+
+deleteRelationshipSuceeded() {
+  selectedRelId         = null;
+  selectedRelIdentifier = null;
+
+  if (isDisplayedContext()) {
+      populateWebViewHtml(REF_SELECTED_REL_CONTEXT,      WEB_REL_NONE);
+      populateExistingRelationships();
+  }
+  if (isDisplayedRelationship()) {
+      populateWebViewHtml(REF_SELECTED_REL_RELATIONSHIP, WEB_REL_NONE);
+      searchRelationship();
+  }
+}
+
+getSelectedRelationshipComponent(String arg) {
   String REF_REL_TYPE = "Relationship/Relationships/Relationship_Type";
 
   String   val       = getFieldValue(REF_REL_TYPE);
@@ -2316,89 +2387,111 @@ getSelectedRelationshipComponent(String arg) {
   String   parentRole       = arguments[1];
   String   childRole        = arguments[2];
 
+  arg = arg.toLowerCase();
   if      (arg.equals("name"))   return relationshipName;
   else if (arg.equals("parent")) return parentRole;
   else if (arg.equals("child"))  return childRole;
   else                           return null;
 }
 
-//////////////////// FUNCTIONS AFFECTING CONTEXT TAB GROUP /////////////////////
-addOnEvent("Context",                                    "show",  "clearSelectedEntity()");
-addOnEvent("Context",                                    "show",  "populateExistingRelationships()");
-addOnEvent("Context/Relationships/Load_Related_Context", "click", "loadRelatedEntity()");
+getRelatedContextQuery(String parentUuid) {
+  // `contextIdentifer` is defined in logic/shared.bsh
+  String relatedQ = "";
+  relatedQ += "SELECT 'related' || char(0) || relationshipid || char(0) || '"+contextIdentifer+" ' || parentparticipatesverb ||' '|| response || char(0) || childuuid, parentparticipatesverb||' '||response";
+  relatedQ += "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers on (childuuid = uuid) ";
+  relatedQ += "  JOIN createdmodifiedatby USING (uuid) ";
+  relatedQ += " WHERE relationshipid in (SELECT relationshipid  ";
+  relatedQ += "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid)  ";
+  relatedQ += "                           WHERE relntypename not like 'Context%') ";
+  relatedQ += "   and parentuuid = '"+parentUuid+"' ";
+  relatedQ += "   and parentaenttypename = 'Context' ";
+  relatedQ += " ORDER BY createdat desc ";
+  relatedQ += " LIMIT ? OFFSET ? ";
+  return relatedQ;
+}
 
-String REF_SELECTED_REL_CONTEXT   = "Context/Relationships/Selected_Relationship";
-String selectedEntityUuid = null;
+//////////////////// FUNCTIONS AFFECTING CONTEXT TAB GROUP /////////////////////
+addOnEvent("Context",                                    "show",  "initContextRelationshipGlobals()");
+addOnEvent("Context",                                    "show",  "populateExistingRelationships()");
+addOnEvent("Context/Relationships/Load_Related_Context", "click", "loadRelatedContext()");
+
+addOnEvent("Context/Relationships/Existing_Relationships_to_This_Context", "click", "selectRelationship()");
+addOnEvent("Context/Relationships/Delete_Relationship",                    "click", "deleteRelationship()");
+
+String REF_SELECTED_REL_CONTEXT = "Context/Relationships/Selected_Relationship";
+String selectedChildUuid        = null;
+
+initContextRelationshipGlobals() {
+  selectedChildUuid     = null;
+  selectedRelId         = null;
+  selectedRelIdentifier = null;
+
+  populateWebViewHtml(REF_SELECTED_REL_CONTEXT, WEB_REL_NONE);
+}
 
 populateExistingRelationships(){
   String tabGroup    = "Context";
   String currentUuid = getUuid(tabGroup);
   String refExistingRelationships = "Context/Relationships/Existing_Relationships_to_This_Context";
 
-  String q = "";
-  q += "SELECT childuuid, parentparticipatesverb||' '||response ";
-  q += "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers on (childuuid = uuid) ";
-  q += "  JOIN createdmodifiedatby USING (uuid) ";
-  q += " WHERE relationshipid in (SELECT relationshipid  ";
-  q += "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid)  ";
-  q += "                           WHERE relntypename not like 'Context%') ";
-  q += "   and parentuuid = '"+currentUuid+"' ";
-  q += "   and parentaenttypename = 'Context' ";
-  q += " ORDER BY createdat desc ";
-  q += " LIMIT ? OFFSET ?";
+  String q = getRelatedContextQuery(currentUuid);
 
   populateCursorList(refExistingRelationships, q, 25);
   refreshTabgroupCSS(tabGroup);
 }
 
-clearSelectedEntity() {
+selectRelationship() {
+  String val = getListItemValue();
+  if (isNull(val)) return;
 
-  populateWebViewHtml(REF_SELECTED_REL_CONTEXT, WEB_REL_NONE);
+  String[] arguments = val.split(SEP); // `SEP` defined by autogen as \0
+  String   listName  = arguments[0];
+  if (!listName.equals("related")) return;
+
+  selectedRelId         = arguments[1];
+  selectedRelIdentifier = arguments[2];
+  selectedChildUuid     = arguments[3];
+
+  populateWebViewHtml(REF_SELECTED_REL_CONTEXT, selectedRelIdentifier);
 }
 
-// TODO: Link me
-selectEntity() {
-  selectedEntityUuid = getListItemValue();
-
-  String q = "";
-  q += "SELECT uuid, response  ";
-  q += "  FROM latestNonDeletedArchEntFormattedIdentifiers   ";
-  q += "WHERE  uuid = '%s'";
-  q  = replaceFirst(q, "%s", selectedEntityUuid);
-
-  FetchCallback populate = new FetchCallback() {
-    onFetch(result) {
-      selectedEntityIdentifer = result.get(0).get(0);
-      populateWebViewHtml(REF_SELECTED_REL_CONTEXT, selectedEntityIdentifer);
-    }
-  };
-
-  fetchAll(q, populate);
-}
-
-loadRelatedEntity() {
-
+loadRelatedContext() {
+  if (isNull(selectedChildUuid)) {
+    showToast("No relationship selected");
+    return;
+  }
+  loadEntityFrom(selectedChildUuid);
 }
 
 ////////////////// FUNCTIONS AFFECTING RELATIONSHIP TAB GROUP //////////////////
-addOnEvent("Relationship",                                      "show",  "populateProposedRelationship()");
-addOnEvent("Relationship",                                      "show",  "populateRelationshipSquare()");
-addOnEvent("Relationship",                                      "show",  "populateRelationshipType()");
-addOnEvent("Relationship/Relationships/Add_Relationship",       "click", "relateContext()");
+addOnEvent("Relationship",                                      "show",  "initRelationshipRelationshipGlobals()");
+addOnEvent("Relationship/Relationships/Add_Relationship",       "click", "addRelationship()");
 addOnEvent("Relationship/Relationships/Delete_Relationship",    "click", "deleteRelationship()");
 addOnEvent("Relationship/Relationships/Existing_Relationships", "click", "selectExistingRelationship()");
 addOnEvent("Relationship/Relationships/Relationship_Type",      "click", "populateProposedRelationship()");
 addOnEvent("Relationship/Relationships/Search",                 "click", "populateProposedRelationship()");
 addOnEvent("Relationship/Relationships/Search",                 "click", "searchRelationship()");
-addOnEvent("Relationship/Relationships/Search",                 "show",  "searchRelationship()");
-addOnEvent("Relationship/Relationships/Unrelated_Contexts",     "click", "selectProposedChild()");
+addOnEvent("Relationship/Relationships/Unrelated_Contexts",     "click", "selectUnrelatedContext()");
 
-String selectedRelId           = null;
 String proposedChildUuid       = null;
 String proposedChildIdentifier = null;
 
 String REF_PROPOSED_REL              = "Relationship/Relationships/Proposed_Relationship";
 String REF_SELECTED_REL_RELATIONSHIP = "Relationship/Relationships/Selected_Relationship";
+
+initRelationshipRelationshipGlobals() {
+  proposedChildUuid       = null;
+  proposedChildIdentifier = null;
+  selectedRelId           = null;
+  selectedRelIdentifier   = null;
+
+  populateLotLabelRelationships();
+  populateRelationshipSquare();
+  populateRelationshipType();
+  populateProposedRelationship();
+  clearSearch();
+}
+
 
 populateRelationshipSquare() {
   String ref = "Relationship/Relationships/Square";
@@ -2422,7 +2515,6 @@ populateRelationshipType() {
 
   FetchCallback populate = new FetchCallback() {
     onFetch(result) {
-      showWarning("" + result.get(0).size(), result + "");
       populateDropDown(refRelationshipType, result);
     }
   };
@@ -2477,31 +2569,29 @@ searchRelationship() {
   unrelatedQ += "                              and uuid not in (select childuuid ";
   unrelatedQ += "                                                 from parentchild ";
   unrelatedQ += "                                                where parentuuid = '"+parentUuid+"' ";
-  unrelatedQ += "                                                  and parentparticipatesverb != '"+parentRole+"')";
+  unrelatedQ += "                                                  and parentparticipatesverb = '"+parentRole+"')";
   unrelatedQ += "                              AND uuid != '"+parentUuid+"'";
   unrelatedQ += "                       )   ";
   unrelatedQ += "                ) ";
   unrelatedQ += "  ORDER BY response ";
   unrelatedQ += "  LIMIT ? OFFSET ?";
 
-  relatedQ += "SELECT 'related' || char(0) || relationshipid || char(0) || parentparticipatesverb||' '||response, parentparticipatesverb||' '||response ";
-  relatedQ += "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers on (childuuid = uuid) ";
-  relatedQ += "  JOIN createdmodifiedatby USING (uuid) ";
-  relatedQ += " WHERE relationshipid in (SELECT relationshipid  ";
-  relatedQ += "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid)  ";
-  relatedQ += "                           WHERE relntypename not like 'Context%') ";
-  relatedQ += "   and parentuuid = '"+parentUuid+"' ";
-  relatedQ += "   and parentaenttypename = 'Context' ";
-  relatedQ += " ORDER BY createdat desc ";
-  relatedQ += " LIMIT ? OFFSET ? ";
+  relatedQ += getRelatedContextQuery(parentUuid);
 
-  proposedChildUuid       = null;
-  proposedChildIdentifier = null;
   populateCursorList(refUnrelated, unrelatedQ, 25);
   populateCursorList(refRelated,   relatedQ,   25);
+
+  proposedChildUuid = null; proposedChildIdentifier = null;
+  populateProposedRelationship();
 }
 
-selectProposedChild() {
+clearSearch() {
+  String q = "SELECT '' WHERE 0 LIMIT ? OFFSET ?";
+  populateCursorList("Relationship/Relationships/Unrelated_Contexts",     q, 25);
+  populateCursorList("Relationship/Relationships/Existing_Relationships", q, 25);
+}
+
+selectUnrelatedContext() {
   String val = getListItemValue();
   if (isNull(val)) return;
   String[] arguments = val.split(SEP); // `SEP` defined by autogen as \0
@@ -2514,19 +2604,19 @@ selectProposedChild() {
   populateProposedRelationship();
 }
 
-relateContext() {
+addRelationship() {
   String parentTabGroup = "Context";
 
-  String relName        = getSelectedRelationshipComponent("name");
-  String parentUuid     = getUuid(parentTabGroup);
-  String childUuid      = proposedChildUuid;
-  String parentRole     = getSelectedRelationshipComponent("parent");
-  String childRole      = getSelectedRelationshipComponent("child");
-  String callback       = "relateContextSucceeded()";
+  String relName    = getSelectedRelationshipComponent("name");
+  String parentUuid = getUuid(parentTabGroup);
+  String childUuid  = proposedChildUuid;
+  String parentRole = getSelectedRelationshipComponent("parent");
+  String childRole  = getSelectedRelationshipComponent("child");
+  String callback   = "addRelationshipSucceeded()";
 
   if (isNull(parentUuid)) {
     String msgHead = "Logic Error";
-    String msgBody = "Something happened that never should.";
+    String msgBody = "Something happened which never should.";
     showWarning(msgHead, msgBody);
     return;
   }
@@ -2538,12 +2628,12 @@ relateContext() {
   saveEntitiesToHierRel(
       relName,
       parentUuid, childUuid,
-      childRole,  parentRole,
+      parentRole, childRole,
       callback
   );
 }
 
-relateContextSucceeded() {
+addRelationshipSucceeded() {
   proposedChildUuid       = null;
   proposedChildIdentifier = null;
 
@@ -2566,35 +2656,131 @@ selectExistingRelationship() {
   populateWebViewHtml(REF_SELECTED_REL_RELATIONSHIP, selectedRelIdentifier);
 }
 
-deleteRelationship() {
-  if (isNull(selectedRelId)) {
-    showToast("No relationship selected");
-    return;
-  }
+populateLotLabelRelationships() {
+  String lotRef = "Relationship/Relationships/LOT_Label";
+  populateLotLabel(lotRef); // Defined in logic/shared.bsh
+}
+/******************************* RELATIONSHIPS ********************************/
+/* Context Group to Context relationships.                                    */
+/*                                                                            */
+/* Appropriated from PAZC.                                                    */
+/******************************************************************************/
+addOnEvent("Context_Group/Context_Group_Contexts", "show", "populateContextGroupContextsArea();populateContextGroupRelatedContexts();");
+addOnEvent("Context_Group/Context_Group_Contexts/Populate_Target_Context", "delayclick", "populateWebViewHtml(\"Context_Group/Context_Group_Contexts/Selected_Entity\", WEB_REL_NONE); populateContextGroup();");
+addOnEvent("Context_Group/Context_Group_Contexts/Add_Context_to_Group"    , "delayclick" , "addToContextGroup()");
+addOnEvent("Context_Group/Context_Group_Contexts/Load_Context"   , "click" , "loadContextFromContextGroup()");
+addOnEvent("Context_Group/Context_Group_Contexts/Remove_Context_from_Group" , "click" , "removeFromContextGroup()");
+addOnEvent("Context_Group/Context_Group_Contexts/Contexts_in_Group" , "click" , "selectAssociatedEntityContextGroup()");
 
-  String q = "";
-  q += " INSERT INTO aentreln (uuid, relationshipid, deleted, participatesverb, userid)";
-  q += " SELECT uuid, relationshipid, 'true', participatesverb, '"+userid+"'";
-  q += " FROM latestnondeletedaentreln";
-  q += " WHERE relationshipid = '"+selectedRelId+"'";
+String selectedEntityUuid      = null;
+String selectedEntityIdentifer = null;
 
-  DeleteCallback cb = new DeleteCallback() {
-    onDelete(uuid) {
-      deleteRelationshipSuceeded();
-    }
-  };
-
-  fetchOne(q);
-  deleteRel(selectedRelId, cb);
+selectAssociatedEntityContextGroup() {
+    selectedEntityUuid      = getListItemValue().split(SEP)[0];
+    selectedEntityIdentifer = getListItemValue().split(SEP)[1];
+    populateWebViewHtml("Context_Group/Context_Group_Contexts/Selected_Entity", selectedEntityIdentifer);
 }
 
-deleteRelationshipSuceeded() {
-  selectedRelId         = null;
-  selectedRelIdentifier = null;
+populateContextGroupContextsArea() {
+    populateSquare("Context_Group/Context_Group_Contexts/Square");
+    populateWebViewHtml("Context_Group/Context_Group_Contexts/Selected_Entity", WEB_REL_NONE);
+    selectedEntityUuid      = null;
+    selectedEntityIdentifer = null;
+}
 
-  populateWebViewHtml(REF_SELECTED_REL_RELATIONSHIP, WEB_REL_NONE);
+populateContextGroupRelatedContexts(){
+    String contextGroupQuery="SELECT childuuid, response "+
+                            "  FROM parentchild JOIN latestNonDeletedArchEntFormattedIdentifiers on (childuuid = uuid) "+
+                            "  JOIN createdmodifiedatby USING (uuid) "+
+                            " WHERE relationshipid in (SELECT relationshipid  "+
+                             "                            FROM latestnondeletedrelationship JOIN relntype USING (relntypeid)  "+
+                             "                           WHERE relntypename = 'Context Group - Context') "+
+                            "   and parentuuid = '"+getUuid("Context_Group")+"' "+
+                            "   and parentaenttypename = 'Context Group' "+
+                            " ORDER BY CAST(response as integer) "+
+                            " limit ? offset ? ;";
+    populateCursorList(
+                "Context_Group/Context_Group_Contexts/Contexts_in_Group",
+                contextGroupQuery,
+                25
+        );
 
-  searchRelationship();
+    Log.d("foo", contextGroupQuery);
+    refreshTabgroupCSS("Context_Group");
+
+}
+
+addToContextGroup() {
+    if (isNull(getUuid("Context_Group"))) {
+        showToast("You must have saved your entity.");
+        return;
+    }
+    String selectedContextID = getFieldValue("Context_Group/Context_Group_Contexts/Add_Additional_Context");
+    if (isNull(selectedContextID)) {
+      return;
+    }
+    String relSaveCallback = "populateContextGroup();populateContextGroupRelatedContexts();";
+    saveEntitiesToRel("Context Group - Context", selectedContextID, getUuid("Context_Group"), relSaveCallback);    
+}
+
+onContextGroupSaved(){
+    if(!isNull(setUuid("Context"))) {
+        saveEntitiesToRel("Context Group - Context", setUuid("Context"), getUuid("Context_Group"));
+    }
+}
+
+populateContextGroup() {
+    String targetContextSquare = getFieldValue("Context_Group/Context_Group_Contexts/Square");
+
+    String targetContextQuery = "";
+    targetContextQuery += " SELECT uuid || char(0) || response, response ";
+    targetContextQuery += "   FROM latestnondeletedarchentformattedidentifiers ";
+    targetContextQuery += "  WHERE uuid IN (SELECT uuid ";
+    targetContextQuery += "                             FROM latestnondeletedaentvalue  ";
+    targetContextQuery += "                             JOIN attributekey USING (attributeid) ";
+    targetContextQuery += "                            WHERE attributename = 'Square' ";
+    targetContextQuery += "                              AND measure = '%s') ";
+    targetContextQuery += " ORDER BY CAST(response as integer);";
+    targetContextQuery  = replaceFirst(targetContextQuery, "%s", targetContextSquare);
+
+    fetchAll(
+        targetContextQuery,
+        new FetchCallback() {
+            onFetch(result) {
+                print(result);
+                populateDropDown("Context_Group/Context_Group_Contexts/Add_Additional_Context", result);
+            }
+        }
+    );
+}
+
+removeFromContextGroup() {
+  String childuuid = selectedEntityUuid;
+  if (!isNull(childuuid)){
+    String relationshipidQuery = "select relationshipid from parentchild where parentuuid = '"+getUuid("Context_Group")+"' and childuuid = '"+childuuid+"';";
+    fetchOne(relationshipidQuery, new FetchCallback() {
+      onFetch(result) {
+        String deletequery = "insert into aentreln (uuid, relationshipid, deleted, participatesverb, userid) SELECT uuid, relationshipid, 'true', participatesverb, '"+userid+"' FROM latestnondeletedaentreln WHERE relationshipid = '"+result.get(0)+"';";
+        fetchOne(deletequery, null);
+        deleteRel(result.get(0));
+        populateWebViewHtml("Context_Group/Context_Group_Contexts/Selected_Entity", WEB_REL_NONE);
+        selectedEntityUuid = null;
+        selectedEntityIdentifer = null;
+        populateContextGroupRelatedContexts();
+      }
+    });        
+  } else {
+    showWarning("Nothing Selected", "Please select a child entity in the list.");
+  }
+}
+
+loadContextFromContextGroup(){
+    String childuuid = selectedEntityUuid;
+    if (!isNull(childuuid)){
+        loadEntityFrom(childuuid);
+    } else {
+        showWarning("Nothing Selected", "Please select a child entity in the list.");
+    }
 }
 
 /******************************************************************************/

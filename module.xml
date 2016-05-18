@@ -396,7 +396,7 @@
     </Soil_Texture_Helper>
     <Update_Texture t="button" l="Context/Deposit"/>
   </Texture_Helper>
-  <Relationships>
+  <Relationships f="noscroll">
     <Create_Relationships_to_This_Context t="button" l="Relationship"/>
     <cols>
       <Existing_Relationships_to_This_Context t="list" f="nodata"/>

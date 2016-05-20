@@ -775,26 +775,6 @@
       </col>
     </cols>
   </Context_Group_Contexts>
-  <!--<Context_Group_Contexts f="noscroll">-->
-    <!--<cols>-->
-      <!--<Square  f="nodata" t="dropdown"/>-->
-      <!--<Populate_Target_Context t="button"/>-->
-    <!--</cols>-->
-    <!--<Add_Additional_Context f="nodata" t="dropdown"/>-->
-    <!--<Add_Context_to_Group t="button"/>-->
-    <!--<cols>-->
-      <!--<Contexts_in_Group f="nodata" t="list"/>-->
-      <!--<col>-->
-        <!--<Selected_Entity t="webview"/>-->
-        <!--<Guide_0 t="webview">-->
-          <!--To load or remove Contexts, tap one from the list on the left and-->
-          <!--press button below:-->
-        <!--</Guide_0>-->
-        <!--<Load_Context t="button"/>-->
-        <!--<Remove_Context_from_Group t="button"/>-->
-      <!--</col>-->
-    <!--</cols>-->
-  <!--</Context_Group_Contexts>-->
   <Context_Group_Attachments>
     <Context_Group_Sketch t="file"/>
     <Context_Group_Photo  t="camera"/>

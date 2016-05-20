@@ -23,9 +23,8 @@ populateSquare(ref) {
   fetchAll(q, populate);
 }
 
-populateLotLabel(lotRef) {
-  String tabGroup = "Context";
-  String uuid     = getUuid(tabGroup);
+setFieldToIdentifier(String identiferType, String lotRef) {
+  String uuid = getUuid(identiferType);
 
   if (isNull(uuid)) {
     populateWebViewHtml(lotRef, "&nbsp;");
@@ -47,4 +46,9 @@ populateLotLabel(lotRef) {
   };
 
   fetchOne(q, cb);
+}
+
+populateLotLabel(lotRef) {
+  identiferType = "Context";
+  setFieldToIdentifier(identiferType, lotRef);
 }

@@ -3,13 +3,14 @@
 <!--@POSTPROC: ./proc/post.sh-->
 <module suppressWarnings="true">
 <rels>
+  <!--Context group-to-Context relationship(s)-->
   <RelationshipElement name="Context Group - Context" type="hierarchical">
     <description>A 1-to-n relationship between the parent and its children, respectively.</description>
-    <parent>Parent Of</parent>
-    <child>Child Of</child>
+    <parent>includes</parent>
+    <child>is included in</child>
   </RelationshipElement>
 
-  <!--Context-to-Context relationships-->
+  <!--Context-to-Context relationship(s)-->
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts</description>
     <parent>is above</parent>
@@ -18,7 +19,7 @@
   <RelationshipElement name="is adjacent to" type="bidirectional">
     <description>Implements adjacent to for contexts</description>
   </RelationshipElement>
-  <RelationshipElement name="Contains - Contained By" type="hierarchical">
+  <RelationshipElement name="Contains" type="hierarchical">
     <description>Implements a contains-containedby for contexts</description>
     <parent>contains</parent>
     <child>is contained by</child>
@@ -764,25 +765,37 @@
     <Sample_List ec="Sample" t="dropdown"/>
   </Context_Group_Samples>
   <Context_Group_Contexts f="noscroll">
+    <!--TODO: Wire-->
+    <Create_Relationships_to_This_Context_Group t="button" l="Context_Group_Relationship"/>
     <cols>
-      <Square  f="nodata" t="dropdown"/>
-      <Populate_Target_Context t="button"/>
-    </cols>
-    <Add_Additional_Context f="nodata" t="dropdown"/>
-    <Add_Context_to_Group t="button"/>
-    <cols>
-      <Contexts_in_Group f="nodata" t="list"/>
+      <Existing_Relationships_to_This_Context_Group t="list" f="nodata"/>
       <col>
-        <Selected_Entity t="webview"/>
-        <Guide_0 t="webview">
-          To load or remove Contexts, tap one from the list on the left and
-          press button below:
-        </Guide_0>
-        <Load_Context t="button"/>
-        <Remove_Context_from_Group t="button"/>
+        <Selected_Relationship t="webview"/>
+        <Load_Related_Context t="button"/>
+        <Delete_Relationship   t="button"/>
       </col>
     </cols>
   </Context_Group_Contexts>
+  <!--<Context_Group_Contexts f="noscroll">-->
+    <!--<cols>-->
+      <!--<Square  f="nodata" t="dropdown"/>-->
+      <!--<Populate_Target_Context t="button"/>-->
+    <!--</cols>-->
+    <!--<Add_Additional_Context f="nodata" t="dropdown"/>-->
+    <!--<Add_Context_to_Group t="button"/>-->
+    <!--<cols>-->
+      <!--<Contexts_in_Group f="nodata" t="list"/>-->
+      <!--<col>-->
+        <!--<Selected_Entity t="webview"/>-->
+        <!--<Guide_0 t="webview">-->
+          <!--To load or remove Contexts, tap one from the list on the left and-->
+          <!--press button below:-->
+        <!--</Guide_0>-->
+        <!--<Load_Context t="button"/>-->
+        <!--<Remove_Context_from_Group t="button"/>-->
+      <!--</col>-->
+    <!--</cols>-->
+  <!--</Context_Group_Contexts>-->
   <Context_Group_Attachments>
     <Context_Group_Sketch t="file"/>
     <Context_Group_Photo  t="camera"/>
@@ -999,7 +1012,7 @@
 
 <Relationship f="nodata">
   <Relationships f="noscroll">
-    <LOT_Label t="webview"/>
+    <Parent_Identifier t="webview"/>
     <cols>
       <Square            t="dropdown"/>
       <Relationship_Type t="dropdown"/>
@@ -1022,9 +1035,33 @@
   </Relationships>
 </Relationship>
 
+<Context_Group_Relationship f="nodata">
+  <!--TODO: Wire-->
+  <Relationships f="noscroll">
+    <Parent_Identifier t="webview"/>
+    <Square            t="dropdown"/>
+    <Search            t="button"/>
+    <cols>
+      <col>
+        <Add_Relationship      t="button"/>
+        <Proposed_Relationship t="webview"/>
+      </col>
+      <col>
+        <Delete_Relationship t="button"/>
+        <Selected_Relationship t="webview"/>
+      </col>
+    </cols>
+    <cols>
+      <Unrelated_Contexts     t="list"/>
+      <Existing_Relationships t="list"/>
+    </cols>
+  </Relationships>
+</Context_Group_Relationship>
+
 <logic><![CDATA[
   <!--@SOURCE: logic/utils.bsh-->
   <!--@SOURCE: logic/shared.bsh-->
+  <!--@SOURCE: logic/relationships-shared.bsh-->
 
   <!--@SOURCE: logic/calc-vol-min-max.bsh-->
   <!--@SOURCE: logic/context-review.bsh-->

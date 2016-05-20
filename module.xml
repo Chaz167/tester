@@ -765,7 +765,6 @@
     <Sample_List ec="Sample" t="dropdown"/>
   </Context_Group_Samples>
   <Context_Group_Contexts f="noscroll">
-    <!--TODO: Wire-->
     <Create_Relationships_to_This_Context_Group t="button" l="Context_Group_Relationship"/>
     <cols>
       <Existing_Relationships_to_This_Context_Group t="list" f="nodata"/>
@@ -1036,7 +1035,6 @@
 </Relationship>
 
 <Context_Group_Relationship f="nodata">
-  <!--TODO: Wire-->
   <Relationships f="noscroll">
     <Parent_Identifier t="webview"/>
     <Square            t="dropdown"/>

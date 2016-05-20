@@ -343,27 +343,17 @@
               <Sample_List/>
             </Context_Group_Samples>
             <Context_Group_Contexts>
+              <Create_Relationships_to_This_Context_Group/>
               <Colgroup_0>
                 <Col_0>
-                  <Square/>
+                  <Existing_Relationships_to_This_Context_Group/>
                 </Col_0>
                 <Col_1>
-                  <Populate_Target_Context/>
+                  <Selected_Relationship/>
+                  <Load_Related_Context/>
+                  <Delete_Relationship/>
                 </Col_1>
               </Colgroup_0>
-              <Add_Additional_Context/>
-              <Add_Context_to_Group/>
-              <Colgroup_1>
-                <Col_0>
-                  <Contexts_in_Group/>
-                </Col_0>
-                <Col_1>
-                  <Selected_Entity/>
-                  <Guide_0/>
-                  <Load_Context/>
-                  <Remove_Context_from_Group/>
-                </Col_1>
-              </Colgroup_1>
             </Context_Group_Contexts>
             <Context_Group_Attachments>
               <Context_Group_Sketch/>
@@ -464,7 +454,7 @@
           </Photograph_Log>
           <Relationship>
             <Relationships>
-              <LOT_Label/>
+              <Parent_Identifier/>
               <Colgroup_0>
                 <Col_0>
                   <Square/>
@@ -494,6 +484,31 @@
               </Colgroup_2>
             </Relationships>
           </Relationship>
+          <Context_Group_Relationship>
+            <Relationships>
+              <Parent_Identifier/>
+              <Square/>
+              <Search/>
+              <Colgroup_0>
+                <Col_0>
+                  <Add_Relationship/>
+                  <Proposed_Relationship/>
+                </Col_0>
+                <Col_1>
+                  <Delete_Relationship/>
+                  <Selected_Relationship/>
+                </Col_1>
+              </Colgroup_0>
+              <Colgroup_1>
+                <Col_0>
+                  <Unrelated_Contexts/>
+                </Col_0>
+                <Col_1>
+                  <Existing_Relationships/>
+                </Col_1>
+              </Colgroup_1>
+            </Relationships>
+          </Context_Group_Relationship>
           <logic/>
         </faims>
       </instance>
@@ -1094,7 +1109,7 @@
           <label>{Update_Texture}</label>
         </trigger>
       </group>
-      <group ref="Relationships">
+      <group ref="Relationships" faims_scrollable="false">
         <label>{Relationships}</label>
         <trigger ref="Create_Relationships_to_This_Context">
           <label>{Create_Relationships_to_This_Context}</label>
@@ -1413,12 +1428,15 @@
       </group>
       <group ref="Context_Group_Contexts" faims_scrollable="false">
         <label>{Context_Group_Contexts}</label>
+        <trigger ref="Create_Relationships_to_This_Context_Group">
+          <label>{Create_Relationships_to_This_Context_Group}</label>
+        </trigger>
         <group ref="Colgroup_0" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <select1 ref="Square" faims_certainty="false" faims_annotation="false">
-              <label>{Square}</label>
+            <select1 appearance="compact" ref="Existing_Relationships_to_This_Context_Group" faims_certainty="false" faims_annotation="false">
+              <label>{Existing_Relationships_to_This_Context_Group}</label>
               <item>
                 <label>Options not loaded</label>
                 <value>0</value>
@@ -1427,46 +1445,14 @@
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <trigger ref="Populate_Target_Context">
-              <label>{Populate_Target_Context}</label>
-            </trigger>
-          </group>
-        </group>
-        <select1 ref="Add_Additional_Context" faims_certainty="false" faims_annotation="false">
-          <label>{Add_Additional_Context}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <trigger ref="Add_Context_to_Group">
-          <label>{Add_Context_to_Group}</label>
-        </trigger>
-        <group ref="Colgroup_1" faims_style="orientation">
-          <label/>
-          <group ref="Col_0" faims_style="even">
-            <label/>
-            <select1 appearance="compact" ref="Contexts_in_Group" faims_certainty="false" faims_annotation="false">
-              <label>{Contexts_in_Group}</label>
-              <item>
-                <label>Options not loaded</label>
-                <value>0</value>
-              </item>
-            </select1>
-          </group>
-          <group ref="Col_1" faims_style="even">
-            <label/>
-            <input faims_web="true" ref="Selected_Entity">
-              <label>{Selected_Entity}</label>
+            <input faims_web="true" ref="Selected_Relationship">
+              <label>{Selected_Relationship}</label>
             </input>
-            <input faims_web="true" ref="Guide_0">
-              <label>{To_load_or_remove_Contexts__tap_one_from_the_list_on_the_left_and_press_button_below_}</label>
-            </input>
-            <trigger ref="Load_Context">
-              <label>{Load_Context}</label>
+            <trigger ref="Load_Related_Context">
+              <label>{Load_Related_Context}</label>
             </trigger>
-            <trigger ref="Remove_Context_from_Group">
-              <label>{Remove_Context_from_Group}</label>
+            <trigger ref="Delete_Relationship">
+              <label>{Delete_Relationship}</label>
             </trigger>
           </group>
         </group>
@@ -1755,8 +1741,8 @@
       <label>{Relationship}</label>
       <group ref="Relationships" faims_scrollable="false">
         <label>{Relationships}</label>
-        <input faims_web="true" ref="LOT_Label">
-          <label>{LOT_Label}</label>
+        <input faims_web="true" ref="Parent_Identifier">
+          <label>{Parent_Identifier}</label>
         </input>
         <group ref="Colgroup_0" faims_style="orientation">
           <label/>
@@ -1806,6 +1792,69 @@
           </group>
         </group>
         <group ref="Colgroup_2" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <select1 appearance="compact" ref="Unrelated_Contexts">
+              <label>{Unrelated_Contexts}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
+          </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <select1 appearance="compact" ref="Existing_Relationships">
+              <label>{Existing_Relationships}</label>
+              <item>
+                <label>Options not loaded</label>
+                <value>0</value>
+              </item>
+            </select1>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group ref="Context_Group_Relationship">
+      <label>{Context_Group_Relationship}</label>
+      <group ref="Relationships" faims_scrollable="false">
+        <label>{Relationships}</label>
+        <input faims_web="true" ref="Parent_Identifier">
+          <label>{Parent_Identifier}</label>
+        </input>
+        <select1 ref="Square">
+          <label>{Square}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <trigger ref="Search">
+          <label>{Search}</label>
+        </trigger>
+        <group ref="Colgroup_0" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <trigger ref="Add_Relationship">
+              <label>{Add_Relationship}</label>
+            </trigger>
+            <input faims_web="true" ref="Proposed_Relationship">
+              <label>{Proposed_Relationship}</label>
+            </input>
+          </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <trigger ref="Delete_Relationship">
+              <label>{Delete_Relationship}</label>
+            </trigger>
+            <input faims_web="true" ref="Selected_Relationship">
+              <label>{Selected_Relationship}</label>
+            </input>
+          </group>
+        </group>
+        <group ref="Colgroup_1" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>

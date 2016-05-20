@@ -32,8 +32,8 @@
   </RelationshipElement>
   <RelationshipElement name="Context Group - Context" type="hierarchical">
     <description>A 1-to-n relationship between the parent and its children, respectively.</description>
-    <parent>Parent Of</parent>
-    <child>Child Of</child>
+    <parent>includes</parent>
+    <child>is included in</child>
   </RelationshipElement>
   <RelationshipElement name="AboveBelow" type="hierarchical">
     <description>Implements a above below for contexts</description>
@@ -43,7 +43,7 @@
   <RelationshipElement name="is adjacent to" type="bidirectional">
     <description>Implements adjacent to for contexts</description>
   </RelationshipElement>
-  <RelationshipElement name="Contains - Contained By" type="hierarchical">
+  <RelationshipElement name="Contains" type="hierarchical">
     <description>Implements a contains-containedby for contexts</description>
     <parent>contains</parent>
     <child>is contained by</child>

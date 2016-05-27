@@ -804,17 +804,20 @@
   <desc>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</desc>
   <Artefact_Group_General_Information>
     <cols>
-      <Artefact_Group_Context>
+      <Artefact_LOT_ID f="readonly">
         <desc>Unique number or code for each Context.</desc>
-      </Artefact_Group_Context>
+      </Artefact_LOT_ID>
       <Artefact_Group_ID f="id notnull autonum">
         <str>
-          <fmt>AG-$2</fmt>
+          <fmt>AG-$2-</fmt>
         </str>
         <desc>Unique number or code for the artefact group.</desc>
       </Artefact_Group_ID>
     </cols>
-    <Artefact_Class>
+    <Artefact_Class f="id">
+      <str>
+        <fmt>$1</fmt>
+      </str>
       <desc>Broad Artefact Class for each Artefact.</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -1078,5 +1081,6 @@
   <!--@SOURCE: logic/relationships-context-to-context.bsh-->
   <!--@SOURCE: logic/relationships-context-group-to-context.bsh-->
   <!--@SOURCE: logic/context-photograph-log-inheritance.bsh-->
+  <!--@SOURCE: logic/context-to-artefact-group-inheritance.bsh-->
 ]]></logic>
 </module>

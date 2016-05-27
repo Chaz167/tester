@@ -973,10 +973,14 @@
 <Photograph_Log>
   <desc>A record of images created and stored on another device, eg by a professional site photographer.</desc>
   <Photograph_Log>
-    <Photograph_Log_Context>
+    <Photograph_Log_LOT_ID f="readonly">
       <desc>Unique number or code for each Context</desc>
-    </Photograph_Log_Context>
+    </Photograph_Log_LOT_ID>
     <Photograph_Reference_ID f="id notnull">
+      <str>
+        <pos>1</pos>
+        <fmt>PH-$2-</fmt>
+      </str>
       <desc>Unique number or code allocated by creator of the image. It could be a filename or a reference number</desc>
     </Photograph_Reference_ID>
     <Looking_Toward>
@@ -990,7 +994,11 @@
         <opt>Plan</opt>
       </opts>
     </Looking_Toward>
-    <Scene_Type>
+    <Scene_Type f="id">
+      <str>
+        <pos>2</pos>
+        <fmt>$1</fmt>
+      </str>
       <desc>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -1069,5 +1077,6 @@
   <!--@SOURCE: logic/review-search.bsh-->
   <!--@SOURCE: logic/relationships-context-to-context.bsh-->
   <!--@SOURCE: logic/relationships-context-group-to-context.bsh-->
+  <!--@SOURCE: logic/context-photograph-log-inheritance.bsh-->
 ]]></logic>
 </module>

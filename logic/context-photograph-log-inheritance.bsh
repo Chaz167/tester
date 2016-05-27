@@ -1,0 +1,11 @@
+/******************* CONTEXT TO PHOTOGRAPH LOG INHERITANCE ********************/
+/* These functions are triggered when a new context is created, using         */
+/* @POSTPROC.                                                                 */
+/******************************************************************************/
+
+copyPhotographLogLotId() {
+  src = "Context/General/LOT_ID";
+  dst = "Photograph_Log/Photograph_Log/Photograph_Log_LOT_ID";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}

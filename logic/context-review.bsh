@@ -3,7 +3,7 @@ addOnEvent("Context/Review/Close", "click", "closeContext()");
 
 closeContext() {
   ref     = "Context/Review/Date_Closed";
-  fmt     = "yyyy-MM-dd";
+  fmt     = "yyyy-MM-dd HH:mm:ss z";
   date    = new Date();
   dateFmt = new java.text.SimpleDateFormat(fmt);
   dateStr = dateFmt.format(date);

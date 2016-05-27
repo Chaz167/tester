@@ -351,6 +351,7 @@
         </opts>
       </Natural_Formations>
       <Context_Disturbances t="checkbox" f="notnull">
+        Disturbances
         <desc>Disturbances evident in the deposit</desc>
         <opts>
           <opt>None</opt>

@@ -507,6 +507,7 @@
     </Title>
     <Description/>
     <Depth b="decimal" f="notnull">
+      Depth (m)
       <desc>Depth or Height, in mm.</desc>
     </Depth>
     <Your_Discussion/>
@@ -537,6 +538,7 @@
       <desc>The datum used for establishing your global position. Comment: default to WGS84, otherwise type manually. Enter Zone in Annotation Field.</desc>
     </Datum>
     <Elevation b="decimal" f="notnull">
+      Elevation (masl)
       <desc>Elevation of the top of the profile, in m.</desc>
     </Elevation>
     <Elevation_Determination>
@@ -569,10 +571,11 @@
       <desc>The geological unit of the layer assigned by the geologist (typically decreasing numbers with depth).</desc>
     </Geological_Unit_Number>
     <cols>
-      <Start_Depth t="radio" f="notnull">
+      <Start_Depth t="dropdown" f="notnull">
+        Units
         <opts>
-          <opt>MBS<desc>Metres Below Surface</desc></opt>
-          <opt>MBD<desc>Meters Below Datum</desc></opt>
+          <opt>Metres Below Surface</opt>
+          <opt>Meters Below Datum</opt>
         </opts>
       </Start_Depth>
       <Start_Depth_Magnitude b="decimal" f="nodata notnull">
@@ -768,8 +771,8 @@
       </opts>
     </Lower_Boundary>
     <cols>
-      <Created_By f="notnull"/>
-      <Creation_Date f="notnull"/>
+      <timestamp f="notnull">Create By</timestamp>
+      <author f="notnull">Creation Date</author>
     </cols>
   </Context_Group_Details>
   <Context_Group_Samples>

@@ -122,7 +122,7 @@
     <cols>
       <timestamp>
         Date Opened
-        <desc>Date (YYYY-MM-DD) on which the Context was first excavated.</desc>
+        <desc>Date (YYYY-MM-DD HH:MM:SS Z) on which the Context was first excavated.</desc>
       </timestamp>
       <Wet_Sieved f="notnull" t="radio">
         <desc>Was the deposit wet sieved?</desc>
@@ -419,10 +419,16 @@
         <desc>The total number of buckets of sediment that was removed as part of the Context, estimated to the nearest 0.2 buckets; e.g. 1.2 buckets.</desc>
       </Final_Bucket_Count>
       <Deposit_Volume b="decimal" f="notnull">
+        Deposit Volume (litres)
         <desc>The total volume of sediment (in L) removed as part of the Context.</desc>
       </Deposit_Volume>
     </cols>
     <Calculate_Vol t="button"/>
+    <Opening_Photo_Taken t="radio">
+      <opts>
+        <!--@SOURCE: vocabs/boolean.xml-->
+      </opts>
+    </Opening_Photo_Taken>
     <Closing_Photo_Taken t="radio">
       <opts>
         <!--@SOURCE: vocabs/boolean.xml-->
@@ -439,7 +445,7 @@
         <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </Trench_Supervisor_Review>
-    <Site_Director_Review t="radio">
+    <Site_Director_Review t="radio" f="notnull">
       <desc>Has the Site Director reviewed this Context record and confirmed data are complete and accurate?</desc>
       <opts>
         <!--@SOURCE: vocabs/boolean.xml-->

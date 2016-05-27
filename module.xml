@@ -67,6 +67,7 @@
 <Context>
   <desc>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</desc>
   <General>
+    <LOT_Label t="webview"/>
     <cols>
       <Site f="id notnull">
         <str>
@@ -101,7 +102,6 @@
           <opt>B</opt>
           <opt>C</opt>
           <opt>D</opt>
-          <opt>Other</opt>
           <opt>N/A</opt>
         </opts>
       </Subsquare>
@@ -119,7 +119,6 @@
         </str>
       </LOT_ID>
     </cols>
-    <LOT_Label t="webview"/>
     <cols>
       <timestamp>
         Date Opened
@@ -199,8 +198,12 @@
       </opts>
     </Elevation_Datum_Type>
     <cols>
+      <Take_Opening_Photo t="camera"/>
+      <Take_Closing_Photo t="camera"/>
+    </cols>
+    <cols>
       <col>
-        <Guide_Opening t="webview">Opening Elevations</Guide_Opening>
+        <Guide_Opening t="webview">Opening Elevations (masl)</Guide_Opening>
         <Context_Highest_Level_NW  b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the NW extent within the square of the Context.</desc>
         </Context_Highest_Level_NW>
@@ -216,10 +219,9 @@
         <Context_Highest_Level_Ctr b="decimal" f="notnull">
           <desc>The highest elevation, or 'opening level', recorded for the centre of the Context.</desc>
         </Context_Highest_Level_Ctr>
-        <Take_Opening_Photo t="camera"/>
       </col>
       <col>
-        <Guide_Closing t="webview">Closing Elevations</Guide_Closing>
+        <Guide_Closing t="webview">Closing Elevations (masl)</Guide_Closing>
         <Context_Lowest_Level_NW  b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</desc>
         </Context_Lowest_Level_NW>
@@ -235,17 +237,18 @@
         <Context_Lowest_Level_Ctr b="decimal" f="notnull">
           <desc>The lowest elevation, or 'closing level', recorded for the centre of the Context.</desc>
         </Context_Lowest_Level_Ctr>
-        <Take_Closing_Photo t="camera"/>
       </col>
     </cols>
     <cols>
       <Min_Context_Thickness b="decimal" f="notnull">
+        Min Context Thickness (m)
         <desc>The minimum thickness of the deposit based on the highest and lowest in each extent within the square.</desc>
       </Min_Context_Thickness>
       <Calculate_Min t="button"/>
     </cols>
     <cols>
       <Max_Context_Thickness b="decimal" f="notnull">
+        Max Context Thickness (m)
         <desc>The maximum thickness of the deposit based on the highest and lowest in each extent within the square.</desc>
       </Max_Context_Thickness>
       <Calculate_Max t="button"/>

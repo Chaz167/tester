@@ -1,0 +1,8 @@
+/******************* CONTEXT TO ARTEFACT GROUP INHERITANCE ********************/
+
+copyArtefactLotId() {
+  src = "Context/General/LOT_ID";
+  dst = "Artefact_Group/Artefact_Group_General_Information/Artefact_Group_LOT_ID";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}

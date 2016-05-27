@@ -1,5 +1,4 @@
 <?xml version="1.0" ?>
-<!--TODO: Fix MEMSAP2-40-->
 <!--@PREPROC:  ./proc/pre.sh-->
 <!--@POSTPROC: ./proc/post.sh-->
 <module suppressWarnings="true">
@@ -805,9 +804,9 @@
   <desc>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</desc>
   <Artefact_Group_General_Information>
     <cols>
-      <Artefact_LOT_ID f="readonly">
+      <Artefact_Group_LOT_ID f="readonly">
         <desc>Unique number or code for each Context.</desc>
-      </Artefact_LOT_ID>
+      </Artefact_Group_LOT_ID>
       <Artefact_Group_ID f="id notnull autonum">
         <str>
           <fmt>AG-$2-</fmt>

@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<!--TODO: Fix MEMSAP2-40-->
 <!--@PREPROC:  ./proc/pre.sh-->
 <!--@POSTPROC: ./proc/post.sh-->
 <module suppressWarnings="true">
@@ -922,17 +923,20 @@
 <Special_Find>
   <Special_Find_General_Information>
     <cols>
-      <Special_Find_Context>
+      <Special_Find_LOT_ID f="readonly">
         <desc>Unique number or code for each Context.</desc>
-      </Special_Find_Context>
+      </Special_Find_LOT_ID>
       <Special_Find_ID f="id notnull autonum">
          <str>
-           <fmt>SF-$2</fmt>
+           <fmt>SF-$2-</fmt>
          </str>
          <desc>Unique number or code for the special find.</desc>
       </Special_Find_ID>
     </cols>
-    <Special_Find_Class>
+    <Special_Find_Class f="id">
+      <str>
+        <fmt>$1</fmt>
+      </str>
       <desc>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).</desc>
       <opts>
         <opt>No Observation<desc>Data not collected</desc></opt>
@@ -948,7 +952,7 @@
         <opt>Other</opt>
       </opts>
     </Special_Find_Class>
-    <Special_Find_Name f="notnull"/>
+    <Special_Find_Name/>
     <Special_Find_Description/>
     <Special_Find_Comment/>
     <Special_Find_Sketch t="file"/>
@@ -957,13 +961,13 @@
   </Special_Find_General_Information>
   <Special_Find_Location>
     <cols>
-      <X b="decimal" f="notnull">
+      <X b="decimal">
         <desc>The reading from the x-axis (horizontal) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </X>
-      <Y b="decimal" f="notnull">
+      <Y b="decimal">
         <desc>The reading from the y-axis (vertical) of an arbitrary site grid, corresponding to the location of the Special Find at the time of excavation.</desc>
       </Y>
-      <Z b="decimal" f="notnull">
+      <Z b="decimal">
         <desc>The elevation or depth of the Special Find at the time of excavation.</desc>
       </Z>
     </cols>
@@ -1082,5 +1086,6 @@
   <!--@SOURCE: logic/relationships-context-group-to-context.bsh-->
   <!--@SOURCE: logic/context-photograph-log-inheritance.bsh-->
   <!--@SOURCE: logic/context-to-artefact-group-inheritance.bsh-->
+  <!--@SOURCE: logic/context-to-special-find-inheritance.bsh-->
 ]]></logic>
 </module>

@@ -1,0 +1,8 @@
+/******************** CONTEXT TO SPECIAL FIND INHERITANCE *********************/
+
+copySpecialFindLotId() {
+  src = "Context/General/LOT_ID";
+  dst = "Special_Find/Special_Find_General_Information/Special_Find_LOT_ID";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}

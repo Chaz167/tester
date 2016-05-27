@@ -171,6 +171,11 @@
         <param value="vocab" type="field"/>
       </validator>
     </property>
+    <property name="Site Director Review">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
     <property name="Date Closed">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
@@ -223,12 +228,12 @@
         <param value="vocab" type="field"/>
       </validator>
     </property>
-    <property name="Created By">
+    <property name="timestamp">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Creation Date">
+    <property name="author">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
@@ -270,26 +275,6 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Special_Find">
     <property name="Special Find ID">
-      <validator type="blankchecker">
-        <param value="measure" type="field"/>
-      </validator>
-    </property>
-    <property name="Special Find Name">
-      <validator type="blankchecker">
-        <param value="measure" type="field"/>
-      </validator>
-    </property>
-    <property name="X">
-      <validator type="blankchecker">
-        <param value="measure" type="field"/>
-      </validator>
-    </property>
-    <property name="Y">
-      <validator type="blankchecker">
-        <param value="measure" type="field"/>
-      </validator>
-    </property>
-    <property name="Z">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>

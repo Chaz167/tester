@@ -78,8 +78,6 @@
 <description/></term>
         <term>{D}
 <description/></term>
-        <term>{Other}
-<description/></term>
         <term>{N_A}
 <description/></term>
       </lookup>
@@ -95,7 +93,7 @@
       <appendCharacterString><![CDATA[-]]></appendCharacterString>
     </property>
     <property name="timestamp" type="measure">
-      <description>Date (YYYY-MM-DD) on which the Context was first excavated.</description>
+      <description>Date (YYYY-MM-DD HH:MM:SS Z) on which the Context was first excavated.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
@@ -197,6 +195,16 @@
 <description/></term>
       </lookup>
     </property>
+    <property name="Take Opening Photo" type="file" file="true" thumbnail="true">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    </property>
+    <property name="Take Closing Photo" type="file" file="true" thumbnail="true">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    </property>
     <property name="Context Highest Level NW" type="measure">
       <description>The highest elevation, or 'opening level', recorded for the NW extent within the square of the Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
@@ -222,11 +230,6 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Take Opening Photo" type="file" file="true" thumbnail="true">
-      <description/>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-    </property>
     <property name="Context Lowest Level NW" type="measure">
       <description>The lowest elevation, or 'closing level', recorded for the NW extent within the square of the Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
@@ -249,11 +252,6 @@
     </property>
     <property name="Context Lowest Level Ctr" type="measure">
       <description>The lowest elevation, or 'closing level', recorded for the centre of the Context.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-    </property>
-    <property name="Take Closing Photo" type="file" file="true" thumbnail="true">
-      <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
@@ -3679,6 +3677,17 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
+    <property name="Opening Photo Taken" type="vocab">
+      <description/>
+      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{Yes}
+<description/></term>
+        <term>{No}
+<description/></term>
+      </lookup>
+    </property>
     <property name="Closing Photo Taken" type="vocab">
       <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
@@ -3857,10 +3866,10 @@
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
-        <term>{MBS}
-<description>Metres Below Surface</description></term>
-        <term>{MBD}
-<description>Meters Below Datum</description></term>
+        <term>{Metres_Below_Surface}
+<description/></term>
+        <term>{Meters_Below_Datum}
+<description/></term>
       </lookup>
     </property>
     <property name="Context Group Soil Munsell Colour" type="vocab">
@@ -7235,12 +7244,12 @@
 <description>Boundary is discontinuous across the exposed profile, and takes more than one form.</description></term>
       </lookup>
     </property>
-    <property name="Created By" type="measure">
+    <property name="timestamp" type="measure">
       <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Creation Date" type="measure">
+    <property name="author" type="measure">
       <description/>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
@@ -7258,19 +7267,19 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Artefact Group">
     <description>The total group or assemblage of objects recovered from a single Context. These are sometimes referred to as 'Bulk Finds'.</description>
-    <property name="Artefact Group Context" type="measure">
+    <property name="Artefact Group LOT ID" type="measure">
       <description>Unique number or code for each Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Artefact Group ID" isIdentifier="true" type="measure">
       <description>Unique number or code for the artefact group.</description>
-      <formatString><![CDATA[AG-$2]]></formatString>
+      <formatString><![CDATA[AG-$2-]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Artefact Class" type="vocab">
+    <property name="Artefact Class" isIdentifier="true" type="vocab">
       <description>Broad Artefact Class for each Artefact.</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <formatString><![CDATA[$1]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term>{No_Observation}
@@ -7409,19 +7418,19 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Special Find">
     <description/>
-    <property name="Special Find Context" type="measure">
+    <property name="Special Find LOT ID" type="measure">
       <description>Unique number or code for each Context.</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
     <property name="Special Find ID" isIdentifier="true" type="measure">
       <description>Unique number or code for the special find.</description>
-      <formatString><![CDATA[SF-$2]]></formatString>
+      <formatString><![CDATA[SF-$2-]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
-    <property name="Special Find Class" type="vocab">
+    <property name="Special Find Class" isIdentifier="true" type="vocab">
       <description>Broad Artefact Class for each Artefact (eg Glass, Ceramic, Building Material).</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
+      <formatString><![CDATA[$1]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
       <lookup>
         <term>{No_Observation}
@@ -7496,13 +7505,32 @@
   </ArchaeologicalElement>
   <ArchaeologicalElement name="Photograph Log">
     <description>A record of images created and stored on another device, eg by a professional site photographer.</description>
-    <property name="Photograph Log Context" type="measure">
-      <description>Unique number or code for each Context</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-    </property>
     <property name="Photograph Reference ID" isIdentifier="true" type="measure">
       <description>Unique number or code allocated by creator of the image. It could be a filename or a reference number</description>
+      <formatString><![CDATA[PH-$2-]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+    </property>
+    <property name="Scene Type" isIdentifier="true" type="vocab">
+      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
+      <formatString><![CDATA[$1]]></formatString>
+      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
+      <lookup>
+        <term>{No_Observation}
+<description>Data not collected</description></term>
+        <term>{Open}
+<description/></term>
+        <term>{Close}
+<description/></term>
+        <term>{Feature}
+<description/></term>
+        <term>{Artefacts_In_Situ}
+<description/></term>
+        <term>{Other__specify_}
+<description/></term>
+      </lookup>
+    </property>
+    <property name="Photograph Log LOT ID" type="measure">
+      <description>Unique number or code for each Context</description>
       <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
       <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
     </property>
@@ -7522,25 +7550,6 @@
         <term>{Other}
 <description/></term>
         <term>{Plan}
-<description/></term>
-      </lookup>
-    </property>
-    <property name="Scene Type" type="vocab">
-      <description>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</description>
-      <formatString><![CDATA[{{if $1 then $1}}{{if and($1, $2) then " " }}{{if $2 then $2}}{{if $3 then " ($3)"}}{{if between($4,0,0.49) then "??" elsif lessThan($4,1) then "?" }}]]></formatString>
-      <appendCharacterString><![CDATA[ - ]]></appendCharacterString>
-      <lookup>
-        <term>{No_Observation}
-<description>Data not collected</description></term>
-        <term>{Open}
-<description/></term>
-        <term>{Close}
-<description/></term>
-        <term>{Feature}
-<description/></term>
-        <term>{Artefacts_In_Situ}
-<description/></term>
-        <term>{Other__specify_}
 <description/></term>
       </lookup>
     </property>

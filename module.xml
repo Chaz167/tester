@@ -58,9 +58,9 @@
   <search/>
   <Review f="noscroll">
     <cols>
-      <!--The semantics of this cols element have been changed with @POSTPROC-->
-      <Square t="dropdown"/>
-      <Search t="button"/>
+      <Square   t="dropdown"/>
+      <Reviewer t="dropdown"/>
+      <Search   t="button"/>
     </cols>
     <Entity_List t="list"/>
   </Review>

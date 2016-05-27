@@ -2,6 +2,7 @@ import android.util.Log;
 
 Object dialog;          // Used to help coordinate the display of a "busy..." dialog
 String parentTabgroup;  // Used to allow entities to be saved as children
+String parentTabgroup__;// Used to allow entities to be saved as children
 String redirectTab;     // makes newTab work as expected
 String username = "";
 String userid   = "";
@@ -146,6 +147,7 @@ getDropdownItemValue() {
 addOnEvent("User/User/Users", "click", "dropdownItemValue = getFieldValue(\"User/User/Users\")");
 addOnEvent("Control/Defaults/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Control/Defaults/Target_Spit_Thickness\")");
 addOnEvent("Control/Review/Square", "click", "dropdownItemValue = getFieldValue(\"Control/Review/Square\")");
+addOnEvent("Control/Review/Reviewer", "click", "dropdownItemValue = getFieldValue(\"Control/Review/Reviewer\")");
 addOnEvent("Context/General/Subsquare", "click", "dropdownItemValue = getFieldValue(\"Context/General/Subsquare\")");
 addOnEvent("Context/General/Surface_Area", "click", "dropdownItemValue = getFieldValue(\"Context/General/Surface_Area\")");
 addOnEvent("Context/General/Your_Interpretation", "click", "dropdownItemValue = getFieldValue(\"Context/General/Your_Interpretation\")");
@@ -162,6 +164,7 @@ addOnEvent("Context/Texture_Helper/Soil_Texture_Helper", "click", "dropdownItemV
 addOnEvent("Context/Vars/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Context/Vars/Target_Spit_Thickness\")");
 addOnEvent("Context_Group/Context_Group_Details/Profile_Aspect", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Profile_Aspect\")");
 addOnEvent("Context_Group/Context_Group_Details/Elevation_Determination", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Elevation_Determination\")");
+addOnEvent("Context_Group/Context_Group_Details/Start_Depth", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Start_Depth\")");
 addOnEvent("Context_Group/Context_Group_Details/Context_Group_Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Context_Group_Soil_Munsell_Colour\")");
 addOnEvent("Context_Group/Context_Group_Details/Compaction", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Compaction\")");
 addOnEvent("Context_Group/Context_Group_Details/Soil_Texture_Actual", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Soil_Texture_Actual\")");
@@ -518,6 +521,7 @@ makeVocab("CheckBoxGroup", "Context/Deposit/Natural_Formations", "Natural Format
 makeVocab("CheckBoxGroup", "Context/Deposit/Context_Disturbances", "Context Disturbances");
 makeVocab("RadioGroup", "Context/Samples/Bulk_Sample_Mapped", "Bulk Sample Mapped");
 makeVocab("HierarchicalDropDown", "Context/Texture_Helper/Soil_Texture_Helper", "Soil Texture Helper");
+makeVocab("RadioGroup", "Context/Review/Opening_Photo_Taken", "Opening Photo Taken");
 makeVocab("RadioGroup", "Context/Review/Closing_Photo_Taken", "Closing Photo Taken");
 makeVocab("RadioGroup", "Context/Review/All_Below_Relationship_Indicated", "All Below Relationship Indicated");
 makeVocab("RadioGroup", "Context/Review/Trench_Supervisor_Review", "Trench Supervisor Review");
@@ -525,7 +529,7 @@ makeVocab("RadioGroup", "Context/Review/Site_Director_Review", "Site Director Re
 makeVocab("DropDown", "Context/Vars/Target_Spit_Thickness", "Target Spit Thickness");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Profile_Aspect", "Profile Aspect");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Elevation_Determination", "Elevation Determination");
-makeVocab("RadioGroup", "Context_Group/Context_Group_Details/Start_Depth", "Start Depth");
+makeVocab("DropDown", "Context_Group/Context_Group_Details/Start_Depth", "Start Depth");
 makeVocab("HierarchicalDropDown", "Context_Group/Context_Group_Details/Context_Group_Soil_Munsell_Colour", "Context Group Soil Munsell Colour");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Compaction", "Compaction");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Soil_Texture_Actual", "Soil Texture Actual");
@@ -634,19 +638,20 @@ validateContext() {
   f.add(fieldPair("Context/General/Context_Lowest_Level_SE", "{Context_Lowest_Level_SE}"));
   f.add(fieldPair("Context/General/Context_Lowest_Level_SW", "{Context_Lowest_Level_SW}"));
   f.add(fieldPair("Context/General/Context_Lowest_Level_Ctr", "{Context_Lowest_Level_Ctr}"));
-  f.add(fieldPair("Context/General/Min_Context_Thickness", "{Min_Context_Thickness}"));
-  f.add(fieldPair("Context/General/Max_Context_Thickness", "{Max_Context_Thickness}"));
+  f.add(fieldPair("Context/General/Min_Context_Thickness", "{Min_Context_Thickness__m_}"));
+  f.add(fieldPair("Context/General/Max_Context_Thickness", "{Max_Context_Thickness__m_}"));
   f.add(fieldPair("Context/General/Artefacts_Present", "{Artefacts_Present}"));
   f.add(fieldPair("Context/Deposit/Soil_Munsell_Colour", "{Soil_Munsell_Colour}"));
   f.add(fieldPair("Context/Deposit/Soil_Moisture", "{Soil_Moisture}"));
   f.add(fieldPair("Context/Deposit/Soil_Compaction_Type", "{Soil_Compaction_Type}"));
   f.add(fieldPair("Context/Deposit/Deposit_Inclusions", "{Deposit_Inclusions}"));
   f.add(fieldPair("Context/Deposit/Natural_Formations", "{Natural_Formations}"));
-  f.add(fieldPair("Context/Deposit/Context_Disturbances", "{Context_Disturbances}"));
+  f.add(fieldPair("Context/Deposit/Context_Disturbances", "{Disturbances}"));
   f.add(fieldPair("Context/Samples/Bulk_Sample_Mapped", "{Bulk_Sample_Mapped}"));
   f.add(fieldPair("Context/Review/Final_Bucket_Count", "{Final_Bucket_Count}"));
-  f.add(fieldPair("Context/Review/Deposit_Volume", "{Deposit_Volume}"));
+  f.add(fieldPair("Context/Review/Deposit_Volume", "{Deposit_Volume__litres_}"));
   f.add(fieldPair("Context/Review/Trench_Supervisor_Review", "{Trench_Supervisor_Review}"));
+  f.add(fieldPair("Context/Review/Site_Director_Review", "{Site_Director_Review}"));
   f.add(fieldPair("Context/Review/Date_Closed", "{Date_Closed}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
@@ -659,15 +664,15 @@ validateContextGroup() {
   f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_Site", "{Context_Group_Site}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_Area", "{Context_Group_Area}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_ID", "{Context_Group_ID}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/Depth", "{Depth}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/Elevation", "{Elevation}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Depth", "{Depth__m_}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Elevation", "{Elevation__masl_}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Geological_Unit_Number", "{Geological_Unit_Number}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth", "{Start_Depth}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth", "{Units}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth_Magnitude", "{Start_Depth}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Soil_Colour", "{Soil_Colour}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_Disturbances", "{Context_Group_Disturbances}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/Created_By", "{Created_By}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/Creation_Date", "{Creation_Date}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/timestamp", "{Create_By}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/author", "{Creation_Date}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -678,7 +683,7 @@ validateArtefactGroup() {
 
   f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID", "{Artefact_Group_ID}"));
   f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Quantity", "{Artefact_Quantity}"));
-  f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Weight", "{Artefact_Weight}"));
+  f.add(fieldPair("Artefact_Group/Artefact_Group_General_Information/Artefact_Weight", "{Artefact_Weight__g_}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -689,7 +694,7 @@ validateSample() {
 
   f.add(fieldPair("Sample/Sample_General_Information/Sample_ID", "{Sample_ID}"));
   f.add(fieldPair("Sample/Sample_General_Information/Sample_Type", "{Sample_Type}"));
-  f.add(fieldPair("Sample/Sample_General_Information/Sample_Volume", "{Sample_Volume}"));
+  f.add(fieldPair("Sample/Sample_General_Information/Sample_Volume", "{Sample_Volume__litres_}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -699,10 +704,6 @@ validateSpecialFind() {
   List f = new ArrayList(); // Fields to be validated
 
   f.add(fieldPair("Special_Find/Special_Find_General_Information/Special_Find_ID", "{Special_Find_ID}"));
-  f.add(fieldPair("Special_Find/Special_Find_General_Information/Special_Find_Name", "{Special_Find_Name}"));
-  f.add(fieldPair("Special_Find/Special_Find_Location/X", "{X}"));
-  f.add(fieldPair("Special_Find/Special_Find_Location/Y", "{Y}"));
-  f.add(fieldPair("Special_Find/Special_Find_Location/Z", "{Z}"));
   f.add(fieldPair("Special_Find/Special_Find_Location/Notes", "{Notes}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
@@ -790,7 +791,9 @@ populateAuthorAndTimestamp(String tabgroup) {
   Map tabgroupToAuthor    = new HashMap();
   Map tabgroupToTimestamp = new HashMap();
   tabgroupToAuthor.put("Context", "Context/General/author");
+  tabgroupToAuthor.put("Context_Group", "Context_Group/Context_Group_Details/author");
   tabgroupToTimestamp.put("Context", "Context/General/timestamp");
+  tabgroupToTimestamp.put("Context_Group", "Context_Group/Context_Group_Details/timestamp");
 
   String authorPath    = tabgroupToAuthor.get(tabgroup);
   String timestampPath = tabgroupToTimestamp.get(tabgroup);
@@ -845,10 +848,12 @@ onClickUserGuide () {
 }
 onClickControlNewContext () {
   // TODO: Add some things which should happen when this element is clicked
+  parentTabgroup__ = "Control";
   newContext();
 }
 onClickControlNewContextGroup () {
   // TODO: Add some things which should happen when this element is clicked
+  parentTabgroup__ = "Control";
   newContextGroup();
 }
 onClickContextCreateRelationshipstoThisContext () {
@@ -881,8 +886,6 @@ onClickContextNewSample () {
   parentTabgroup   = tabgroup;
   parentTabgroup__ = tabgroup;
   newSample();
-  if (parentTabgroup__.equals("Context"))
-      copyLotId();
 }
 onClickContextNewPhotoLog () {
   // TODO: Add some things which should happen when this element is clicked
@@ -891,7 +894,8 @@ onClickContextNewPhotoLog () {
     showToast("{You_must_save_this_tabgroup_first}");
     return;
   }
-  parentTabgroup = tabgroup;
+  parentTabgroup   = tabgroup;
+  parentTabgroup__ = tabgroup;
   newPhotographLog();
 }
 onClickContextNewArtefactGroup () {
@@ -901,7 +905,8 @@ onClickContextNewArtefactGroup () {
     showToast("{You_must_save_this_tabgroup_first}");
     return;
   }
-  parentTabgroup = tabgroup;
+  parentTabgroup   = tabgroup;
+  parentTabgroup__ = tabgroup;
   newArtefactGroup();
 }
 onClickContextNewSpecialFind () {
@@ -911,7 +916,8 @@ onClickContextNewSpecialFind () {
     showToast("{You_must_save_this_tabgroup_first}");
     return;
   }
-  parentTabgroup = tabgroup;
+  parentTabgroup   = tabgroup;
+  parentTabgroup__ = tabgroup;
   newSpecialFind();
 }
 onClickContextGroupNewSample () {
@@ -924,8 +930,6 @@ onClickContextGroupNewSample () {
   parentTabgroup   = tabgroup;
   parentTabgroup__ = tabgroup;
   newSample();
-  if (parentTabgroup__.equals("Context"))
-      copyLotId();
 }
 onClickContextGroupNewPhotoLog () {
   // TODO: Add some things which should happen when this element is clicked
@@ -934,7 +938,8 @@ onClickContextGroupNewPhotoLog () {
     showToast("{You_must_save_this_tabgroup_first}");
     return;
   }
-  parentTabgroup = tabgroup;
+  parentTabgroup   = tabgroup;
+  parentTabgroup__ = tabgroup;
   newPhotographLog();
 }
 
@@ -1345,6 +1350,7 @@ newArtefactGroup(){
   String autoNumDest = "";
   autoNumDest = "Artefact_Group/Artefact_Group_General_Information/Artefact_Group_ID";
   incAutoNum(autoNumDest);
+  copyArtefactLotId();
 }
 
 duplicateArtefactGroup(){
@@ -1501,6 +1507,7 @@ newSpecialFind(){
   String autoNumDest = "";
   autoNumDest = "Special_Find/Special_Find_General_Information/Special_Find_ID";
   incAutoNum(autoNumDest);
+  copySpecialFindLotId();
 }
 
 duplicateSpecialFind(){
@@ -1576,6 +1583,7 @@ newPhotographLog(){
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
   populateAuthorAndTimestamp(tabgroup);
+  copyPhotographLogLotId();
 }
 
 duplicatePhotographLog(){
@@ -1773,7 +1781,7 @@ incField(String ref) {
   return incField(ref, 1);
 }
 
-addOnEvent("Control/Defaults", "show", "onShowAutonum()");
+addOnEvent("Control", "show", "onShowAutonum()");
 
 /* This function should only be called once since it creates event handlers,
  * otherwise multiple copies of the same handler will trigger with the event.
@@ -2209,7 +2217,7 @@ addOnEvent("Context/Review/Close", "click", "closeContext()");
 
 closeContext() {
   ref     = "Context/Review/Date_Closed";
-  fmt     = "yyyy-MM-dd";
+  fmt     = "yyyy-MM-dd HH:mm:ss z";
   date    = new Date();
   dateFmt = new java.text.SimpleDateFormat(fmt);
   dateStr = dateFmt.format(date);
@@ -2400,18 +2408,15 @@ addOnEvent("Control"                      , "show"  , "populateSearchSquare()");
 addOnEvent("Control/Review"               , "show"  , "searchReview()");
 addOnEvent("Control/Review/Entity_List"   , "click" , "loadEntity()");
 addOnEvent("Control/Review/Search"        , "click" , "searchReview()");
-addOnEvent("Control/Review/Square"        , "click" , "clearSearchReview()");
-
-clearSearchReview(){
-  setFieldValue("Control/Review/Square","");
-}
 
 searchReview(){
   String tabgroup      = "Control";
   String refEntityList = tabgroup + "/Review/Entity_List";
   String refSquare     = tabgroup + "/Review/Square";
+  String refReviewer   = tabgroup + "/Review/Reviewer";
 
-  String square = getFieldValue(refSquare);
+  String square   = getFieldValue(refSquare);
+  String reviewer = getFieldValue(refReviewer);
   String q = "";
   q += "SELECT uuid, response  ";
   q += "  FROM latestNonDeletedArchEntFormattedIdentifiers   ";
@@ -2424,7 +2429,7 @@ searchReview(){
   q += "                  WHERE attributename = 'Square' ";
   q += "                    AND measure = '"+square+"' ";
   q += "                )   ";
-  q += "        AND (attributename IN ('Site Director Review', 'Trench Supervisor Review') ";
+  q += "        AND (attributename IN ('"+reviewer+"') ";
   q += "        AND (vocabname = '{No}' OR vocabname IS null)) ";
   q += "      ) ";
   q += " ORDER BY response ";
@@ -2439,6 +2444,11 @@ populateSearchSquare() {
   String ref = "Control/Review/Square";
   populateSquare(ref);
 }
+
+searchReviewOpts = new ArrayList();
+searchReviewOpts.add(new NameValuePair("{Site_Director_Review}", "Site Director Review"));
+searchReviewOpts.add(new NameValuePair("{Trench_Supervisor_Review}", "Trench Supervisor Review"));
+populateDropDown("Control/Review/Reviewer", searchReviewOpts);
 /******************************* RELATIONSHIPS ********************************/
 /* Context-to-Context relationships.                                          */
 /*                                                                            */
@@ -2968,6 +2978,33 @@ getCGChildQuery(String parentUuid) {
   relatedQ += " ORDER BY createdat desc ";
   relatedQ += " LIMIT ? OFFSET ? ";
   return relatedQ;
+}
+/******************* CONTEXT TO PHOTOGRAPH LOG INHERITANCE ********************/
+/* These functions are triggered when a new context is created, using         */
+/* @POSTPROC.                                                                 */
+/******************************************************************************/
+
+copyPhotographLogLotId() {
+  src = "Context/General/LOT_ID";
+  dst = "Photograph_Log/Photograph_Log/Photograph_Log_LOT_ID";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}
+/******************* CONTEXT TO ARTEFACT GROUP INHERITANCE ********************/
+
+copyArtefactLotId() {
+  src = "Context/General/LOT_ID";
+  dst = "Artefact_Group/Artefact_Group_General_Information/Artefact_Group_LOT_ID";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
+}
+/******************** CONTEXT TO SPECIAL FIND INHERITANCE *********************/
+
+copySpecialFindLotId() {
+  src = "Context/General/LOT_ID";
+  dst = "Special_Find/Special_Find_General_Information/Special_Find_LOT_ID";
+  val = getFieldValue(src);
+  setFieldValue(dst, val);
 }
 
 /******************************************************************************/

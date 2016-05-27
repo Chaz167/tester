@@ -3,18 +3,15 @@ addOnEvent("Control"                      , "show"  , "populateSearchSquare()");
 addOnEvent("Control/Review"               , "show"  , "searchReview()");
 addOnEvent("Control/Review/Entity_List"   , "click" , "loadEntity()");
 addOnEvent("Control/Review/Search"        , "click" , "searchReview()");
-addOnEvent("Control/Review/Square"        , "click" , "clearSearchReview()");
-
-clearSearchReview(){
-  setFieldValue("Control/Review/Square","");
-}
 
 searchReview(){
   String tabgroup      = "Control";
   String refEntityList = tabgroup + "/Review/Entity_List";
   String refSquare     = tabgroup + "/Review/Square";
+  String refReviewer   = tabgroup + "/Review/Reviewer";
 
-  String square = getFieldValue(refSquare);
+  String square   = getFieldValue(refSquare);
+  String reviewer = getFieldValue(refReviewer);
   String q = "";
   q += "SELECT uuid, response  ";
   q += "  FROM latestNonDeletedArchEntFormattedIdentifiers   ";
@@ -27,7 +24,7 @@ searchReview(){
   q += "                  WHERE attributename = 'Square' ";
   q += "                    AND measure = '"+square+"' ";
   q += "                )   ";
-  q += "        AND (attributename IN ('Site Director Review', 'Trench Supervisor Review') ";
+  q += "        AND (attributename IN ('"+reviewer+"') ";
   q += "        AND (vocabname = '{No}' OR vocabname IS null)) ";
   q += "      ) ";
   q += " ORDER BY response ";
@@ -42,3 +39,8 @@ populateSearchSquare() {
   String ref = "Control/Review/Square";
   populateSquare(ref);
 }
+
+searchReviewOpts = new ArrayList();
+searchReviewOpts.add(new NameValuePair("{Site_Director_Review}", "Site Director Review"));
+searchReviewOpts.add(new NameValuePair("{Trench_Supervisor_Review}", "Trench Supervisor Review"));
+populateDropDown("Control/Review/Reviewer", searchReviewOpts);

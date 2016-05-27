@@ -47,7 +47,9 @@
     <Target_Spit_Thickness t="dropdown">
       <!--Populated from Context/Vars/Target_Spit_Thickness-->
     </Target_Spit_Thickness>
-    <Bucket_Volume b="decimal"/>
+    <Bucket_Volume b="decimal">
+      Bucket Volume (litres)
+    </Bucket_Volume>
     <Mesh_Size_mm b="decimal">
       Mesh Size (mm)
     </Mesh_Size_mm>
@@ -832,6 +834,7 @@
       <desc>The number of Artefacts in this group.</desc>
     </Artefact_Quantity>
     <Artefact_Weight b="decimal" f="notnull">
+      Artefact Weight (g)
       <desc>The total weight (in grams) of all Artefacts in this Group.</desc>
     </Artefact_Weight>
     <Artefact_Group_Comment b="string">
@@ -897,9 +900,11 @@
       </opts>
     </Collection_Method>
     <Sample_Weight b="decimal">
-    <desc>Weight (in grams) of the sample collected.</desc>
+      Sample Weight (g)
+      <desc>Weight (in grams) of the sample collected.</desc>
     </Sample_Weight>
     <Sample_Volume b="decimal" f="notnull">
+      Sample Volume (litres)
       <desc>Volume (in litres) of the sample collected.</desc>
     </Sample_Volume>
     <Sample_Comments>

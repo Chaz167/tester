@@ -770,7 +770,7 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="timestamp" faims_attribute_name="timestamp">
+            <input ref="timestamp" faims_attribute_name="Context timestamp" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
               <label>{Date_Opened}</label>
             </input>
           </group>
@@ -954,7 +954,7 @@
             <value>0</value>
           </item>
         </select>
-        <input ref="author" faims_attribute_name="author" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
+        <input ref="author" faims_attribute_name="Context author" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
           <label>{author}</label>
         </input>
       </group>
@@ -1437,14 +1437,16 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="timestamp" faims_attribute_name="timestamp" faims_style_class="required">
+            <input ref="timestamp" faims_attribute_name="Context_Group timestamp" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
               <label>{Create_By}</label>
+              <!--WARNING: Flags ignored-->
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="author" faims_attribute_name="author" faims_style_class="required">
+            <input ref="author" faims_attribute_name="Context_Group author" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
               <label>{Creation_Date}</label>
+              <!--WARNING: Flags ignored-->
             </input>
           </group>
         </group>

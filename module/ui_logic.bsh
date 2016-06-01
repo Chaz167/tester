@@ -488,12 +488,16 @@ makeVocab(String type, String path, String attrib, List vocabExclusions, String 
           }
           result=filteredVocab;
         }
+        Boolean hasNull =
+                vocabExclusions == null
+            || !vocabExclusions.contains("")
+            && !vocabExclusions.contains(null);
         // print("makeVocab() filtered result: " + result);
         if(type.equals("CheckBoxGroup")) {
           populateCheckBoxGroup(path, result);
         } else if(type.equals("DropDown")) {
           // populateDropDown(path, result);
-          populateDropDown(path, result, true);
+          populateDropDown(path, result, hasNull);
         } else if(type.equals("RadioGroup")) {
           populateRadioGroup(path, result);
         } else if(type.equals("List")) {

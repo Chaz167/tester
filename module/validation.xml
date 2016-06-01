@@ -18,7 +18,7 @@
     </property>
     <property name="Subsquare">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Context">
@@ -48,12 +48,12 @@
     </property>
     <property name="Your Interpretation">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Elevation Datum Type">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Context Highest Level NW">
@@ -123,17 +123,17 @@
     </property>
     <property name="Soil Munsell Colour">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Soil Moisture">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Soil Compaction Type">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Deposit Inclusions">
@@ -264,7 +264,7 @@
     </property>
     <property name="Sample Type">
       <validator type="blankchecker">
-        <param value="measure" type="field"/>
+        <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Sample Volume">

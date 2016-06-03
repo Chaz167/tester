@@ -986,6 +986,10 @@
   <desc>A record of images created and stored on another device, eg by a professional site photographer.</desc>
   <Photograph_Log>
     <Photograph_Log_LOT_ID f="readonly">
+      <str>
+        <pos>2</pos>
+        <fmt>$2-</fmt>
+      </str>
       <desc>Unique number or code for each Context</desc>
     </Photograph_Log_LOT_ID>
     <Photograph_Reference_ID f="id notnull">
@@ -1008,7 +1012,7 @@
     </Looking_Toward>
     <Scene_Type f="id">
       <str>
-        <pos>2</pos>
+        <pos>3</pos>
         <fmt>$1</fmt>
       </str>
       <desc>The type of scene captured, eg opening or closing view of the Context. (Vocab: Open, Close, Other)</desc>
@@ -1021,6 +1025,7 @@
         <opt>Other (specify)</opt>
       </opts>
     </Scene_Type>
+    <Notes/>
   </Photograph_Log>
 </Photograph_Log>
 

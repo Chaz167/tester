@@ -858,13 +858,16 @@
     <cols>
       <Sample_ID f="id notnull">
         <str>
-          <pos>2</pos>
+          <pos>3</pos>
           <fmt>-$2</fmt>
-          <app>-</app>
         </str>
         <desc>The unique code or reference for the Sample.</desc>
       </Sample_ID>
-      <Sample_LOT_ID>
+      <Sample_LOT_ID f="id">
+        <str>
+          <pos>2</pos>
+          <fmt>-$2</fmt>
+        </str>
         <desc>Unique number or code for each Context.</desc>
       </Sample_LOT_ID>
     </cols>

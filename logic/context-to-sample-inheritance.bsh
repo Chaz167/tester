@@ -1,6 +1,8 @@
 /*********************** CONTEXT-TO-SAMPLE INHERITANCE ************************/
 
 copyLotId() {
+  if (!parentTabgroup__.equals("Context")) return;
+
   src = "Context/General/LOT_ID";
   dst = "Sample/Sample_General_Information/Sample_LOT_ID";
   val = getFieldValue(src);

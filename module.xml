@@ -527,13 +527,14 @@
       </opts>
     </Profile_Aspect>
     <cols>
-      <UTM_Easting  b="decimal">
+      <UTM_Easting_Manual  b="decimal">
         <desc>Your longitudinal location, in UTM metres (specify zone in comments).</desc>
-      </UTM_Easting>
-      <UTM_Northing b="decimal">
+      </UTM_Easting_Manual>
+      <UTM_Northing_Manual b="decimal">
         <desc>Your latitudinal location, in UTM metres (specify zone in comments).</desc>
-      </UTM_Northing>
+      </UTM_Northing_Manual>
     </cols>
+    <gps/>
     <Datum>
       <desc>The datum used for establishing your global position. Comment: default to WGS84, otherwise type manually. Enter Zone in Annotation Field.</desc>
     </Datum>

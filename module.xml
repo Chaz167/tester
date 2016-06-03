@@ -808,10 +808,15 @@
   <Artefact_Group_General_Information>
     <cols>
       <Artefact_Group_LOT_ID f="readonly">
+        <str>
+          <pos>2</pos>
+          <fmt>$2-</fmt>
+        </str>
         <desc>Unique number or code for each Context.</desc>
       </Artefact_Group_LOT_ID>
       <Artefact_Group_ID f="id notnull autonum">
         <str>
+          <pos>1</pos>
           <fmt>AG-$2-</fmt>
         </str>
         <desc>Unique number or code for the artefact group.</desc>
@@ -819,6 +824,7 @@
     </cols>
     <Artefact_Class f="id">
       <str>
+        <pos>3</pos>
         <fmt>$1</fmt>
       </str>
       <desc>Broad Artefact Class for each Artefact.</desc>

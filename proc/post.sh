@@ -138,5 +138,10 @@ string="<input ref=\"Start_Depth_Magnitude\""
 replacement="$string faims_attribute_name=\"Start Depth\" faims_attribute_type=\"measure\""
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_schema.xml
 
+string="=Attach Photograph"
+replacement="=Take Photograph"
+perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" english.0.properties
+
 rm ui_logic.bsh.original
 rm ui_schema.xml.original
+rm english.0.properties.original

@@ -1038,7 +1038,9 @@
         <opt>Other (specify)</opt>
       </opts>
     </Scene_Type>
-    <Notes/>
+    <Photograph_Log_Notes>
+      Notes
+    </Photograph_Log_Notes>
   </Photograph_Log>
 </Photograph_Log>
 

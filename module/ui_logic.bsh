@@ -1430,6 +1430,7 @@ newSample(){
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
   populateAuthorAndTimestamp(tabgroup);
+  copyLotId();
 }
 
 duplicateSample(){
@@ -1753,6 +1754,78 @@ loadPhotographLogFrom(String uuid) {
   showTabGroup(tabgroup, uuid);
 }
 
+
+/******************************************************************************/
+/*                          TAKE FROM GPS BUTTON(S)                           */
+/******************************************************************************/
+addOnEvent("Context_Group/Context_Group_Details/Take_From_GPS", "click", "takePoint(\"Context_Group\")");
+
+/* Takes the current point using gps. */
+takePoint(String tabgroup) {
+  Map tabgroupToTabRef = new HashMap();
+  tabgroupToTabRef.put("Context_Group", "Context_Group/Context_Group_Details/");
+
+  String archEntType = tabgroup.replaceAll("_", " ");
+  String currentUuid = getUuid(tabgroup);
+  if (isNull(currentUuid)){
+    showToast("Please enter data first and let a save occur.");
+    return;
+  }
+
+  Object position = getGPSPosition();
+  if (position == null) {
+    showToast("{GPS_Not_Initialised}");
+    return;
+  }
+
+  Object projPosition = getGPSPositionProjected();
+  Double latitude     = position.getLatitude();
+  Double longitude    = position.getLongitude();
+  Double northing     = projPosition.getLatitude();
+  Double easting      = projPosition.getLongitude();
+
+  samplePoint = new Point(new MapPos(easting, northing), null, (PointStyle) null, null);
+  ArrayList geolist = new ArrayList();
+  geolist.add(samplePoint);
+
+  String accuracy = "Accuracy: " + getGPSEstimatedAccuracy();
+  setFieldAnnotation(tabgroupToTabRef.get(tabgroup) + "Latitude", accuracy);
+
+  saveArchEnt(currentUuid, archEntType, geolist, null, new SaveCallback() {
+    onSave(uuid, newRecord) {
+      print("[takePoint()] Added geometry: " + geolist);
+      fillInGPS(tabgroup);
+    }
+  });
+}
+
+/* Sets the value of GPS views for the given tab path. */
+fillInGPS(String tabgroup) {
+  Map tabgroupToTabRef = new HashMap();
+  tabgroupToTabRef.put("Context_Group", "Context_Group/Context_Group_Details/");
+
+  String currentUuid = getUuid(tabgroup);
+  if (isNull(currentUuid)) {
+    return;
+  }
+
+  String query = "SELECT x(transform(geospatialcolumn,                4326)) as longtiude, " +
+                 "       y(transform(geospatialcolumn,                4326)) as latitude, " +
+                 "       x(transform(geospatialcolumn, "+getModuleSrid()+")) as easting, " +
+                 "       y(transform(geospatialcolumn, "+getModuleSrid()+")) as northing " +
+                 "  FROM latestnondeletedarchent, vocabulary " +
+                 " WHERE uuid = '" + currentUuid + "';";
+
+  fetchOne(query, new FetchCallback() {
+    onFetch(result) {
+      print("[fillInGPS()] Fetched DB transformed geometry: " + result);
+      setFieldValue(tabgroupToTabRef.get(tabgroup) + "Longitude" , result.get(0));
+      setFieldValue(tabgroupToTabRef.get(tabgroup) + "Latitude"  , result.get(1));
+      setFieldValue(tabgroupToTabRef.get(tabgroup) + "Easting"   , result.get(2));
+      setFieldValue(tabgroupToTabRef.get(tabgroup) + "Northing"  , result.get(3));
+    }
+  });
+}
 
 /******************************************************************************/
 /*                       AUTONUMBERING HELPER FUNCTIONS                       */
@@ -2323,6 +2396,8 @@ addOnEvent("Context/Review/Validate", "click", "validateContext()");
 /*********************** CONTEXT-TO-SAMPLE INHERITANCE ************************/
 
 copyLotId() {
+  if (!parentTabgroup__.equals("Context")) return;
+
   src = "Context/General/LOT_ID";
   dst = "Sample/Sample_General_Information/Sample_LOT_ID";
   val = getFieldValue(src);

@@ -303,12 +303,23 @@
               <Profile_Aspect/>
               <Colgroup_1>
                 <Col_0>
-                  <UTM_Easting/>
+                  <UTM_Easting_Manual/>
                 </Col_0>
                 <Col_1>
-                  <UTM_Northing/>
+                  <UTM_Northing_Manual/>
                 </Col_1>
               </Colgroup_1>
+              <Colgroup_GPS>
+                <Col_0>
+                  <Latitude/>
+                  <Northing/>
+                </Col_0>
+                <Col_1>
+                  <Longitude/>
+                  <Easting/>
+                </Col_1>
+              </Colgroup_GPS>
+              <Take_From_GPS/>
               <Datum/>
               <Elevation/>
               <Elevation_Determination/>
@@ -460,6 +471,7 @@
               <Photograph_Reference_ID/>
               <Looking_Toward/>
               <Scene_Type/>
+              <Photograph_Log_Notes/>
             </Photograph_Log>
           </Photograph_Log>
           <Relationship>
@@ -542,8 +554,8 @@
       <bind type="decimal" nodeset="/faims/Context/Review/Colgroup_0/Col_0/Final_Bucket_Count"/>
       <bind type="decimal" nodeset="/faims/Context/Review/Colgroup_0/Col_1/Deposit_Volume"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Depth"/>
-      <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_0/UTM_Easting"/>
-      <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_1/UTM_Northing"/>
+      <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_0/UTM_Easting_Manual"/>
+      <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_1/UTM_Northing_Manual"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Elevation"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_2/Col_1/Start_Depth_Magnitude"/>
       <bind type="decimal" nodeset="/faims/Artefact_Group/Artefact_Group_General_Information/Colgroup_0/Col_1/Artefact_Group_ID"/>
@@ -1302,17 +1314,41 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="UTM_Easting" faims_attribute_name="UTM Easting">
-              <label>{UTM_Easting}</label>
+            <input faims_attribute_type="measure" ref="UTM_Easting_Manual" faims_attribute_name="UTM Easting Manual">
+              <label>{UTM_Easting_Manual}</label>
             </input>
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="UTM_Northing" faims_attribute_name="UTM Northing">
-              <label>{UTM_Northing}</label>
+            <input faims_attribute_type="measure" ref="UTM_Northing_Manual" faims_attribute_name="UTM Northing Manual">
+              <label>{UTM_Northing_Manual}</label>
             </input>
           </group>
         </group>
+        <group ref="Colgroup_GPS" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
+            <label/>
+            <input ref="Latitude" faims_attribute_name="Latitude" faims_attribute_type="measure" faims_read_only="true">
+              <label>{Latitude}</label>
+            </input>
+            <input ref="Northing" faims_attribute_name="Northing" faims_attribute_type="measure" faims_read_only="true">
+              <label>{Northing}</label>
+            </input>
+          </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <input ref="Longitude" faims_attribute_name="Longitude" faims_attribute_type="measure" faims_read_only="true">
+              <label>{Longitude}</label>
+            </input>
+            <input ref="Easting" faims_attribute_name="Easting" faims_attribute_type="measure" faims_read_only="true">
+              <label>{Easting}</label>
+            </input>
+          </group>
+        </group>
+        <trigger ref="Take_From_GPS">
+          <label>{Take_From_GPS}</label>
+        </trigger>
         <input faims_attribute_type="measure" ref="Datum" faims_attribute_name="Datum">
           <label>{Datum}</label>
         </input>
@@ -1773,6 +1809,9 @@
             <value>0</value>
           </item>
         </select1>
+        <input faims_attribute_type="measure" ref="Photograph_Log_Notes" faims_attribute_name="Photograph Log Notes">
+          <label>{Notes}</label>
+        </input>
       </group>
     </group>
     <group ref="Relationship">

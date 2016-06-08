@@ -3064,6 +3064,8 @@ getCGChildQuery(String parentUuid) {
 /******************************************************************************/
 
 copyPhotographLogLotId() {
+  if (!parentTabgroup__.equals("Context")) return;
+
   src = "Context/General/LOT_ID";
   dst = "Photograph_Log/Photograph_Log/Photograph_Log_LOT_ID";
   val = getFieldValue(src);

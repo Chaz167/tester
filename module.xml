@@ -772,7 +772,7 @@
       </opts>
     </Lower_Boundary>
     <cols>
-      <timestamp f="notnull">Create By</timestamp>
+      <timestamp f="notnull">Created By</timestamp>
       <author f="notnull">Creation Date</author>
     </cols>
   </Context_Group_Details>

@@ -1474,7 +1474,7 @@
           <group ref="Col_0" faims_style="even">
             <label/>
             <input ref="timestamp" faims_attribute_name="Context_Group timestamp" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
-              <label>{Create_By}</label>
+              <label>{Created_By}</label>
               <!--WARNING: Flags ignored-->
             </input>
           </group>

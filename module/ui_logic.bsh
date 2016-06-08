@@ -675,7 +675,7 @@ validateContextGroup() {
   f.add(fieldPair("Context_Group/Context_Group_Details/Start_Depth_Magnitude", "{Start_Depth}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Soil_Colour", "{Soil_Colour}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/Context_Group_Disturbances", "{Context_Group_Disturbances}"));
-  f.add(fieldPair("Context_Group/Context_Group_Details/timestamp", "{Create_By}"));
+  f.add(fieldPair("Context_Group/Context_Group_Details/timestamp", "{Created_By}"));
   f.add(fieldPair("Context_Group/Context_Group_Details/author", "{Creation_Date}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");

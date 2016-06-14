@@ -46,16 +46,6 @@
         <param value="vocab" type="field"/>
       </validator>
     </property>
-    <property name="Take Opening Photo">
-      <validator type="blankchecker">
-        <param type="field"/>
-      </validator>
-    </property>
-    <property name="Take Closing Photo">
-      <validator type="blankchecker">
-        <param type="field"/>
-      </validator>
-    </property>
     <property name="Context Highest Level NW">
       <validator type="blankchecker">
         <param value="measure" type="field"/>

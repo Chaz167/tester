@@ -14,14 +14,14 @@ copyTargetSpitThickness() {
 
 copyMeshSize() {
   src = "Control/Defaults/Mesh_Size_mm";
-  dst = "Context/General/Mesh_Size_mm";
+  dst = "Context/Review/Mesh_Size_mm";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
 
 copyElevationDatumType() {
   src = "Control/Defaults/Elevation_Datum_Type";
-  dst = "Context/General/Elevation_Datum_Type";
+  dst = "Context/Review/Elevation_Datum_Type";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }

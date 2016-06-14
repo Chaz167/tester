@@ -103,10 +103,10 @@
           <app>-</app>
         </str>
         <opts>
-          <opt>A</opt>
-          <opt>B</opt>
-          <opt>C</opt>
-          <opt>D</opt>
+          <opt>a</opt>
+          <opt>b</opt>
+          <opt>c</opt>
+          <opt>d</opt>
           <opt>N/A</opt>
         </opts>
       </Subsquare>
@@ -117,12 +117,17 @@
         </str>
         <desc>Unique number or code for each Context.</desc>
       </Context>
+    </cols>
+    <cols>
       <LOT_ID f="id notnull">
         <str>
           <fmt>-$2</fmt>
           <app>-</app>
         </str>
       </LOT_ID>
+      <Excavators f="notnull">
+        <desc>The individual(s) involved in the excavation of the Context.</desc>
+      </Excavators>
     </cols>
     <cols>
       <timestamp>
@@ -137,9 +142,6 @@
       </Wet_Sieved>
     </cols>
     <cols>
-      <Mesh_Size_mm b="decimal" f="readonly">
-        Mesh Size (mm)
-      </Mesh_Size_mm>
       <Surface_Area>
         <opts>
           <opt>Entire Square/Subsquare</opt>
@@ -151,57 +153,6 @@
         </opts>
       </Surface_Area>
     </cols>
-    <cols>
-      <Excavation_Method f="notnull" t="checkbox">
-        <desc>Method and conditions of archaeological excavation.</desc>
-        <opts>
-          <opt>Hand-Pick</opt>
-          <opt>Trowel</opt>
-          <opt>Pick</opt>
-          <opt>Other</opt>
-          <opt>Fine</opt>
-        </opts>
-      </Excavation_Method>
-      <Excavators f="notnull">
-        <desc>The individual(s) involved in the excavation of the Context.</desc>
-      </Excavators>
-    </cols>
-    <Your_Interpretation f="notnull">
-      <desc>Your interpretation of the likely depositional processes at work in forming the Context.</desc>
-      <opts>
-        <opt>No Observation
-          <desc>Data not collected</desc>
-        </opt>
-        <opt>Natural Layer
-          <opt>Alluvial</opt>
-          <opt>Fluvial</opt>
-          <opt>Aeolian</opt>
-          <opt>Lacustrine</opt>
-        </opt>
-        <opt>Feature/Disturbance
-          <opt>Hearth</opt>
-          <opt>Post hole</opt>
-          <opt>Pit</opt>
-          <opt>Burrow</opt>
-          <opt>Burial</opt>
-        </opt>
-        <opt>Anthropogenic Layer
-          <opt>Dense cultural material</opt>
-          <opt>Moderate cultural material</opt>
-          <opt>Occasional cultural material</opt>
-        </opt>
-      </opts>
-    </Your_Interpretation>
-    <Context_Comments>
-      <desc>Additional comments on the description of the Context.</desc>
-    </Context_Comments>
-    <Elevation_Datum_Type f="notnull">
-      <desc>The type of elevation.</desc>
-      <opts>
-        <opt>True</opt>
-        <opt>Local Datum (Describe)</opt>
-      </opts>
-    </Elevation_Datum_Type>
     <cols>
       <Take_Opening_Photo t="camera"/>
       <Take_Closing_Photo t="camera"/>
@@ -262,28 +213,6 @@
       <!--Here the semantics of the `l` attribute have been altered using
           @POSTPROC-->
     </Close_Context_and_Review>
-    <Artefacts_Present f="notnull" t="checkbox">
-      <desc>Whether or not artefacts were present in the Context.</desc>
-      <opts>
-        <opt>None</opt>
-        <opt>Flakes</opt>
-        <opt>Cores</opt>
-        <opt>Fire Cracked Rock</opt>
-        <opt>Hammerstone</opt>
-        <opt>Manuport</opt>
-        <opt>Bone</opt>
-        <opt>Charcoal</opt>
-        <opt>Ceramic</opt>
-        <opt>Recent material</opt>
-        <opt>Ochre</opt>
-        <opt>Grindstones</opt>
-        <opt>Shell</opt>
-        <opt>Glass</opt>
-        <opt>Metal</opt>
-        <opt>Slag</opt>
-        <opt>Other</opt>
-      </opts>
-    </Artefacts_Present>
     <author/>
   </General>
   <Deposit>
@@ -373,6 +302,64 @@
         </opts>
       </Context_Disturbances>
     </cols>
+    <Excavation_Method f="notnull" t="checkbox">
+      <desc>Method and conditions of archaeological excavation.</desc>
+      <opts>
+        <opt>Hand-Pick</opt>
+        <opt>Trowel</opt>
+        <opt>Pick</opt>
+        <opt>Other</opt>
+        <opt>Fine</opt>
+      </opts>
+    </Excavation_Method>
+    <Your_Interpretation f="notnull">
+      <desc>Your interpretation of the likely depositional processes at work in forming the Context.</desc>
+      <opts>
+        <opt>No Observation
+          <desc>Data not collected</desc>
+        </opt>
+        <opt>Natural Layer
+          <opt>Alluvial</opt>
+          <opt>Fluvial</opt>
+          <opt>Aeolian</opt>
+          <opt>Lacustrine</opt>
+        </opt>
+        <opt>Feature/Disturbance
+          <opt>Hearth</opt>
+          <opt>Post hole</opt>
+          <opt>Pit</opt>
+          <opt>Burrow</opt>
+          <opt>Burial</opt>
+        </opt>
+        <opt>Anthropogenic Layer
+          <opt>Dense cultural material</opt>
+          <opt>Moderate cultural material</opt>
+          <opt>Occasional cultural material</opt>
+        </opt>
+      </opts>
+    </Your_Interpretation>
+    <Artefacts_Present f="notnull" t="checkbox">
+      <desc>Whether or not artefacts were present in the Context.</desc>
+      <opts>
+        <opt>None</opt>
+        <opt>Flakes</opt>
+        <opt>Cores</opt>
+        <opt>Fire Cracked Rock</opt>
+        <opt>Hammerstone</opt>
+        <opt>Manuport</opt>
+        <opt>Bone</opt>
+        <opt>Charcoal</opt>
+        <opt>Ceramic</opt>
+        <opt>Recent material</opt>
+        <opt>Ochre</opt>
+        <opt>Grindstones</opt>
+        <opt>Shell</opt>
+        <opt>Glass</opt>
+        <opt>Metal</opt>
+        <opt>Slag</opt>
+        <opt>Other</opt>
+      </opts>
+    </Artefacts_Present>
   </Deposit>
   <Samples>
     Samp
@@ -467,6 +454,19 @@
       </Date_Closed>
       <Close t="button"/>
     </cols>
+    <Elevation_Datum_Type f="notnull">
+      <desc>The type of elevation.</desc>
+      <opts>
+        <opt>True</opt>
+        <opt>Local Datum (Describe)</opt>
+      </opts>
+    </Elevation_Datum_Type>
+    <Context_Comments>
+      <desc>Additional comments on the description of the Context.</desc>
+    </Context_Comments>
+    <Mesh_Size_mm b="decimal" f="readonly">
+      Mesh Size (mm)
+    </Mesh_Size_mm>
   </Review>
   <Vars f="hidden">
     <Target_Spit_Thickness t="dropdown">
@@ -1113,7 +1113,7 @@
   <!--@SOURCE: logic/context-to-sample-inheritance.bsh-->
   <!--@SOURCE: logic/close-context-and-review-button.bsh-->
   <!--@SOURCE: logic/lot-label-population.bsh-->
-  <!--@SOURCE: logic/control-to-general-inheritance.bsh-->
+  <!--@SOURCE: logic/control-to-context-inheritance.bsh-->
   <!--@SOURCE: logic/review-search.bsh-->
   <!--@SOURCE: logic/relationships-context-to-context.bsh-->
   <!--@SOURCE: logic/relationships-context-group-to-context.bsh-->

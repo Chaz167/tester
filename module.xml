@@ -154,8 +154,12 @@
       </Surface_Area>
     </cols>
     <cols>
-      <Take_Opening_Photo t="camera" f="notnull"/>
-      <Take_Closing_Photo t="camera" f="notnull"/>
+      <Take_Opening_Photo t="camera" f="notnull">
+        <!--The semantics of f="notnull" has been modified with @POSTPROC-->
+      </Take_Opening_Photo>
+      <Take_Closing_Photo t="camera" f="notnull">
+        <!--The semantics of f="notnull" has been modified with @POSTPROC-->
+      </Take_Closing_Photo>
     </cols>
     <cols>
       <col>

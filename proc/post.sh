@@ -142,6 +142,21 @@ string="=Attach Photograph"
 replacement="=Take Photograph"
 perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" english.0.properties
 
+string="
+    <property name=\"Take Opening Photo\">
+      <validator type=\"blankchecker\">
+        <param type=\"field\"\/>
+      <\/validator>
+    <\/property>
+    <property name=\"Take Closing Photo\">
+      <validator type=\"blankchecker\">
+        <param type=\"field\"\/>
+      <\/validator>
+    <\/property>"
+replacement=""
+perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" validation.xml
+
 rm ui_logic.bsh.original
 rm ui_schema.xml.original
 rm english.0.properties.original
+rm validation.xml.original

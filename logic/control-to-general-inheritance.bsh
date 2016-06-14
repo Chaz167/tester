@@ -3,6 +3,7 @@
 /* @POSTPROC.                                                                 */
 /******************************************************************************/
 makeVocab("DropDown", "Control/Defaults/Target_Spit_Thickness", "Target Spit Thickness");
+makeVocab("DropDown", "Control/Defaults/Elevation_Datum_Type",  "Elevation Datum Type");
 
 copyTargetSpitThickness() {
   src = "Control/Defaults/Target_Spit_Thickness";
@@ -11,16 +12,16 @@ copyTargetSpitThickness() {
   setFieldValue(dst, val);
 }
 
-copyExcavators() {
-  src = "Control/Defaults/Excavators";
-  dst = "Context/General/Excavators";
+copyMeshSize() {
+  src = "Control/Defaults/Mesh_Size_mm";
+  dst = "Context/General/Mesh_Size_mm";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
 
-copyMeshSize() {
-  src = "Control/Defaults/Mesh_Size_mm";
-  dst = "Context/General/Mesh_Size_mm";
+copyElevationDatumType() {
+  src = "Control/Defaults/Elevation_Datum_Type";
+  dst = "Context/General/Elevation_Datum_Type";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }

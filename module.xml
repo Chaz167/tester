@@ -53,7 +53,9 @@
     <Mesh_Size_mm b="decimal">
       Mesh Size (mm)
     </Mesh_Size_mm>
-    <Excavators/>
+    <Elevation_Datum_Type t="dropdown">
+      <!--Populated from Context/General/Elevation_Datum_Type-->
+    </Elevation_Datum_Type>
   </Defaults>
   <search/>
   <Review f="noscroll">

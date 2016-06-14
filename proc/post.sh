@@ -48,7 +48,7 @@ perl -0777 -i.original -pe "s/\\Q$string/$replacement/igs" ui_logic.bsh
 # a line right before the closing curly brace.
 string="(newContext\\(\\){((?!\\n}).)+)"
 replacement="\\1
-  copyExcavators();
+  copyElevationDatumType();
   copyMeshSize();
   copyTargetSpitThickness();"
 perl -0777 -i.original -pe "s/$string/$replacement/igs" ui_logic.bsh

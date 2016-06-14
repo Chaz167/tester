@@ -4,10 +4,14 @@
 /******************************************************************************/
 addOnEvent("Control/Defaults", "show", "loadTargetSpitThickness()");
 addOnEvent("Control/Defaults", "show", "loadBucketVolume()");
+addOnEvent("Control/Defaults", "show", "loadMeshSize()");
+addOnEvent("Control/Defaults", "show", "loadElevationDatumType()");
 
 // Occurs on blur
-onFocus("Control/Defaults/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
-onFocus("Control/Defaults/Bucket_Volume",         "", "saveBucketVolume()");
+addOnEvent("Control/Defaults/Target_Spit_Thickness", "click", "saveTargetSpitThickness()");
+onFocus   ("Control/Defaults/Bucket_Volume",         "",      "saveBucketVolume()");
+onFocus   ("Control/Defaults/Mesh_Size_mm",          "",      "saveMeshSize()");
+addOnEvent("Control/Defaults/Elevation_Datum_Type",  "click", "saveElevationDatumType()");
 
 loadTargetSpitThickness() {
   dst = "Control/Defaults/Target_Spit_Thickness";
@@ -27,6 +31,28 @@ loadBucketVolume() {
 
 saveBucketVolume() {
   src = "Control/Defaults/Bucket_Volume";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}
+
+loadMeshSize() {
+  dst = "Control/Defaults/Mesh_Size_mm";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveMeshSize() {
+  src = "Control/Defaults/Mesh_Size_mm";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}
+
+loadElevationDatumType() {
+  dst = "Control/Defaults/Elevation_Datum_Type";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveElevationDatumType() {
+  src = "Control/Defaults/Elevation_Datum_Type";
   val = getFieldValue(src);
   insertIntoLocalSettings(src, val);
 }

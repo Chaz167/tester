@@ -142,7 +142,7 @@
       </Wet_Sieved>
     </cols>
     <cols>
-      <Surface_Area>
+      <Surface_Area f="notnull">
         <opts>
           <opt>Entire Square/Subsquare</opt>
           <opt>&gt;0.5 Square/Subsquare</opt>
@@ -154,8 +154,8 @@
       </Surface_Area>
     </cols>
     <cols>
-      <Take_Opening_Photo t="camera"/>
-      <Take_Closing_Photo t="camera"/>
+      <Take_Opening_Photo t="camera" f="notnull"/>
+      <Take_Closing_Photo t="camera" f="notnull"/>
     </cols>
     <cols>
       <col>
@@ -241,7 +241,7 @@
       </Soil_Moisture>
     </cols>
     <cols>
-      <Soil_Texture><!--Previously "Soil_Texture_Actual"-->
+      <Soil_Texture f="notnull"><!--Previously "Soil_Texture_Actual"-->
         <desc>Proportions of different grain sizes within the deposit, eg if there is more sand to silt it should be described as a 'silty sand'.</desc>
         <opts>
           <!--@SOURCE: vocabs/soil-texture.xml-->
@@ -431,7 +431,7 @@
         <!--@SOURCE: vocabs/boolean.xml-->
       </opts>
     </Closing_Photo_Taken>
-    <All_Below_Relationship_Indicated t="radio">
+    <All_Below_Relationship_Indicated t="radio" f="notnull">
       <opts>
         <!--@SOURCE: vocabs/boolean.xml-->
       </opts>

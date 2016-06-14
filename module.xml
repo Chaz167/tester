@@ -69,11 +69,12 @@
 <Context>
   <desc>The physical result of any single action, whether it leaves a positive or negative record within the stratigraphic sequence. (MoLAS 1994)</desc>
   <General>
+    Gen
     <LOT_Label t="webview"/>
     <cols>
       <Site f="id notnull">
         <str>
-          <fmt>LOT-$2</fmt>
+          <fmt>$2</fmt>
           <app>-</app>
         </str>
         <desc>Short code to signify the excavation site and often the year of excavation.</desc>
@@ -284,6 +285,7 @@
     <author/>
   </General>
   <Deposit>
+    Dep
     <cols>
       <Soil_Munsell_Colour f="notnull">
         <desc>The Munsell Code for the soil colour. </desc>
@@ -371,6 +373,7 @@
     </cols>
   </Deposit>
   <Samples>
+    Samp
     <New_Sample  lc="Sample" t="button"/>
     <Bulk_Sample_Mapped f="notnull" t="radio">
       <desc>Has the bulk sample been mapped?</desc>
@@ -381,6 +384,7 @@
     <Sample_List ec="Sample" t="dropdown"/>
   </Samples>
   <Attachments>
+    Attach
     <Context_Sketch t="file"/>
     <Context_Photo  t="camera"/>
     <View_Attached_Files t="viewfiles"/>
@@ -389,6 +393,7 @@
     <Load_Photo_Log ec="Photograph_Log" t="dropdown"/>
   </Attachments>
   <Artefacts>
+    Art
     <New_Artefact_Group  lc="Artefact_Group" t="button"/>
     <Artefact_Group_List ec="Artefact_Group" t="dropdown"/>
     <New_Special_Find  lc="Special_Find" t="button"/>
@@ -404,6 +409,7 @@
     <Update_Texture t="button" l="Context/Deposit"/>
   </Texture_Helper>
   <Relationships f="noscroll">
+    Relate
     <Create_Relationships_to_This_Context t="button" l="Relationship"/>
     <cols>
       <Existing_Relationships_to_This_Context t="list" f="nodata"/>

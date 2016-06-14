@@ -1,4 +1,5 @@
 import android.util.Log;
+import java.util.concurrent.ConcurrentHashMap;
 
 Object dialog;          // Used to help coordinate the display of a "busy..." dialog
 String parentTabgroup;  // Used to allow entities to be saved as children
@@ -146,21 +147,22 @@ getDropdownItemValue() {
 
 addOnEvent("User/User/Users", "click", "dropdownItemValue = getFieldValue(\"User/User/Users\")");
 addOnEvent("Control/Defaults/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Control/Defaults/Target_Spit_Thickness\")");
+addOnEvent("Control/Defaults/Elevation_Datum_Type", "click", "dropdownItemValue = getFieldValue(\"Control/Defaults/Elevation_Datum_Type\")");
 addOnEvent("Control/Review/Square", "click", "dropdownItemValue = getFieldValue(\"Control/Review/Square\")");
 addOnEvent("Control/Review/Reviewer", "click", "dropdownItemValue = getFieldValue(\"Control/Review/Reviewer\")");
 addOnEvent("Context/General/Subsquare", "click", "dropdownItemValue = getFieldValue(\"Context/General/Subsquare\")");
 addOnEvent("Context/General/Surface_Area", "click", "dropdownItemValue = getFieldValue(\"Context/General/Surface_Area\")");
-addOnEvent("Context/General/Your_Interpretation", "click", "dropdownItemValue = getFieldValue(\"Context/General/Your_Interpretation\")");
-addOnEvent("Context/General/Elevation_Datum_Type", "click", "dropdownItemValue = getFieldValue(\"Context/General/Elevation_Datum_Type\")");
 addOnEvent("Context/Deposit/Soil_Munsell_Colour", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Munsell_Colour\")");
 addOnEvent("Context/Deposit/Soil_Moisture", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Moisture\")");
 addOnEvent("Context/Deposit/Soil_Texture", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Texture\")");
 addOnEvent("Context/Deposit/Soil_Compaction_Type", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Soil_Compaction_Type\")");
+addOnEvent("Context/Deposit/Your_Interpretation", "click", "dropdownItemValue = getFieldValue(\"Context/Deposit/Your_Interpretation\")");
 addOnEvent("Context/Samples/Sample_List", "click", "dropdownItemValue = getFieldValue(\"Context/Samples/Sample_List\")");
 addOnEvent("Context/Attachments/Load_Photo_Log", "click", "dropdownItemValue = getFieldValue(\"Context/Attachments/Load_Photo_Log\")");
 addOnEvent("Context/Artefacts/Artefact_Group_List", "click", "dropdownItemValue = getFieldValue(\"Context/Artefacts/Artefact_Group_List\")");
 addOnEvent("Context/Artefacts/Special_Find_List", "click", "dropdownItemValue = getFieldValue(\"Context/Artefacts/Special_Find_List\")");
 addOnEvent("Context/Texture_Helper/Soil_Texture_Helper", "click", "dropdownItemValue = getFieldValue(\"Context/Texture_Helper/Soil_Texture_Helper\")");
+addOnEvent("Context/Review/Elevation_Datum_Type", "click", "dropdownItemValue = getFieldValue(\"Context/Review/Elevation_Datum_Type\")");
 addOnEvent("Context/Vars/Target_Spit_Thickness", "click", "dropdownItemValue = getFieldValue(\"Context/Vars/Target_Spit_Thickness\")");
 addOnEvent("Context_Group/Context_Group_Details/Profile_Aspect", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Profile_Aspect\")");
 addOnEvent("Context_Group/Context_Group_Details/Elevation_Determination", "click", "dropdownItemValue = getFieldValue(\"Context_Group/Context_Group_Details/Elevation_Determination\")");
@@ -512,10 +514,6 @@ makeVocab(String type, String path, String attrib, List vocabExclusions, String 
 makeVocab("DropDown", "Context/General/Subsquare", "Subsquare");
 makeVocab("RadioGroup", "Context/General/Wet_Sieved", "Wet Sieved");
 makeVocab("DropDown", "Context/General/Surface_Area", "Surface Area");
-makeVocab("CheckBoxGroup", "Context/General/Excavation_Method", "Excavation Method");
-makeVocab("HierarchicalDropDown", "Context/General/Your_Interpretation", "Your Interpretation");
-makeVocab("DropDown", "Context/General/Elevation_Datum_Type", "Elevation Datum Type");
-makeVocab("CheckBoxGroup", "Context/General/Artefacts_Present", "Artefacts Present");
 makeVocab("HierarchicalDropDown", "Context/Deposit/Soil_Munsell_Colour", "Soil Munsell Colour");
 makeVocab("DropDown", "Context/Deposit/Soil_Moisture", "Soil Moisture");
 makeVocab("DropDown", "Context/Deposit/Soil_Texture", "Soil Texture");
@@ -523,6 +521,9 @@ makeVocab("DropDown", "Context/Deposit/Soil_Compaction_Type", "Soil Compaction T
 makeVocab("CheckBoxGroup", "Context/Deposit/Deposit_Inclusions", "Deposit Inclusions");
 makeVocab("CheckBoxGroup", "Context/Deposit/Natural_Formations", "Natural Formations");
 makeVocab("CheckBoxGroup", "Context/Deposit/Context_Disturbances", "Context Disturbances");
+makeVocab("CheckBoxGroup", "Context/Deposit/Excavation_Method", "Excavation Method");
+makeVocab("HierarchicalDropDown", "Context/Deposit/Your_Interpretation", "Your Interpretation");
+makeVocab("CheckBoxGroup", "Context/Deposit/Artefacts_Present", "Artefacts Present");
 makeVocab("RadioGroup", "Context/Samples/Bulk_Sample_Mapped", "Bulk Sample Mapped");
 makeVocab("HierarchicalDropDown", "Context/Texture_Helper/Soil_Texture_Helper", "Soil Texture Helper");
 makeVocab("RadioGroup", "Context/Review/Opening_Photo_Taken", "Opening Photo Taken");
@@ -530,6 +531,7 @@ makeVocab("RadioGroup", "Context/Review/Closing_Photo_Taken", "Closing Photo Tak
 makeVocab("RadioGroup", "Context/Review/All_Below_Relationship_Indicated", "All Below Relationship Indicated");
 makeVocab("RadioGroup", "Context/Review/Trench_Supervisor_Review", "Trench Supervisor Review");
 makeVocab("RadioGroup", "Context/Review/Site_Director_Review", "Site Director Review");
+makeVocab("DropDown", "Context/Review/Elevation_Datum_Type", "Elevation Datum Type");
 makeVocab("DropDown", "Context/Vars/Target_Spit_Thickness", "Target Spit Thickness");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Profile_Aspect", "Profile Aspect");
 makeVocab("DropDown", "Context_Group/Context_Group_Details/Elevation_Determination", "Elevation Determination");
@@ -627,11 +629,11 @@ validateContext() {
   f.add(fieldPair("Context/General/Subsquare", "{Subsquare}"));
   f.add(fieldPair("Context/General/Context", "{Context}"));
   f.add(fieldPair("Context/General/LOT_ID", "{LOT_ID}"));
-  f.add(fieldPair("Context/General/Wet_Sieved", "{Wet_Sieved}"));
-  f.add(fieldPair("Context/General/Excavation_Method", "{Excavation_Method}"));
   f.add(fieldPair("Context/General/Excavators", "{Excavators}"));
-  f.add(fieldPair("Context/General/Your_Interpretation", "{Your_Interpretation}"));
-  f.add(fieldPair("Context/General/Elevation_Datum_Type", "{Elevation_Datum_Type}"));
+  f.add(fieldPair("Context/General/Wet_Sieved", "{Wet_Sieved}"));
+  f.add(fieldPair("Context/General/Surface_Area", "{Surface_Area}"));
+  f.add(fieldPair("Context/General/Take_Opening_Photo", "{Take_Opening_Photo}"));
+  f.add(fieldPair("Context/General/Take_Closing_Photo", "{Take_Closing_Photo}"));
   f.add(fieldPair("Context/General/Context_Highest_Level_NW", "{Context_Highest_Level_NW}"));
   f.add(fieldPair("Context/General/Context_Highest_Level_NE", "{Context_Highest_Level_NE}"));
   f.add(fieldPair("Context/General/Context_Highest_Level_SE", "{Context_Highest_Level_SE}"));
@@ -644,19 +646,24 @@ validateContext() {
   f.add(fieldPair("Context/General/Context_Lowest_Level_Ctr", "{Context_Lowest_Level_Ctr}"));
   f.add(fieldPair("Context/General/Min_Context_Thickness", "{Min_Context_Thickness__m_}"));
   f.add(fieldPair("Context/General/Max_Context_Thickness", "{Max_Context_Thickness__m_}"));
-  f.add(fieldPair("Context/General/Artefacts_Present", "{Artefacts_Present}"));
   f.add(fieldPair("Context/Deposit/Soil_Munsell_Colour", "{Soil_Munsell_Colour}"));
   f.add(fieldPair("Context/Deposit/Soil_Moisture", "{Soil_Moisture}"));
+  f.add(fieldPair("Context/Deposit/Soil_Texture", "{Soil_Texture}"));
   f.add(fieldPair("Context/Deposit/Soil_Compaction_Type", "{Soil_Compaction_Type}"));
   f.add(fieldPair("Context/Deposit/Deposit_Inclusions", "{Deposit_Inclusions}"));
   f.add(fieldPair("Context/Deposit/Natural_Formations", "{Natural_Formations}"));
   f.add(fieldPair("Context/Deposit/Context_Disturbances", "{Disturbances}"));
+  f.add(fieldPair("Context/Deposit/Excavation_Method", "{Excavation_Method}"));
+  f.add(fieldPair("Context/Deposit/Your_Interpretation", "{Your_Interpretation}"));
+  f.add(fieldPair("Context/Deposit/Artefacts_Present", "{Artefacts_Present}"));
   f.add(fieldPair("Context/Samples/Bulk_Sample_Mapped", "{Bulk_Sample_Mapped}"));
   f.add(fieldPair("Context/Review/Final_Bucket_Count", "{Final_Bucket_Count}"));
   f.add(fieldPair("Context/Review/Deposit_Volume", "{Deposit_Volume__litres_}"));
+  f.add(fieldPair("Context/Review/All_Below_Relationship_Indicated", "{All_Below_Relationship_Indicated}"));
   f.add(fieldPair("Context/Review/Trench_Supervisor_Review", "{Trench_Supervisor_Review}"));
   f.add(fieldPair("Context/Review/Site_Director_Review", "{Site_Director_Review}"));
   f.add(fieldPair("Context/Review/Date_Closed", "{Date_Closed}"));
+  f.add(fieldPair("Context/Review/Elevation_Datum_Type", "{Elevation_Datum_Type}"));
 
   String validationMessage = validateFields(f, "PLAINTEXT");
   showWarning("Validation Results", validationMessage);
@@ -728,13 +735,17 @@ validatePhotographLog() {
 /******************************************************************************/
 /*                                 AUTOSAVING                                 */
 /******************************************************************************/
-Map tabgroupToUuid = new HashMap();
+ConcurrentHashMap tabgroupToUuid = new ConcurrentHashMap();
 
 getUuid(String tabgroup) {
+  if (isNull(tabgroup))
+    return null;
   tabgroupToUuid.get(tabgroup);
 }
 
 setUuid(String tabgroup, String uuid) {
+  if (uuid == null)
+    return;
   tabgroupToUuid.put(tabgroup, uuid);
 }
 
@@ -1194,7 +1205,7 @@ newContext(){
   setUuid(tabgroup, null);
   newTabGroup(tabgroup);
   populateAuthorAndTimestamp(tabgroup);
-  copyExcavators();
+  copyElevationDatumType();
   copyMeshSize();
   copyTargetSpitThickness();
 }
@@ -2306,10 +2317,14 @@ closeContext() {
 /******************************************************************************/
 addOnEvent("Control/Defaults", "show", "loadTargetSpitThickness()");
 addOnEvent("Control/Defaults", "show", "loadBucketVolume()");
+addOnEvent("Control/Defaults", "show", "loadMeshSize()");
+addOnEvent("Control/Defaults", "show", "loadElevationDatumType()");
 
 // Occurs on blur
-onFocus("Control/Defaults/Target_Spit_Thickness", "", "saveTargetSpitThickness()");
-onFocus("Control/Defaults/Bucket_Volume",         "", "saveBucketVolume()");
+addOnEvent("Control/Defaults/Target_Spit_Thickness", "click", "saveTargetSpitThickness()");
+onFocus   ("Control/Defaults/Bucket_Volume",         "",      "saveBucketVolume()");
+onFocus   ("Control/Defaults/Mesh_Size_mm",          "",      "saveMeshSize()");
+addOnEvent("Control/Defaults/Elevation_Datum_Type",  "click", "saveElevationDatumType()");
 
 loadTargetSpitThickness() {
   dst = "Control/Defaults/Target_Spit_Thickness";
@@ -2329,6 +2344,28 @@ loadBucketVolume() {
 
 saveBucketVolume() {
   src = "Control/Defaults/Bucket_Volume";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}
+
+loadMeshSize() {
+  dst = "Control/Defaults/Mesh_Size_mm";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveMeshSize() {
+  src = "Control/Defaults/Mesh_Size_mm";
+  val = getFieldValue(src);
+  insertIntoLocalSettings(src, val);
+}
+
+loadElevationDatumType() {
+  dst = "Control/Defaults/Elevation_Datum_Type";
+  setFieldValueFromLocalSettings(dst, dst);
+}
+
+saveElevationDatumType() {
+  src = "Control/Defaults/Elevation_Datum_Type";
   val = getFieldValue(src);
   insertIntoLocalSettings(src, val);
 }
@@ -2461,6 +2498,7 @@ loadContextFrom(String uuid) {
 /* @POSTPROC.                                                                 */
 /******************************************************************************/
 makeVocab("DropDown", "Control/Defaults/Target_Spit_Thickness", "Target Spit Thickness");
+makeVocab("DropDown", "Control/Defaults/Elevation_Datum_Type",  "Elevation Datum Type");
 
 copyTargetSpitThickness() {
   src = "Control/Defaults/Target_Spit_Thickness";
@@ -2469,16 +2507,16 @@ copyTargetSpitThickness() {
   setFieldValue(dst, val);
 }
 
-copyExcavators() {
-  src = "Control/Defaults/Excavators";
-  dst = "Context/General/Excavators";
+copyMeshSize() {
+  src = "Control/Defaults/Mesh_Size_mm";
+  dst = "Context/Review/Mesh_Size_mm";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }
 
-copyMeshSize() {
-  src = "Control/Defaults/Mesh_Size_mm";
-  dst = "Context/General/Mesh_Size_mm";
+copyElevationDatumType() {
+  src = "Control/Defaults/Elevation_Datum_Type";
+  dst = "Context/Review/Elevation_Datum_Type";
   val = getFieldValue(src);
   setFieldValue(dst, val);
 }

@@ -57,7 +57,7 @@
               <Target_Spit_Thickness/>
               <Bucket_Volume/>
               <Mesh_Size_mm/>
-              <Excavators/>
+              <Elevation_Datum_Type/>
             </Defaults>
             <Search>
               <Colgroup_0>
@@ -107,37 +107,28 @@
                 <Col_2>
                   <Context/>
                 </Col_2>
-                <Col_3>
-                  <LOT_ID/>
-                </Col_3>
               </Colgroup_1>
               <Colgroup_2>
+                <Col_0>
+                  <LOT_ID/>
+                </Col_0>
+                <Col_1>
+                  <Excavators/>
+                </Col_1>
+              </Colgroup_2>
+              <Colgroup_3>
                 <Col_0>
                   <timestamp/>
                 </Col_0>
                 <Col_1>
                   <Wet_Sieved/>
                 </Col_1>
-              </Colgroup_2>
-              <Colgroup_3>
-                <Col_0>
-                  <Mesh_Size_mm/>
-                </Col_0>
-                <Col_1>
-                  <Surface_Area/>
-                </Col_1>
               </Colgroup_3>
               <Colgroup_4>
                 <Col_0>
-                  <Excavation_Method/>
+                  <Surface_Area/>
                 </Col_0>
-                <Col_1>
-                  <Excavators/>
-                </Col_1>
               </Colgroup_4>
-              <Your_Interpretation/>
-              <Context_Comments/>
-              <Elevation_Datum_Type/>
               <Colgroup_5>
                 <Col_0>
                   <Take_Opening_Photo/>
@@ -183,7 +174,6 @@
                 </Col_1>
               </Colgroup_8>
               <Close_Context_and_Review/>
-              <Artefacts_Present/>
               <author/>
             </General>
             <Deposit>
@@ -215,6 +205,9 @@
                   <Context_Disturbances/>
                 </Col_2>
               </Colgroup_2>
+              <Excavation_Method/>
+              <Your_Interpretation/>
+              <Artefacts_Present/>
             </Deposit>
             <Samples>
               <New_Sample/>
@@ -278,6 +271,9 @@
                   <Close/>
                 </Col_1>
               </Colgroup_1>
+              <Elevation_Datum_Type/>
+              <Context_Comments/>
+              <Mesh_Size_mm/>
             </Review>
             <Vars>
               <Target_Spit_Thickness/>
@@ -538,7 +534,6 @@
       <bind type="decimal" nodeset="/faims/Control/Defaults/Next_Special_Find_ID"/>
       <bind type="decimal" nodeset="/faims/Control/Defaults/Bucket_Volume"/>
       <bind type="decimal" nodeset="/faims/Control/Defaults/Mesh_Size_mm"/>
-      <bind type="decimal" nodeset="/faims/Context/General/Colgroup_3/Col_0/Mesh_Size_mm"/>
       <bind type="decimal" nodeset="/faims/Context/General/Colgroup_6/Col_0/Context_Highest_Level_NW"/>
       <bind type="decimal" nodeset="/faims/Context/General/Colgroup_6/Col_0/Context_Highest_Level_NE"/>
       <bind type="decimal" nodeset="/faims/Context/General/Colgroup_6/Col_0/Context_Highest_Level_SE"/>
@@ -553,6 +548,7 @@
       <bind type="decimal" nodeset="/faims/Context/General/Colgroup_8/Col_0/Max_Context_Thickness"/>
       <bind type="decimal" nodeset="/faims/Context/Review/Colgroup_0/Col_0/Final_Bucket_Count"/>
       <bind type="decimal" nodeset="/faims/Context/Review/Colgroup_0/Col_1/Deposit_Volume"/>
+      <bind type="decimal" nodeset="/faims/Context/Review/Mesh_Size_mm"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Depth"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_0/UTM_Easting_Manual"/>
       <bind type="decimal" nodeset="/faims/Context_Group/Context_Group_Details/Colgroup_1/Col_1/UTM_Northing_Manual"/>
@@ -649,9 +645,13 @@
         <input ref="Mesh_Size_mm">
           <label>{Mesh_Size__mm_}</label>
         </input>
-        <input ref="Excavators">
-          <label>{Excavators}</label>
-        </input>
+        <select1 ref="Elevation_Datum_Type">
+          <label>{Elevation_Datum_Type}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
       </group>
       <group ref="Search" faims_scrollable="false">
         <label>{search}</label>
@@ -728,7 +728,7 @@
     <group ref="Context" faims_archent_type="Context">
       <label>{Context}</label>
       <group ref="General">
-        <label>{General}</label>
+        <label>{Gen}</label>
         <input faims_web="true" ref="LOT_Label">
           <label>{LOT_Label}</label>
         </input>
@@ -771,14 +771,23 @@
               <label>{Context}</label>
             </input>
           </group>
-          <group ref="Col_3" faims_style="even">
+        </group>
+        <group ref="Colgroup_2" faims_style="orientation">
+          <label/>
+          <group ref="Col_0" faims_style="even">
             <label/>
             <input faims_attribute_type="measure" ref="LOT_ID" faims_attribute_name="LOT ID" faims_style_class="required">
               <label>{LOT_ID}</label>
             </input>
           </group>
+          <group ref="Col_1" faims_style="even">
+            <label/>
+            <input faims_attribute_type="measure" ref="Excavators" faims_attribute_name="Excavators" faims_style_class="required">
+              <label>{Excavators}</label>
+            </input>
+          </group>
         </group>
-        <group ref="Colgroup_2" faims_style="orientation">
+        <group ref="Colgroup_3" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
@@ -797,17 +806,11 @@
             </select1>
           </group>
         </group>
-        <group ref="Colgroup_3" faims_style="orientation">
+        <group ref="Colgroup_4" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <input faims_attribute_type="measure" ref="Mesh_Size_mm" faims_attribute_name="Mesh Size mm" faims_read_only="true">
-              <label>{Mesh_Size__mm_}</label>
-            </input>
-          </group>
-          <group ref="Col_1" faims_style="even">
-            <label/>
-            <select1 faims_attribute_type="vocab" ref="Surface_Area" faims_attribute_name="Surface Area">
+            <select1 faims_attribute_type="vocab" ref="Surface_Area" faims_attribute_name="Surface Area" faims_style_class="required">
               <label>{Surface_Area}</label>
               <item>
                 <label>Options not loaded</label>
@@ -816,47 +819,11 @@
             </select1>
           </group>
         </group>
-        <group ref="Colgroup_4" faims_style="orientation">
-          <label/>
-          <group ref="Col_0" faims_style="even">
-            <label/>
-            <select faims_attribute_type="vocab" ref="Excavation_Method" faims_attribute_name="Excavation Method" faims_style_class="required">
-              <label>{Excavation_Method}</label>
-              <item>
-                <label>Options not loaded</label>
-                <value>0</value>
-              </item>
-            </select>
-          </group>
-          <group ref="Col_1" faims_style="even">
-            <label/>
-            <input faims_attribute_type="measure" ref="Excavators" faims_attribute_name="Excavators" faims_style_class="required">
-              <label>{Excavators}</label>
-            </input>
-          </group>
-        </group>
-        <select1 faims_attribute_type="vocab" ref="Your_Interpretation" faims_attribute_name="Your Interpretation" faims_style_class="required">
-          <label>{Your_Interpretation}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
-        <input faims_attribute_type="measure" ref="Context_Comments" faims_attribute_name="Context Comments">
-          <label>{Context_Comments}</label>
-        </input>
-        <select1 faims_attribute_type="vocab" ref="Elevation_Datum_Type" faims_attribute_name="Elevation Datum Type" faims_style_class="required">
-          <label>{Elevation_Datum_Type}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select1>
         <group ref="Colgroup_5" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <select type="camera" faims_attribute_type="measure" faims_sync="true" ref="Take_Opening_Photo" faims_attribute_name="Take Opening Photo">
+            <select type="camera" faims_attribute_type="measure" faims_sync="true" ref="Take_Opening_Photo" faims_attribute_name="Take Opening Photo" faims_style_class="required">
               <label>{Take_Opening_Photo}</label>
               <item>
                 <label>Options not loaded</label>
@@ -869,7 +836,7 @@
           </group>
           <group ref="Col_1" faims_style="even">
             <label/>
-            <select type="camera" faims_attribute_type="measure" faims_sync="true" ref="Take_Closing_Photo" faims_attribute_name="Take Closing Photo">
+            <select type="camera" faims_attribute_type="measure" faims_sync="true" ref="Take_Closing_Photo" faims_attribute_name="Take Closing Photo" faims_style_class="required">
               <label>{Take_Closing_Photo}</label>
               <item>
                 <label>Options not loaded</label>
@@ -959,19 +926,12 @@
         <trigger ref="Close_Context_and_Review">
           <label>{Close_Context_and_Review}</label>
         </trigger>
-        <select faims_attribute_type="vocab" ref="Artefacts_Present" faims_attribute_name="Artefacts Present" faims_style_class="required">
-          <label>{Artefacts_Present}</label>
-          <item>
-            <label>Options not loaded</label>
-            <value>0</value>
-          </item>
-        </select>
         <input ref="author" faims_attribute_name="Context author" faims_attribute_type="measure" faims_read_only="true" faims_annotation="false" faims_certainty="false">
           <label>{author}</label>
         </input>
       </group>
       <group ref="Deposit">
-        <label>{Deposit}</label>
+        <label>{Dep}</label>
         <group ref="Colgroup_0" faims_style="orientation">
           <label/>
           <group ref="Col_0" faims_style="even">
@@ -999,7 +959,7 @@
           <label/>
           <group ref="Col_0" faims_style="even">
             <label/>
-            <select1 faims_attribute_type="vocab" ref="Soil_Texture" faims_attribute_name="Soil Texture">
+            <select1 faims_attribute_type="vocab" ref="Soil_Texture" faims_attribute_name="Soil Texture" faims_style_class="required">
               <label>{Soil_Texture}</label>
               <item>
                 <label>Options not loaded</label>
@@ -1054,9 +1014,30 @@
             </select>
           </group>
         </group>
+        <select faims_attribute_type="vocab" ref="Excavation_Method" faims_attribute_name="Excavation Method" faims_style_class="required">
+          <label>{Excavation_Method}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
+        <select1 faims_attribute_type="vocab" ref="Your_Interpretation" faims_attribute_name="Your Interpretation" faims_style_class="required">
+          <label>{Your_Interpretation}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <select faims_attribute_type="vocab" ref="Artefacts_Present" faims_attribute_name="Artefacts Present" faims_style_class="required">
+          <label>{Artefacts_Present}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select>
       </group>
       <group ref="Samples">
-        <label>{Samples}</label>
+        <label>{Samp}</label>
         <trigger ref="New_Sample">
           <label>{New_Sample}</label>
         </trigger>
@@ -1076,7 +1057,7 @@
         </select1>
       </group>
       <group ref="Attachments">
-        <label>{Attachments}</label>
+        <label>{Attach}</label>
         <select type="file" faims_attribute_type="measure" faims_sync="true" ref="Context_Sketch" faims_attribute_name="Context Sketch">
           <label>{Context_Sketch}</label>
           <item>
@@ -1115,7 +1096,7 @@
         </select1>
       </group>
       <group ref="Artefacts">
-        <label>{Artefacts}</label>
+        <label>{Art}</label>
         <trigger ref="New_Artefact_Group">
           <label>{New_Artefact_Group}</label>
         </trigger>
@@ -1151,7 +1132,7 @@
         </trigger>
       </group>
       <group ref="Relationships" faims_scrollable="false">
-        <label>{Relationships}</label>
+        <label>{Relate}</label>
         <trigger ref="Create_Relationships_to_This_Context">
           <label>{Create_Relationships_to_This_Context}</label>
         </trigger>
@@ -1218,7 +1199,7 @@
             <value>0</value>
           </item>
         </select1>
-        <select1 appearance="full" faims_attribute_type="vocab" ref="All_Below_Relationship_Indicated" faims_attribute_name="All Below Relationship Indicated">
+        <select1 appearance="full" faims_attribute_type="vocab" ref="All_Below_Relationship_Indicated" faims_attribute_name="All Below Relationship Indicated" faims_style_class="required">
           <label>{All_Below_Relationship_Indicated}</label>
           <item>
             <label>Options not loaded</label>
@@ -1254,6 +1235,19 @@
             </trigger>
           </group>
         </group>
+        <select1 faims_attribute_type="vocab" ref="Elevation_Datum_Type" faims_attribute_name="Elevation Datum Type" faims_style_class="required">
+          <label>{Elevation_Datum_Type}</label>
+          <item>
+            <label>Options not loaded</label>
+            <value>0</value>
+          </item>
+        </select1>
+        <input faims_attribute_type="measure" ref="Context_Comments" faims_attribute_name="Context Comments">
+          <label>{Context_Comments}</label>
+        </input>
+        <input faims_attribute_type="measure" ref="Mesh_Size_mm" faims_attribute_name="Mesh Size mm" faims_read_only="true">
+          <label>{Mesh_Size__mm_}</label>
+        </input>
       </group>
       <group ref="Vars" faims_hidden="true">
         <label>{Vars}</label>

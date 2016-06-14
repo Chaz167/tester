@@ -31,29 +31,29 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Wet Sieved">
-      <validator type="blankchecker">
-        <param value="vocab" type="field"/>
-      </validator>
-    </property>
-    <property name="Excavation Method">
-      <validator type="blankchecker">
-        <param value="vocab" type="field"/>
-      </validator>
-    </property>
     <property name="Excavators">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Your Interpretation">
+    <property name="Wet Sieved">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
       </validator>
     </property>
-    <property name="Elevation Datum Type">
+    <property name="Surface Area">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
+      </validator>
+    </property>
+    <property name="Take Opening Photo">
+      <validator type="blankchecker">
+        <param type="field"/>
+      </validator>
+    </property>
+    <property name="Take Closing Photo">
+      <validator type="blankchecker">
+        <param type="field"/>
       </validator>
     </property>
     <property name="Context Highest Level NW">
@@ -116,17 +116,17 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
-    <property name="Artefacts Present">
-      <validator type="blankchecker">
-        <param value="vocab" type="field"/>
-      </validator>
-    </property>
     <property name="Soil Munsell Colour">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
       </validator>
     </property>
     <property name="Soil Moisture">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
+    <property name="Soil Texture">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
       </validator>
@@ -151,6 +151,21 @@
         <param value="vocab" type="field"/>
       </validator>
     </property>
+    <property name="Excavation Method">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
+    <property name="Your Interpretation">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
+    <property name="Artefacts Present">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
     <property name="Bulk Sample Mapped">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
@@ -166,6 +181,11 @@
         <param value="measure" type="field"/>
       </validator>
     </property>
+    <property name="All Below Relationship Indicated">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
+      </validator>
+    </property>
     <property name="Trench Supervisor Review">
       <validator type="blankchecker">
         <param value="vocab" type="field"/>
@@ -179,6 +199,11 @@
     <property name="Date Closed">
       <validator type="blankchecker">
         <param value="measure" type="field"/>
+      </validator>
+    </property>
+    <property name="Elevation Datum Type">
+      <validator type="blankchecker">
+        <param value="vocab" type="field"/>
       </validator>
     </property>
   </ArchaeologicalElement>

@@ -702,7 +702,7 @@
           <group ref="Col_1" faims_style="even">
             <label/>
             <select1 ref="Reviewer">
-              <label>{Reviewer}</label>
+              <label>{Filter_by}</label>
               <item>
                 <label>Options not loaded</label>
                 <value>0</value>

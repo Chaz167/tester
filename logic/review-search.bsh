@@ -41,6 +41,7 @@ populateSearchSquare() {
 }
 
 searchReviewOpts = new ArrayList();
+searchReviewOpts.add(new NameValuePair("{All_Below_Relationship_Indicated}", "All Below Relationship Indicated"));
 searchReviewOpts.add(new NameValuePair("{Site_Director_Review}", "Site Director Review"));
 searchReviewOpts.add(new NameValuePair("{Trench_Supervisor_Review}", "Trench Supervisor Review"));
 populateDropDown("Control/Review/Reviewer", searchReviewOpts);

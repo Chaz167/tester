@@ -61,7 +61,9 @@
   <Review f="noscroll">
     <cols>
       <Square   t="dropdown"/>
-      <Reviewer t="dropdown"/>
+      <Reviewer t="dropdown">
+        Filter by
+      </Reviewer>
       <Search   t="button"/>
     </cols>
     <Entity_List t="list"/>

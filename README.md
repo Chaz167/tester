@@ -37,4 +37,56 @@ For more details about the **Malawi Earlier-Middle Stone Age Project** please vi
 If you have any questions about the module, please contact the FAIMS team at **enquiries@fedarch.org** and we will get back to you within one business day.
 
 ## Screenshots:
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221200.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221219.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221231.png" width="250"/>
+</p>
 
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221245.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221325.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221349.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221423.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221445.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221505.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221526.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221531.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221544.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221554.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221608.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221640.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221732.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221802.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221816.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221826.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221840.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221848.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221852.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221857.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221908.png" width="250"/>
+</p>
+
+<p align="left">
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221923.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221932.png" width="250"/>
+  <img src="https://github.com/FAIMS/memsap-excavation-2016/blob/master/screenshots/Screenshot_20170913-221947.png" width="250"/>
+</p>

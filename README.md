@@ -5,7 +5,7 @@ This module was created for the **Malawi Earlier-Middle Stone Age Project**. The
 This module was co-developed by Jessica Thompson at Emory University and Adela Sobotkova and Petra Janouchova at the FAIMS Project, Department of Ancient History, Macquarie University.
 
 ## Funding:
-Development of this module was funded by ARC LE140100151, FAIMS: Transforming archaeological research through digital technologies and MQ Strategic Infrastructure Scheme 20110089, for FAIMS infrastructure development and support in 2016.
+Development of this module was funded by **ARC LE140100151, FAIMS: Transforming archaeological research through digital technologies** and **MQ Strategic Infrastructure Scheme 20110089**, for FAIMS infrastructure development and support in 2016.
 
 ## Date of release:
 May 2015, June 2016 
